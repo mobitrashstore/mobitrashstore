@@ -3,13 +3,17 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Category, Banner } from '../types';
 import * as api from '../services/api'; // Import API for fetching banners
 
-// Fix: Defined getOptimizedImageUrl locally as creating new files is prohibited.
+// Unified image optimizer — supports ImageKit and Cloudinary URLs.
 const getOptimizedImageUrl = (url: string | undefined, width: number, quality: number): string => {
     if (!url) return 'https://placehold.co/400x400?text=No+Image';
     if (url.startsWith('data:')) return url; // Don't optimize base64 images
     if (url.includes('ik.imagekit.io')) {
         const separator = url.includes('?') ? '&' : '?';
         return `${url}${separator}tr=w-${width},q-${quality}`;
+    }
+    if (url.includes('res.cloudinary.com')) {
+        // Inject Cloudinary transformations before the version/public_id segment
+        return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width},c_limit/`);
     }
     return url;
 };
@@ -53,8 +57,10 @@ export const HomeCategorySlider: React.FC<HomeCategorySliderProps> = ({ categori
                                     title={banner.link ? "Click to view deal" : ""}
                                 >
                                     <img
-                                        src={getOptimizedImageUrl(banner.imageUrl, 100, 75)} // Optimized for small squares
+                                        src={getOptimizedImageUrl(banner.imageUrl, 100, 75)}
                                         alt="Feature"
+                                        width="80"
+                                        height="80"
                                         className="w-full h-full object-cover"
                                         loading="lazy" decoding="async"
                                     />
@@ -76,7 +82,7 @@ export const HomeCategorySlider: React.FC<HomeCategorySliderProps> = ({ categori
                                 className="flex flex-col items-center space-y-2 group min-w-[80px]"
                             >
                                 <div className="w-14 h-14 rounded-full bg-gray-50 border border-gray-100 shadow-sm flex items-center justify-center p-2 group-hover:border-[#00bfff] group-hover:bg-white transition-all overflow-hidden">
-                                    <img src={getOptimizedImageUrl(cat.imageUrl, 80, 75)} alt={cat.name} className="w-full h-full object-contain transform group-hover:scale-110 transition-transform" loading="lazy" decoding="async" />
+                                    <img src={getOptimizedImageUrl(cat.imageUrl, 80, 75)} alt={cat.name} width="56" height="56" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform" loading="lazy" decoding="async" />
                                 </div>
                                 <span className="text-xs font-bold text-gray-600 group-hover:text-[#00bfff] text-center whitespace-nowrap">{cat.name}</span>
                             </button>
@@ -95,7 +101,7 @@ export const HomeCategorySlider: React.FC<HomeCategorySliderProps> = ({ categori
                             className="flex flex-col items-center space-y-1.5 group min-w-[72px]"
                         >
                             <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center p-3 group-hover:border-[#00bfff] transition-all overflow-hidden">
-                                <img src={getOptimizedImageUrl(cat.imageUrl, 80, 75)} alt={cat.name} className="w-full h-full object-contain" loading="lazy" decoding="async" />
+                                <img src={getOptimizedImageUrl(cat.imageUrl, 80, 75)} alt={cat.name} width="64" height="64" className="w-full h-full object-contain" loading="lazy" decoding="async" />
                             </div>
                             <span className="text-[10px] font-bold text-gray-700 text-center leading-tight px-1 truncate w-full">{cat.name}</span>
                         </button>
@@ -158,8 +164,10 @@ export const HomeHeroSlider: React.FC<HomeHeroSliderProps> = ({ banners, sideBan
                 >
                     <img
                         className="h-full w-full object-cover"
-                        src={getOptimizedImageUrl(banner.imageUrl, 1920, 80)} // Optimized for hero banners
+                        src={getOptimizedImageUrl(banner.imageUrl, 1920, 80)}
                         alt={`Slide ${index + 1}`}
+                        width="1920"
+                        height="600"
                         loading={index === 0 ? "eager" : "lazy"}
                         decoding="async"
                         {...(index === 0 ? { fetchPriority: "high" } : {})}
@@ -206,8 +214,10 @@ export const HomeHeroSlider: React.FC<HomeHeroSliderProps> = ({ banners, sideBan
                     title={sideBanners[0]?.link ? "Click to view deal" : ""}
                 >
                     <img
-                        src={getOptimizedImageUrl(sideBanners[0].imageUrl, 600, 80)} // Optimized for side banners
+                        src={getOptimizedImageUrl(sideBanners[0].imageUrl, 600, 80)}
                         alt="Side Promotion"
+                        width="600"
+                        height="450"
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                         loading="lazy" decoding="async"
                     />
@@ -261,8 +271,10 @@ export const PromoBannerSlider: React.FC<PromoBannerSliderProps> = ({ banners, i
                     }}
                 >
                     <img
-                        src={getOptimizedImageUrl(banner.imageUrl, 1200, 75)} // Optimized for promo banners
+                        src={getOptimizedImageUrl(banner.imageUrl, 1200, 75)}
                         alt="Promo Banner"
+                        width="1200"
+                        height="192"
                         className="w-full h-full object-cover"
                         loading="lazy" decoding="async"
                     />

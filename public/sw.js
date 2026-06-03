@@ -1,5 +1,5 @@
-const STATIC_CACHE_NAME = 'mobi-trash-static-v14';
-const DYNAMIC_CACHE_NAME = 'mobi-trash-dynamic-v14';
+const STATIC_CACHE_NAME = 'mobi-trash-static-v15';
+const DYNAMIC_CACHE_NAME = 'mobi-trash-dynamic-v15';
 
 // CRITICAL: Precise list of all external dependencies used in importmap
 const APP_SHELL_URLS = [
@@ -68,7 +68,7 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
 
   // 1. Image Strategy: Stale-While-Revalidate (Fastest for visual content)
-  if (url.hostname.includes('ik.imagekit.io') || url.hostname.includes('images.unsplash.com')) {
+  if (url.hostname.includes('ik.imagekit.io') || url.hostname.includes('images.unsplash.com') || url.hostname.includes('res.cloudinary.com')) {
     event.respondWith(
       caches.open(DYNAMIC_CACHE_NAME).then(cache => {
         return cache.match(request).then(cachedResponse => {

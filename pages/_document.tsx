@@ -12,8 +12,8 @@ export default function Document() {
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        {/* Viewport: STRICTLY LOCKED to prevent zooming */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+        {/* Viewport: Allow zooming for accessibility (Lighthouse requirement) */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
 
         {/* Prevent Chrome Translation Popup & "Running in Chrome" context if possible */}
         <meta name="google" content="notranslate" />
@@ -37,8 +37,9 @@ export default function Document() {
         <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMAdGHFl2UXxw.woff2" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMAdGHFj2UXxw.woff2" type="font/woff2" crossOrigin="anonymous" />
 
+        {/* Google Adsense: loaded with async defer to avoid blocking rendering */}
         <meta name="google-adsense-account" content="ca-pub-7257748018050891" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7257748018050891" crossOrigin="anonymous" />
+        <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7257748018050891" crossOrigin="anonymous" />
         <meta name="google-site-verification" content="oxF6z3AR6drhrd8QNRbYeyt6jj1W7fsCpOvvXysJhUo" />
 
         {/* OneSignal Push Notifications */}
@@ -360,7 +361,8 @@ export default function Document() {
           `
         }} />
 
-        {/* Performance Optimizations */}
+        {/* Performance Optimizations: Preconnect to CDN origins */}
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://ik.imagekit.io" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://firestore.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

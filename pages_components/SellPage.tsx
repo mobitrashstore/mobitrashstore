@@ -17,13 +17,16 @@ interface SellPageHeroProps {
   onHasBanners: (has: boolean) => void;
 }
 
-// Helper to optimize ImageKit URLs (could be global)
+// Unified image optimizer — supports ImageKit and Cloudinary URLs.
 const getOptimizedImageUrl = (url: string | undefined, width: number, quality: number): string => {
   if (!url) return 'https://placehold.co/400x400?text=No+Image';
   if (url.startsWith('data:')) return url; // Don't optimize base64 images
   if (url.includes('ik.imagekit.io')) {
     const separator = url.includes('?') ? '&' : '?';
     return `${url}${separator}tr=w-${width},q-${quality}`;
+  }
+  if (url.includes('res.cloudinary.com')) {
+    return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width},c_limit/`);
   }
   return url;
 };
@@ -69,9 +72,11 @@ const SellPageHero: React.FC<SellPageHeroProps> = ({ onHasBanners }) => {
           key={index}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
-          src={getOptimizedImageUrl(src, 1920, 80)} // Optimized for hero banners
+          src={getOptimizedImageUrl(src, 1920, 80)}
           alt={`Sell used phone online nepal ${index + 1}`}
-          loading={index === 0 ? "eager" : "lazy"} // Eager load first slide, lazy load others
+          width="1920"
+          height="320"
+          loading={index === 0 ? "eager" : "lazy"}
         />
       ))}
       {slides.length > 1 && (

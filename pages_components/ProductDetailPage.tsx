@@ -360,6 +360,9 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
             const separator = url.includes('?') ? '&' : '?';
             return `${url}${separator}tr=w-${width},q-${quality},f-auto`;
         }
+        if (url.includes('res.cloudinary.com')) {
+            return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width},c_limit/`);
+        }
         return url;
     };
 

@@ -59,6 +59,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
     if (imageUrl && imageUrl.includes('ik.imagekit.io')) {
         const separator = imageUrl.includes('?') ? '&' : '?';
         imageUrl = `${imageUrl}${separator}tr=w-400,q-75`; // Optimised sizing for cards
+    } else if (imageUrl && imageUrl.includes('res.cloudinary.com')) {
+        imageUrl = imageUrl.replace('/image/upload/', '/image/upload/f_auto,q_auto,w_400,c_limit/');
     } else if (!imageUrl) {
         imageUrl = 'https://placehold.co/400x400?text=No+Image';
     }

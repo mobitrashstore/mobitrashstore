@@ -93,13 +93,16 @@ const HOME_CONFIG_DEFAULT = {
     sections: [] as DynamicSectionData[]
 };
 
-// Fix: Defined getOptimizedImageUrl locally as creating new files is prohibited.
+// Unified image optimizer — supports ImageKit and Cloudinary URLs.
 const getOptimizedImageUrl = (url: string | undefined, width: number, quality: number): string => {
     if (!url) return 'https://placehold.co/400x400?text=No+Image';
     if (url.startsWith('data:')) return url; // Don't optimize base64 images
     if (url.includes('ik.imagekit.io')) {
         const separator = url.includes('?') ? '&' : '?';
         return `${url}${separator}tr=w-${width},q-${quality}`;
+    }
+    if (url.includes('res.cloudinary.com')) {
+        return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width},c_limit/`);
     }
     return url;
 };
@@ -257,6 +260,8 @@ const HeroSection: React.FC<{
                                             <img
                                                 src={getOptimizedImageUrl(banner.imageUrl, 800, 80)}
                                                 alt="Hero Banner"
+                                                width="800"
+                                                height="380"
                                                 className="w-full h-full object-cover"
                                                 loading={index === 0 ? "eager" : "lazy"}
                                             />
@@ -532,8 +537,10 @@ const RepairPromo: React.FC<{
                 {/* Gradient to fade image into white background */}
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent md:bg-gradient-to-r md:from-white md:via-transparent z-10"></div>
                 <img
-                    src={getOptimizedImageUrl('https://5.imimg.com/data5/GY/KL/MY-42250892/smart-mobile-phone-service.png', 800, 75)} // Optimized
+                    src={getOptimizedImageUrl('https://5.imimg.com/data5/GY/KL/MY-42250892/smart-mobile-phone-service.png', 800, 75)}
                     alt="Mobile Repair"
+                    width="800"
+                    height="300"
                     className="w-full h-full object-cover object-center"
                     loading="lazy"
                 />
@@ -693,17 +700,15 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         };
     }, []);
 
-    // Effect to load Elfsight script for Google Reviews
     useEffect(() => {
-        // Create script element
-        const script = document.createElement('script');
-        script.src = "https://elfsightcdn.com/platform.js";
-        script.async = true;
-        document.body.appendChild(script);
-
-        return () => {
-            // Cleanup if necessary, though scripts usually persist
-        };
+        // Defer Elfsight reviews widget: load after 4s to avoid blocking main thread
+        const timer = setTimeout(() => {
+            const script = document.createElement('script');
+            script.src = "https://elfsightcdn.com/platform.js";
+            script.async = true;
+            document.body.appendChild(script);
+        }, 4000);
+        return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
@@ -948,9 +953,11 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                                     <div className="flex items-center gap-3 md:gap-4 w-full md:w-auto">
                                         <div className="bg-white rounded-xl p-2 md:p-3 shadow-md">
                                             <img
-                                                src={getOptimizedImageUrl(darazConfig.logoUrl, 100, 75)} // Optimized
+                                                src={getOptimizedImageUrl(darazConfig.logoUrl, 100, 36)}
                                                 className="h-7 md:h-9 object-contain"
                                                 alt="Daraz Logo"
+                                                width="100"
+                                                height="36"
                                                 loading="lazy"
                                             />
                                         </div>
@@ -979,8 +986,10 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                                                         className="bg-white/95 rounded-lg p-1.5 md:p-2 shadow-md"
                                                     >
                                                         <img
-                                                            src={getOptimizedImageUrl(logo, 80, 75)} // Optimized
+                                                            src={getOptimizedImageUrl(logo, 80, 75)}
                                                             alt="Partner logo"
+                                                            width="80"
+                                                            height="28"
                                                             className="h-6 md:h-7 w-auto object-contain"
                                                             loading="lazy"
                                                         />
