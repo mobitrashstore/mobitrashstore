@@ -110,13 +110,18 @@ async function runMigration() {
             for (const url of media) {
                 if (!url) continue;
 
-                // Check if url is external (not already res.cloudinary.com)
-                if (url.startsWith("http") && !url.includes("res.cloudinary.com")) {
+                const cleanUrl = url.trim();
+                const isExternal = (cleanUrl.toLowerCase().startsWith("http") || cleanUrl.startsWith("//")) && !cleanUrl.includes("res.cloudinary.com");
+
+                if (isExternal) {
                     console.log(`  📸 Migrating external image for [${product.sku}] "${product.title}":`);
                     console.log(`     From: ${url}`);
                     try {
-                        // Cloudinary allows uploading directly from a remote URL!
-                        const uploadResult = await cloudinary.uploader.upload(url, {
+                        let uploadUrl = cleanUrl;
+                        if (cleanUrl.startsWith("//")) {
+                            uploadUrl = "https:" + cleanUrl;
+                        }
+                        const uploadResult = await cloudinary.uploader.upload(uploadUrl, {
                             folder: "products"
                         });
                         newMedia.push(uploadResult.secure_url);
@@ -152,18 +157,27 @@ async function runMigration() {
             const category = doc.data();
             const url = category.imageUrl;
 
-            if (url && url.startsWith("http") && !url.includes("res.cloudinary.com")) {
-                console.log(`  📁 Migrating category image for "${category.name}":`);
-                console.log(`     From: ${url}`);
-                try {
-                    const uploadResult = await cloudinary.uploader.upload(url, {
-                        folder: "categories"
-                    });
-                    await doc.ref.update({ imageUrl: uploadResult.secure_url });
-                    updatedCategoriesCount++;
-                    console.log(`     ➔ Saved: ${uploadResult.secure_url}`);
-                } catch (uploadError) {
-                    console.error(`     ✕ Failed: ${uploadError.message}`);
+            if (url) {
+                const cleanUrl = url.trim();
+                const isExternal = (cleanUrl.toLowerCase().startsWith("http") || cleanUrl.startsWith("//")) && !cleanUrl.includes("res.cloudinary.com");
+
+                if (isExternal) {
+                    console.log(`  📁 Migrating category image for "${category.name}":`);
+                    console.log(`     From: ${url}`);
+                    try {
+                        let uploadUrl = cleanUrl;
+                        if (cleanUrl.startsWith("//")) {
+                            uploadUrl = "https:" + cleanUrl;
+                        }
+                        const uploadResult = await cloudinary.uploader.upload(uploadUrl, {
+                            folder: "categories"
+                        });
+                        await doc.ref.update({ imageUrl: uploadResult.secure_url });
+                        updatedCategoriesCount++;
+                        console.log(`     ➔ Saved: ${uploadResult.secure_url}`);
+                    } catch (uploadError) {
+                        console.error(`     ✕ Failed: ${uploadError.message}`);
+                    }
                 }
             }
         }
@@ -178,18 +192,27 @@ async function runMigration() {
             const brand = doc.data();
             const url = brand.logo;
 
-            if (url && url.startsWith("http") && !url.includes("res.cloudinary.com")) {
-                console.log(`  🏷️ Migrating brand logo for "${brand.name}":`);
-                console.log(`     From: ${url}`);
-                try {
-                    const uploadResult = await cloudinary.uploader.upload(url, {
-                        folder: "brands"
-                    });
-                    await doc.ref.update({ logo: uploadResult.secure_url });
-                    updatedBrandsCount++;
-                    console.log(`     ➔ Saved: ${uploadResult.secure_url}`);
-                } catch (uploadError) {
-                    console.error(`     ✕ Failed: ${uploadError.message}`);
+            if (url) {
+                const cleanUrl = url.trim();
+                const isExternal = (cleanUrl.toLowerCase().startsWith("http") || cleanUrl.startsWith("//")) && !cleanUrl.includes("res.cloudinary.com");
+
+                if (isExternal) {
+                    console.log(`  🏷️ Migrating brand logo for "${brand.name}":`);
+                    console.log(`     From: ${url}`);
+                    try {
+                        let uploadUrl = cleanUrl;
+                        if (cleanUrl.startsWith("//")) {
+                            uploadUrl = "https:" + cleanUrl;
+                        }
+                        const uploadResult = await cloudinary.uploader.upload(uploadUrl, {
+                            folder: "brands"
+                        });
+                        await doc.ref.update({ logo: uploadResult.secure_url });
+                        updatedBrandsCount++;
+                        console.log(`     ➔ Saved: ${uploadResult.secure_url}`);
+                    } catch (uploadError) {
+                        console.error(`     ✕ Failed: ${uploadError.message}`);
+                    }
                 }
             }
         }
@@ -204,22 +227,101 @@ async function runMigration() {
             const banner = doc.data();
             const url = banner.imageUrl;
 
-            if (url && url.startsWith("http") && !url.includes("res.cloudinary.com")) {
-                console.log(`  🖼️ Migrating banner [${banner.section}] (ID: ${banner.id}):`);
-                console.log(`     From: ${url}`);
-                try {
-                    const uploadResult = await cloudinary.uploader.upload(url, {
-                        folder: "banners"
-                    });
-                    await doc.ref.update({ imageUrl: uploadResult.secure_url });
-                    updatedBannersCount++;
-                    console.log(`     ➔ Saved: ${uploadResult.secure_url}`);
-                } catch (uploadError) {
-                    console.error(`     ✕ Failed: ${uploadError.message}`);
+            if (url) {
+                const cleanUrl = url.trim();
+                const isExternal = (cleanUrl.toLowerCase().startsWith("http") || cleanUrl.startsWith("//")) && !cleanUrl.includes("res.cloudinary.com");
+
+                if (isExternal) {
+                    console.log(`  🖼️ Migrating banner [${banner.section}] (ID: ${banner.id}):`);
+                    console.log(`     From: ${url}`);
+                    try {
+                        let uploadUrl = cleanUrl;
+                        if (cleanUrl.startsWith("//")) {
+                            uploadUrl = "https:" + cleanUrl;
+                        }
+                        const uploadResult = await cloudinary.uploader.upload(uploadUrl, {
+                            folder: "banners"
+                        });
+                        await doc.ref.update({ imageUrl: uploadResult.secure_url });
+                        updatedBannersCount++;
+                        console.log(`     ➔ Saved: ${uploadResult.secure_url}`);
+                    } catch (uploadError) {
+                        console.error(`     ✕ Failed: ${uploadError.message}`);
+                    }
                 }
             }
         }
         console.log(`🎉 Banner Migration Finished! Updated: ${updatedBannersCount}`);
+
+        // --- Migrate Sell Models ---
+        console.log("\n📦 Starting migration for sell models...");
+        const sellModelsSnapshot = await db.collection("sellModels").get();
+        let updatedSellModelsCount = 0;
+
+        for (const doc of sellModelsSnapshot.docs) {
+            const model = doc.data();
+            const url = model.imageUrl;
+
+            if (url) {
+                const cleanUrl = url.trim();
+                const isExternal = (cleanUrl.toLowerCase().startsWith("http") || cleanUrl.startsWith("//")) && !cleanUrl.includes("res.cloudinary.com");
+
+                if (isExternal) {
+                    console.log(`  📱 Migrating sell model image for "${model.name}":`);
+                    console.log(`     From: ${url}`);
+                    try {
+                        let uploadUrl = cleanUrl;
+                        if (cleanUrl.startsWith("//")) {
+                            uploadUrl = "https:" + cleanUrl;
+                        }
+                        const uploadResult = await cloudinary.uploader.upload(uploadUrl, {
+                            folder: "sellModels"
+                        });
+                        await doc.ref.update({ imageUrl: uploadResult.secure_url });
+                        updatedSellModelsCount++;
+                        console.log(`     ➔ Saved: ${uploadResult.secure_url}`);
+                    } catch (uploadError) {
+                        console.error(`     ✕ Failed: ${uploadError.message}`);
+                    }
+                }
+            }
+        }
+        console.log(`🎉 Sell Model Migration Finished! Updated: ${updatedSellModelsCount}`);
+
+        // --- Migrate Testimonials ---
+        console.log("\n💬 Starting migration for testimonials...");
+        const testimonialsSnapshot = await db.collection("testimonials").get();
+        let updatedTestimonialsCount = 0;
+
+        for (const doc of testimonialsSnapshot.docs) {
+            const testimonial = doc.data();
+            const url = testimonial.imageUrl;
+
+            if (url) {
+                const cleanUrl = url.trim();
+                const isExternal = (cleanUrl.toLowerCase().startsWith("http") || cleanUrl.startsWith("//")) && !cleanUrl.includes("res.cloudinary.com");
+
+                if (isExternal) {
+                    console.log(`  💬 Migrating testimonial image for "${testimonial.name}":`);
+                    console.log(`     From: ${url}`);
+                    try {
+                        let uploadUrl = cleanUrl;
+                        if (cleanUrl.startsWith("//")) {
+                            uploadUrl = "https:" + cleanUrl;
+                        }
+                        const uploadResult = await cloudinary.uploader.upload(uploadUrl, {
+                            folder: "testimonials"
+                        });
+                        await doc.ref.update({ imageUrl: uploadResult.secure_url });
+                        updatedTestimonialsCount++;
+                        console.log(`     ➔ Saved: ${uploadResult.secure_url}`);
+                    } catch (uploadError) {
+                        console.error(`     ✕ Failed: ${uploadError.message}`);
+                    }
+                }
+            }
+        }
+        console.log(`🎉 Testimonial Migration Finished! Updated: ${updatedTestimonialsCount}`);
 
         console.log("\n==================================================");
         console.log("       🌟 All Migrations Complete! 🌟             ");
