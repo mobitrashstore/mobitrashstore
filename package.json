@@ -23,6 +23,7 @@
     "@google-cloud/vision": "^5.3.4",
     "@google/genai": "^0.14.0",
     "@tensorflow/tfjs": "^4.22.0",
+    "@vercel/analytics": "^2.0.1",
     "@zxing/library": "^0.21.3",
     "canvas-confetti": "^1.9.3",
     "chart.js": "^4.4.3",

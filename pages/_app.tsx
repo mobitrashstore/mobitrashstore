@@ -14,6 +14,7 @@ import { ToastContainer } from '../components/ToastNotification';
 import Header from '../components/Header';
 import AdminLayout from '../components/AdminLayout';
 import Footer from '../components/Footer';
+import { Analytics } from '@vercel/analytics/react';
 import BottomNavBar from '../components/BottomNavBar';
 import CartModal from '../components/CartModal';
 import OfflineBanner from '../components/OfflineBanner';
@@ -310,6 +311,7 @@ export default function MyApp(props: AppProps) {
                   <WishlistProvider>
                     <MainAppContent {...props} />
                     <ToastContainer />
+                    <Analytics />
                   </WishlistProvider>
                 </CartProvider>
               </GlobalNotificationProvider>
