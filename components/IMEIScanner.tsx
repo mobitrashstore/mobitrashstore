@@ -75,7 +75,7 @@ const IMEIScanner: React.FC<IMEIScannerProps> = ({ onIMEIDetected, onClose }) =>
 
                 {/* Header */}
                 <div className="text-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#1e3a8a] to-[#0f172a] rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <CameraIcon className="w-8 h-8 text-white" />
                     </div>
                     <h2 className="text-2xl font-black text-slate-900">Scan IMEI</h2>
@@ -144,7 +144,7 @@ const IMEIScanner: React.FC<IMEIScannerProps> = ({ onIMEIDetected, onClose }) =>
                 <button
                     onClick={handleCameraClick}
                     disabled={isProcessing}
-                    className="w-full bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold py-4 rounded-xl hover:from-emerald-600 hover:to-green-700 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-800 text-white font-bold py-4 rounded-xl hover:from-blue-700 hover:to-indigo-900 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                     <CameraIcon className="w-5 h-5" />
                     {isProcessing ? 'Processing...' : 'Take Photo'}

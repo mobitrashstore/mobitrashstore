@@ -1,5 +1,5 @@
-const STATIC_CACHE_NAME = 'mobi-trash-static-v16';
-const DYNAMIC_CACHE_NAME = 'mobi-trash-dynamic-v16';
+const STATIC_CACHE_NAME = 'mobi-trash-static-v17';
+const DYNAMIC_CACHE_NAME = 'mobi-trash-dynamic-v17';
 
 // CRITICAL: Precise list of all external dependencies used in importmap
 const APP_SHELL_URLS = [
@@ -85,38 +85,34 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // 3. Navigation Strategy: Offline-First for Index (Crucial for Speed & Reliability)
+  // 3. Navigation Strategy: Network First (Ensures fresh index.html when online, falls back to cache when offline)
   if (request.mode === 'navigate') {
     event.respondWith(
-      caches.match('/index.html').then(cachedResponse => {
-        const fetchPromise = fetch(request).then(networkResponse => {
-          // Fix for Safari: "Response served by service worker has redirections"
-          // We must return a non-redirected response for navigation requests.
-          if (networkResponse.redirected) {
-             const cleanResponse = new Response(networkResponse.body, {
-               status: networkResponse.status,
-               statusText: networkResponse.statusText,
-               headers: networkResponse.headers
-             });
-             // Also update cache with the redirected body's final content
-             if (networkResponse.ok) {
-               caches.open(STATIC_CACHE_NAME).then(cache => cache.put('/index.html', cleanResponse.clone()));
-             }
-             return cleanResponse;
-          }
-          
-          if (networkResponse.ok) {
-            caches.open(STATIC_CACHE_NAME).then(cache => cache.put('/index.html', networkResponse.clone()));
-          }
-          return networkResponse;
-        }).catch(() => {
-          // OFFLINE FALLBACK: If network fails, we MUST return something.
-          // cachedResponse is the result of caches.match('/index.html')
+      fetch(request).then(networkResponse => {
+        // Fix for Safari: "Response served by service worker has redirections"
+        // We must return a non-redirected response for navigation requests.
+        if (networkResponse.redirected) {
+           const cleanResponse = new Response(networkResponse.body, {
+             status: networkResponse.status,
+             statusText: networkResponse.statusText,
+             headers: networkResponse.headers
+           });
+           // Also update cache with the redirected body's final content
+           if (networkResponse.ok) {
+              caches.open(STATIC_CACHE_NAME).then(cache => cache.put('/index.html', cleanResponse.clone()));
+           }
+           return cleanResponse;
+        }
+        
+        if (networkResponse.ok) {
+          caches.open(STATIC_CACHE_NAME).then(cache => cache.put('/index.html', networkResponse.clone()));
+        }
+        return networkResponse;
+      }).catch(() => {
+        // OFFLINE FALLBACK: If network fails, we return the cached version.
+        return caches.match('/index.html').then(cachedResponse => {
           return cachedResponse || caches.match('/');
         });
-
-        // Stale-While-Revalidate: Return cached immediately if available, update in bg
-        return cachedResponse || fetchPromise;
       })
     );
     return;

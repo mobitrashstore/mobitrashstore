@@ -49,7 +49,7 @@ const ExplorationPopup: React.FC<ExplorationPopupProps> = ({ onClose }) => {
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
             <div className="bg-white rounded-[2.5rem] shadow-2xl max-w-lg w-full overflow-hidden relative border border-white/20">
                 {/* Visual Header */}
-                <div className="bg-gradient-to-br from-emerald-400 to-green-600 p-8 text-center relative overflow-hidden">
+                <div className="bg-gradient-to-br from-[#1e3a8a] to-[#0f172a] p-8 text-center relative overflow-hidden">
                     <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-0 left-0 -ml-10 -mb-10 w-32 h-32 bg-black/10 rounded-full blur-2xl"></div>
                     
@@ -58,7 +58,7 @@ const ExplorationPopup: React.FC<ExplorationPopupProps> = ({ onClose }) => {
                             <SparklesIcon className="w-10 h-10 text-white" />
                         </div>
                         <h2 className="text-3xl font-black text-white leading-tight">Mobi Store Unlocked!</h2>
-                        <p className="text-emerald-50 text-sm mt-2 font-medium">Your journey to smart tech recycling begins here.</p>
+                        <p className="text-blue-50 text-sm mt-2 font-medium">Your journey to smart tech recycling begins here.</p>
                     </div>
                 </div>
 
@@ -115,14 +115,14 @@ const ExplorationPopup: React.FC<ExplorationPopupProps> = ({ onClose }) => {
                                     <p className="text-xs font-bold text-slate-800 uppercase">Sell Phone</p>
                                 </div>
                                 <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-center">
-                                    <SparklesIcon className="w-6 h-6 text-emerald-500 mx-auto mb-2" />
+                                    <SparklesIcon className="w-6 h-6 text-blue-500 mx-auto mb-2" />
                                     <p className="text-xs font-bold text-slate-800 uppercase">Repair Lab</p>
                                 </div>
                             </div>
 
                             <button 
                                 onClick={onClose}
-                                className="w-full bg-emerald-600 text-white font-black py-4 rounded-2xl hover:bg-emerald-700 transition-all shadow-xl active:scale-95"
+                                className="w-full bg-blue-600 text-white font-black py-4 rounded-2xl hover:bg-blue-700 transition-all shadow-xl active:scale-95"
                             >
                                 Let's Start
                             </button>

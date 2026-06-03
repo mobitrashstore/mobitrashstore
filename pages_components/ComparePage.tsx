@@ -181,7 +181,7 @@ Example format:
                 Changed from 'sticky' to 'fixed' to ensure it never moves during scroll.
              */}
             <div
-                className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-emerald-400 to-green-600 pt-[calc(1rem+env(safe-area-inset-top))] pb-4 px-4 md:hidden text-center shadow-lg rounded-b-[2rem]"
+                className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] pt-[calc(1rem+env(safe-area-inset-top))] pb-4 px-4 md:hidden text-center shadow-lg rounded-b-[2rem]"
             >
                 <h1 className="text-2xl font-extrabold text-white drop-shadow-sm">Compare Phones</h1>
             </div>
@@ -222,7 +222,7 @@ Example format:
                         <button
                             onClick={handleCompare}
                             disabled={loading}
-                            className="bg-[#10b981] text-white font-bold py-4 px-12 rounded-xl hover:bg-[#059669] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:translate-y-0 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-3"
+                            className="bg-[#1e3a8a] text-white font-bold py-4 px-12 rounded-xl hover:bg-[#1e40af] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:translate-y-0 disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center gap-3"
                         >
                             {loading ? <Spinner size="w-6 h-6 border-white" /> : <BoltIcon className="w-6 h-6" />}
                             {loading ? 'Analyzing Specs...' : 'Compare Now'}

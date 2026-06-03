@@ -259,12 +259,12 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
   return (
     <div className="bg-[#f4f5fb] min-h-full font-sans w-full overflow-x-hidden">
       {/* 
-          HEADER – MATCHES STATUS BAR (#34d399) 
-          Using 'from-emerald-400 via-emerald-400' ensures the top 60% of the header is solid #34d399
+          HEADER – MATCHES STATUS BAR (#0f172a / #1e3a8a) 
+          Using 'from-[#1e3a8a] via-[#1e3a8a]' ensures the top 60% of the header is solid navy
           to blend seamlessly with the mobile status bar (safe area).
       */}
       <div
-        className="bg-gradient-to-b from-emerald-400 via-emerald-400 to-green-600 text-white pb-20 shadow-md"
+        className="bg-gradient-to-b from-[#1e3a8a] via-[#1e3a8a] to-[#0f172a] text-white pb-20 shadow-md"
         style={{ paddingTop: 'calc(env(safe-area-inset-top) + 1.5rem)' }}
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
@@ -292,7 +292,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
                 onClick={handlePhotoClick}
                 title="Change Profile Photo"
               >
-                <div className="w-16 h-16 md:w-18 md:h-18 rounded-full p-[2px] bg-gradient-to-br from-emerald-400 to-green-500 shadow-md">
+                <div className="w-16 h-16 md:w-18 md:h-18 rounded-full p-[2px] bg-gradient-to-br from-[#1e3a8a] to-[#0f172a] shadow-md">
                   <div className="w-full h-full rounded-full bg-white overflow-hidden relative">
                     {user.photoURL ? (
                       <img
@@ -352,7 +352,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
             {/* Sign out button */}
             <button
               onClick={handleLogout}
-              className="group flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-emerald-400 to-green-600 text-white font-bold rounded-full text-xs shadow-md hover:brightness-105 active:scale-95 transition-all"
+              className="group flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-[#1e3a8a] to-[#0f172a] text-white font-bold rounded-full text-xs shadow-md hover:brightness-105 active:scale-95 transition-all"
               title="Sign Out"
             >
               <span>Sign Out</span>

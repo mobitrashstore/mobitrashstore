@@ -802,16 +802,16 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
             />
 
             <div
-                className="sticky top-0 z-30 bg-gradient-to-b from-emerald-400 to-green-600 border-b border-emerald-600 px-4 py-3 flex items-center justify-between md:hidden pt-2 shadow-sm"
+                className="sticky top-0 z-30 bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] border-b border-slate-800 px-4 py-3 flex items-center justify-between md:hidden pt-2 shadow-sm"
                 style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.75rem)' }}
             >
                 <button onClick={() => window.history.back()} className="p-2 -ml-2 text-white hover:bg-white/20 rounded-full transition-colors">
                     <ChevronLeftIcon className="w-6 h-6" />
                 </button>
                 <React.Suspense fallback={<div className="h-10 w-8 bg-gray-200 rounded-full" />}>
-                    <button onClick={() => setIsSearchOpen(true)} className="flex items-center bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 flex-grow mx-4 shadow-sm text-left">
-                        <MagnifyingGlassIcon className="w-4 h-4 text-gray-400 mr-2 flex-shrink-0" />
-                        <span className="text-gray-500 text-xs truncate w-full">Search for products...</span>
+                    <button onClick={() => setIsSearchOpen(true)} className="flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 flex-grow mx-4 shadow-sm text-left">
+                        <MagnifyingGlassIcon className="w-4 h-4 text-white/80 mr-2 flex-shrink-0" />
+                        <span className="text-white/80 text-xs truncate w-full">Search for products...</span>
                     </button>
                 </React.Suspense>
                 <div className="relative">

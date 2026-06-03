@@ -82,7 +82,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
         try {
           await StatusBar.setStyle({ style: Style.Light });
           await StatusBar.setOverlaysWebView({ overlay: false });
-          await StatusBar.setBackgroundColor({ color: '#064e3b' });
+          await StatusBar.setBackgroundColor({ color: '#0f172a' });
         } catch (statusError) { console.error('StatusBar Sync Error:', statusError); }
       }
 
@@ -225,10 +225,10 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
       const syncStatusBar = async () => {
         try {
           if (isAuthPage) {
-            await StatusBar.setBackgroundColor({ color: '#054030' });
-            await StatusBar.setStyle({ style: Style.Dark });
+            await StatusBar.setBackgroundColor({ color: '#0f172a' });
+            await StatusBar.setStyle({ style: Style.Light });
           } else {
-            await StatusBar.setBackgroundColor({ color: '#064e3b' });
+            await StatusBar.setBackgroundColor({ color: '#0f172a' });
             await StatusBar.setStyle({ style: Style.Light });
           }
         } catch (e) { }

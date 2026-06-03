@@ -3,7 +3,7 @@ import React from 'react';
 
 const AuthOverlay: React.FC = () => {
   return (
-    <div className="fixed inset-0 z-[2000] flex flex-col items-center justify-center bg-gradient-to-br from-[#34d399] via-[#10b981] to-[#059669] animate-fade-in backdrop-blur-lg">
+    <div className="fixed inset-0 z-[2000] flex flex-col items-center justify-center bg-gradient-to-br from-[#1e3a8a] via-[#0f172a] to-[#0a0f1e] animate-fade-in backdrop-blur-lg">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-25">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
@@ -50,7 +50,7 @@ const AuthOverlay: React.FC = () => {
                 Signing In...
             </h2>
             <div className="mt-4 flex flex-col items-center">
-                <p className="text-emerald-100 text-[10px] font-black uppercase tracking-[0.4em] opacity-80 mb-3">
+                <p className="text-blue-100 text-[10px] font-black uppercase tracking-[0.4em] opacity-80 mb-3">
                     Mobi Store Security Check
                 </p>
                 {/* Progress Indicator */}

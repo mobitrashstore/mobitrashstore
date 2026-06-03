@@ -481,7 +481,7 @@ const BuyPage: React.FC<BuyPageProps> = ({ navigate }) => {
             />
 
             {/* Search Header Mobile - FIXED to cover overlaps and safe area */}
-            <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-gradient-to-b from-emerald-400 to-green-600 shadow-xl rounded-b-[2.5rem] overflow-hidden">
+            <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] shadow-xl rounded-b-[2.5rem] overflow-hidden">
                 <div className="pt-[env(safe-area-inset-top)] pb-5 px-4">
                     <div className="relative mt-2">
                         <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -490,7 +490,7 @@ const BuyPage: React.FC<BuyPageProps> = ({ navigate }) => {
                             placeholder="Search devices, brands, accessories..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full bg-white/95 backdrop-blur-sm border-0 rounded-full py-3.5 pl-11 pr-4 text-sm focus:ring-2 focus:ring-emerald-200 shadow-sm text-gray-900 placeholder:text-gray-500"
+                            className="w-full bg-white/95 backdrop-blur-sm border-0 rounded-full py-3.5 pl-11 pr-4 text-sm focus:ring-2 focus:ring-blue-200 shadow-sm text-gray-900 placeholder:text-gray-500"
                         />
                     </div>
                 </div>

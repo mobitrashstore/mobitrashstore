@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
 
   <!-- Status Bar Color Configuration -->
-  <meta name="theme-color" content="#064e3b" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#064e3b" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
 
   <!-- Viewport: STRICTLY LOCKED to prevent zooming -->
   <meta name="viewport"
@@ -199,7 +199,7 @@
 
     /* Base Reset */
     :root {
-      --brand-primary: #064e3b;
+      --brand-primary: #0f172a;
       /* Emerald 400 */
     }
 
@@ -231,11 +231,11 @@
 
       html,
       body {
-        background-color: #064e3b !important;
+        background-color: #0f172a !important;
       }
 
       #root {
-        background-color: #064e3b !important;
+        background-color: #0f172a !important;
         min-height: 100vh;
         /* Ensure full height */
       }
@@ -265,11 +265,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at center, #064e3b 0%, #054030 100%);
+      background: radial-gradient(circle at 30% 40%, #1e3a8a 0%, #0f172a 60%, #0a0f1e 100%);
       background-size: 200% 200%;
-      animation: gradientPulse 6s ease infinite;
-      color: black;
-      transition: opacity 0.5s ease-out;
+      animation: gradientPulse 4s ease infinite;
+      color: white;
+      transition: opacity 0.4s ease-out;
       touch-action: none;
       padding-top: env(safe-area-inset-top);
       padding-bottom: env(safe-area-inset-bottom);
@@ -635,9 +635,9 @@
 </head>
 
 <body>
-  <!-- PAINT GUARD: Changed to Forest Green as requested -->
+  <!-- PAINT GUARD: Changed to Navy as requested -->
   <div
-    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #064e3b; z-index: -9999;">
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #0f172a; z-index: -9999;">
   </div>
 
   <div id="splash-screen">

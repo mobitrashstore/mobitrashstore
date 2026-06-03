@@ -15,7 +15,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: 'var(--primary-color, #10b981)',
+                primary: 'var(--primary-color, #1e3a8a)',
                 emerald: {
                     50: '#ecfdf5',
                     100: '#d1fae5',

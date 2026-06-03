@@ -1,5 +1,5 @@
-const STATIC_CACHE_NAME = 'mobi-trash-static-v16';
-const DYNAMIC_CACHE_NAME = 'mobi-trash-dynamic-v16';
+const STATIC_CACHE_NAME = 'mobi-trash-static-v17';
+const DYNAMIC_CACHE_NAME = 'mobi-trash-dynamic-v17';
 
 // CRITICAL: Precise list of all external dependencies used in importmap
 const APP_SHELL_URLS = [
@@ -85,30 +85,31 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // 2. Navigation Strategy: Stale-While-Revalidate with Safari Fix
+  // 2. Navigation Strategy: Network First (Ensures fresh index.html when online, falls back to cache when offline)
   if (request.mode === 'navigate') {
     event.respondWith(
-      caches.match('/index.html').then(cachedResponse => {
-        const fetchPromise = fetch(request).then(networkResponse => {
-          // Fix for Safari: "Response served by service worker has redirections"
-          if (networkResponse.redirected) {
-             return new Response(networkResponse.body, {
-               status: networkResponse.status,
-               statusText: networkResponse.statusText,
-               headers: networkResponse.headers
-             });
-          }
-          if (networkResponse.ok) {
-            caches.open(STATIC_CACHE_NAME).then(cache => cache.put('/index.html', networkResponse.clone()));
-          }
-          return networkResponse;
-        }).catch(() => {
-          // OFFLINE: Return cached index.html or root
+      fetch(request).then(networkResponse => {
+        // Fix for Safari: "Response served by service worker has redirections"
+        if (networkResponse.redirected) {
+           const cleanResponse = new Response(networkResponse.body, {
+             status: networkResponse.status,
+             statusText: networkResponse.statusText,
+             headers: networkResponse.headers
+           });
+           if (networkResponse.ok) {
+              caches.open(STATIC_CACHE_NAME).then(cache => cache.put('/index.html', cleanResponse.clone()));
+           }
+           return cleanResponse;
+        }
+        if (networkResponse.ok) {
+          caches.open(STATIC_CACHE_NAME).then(cache => cache.put('/index.html', networkResponse.clone()));
+        }
+        return networkResponse;
+      }).catch(() => {
+        // OFFLINE: Return cached index.html or root
+        return caches.match('/index.html').then(cachedResponse => {
           return cachedResponse || caches.match('/');
         });
-
-        // Instant response from cache if available, update in background
-        return cachedResponse || fetchPromise;
       })
     );
     return;

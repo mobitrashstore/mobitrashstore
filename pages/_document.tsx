@@ -7,7 +7,7 @@ export default function Document() {
         <meta charSet="UTF-8" />
         
         {/* Status Bar Color Configuration */}
-        <meta name="theme-color" content="#064e3b" />
+        <meta name="theme-color" content="#0f172a" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -122,7 +122,7 @@ export default function Document() {
         <style dangerouslySetInnerHTML={{
           __html: `
             :root {
-              --brand-primary: #064e3b;
+              --brand-primary: #0f172a;
             }
 
             html {
@@ -157,7 +157,7 @@ export default function Document() {
 
             @media (max-width: 768px), (display-mode: standalone) {
               html {
-                background-color: #064e3b !important;
+                background-color: #0f172a !important;
               }
               body {
                 background-color: #f8f7f4 !important;
