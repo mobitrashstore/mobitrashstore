@@ -49,12 +49,14 @@ export const functions = firebase.functions();
 
 // Enable Offline Persistence
 // This allows the app to show data (products, etc.) even when there is no internet connection.
-db.enablePersistence().catch((err) => {
-    if (err.code == 'failed-precondition') {
-        // Multiple tabs open, persistence can only be enabled in one tab at a a time.
-        console.log('Persistence failed: Multiple tabs open');
-    } else if (err.code == 'unimplemented') {
-        // The current browser does not support all of the features required to enable persistence
-        console.log('Persistence failed: Browser not supported');
-    }
-});
+if (typeof window !== 'undefined') {
+  db.enablePersistence().catch((err) => {
+      if (err.code == 'failed-precondition') {
+          // Multiple tabs open, persistence can only be enabled in one tab at a time.
+          console.log('Persistence failed: Multiple tabs open');
+      } else if (err.code == 'unimplemented') {
+          // The current browser does not support all of the features required to enable persistence
+          console.log('Persistence failed: Browser not supported');
+      }
+  });
+}
