@@ -10,7 +10,8 @@
     "android": "next build && npx cap sync && npx cap open android",
     "build:apk": "next build && npx cap sync && cd android && gradlew assembleDebug && echo 'APK Created at: android/app/build/outputs/apk/debug/app-debug.apk'",
     "build:aab": "next build && npx cap sync && cd android && gradlew bundleRelease && echo 'AAB Created at: android/app/build/outputs/bundle/release/app-release.aab'",
-    "resources": "npx @capacitor/assets generate --iconBackgroundColor \"#064e3b\" --splashBackgroundColor \"#064e3b\" --android"
+    "resources": "npx @capacitor/assets generate --iconBackgroundColor \"#064e3b\" --splashBackgroundColor \"#064e3b\" --android",
+    "migrate-images": "node scripts/migrate-images-to-cloudinary.js"
   },
   "dependencies": {
     "@capacitor-community/admob": "^5.3.1",
@@ -27,6 +28,7 @@
     "@zxing/library": "^0.21.3",
     "canvas-confetti": "^1.9.3",
     "chart.js": "^4.4.3",
+    "cloudinary": "^2.10.0",
     "face-api.js": "^0.22.2",
     "firebase": "^10.12.2",
     "framer-motion": "^12.34.0",
