@@ -1,0 +1,22 @@
+# --- MOBI TRASH SEO OPTIMIZED HTACCESS ---
+RewriteEngine On
+RewriteBase /
+
+# 1. REMOVE .HTML EXTENSION (SEO CLEAN URLS)
+# Redirect /page.html to /page
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.html\ HTTP/
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+# 2. SERVE PRE-RENDERED FOLDERS FIRST (BUILT DURING BUILD TIME)
+# If a direct folder match exists, serve its index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+RewriteRule ^(.*)/?$ /$1/index.html [L]
+
+# 3. SPA FALLBACK (FOR NON-PRERENDERED ROUTES)
+# Standard React Router fallback — ensures app works even if page wasn't prerendered.
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]

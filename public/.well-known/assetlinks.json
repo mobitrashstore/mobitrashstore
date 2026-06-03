@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mobistore.store",
+      "sha256_cert_fingerprints": [
+        "9C:BD:1F:D6:BE:12:52:8B:4D:6F:52:1B:29:D7:67:89:FC:60:2A:52:4F:1D:D5:C6:45:EA:9E:10:1A:D8:42:63"
+      ]
+    }
+  }
+]

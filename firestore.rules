@@ -1,0 +1,299 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- 1. ADMIN HELPER FUNCTION ---
+    // Modify this list to add or remove admins
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email.lower() == 'mobitrashstore@gmail.com' || 
+        request.auth.token.email.lower() == 'avaymishra11@gmail.com' || 
+        request.auth.token.email.lower() == 'sandy0405pandey@gmail.com' ||
+        request.auth.token.email.lower() == 'bipin91116bi@gmail.com' ||
+        request.auth.token.email.lower() == 'bishalmishra9000@gmail.com'
+      );
+    }
+
+    // --- 2. USER DATA ---
+    match /users/{userId} {
+      // Any logged-in user can read user profiles (needed for Referral checks)
+      allow list, read: if request.auth != null;
+      // Users can create their own account
+      allow create: if request.auth != null && request.auth.uid == userId;
+      // Users can update their own points/photo, Admins can update roles
+      allow update: if (request.auth != null && request.auth.uid == userId) || isAdmin();
+      // Only Admin can delete users
+      allow delete: if isAdmin();
+
+      // Sub-collection: Addresses
+      match /addresses/{addressId} {
+        allow read, write: if (request.auth != null && request.auth.uid == userId) || isAdmin();
+      }
+    }
+
+    // --- 3. INVENTORY (PRODUCTS) ---
+    match /inventory/{productId} {
+      // Anyone can view products
+      allow read: if true;
+      // Admin can create/delete any product.
+      // Vendor (logged-in user with a storeId) can create products tagged to their store.
+      allow create: if isAdmin() || (request.auth != null && request.resource.data.storeId != null);
+      allow delete: if isAdmin() || (request.auth != null && resource.data.storeId != null && resource.data.userId == request.auth.uid);
+      // Admins can update anything. 
+      // Vendors can update their own store's products.
+      // Customers can ONLY update 'stock' (during checkout transaction).
+      allow update: if isAdmin() || 
+        (request.auth != null && resource.data.storeId != null && resource.data.userId == request.auth.uid) ||
+        (request.auth != null && 
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['stock']));
+    }
+
+    // --- 4. ORDERS ---
+    match /orders/{orderId} {
+      // Anyone can place an order (including guests)
+      allow create: if true;
+      // Only the customer who owns the order OR Admins can read/edit it
+      allow read, update: if (request.auth != null && request.auth.uid == resource.data.userId) || isAdmin();
+      // Only Admin can delete orders
+      allow delete: if isAdmin();
+    }
+
+    // --- 5. TRADE-INS (SELL REQUESTS) ---
+    match /tradeIns/{tradeInId} {
+      // Anyone can submit a trade-in request
+      allow create: if true;
+      // Only Admins can view/update trade-ins (Customers track via ID)
+      allow read, write: if isAdmin();
+    }
+
+    // --- 6. BLOG POSTS ---
+    match /blogPosts/{postId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
+    // --- 6B. NEWS SOURCES ---
+    match /newsSources/{sourceId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // --- 6C. OFFICIAL NEWS (FIXED) ---
+    match /officialNews/{newsId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // --- 7. PRICING ENGINE (VALUATIONS) ---
+    match /valuationBaselines/{docId} {
+      allow read: if true; // Needed for the quote calculator
+      allow write: if isAdmin();
+    }
+    match /valuationDeductions/{docId} {
+      allow read: if true; // Needed for the quote calculator
+      allow write: if isAdmin();
+    }
+
+    // --- 8. STORE MANAGEMENT (ADMIN ONLY) ---
+    match /storeStock/{itemId} {
+      allow read, write: if isAdmin();
+    }
+    match /sellModels/{modelId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /categories/{catId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /brands/{brandId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /brands/{brandId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /banners/{bannerId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /coupons/{couponId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
+    // Updated Global Notifications Rules
+    match /globalNotifications/{notifId} {
+      allow read: if isAdmin() || resource.data.targetEmail == null || (request.auth != null && resource.data.targetEmail == request.auth.token.email);
+      allow write: if isAdmin();
+    }
+    
+    match /contacts/{contactId} {
+      allow create: if true;
+      allow read, write: if isAdmin();
+    }
+    match /offlineSales/{saleId} {
+      allow read, write: if isAdmin();
+    }
+
+    // --- SETTINGS COLLECTION ---
+    // Secure the 'pathao' document so only admins can read credentials.
+    // Allow public read for everything else (About, Legal, Shop Banners, etc.)
+    match /settings/{docId} {
+      allow read: if docId != 'pathao' || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    match /paymentPartners/{partnerId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /testimonials/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+      // --- 9. SPIN WHEEL ---
+    match /spinWheel/config {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /spinHistory/{historyId} {
+      allow create: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow read: if isAdmin();
+    }
+    
+    // NEW: Spin Participants
+    match /spinParticipants/{userId} {
+        // Users can create their own entry
+        allow create: if request.auth != null && request.auth.uid == userId;
+        // Users can read their own status
+        allow read: if request.auth != null && request.auth.uid == userId;
+        // Allow user to UPDATE their record (re-register) as long as they don't increase their spin count manually
+        allow update: if isAdmin() || (
+            request.auth != null && 
+            request.auth.uid == userId && 
+            (
+                request.resource.data.diff(resource.data).affectedKeys().hasOnly(['spinsUsed']) ||
+                request.resource.data.spinsAllocated <= resource.data.spinsAllocated
+            )
+        );
+        allow list: if isAdmin();
+    }
+
+    // --- 10. REFERRALS ---
+    match /referrals/{referralId} {
+      allow create: if request.auth != null;
+      allow read: if request.auth != null && (resource.data.referrerId == request.auth.uid || isAdmin());
+      allow update, delete: if isAdmin();
+    }
+
+     // --- 11. REPAIR BOOKINGS ---
+    match /repairBookings/{bookingId} {
+      // Allow anyone to create a booking (public form)
+      allow create: if true;
+      // Only admins can view or update status
+      allow read, update, delete: if isAdmin();
+    }
+
+    // --- 12. NOTEBOOK (KHATA) - NEW & OLD ---
+    // Allow access to new collection
+    match /notebookEntries/{entryId} {
+      allow read, write: if isAdmin();
+    }
+    // Allow access to OLD collection for recovery
+    match /notebook/{entryId} {
+      allow read, write: if isAdmin();
+    }
+
+    // --- 13. PROBLEM REPORTS ---
+    match /problemReports/{reportId} {
+      allow create: if true;
+      allow read, write: if isAdmin();
+    }
+    
+    // --- 14. REVIEWS ---
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+      allow update, delete: if (request.auth != null && resource.data.userId == request.auth.uid) || isAdmin();
+    }
+
+    // --- 15. GALLERY ---
+    match /gallery/{itemId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // --- 16. SYSTEM LOGS & TRAFFIC ---
+    match /systemLogs/{logId} {
+       allow create: if true; // Allow client to report errors
+       allow read, delete: if isAdmin();
+    }
+
+    // ** SITE TRAFFIC (LIVE VIEWS) - POWERFUL PERMISSIVE RULE **
+    match /siteTraffic/{dateId} {
+       // Allows everyone to read/write. 
+       // This fixes the "Fake" view count issue by ensuring the frontend can always fetch and update traffic data.
+       allow read, write: if true; 
+    }
+
+    // --- 17. PRODUCT REQUESTS ---
+    match /productRequests/{requestId} {
+        allow create: if request.auth != null;
+        allow read: if request.auth != null && (resource.data.userId == request.auth.uid || isAdmin());
+        allow update, delete: if isAdmin();
+    }
+
+    // --- 18. REDEMPTION REQUESTS ---
+    match /redemptionRequests/{requestId} {
+        // Authenticated users can create requests
+        allow create: if request.auth != null;
+        // Users can read their own requests, Admins can read all
+        allow read: if request.auth != null && (resource.data.userId == request.auth.uid || isAdmin());
+        // Only Admins can update status (mark completed)
+        allow update: if isAdmin();
+    }
+    
+    // --- 19. PRODUCT STATISTICS (LIFETIME) ---
+    match /productStats/{slug} {
+       allow read: if true;
+       allow create, update: if true;
+    }
+
+    // --- 20. BLOG STATISTICS (LIFETIME) ---
+    match /blogStats/{slug} {
+       allow read: if true;
+       allow create, update: if true;
+    }
+    
+     // --- 21. BROADCAST HISTORY ---
+    match /broadcastHistory/{logId} {
+       allow read, write: if isAdmin();
+    }
+
+    // --- 21. MULTI-TENANT VENDOR STORES ---
+    match /stores/{storeId} {
+      // Anyone can read active stores (public storefront)
+      allow read: if true;
+      // Authenticated users can create a store (register as vendor)
+      allow create: if request.auth != null;
+      // Vendor can update their own store. Admin can update any store.
+      allow update: if isAdmin() || (request.auth != null && resource.data.userId == request.auth.uid);
+      // Only admin can delete a store
+      allow delete: if isAdmin();
+    }
+    
+    // --- 22. ABANDONED CARTS ---
+    match /abandonedCarts/{userId} {
+        // Users can read/write their own abandoned carts
+        allow read, write: if (request.auth != null && request.auth.uid == userId) || isAdmin();
+    }
+
+    // --- 23. VERIFICATION CODES (OTP) ---
+    match /verification_codes/{email} {
+        // Anyone can create/verify OTP codes.
+        allow read, write: if true; 
+    }
+  }
+}

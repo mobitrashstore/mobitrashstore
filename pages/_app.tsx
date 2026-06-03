@@ -1,0 +1,322 @@
+import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import React, { useState, useEffect, Suspense } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { HelmetProvider } from 'react-helmet-async';
+import { CartProvider, useCart } from '../context/CartContext';
+import { ThemeProvider, useTheme } from '../context/ThemeContext';
+import { AuthProvider, useAuth } from '../context/AuthContext';
+import { WishlistProvider } from '../context/WishlistContext';
+import { NotificationProvider } from '../context/NotificationContext';
+import { GlobalNotificationProvider } from '../context/GlobalNotificationContext';
+import { VisualEditingProvider, useVisualEditing } from '../context/VisualEditingContext';
+import { ToastContainer } from '../components/ToastNotification';
+import Header from '../components/Header';
+import AdminLayout from '../components/AdminLayout';
+import Footer from '../components/Footer';
+import BottomNavBar from '../components/BottomNavBar';
+import CartModal from '../components/CartModal';
+import OfflineBanner from '../components/OfflineBanner';
+import Spinner from '../components/Spinner';
+import PullToRefresh from '../components/PullToRefresh';
+import AuthOverlay from '../components/AuthOverlay';
+import VisualEditorSidebar from '../components/VisualEditorSidebar';
+import NoticeBanner from '../components/NoticeBanner';
+import BackToExitBanner from '../components/BackToExitBanner';
+import { AdMob } from '@capacitor-community/admob';
+import { App as CapacitorApp } from '@capacitor/app';
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { Capacitor } from '@capacitor/core';
+import * as api from '../services/api';
+import emailjs from '@emailjs/browser';
+import { newsService } from '../services/newsService';
+import '../index.css';
+
+// Error Boundary Component
+class ErrorBoundary extends React.Component<{ children?: React.ReactNode }, { hasError: boolean }> {
+  public state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(error: any, errorInfo: any) {
+    try { api.logSystemIssue('error', error.toString(), errorInfo.componentStack); } catch (e) {}
+    console.error("Uncaught Error:", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="flex flex-col items-center justify-center min-h-screen text-center p-4">
+          <h1 className="text-3xl font-bold text-slate-800 mb-2">Something went wrong.</h1>
+          <p className="text-slate-600 mb-4">We've logged this issue and will fix it shortly.</p>
+          <button onClick={() => window.location.reload()} className="bg-amber-600 text-white px-6 py-2 rounded-lg font-bold">Reload Page</button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: any }) => {
+  const router = useRouter();
+  const { user, isAuthenticating } = useAuth();
+  const { isCartOpen, closeCart } = useCart();
+  const { isEditing, fullWidth } = useVisualEditing();
+  const { theme } = useTheme();
+
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [showExitBanner, setShowExitBanner] = useState(false);
+  const backPressCount = React.useRef(0);
+  const exitTimerRef = React.useRef<any>(null);
+
+  // Helper navigate that matches Vite app's navigate signature
+  const navigate = (path: string) => {
+    if (path === router.asPath) return;
+    router.push(path);
+    closeCart();
+  };
+
+  useEffect(() => {
+    newsService.prefetch();
+    const initNativeFeatures = async () => {
+      try { await AdMob.initialize(); } catch (err) { console.warn('AdMob Init Error:', err); }
+      if (Capacitor.isNativePlatform()) {
+        try {
+          await StatusBar.setStyle({ style: Style.Light });
+          await StatusBar.setOverlaysWebView({ overlay: false });
+          await StatusBar.setBackgroundColor({ color: '#064e3b' });
+        } catch (statusError) { console.error('StatusBar Sync Error:', statusError); }
+      }
+
+      const handleFirstTimePermissions = async () => {
+        const PERM_KEY = 'mt_initial_permissions_requested';
+        if (localStorage.getItem(PERM_KEY)) return;
+        try {
+          if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(() => { }, () => { }, { timeout: 1000 });
+          }
+        } catch (e) { console.warn("Location permission trigger error:", e); }
+        localStorage.setItem(PERM_KEY, 'true');
+      };
+
+      setTimeout(() => { handleFirstTimePermissions(); }, 8000);
+    };
+
+    initNativeFeatures();
+
+    if (Capacitor.isNativePlatform()) {
+      const handleBackButton = async (data: { canGoBack: boolean }) => {
+        if (data.canGoBack && router.asPath !== '/') {
+          window.history.back();
+        } else {
+          backPressCount.current += 1;
+          if (backPressCount.current >= 2) {
+            CapacitorApp.exitApp();
+          } else {
+            setShowExitBanner(true);
+            if (exitTimerRef.current) clearTimeout(exitTimerRef.current);
+            exitTimerRef.current = setTimeout(() => {
+              setShowExitBanner(false);
+              backPressCount.current = 0;
+            }, 3000);
+          }
+        }
+      };
+
+      const backListener = CapacitorApp.addListener('backButton', handleBackButton);
+      return () => {
+        backListener.then(l => l.remove());
+        if (exitTimerRef.current) clearTimeout(exitTimerRef.current);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.style.backgroundColor = '';
+      document.body.style.backgroundColor = '';
+    }
+  }, [theme]);
+
+  const updateAdminModeClass = (path: string) => {
+    if (path.startsWith('/admin')) {
+      document.body.classList.add('admin-mode');
+    } else {
+      document.body.classList.remove('admin-mode');
+    }
+  };
+
+  useEffect(() => {
+    updateAdminModeClass(router.pathname);
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.body.scrollTo(0, 0);
+      document.documentElement.scrollTo(0, 0);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [router.asPath]);
+
+  useEffect(() => {
+    const setVh = () => {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    };
+    window.addEventListener('resize', setVh);
+    setVh();
+
+    try { emailjs.init({ publicKey: 'TAnqTnsFNr9NHN_or' }); } catch (e) { console.error("Failed to initialize EmailJS.", e); }
+
+    const splashScreen = document.getElementById('splash-screen');
+    const checkBackground = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        document.documentElement.style.backgroundColor = '';
+        document.body.style.backgroundColor = '';
+        return;
+      }
+      if (window.innerWidth <= 768) {
+        document.documentElement.style.backgroundColor = '#064e3b';
+        document.body.style.backgroundColor = '#f8f7f4';
+      } else {
+        document.documentElement.style.backgroundColor = '#f3f4f6';
+        document.body.style.backgroundColor = '#f3f4f6';
+      }
+    };
+
+    if (splashScreen) {
+      if (getComputedStyle(splashScreen).display !== 'none') {
+        splashScreen.style.opacity = '0';
+        splashScreen.style.display = 'none';
+        checkBackground();
+      } else {
+        checkBackground();
+      }
+    } else {
+      checkBackground();
+    }
+
+    window.onerror = (msg, url, line, col, error) => {
+      api.logSystemIssue('error', msg as string, error?.stack || `${url}:${line}:${col}`);
+      return false;
+    };
+
+    return () => {
+      window.removeEventListener('resize', setVh);
+    };
+  }, []);
+
+  useEffect(() => {
+    api.trackTraffic(router.asPath);
+  }, [router.asPath]);
+
+  const path = router.pathname;
+  const normalizedPath = path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
+
+  const isAdminPage = normalizedPath.startsWith('/admin');
+  const isSpinWinPage = normalizedPath === '/spin-win';
+  const isProductDetailPage = normalizedPath.startsWith('/product/') && normalizedPath.length > 9;
+  const isAuthPage = normalizedPath === '/login' || normalizedPath === '/signup';
+
+  let paddingTopClass = "";
+  if (!isAdminPage) {
+    paddingTopClass += " md:pt-20";
+  }
+
+  const showBottomNav = !isAdminPage && !isSpinWinPage && !isProductDetailPage && !isAuthPage;
+
+  useEffect(() => {
+    if (Capacitor.isNativePlatform()) {
+      const syncStatusBar = async () => {
+        try {
+          if (isAuthPage) {
+            await StatusBar.setBackgroundColor({ color: '#054030' });
+            await StatusBar.setStyle({ style: Style.Dark });
+          } else {
+            await StatusBar.setBackgroundColor({ color: '#064e3b' });
+            await StatusBar.setStyle({ style: Style.Light });
+          }
+        } catch (e) { }
+      };
+      syncStatusBar();
+    }
+  }, [isAuthPage]);
+
+  const handleRefresh = async () => {
+    await new Promise(resolve => setTimeout(resolve, 800));
+    setRefreshKey(prev => prev + 1);
+  };
+
+  // If it's an admin page and user is not admin, we redirect to login
+  useEffect(() => {
+    if (isAdminPage && user && user.role !== 'admin') {
+      router.replace('/login');
+    }
+  }, [isAdminPage, user]);
+
+  return (
+    <div className={`min-h-screen w-full bg-gray-50 transition-all duration-300 overflow-x-hidden ${isEditing ? 'pl-80' : ''} ${fullWidth ? 'editor-full-width' : ''}`}>
+      <VisualEditorSidebar />
+      <div className={`${paddingTopClass} flex flex-col min-h-screen`}>
+        {!isAdminPage && <NoticeBanner navigate={navigate} />}
+        {!isAdminPage && <Header navigate={navigate} />}
+
+        <main className={`flex-grow flex flex-col bg-white relative overflow-hidden ${showBottomNav ? 'pb-[calc(64px+env(safe-area-inset-bottom))] md:pb-0' : ''}`}>
+          <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-500/5 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-[60px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent"></div>
+
+          <ErrorBoundary>
+            <PullToRefresh onRefresh={handleRefresh} disabled={isAdminPage}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`${router.asPath}-${refreshKey}`}
+                  initial={{ x: 15, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -15, opacity: 0 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+                  className="flex-grow flex flex-col"
+                >
+                  {isAdminPage && (!user || user.role !== 'admin') ? (
+                    <div className="flex h-[60vh] items-center justify-center"><Spinner size="w-12 h-12" /></div>
+                  ) : isAdminPage ? (
+                    <AdminLayout navigate={navigate}>
+                      <Component {...pageProps} navigate={navigate} />
+                    </AdminLayout>
+                  ) : (
+                    <Component {...pageProps} navigate={navigate} />
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </PullToRefresh>
+          </ErrorBoundary>
+        </main>
+
+        {!isAdminPage && !isSpinWinPage && <Footer navigate={navigate} />}
+        {showBottomNav && <BottomNavBar navigate={navigate} currentPath={normalizedPath} />}
+        <CartModal isOpen={isCartOpen} onClose={closeCart} navigate={navigate} />
+        <OfflineBanner />
+        {isAuthenticating && <AuthOverlay />}
+        <BackToExitBanner show={showExitBanner} />
+      </div>
+    </div>
+  );
+};
+
+export default function MyApp(props: AppProps) {
+  return (
+    <HelmetProvider>
+      <ThemeProvider>
+        <NotificationProvider>
+          <AuthProvider>
+            <VisualEditingProvider>
+              <GlobalNotificationProvider>
+                <CartProvider>
+                  <WishlistProvider>
+                    <MainAppContent {...props} />
+                    <ToastContainer />
+                  </WishlistProvider>
+                </CartProvider>
+              </GlobalNotificationProvider>
+            </VisualEditingProvider>
+          </AuthProvider>
+        </NotificationProvider>
+      </ThemeProvider>
+    </HelmetProvider>
+  );
+}

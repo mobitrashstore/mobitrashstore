@@ -1,0 +1,991 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* NUCLEAR HAPTIC & SELECTION BLOCKER */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* --- MOBILE SPECIFIC BLOCKS (Max Width 768px) --- */
+@media (max-width: 768px) {
+
+  /* Selection blockers removed */
+
+  /* Explicitly re-enable text entry for inputs on mobile */
+  input,
+  textarea,
+  [contenteditable="true"],
+  select {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    -webkit-touch-callout: default !important;
+  }
+}
+
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+  --color-background: #f8f7f4;
+  /* Creamy White */
+  --color-surface: #ffffff;
+  /* Pure White for cards */
+  --color-surface-muted: #f9fafb;
+  /* Light gray for sections */
+  --color-primary: var(--primary-color, #064e3b);
+  /* Indigo 600 */
+  --color-primary-hover: var(--primary-color, #054030);
+  /* Indigo 700 */
+  --color-secondary: var(--primary-color, #c5a059);
+  /* Indigo 500 */
+  --color-secondary-hover: #b08d4b;
+  --color-text-base: #1f2937;
+  /* Gray 900 */
+  --color-text-muted: #6b7280;
+  /* Gray 500 */
+  --color-border: #e5e7eb;
+  /* Gray 200 */
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  --transition-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-duration: 300ms;
+}
+
+/* --- Base & Reset --- */
+img,
+a {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+/* 
+   CRITICAL FIX FOR PULL-TO-REFRESH:
+   overscroll-behavior-y: contain prevents the browser's native 
+   pull-to-refresh (the blue spinner) from activating.
+*/
+html {
+  width: 100%;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+  background-color: var(--brand-primary);
+}
+
+#root {
+  background-color: transparent;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* --- DESKTOP RULES (Min-width 769px) --- */
+@media screen and (min-width: 769px) {
+
+  body,
+  html,
+  #root,
+  * {
+    /* Re-enable selection for desktop/mouse users */
+    cursor: auto;
+    touch-action: auto !important;
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    -webkit-touch-callout: default !important;
+  }
+}
+
+/* --- MOBILE RULES (Max-width 768px) --- */
+@media screen and (max-width: 768px) {
+
+  :root,
+  body {
+    background-color: #f8f7f4 !important;
+    /* Neutral App Background */
+    touch-action: pan-x pan-y;
+    /* Prevent zooming but allow scrolling */
+  }
+
+  html {
+     background-color: #064e3b !important; /* Force Forest Green for Status Bar */
+  }
+
+  html.dark,
+  html.dark body {
+    background-color: #000000 !important;
+  }
+
+  #root {
+    background-color: #f8f7f4 !important;
+    /* Neutral App Background */
+  }
+
+  html.dark #root {
+    background-color: #000000 !important;
+  }
+
+  /* Enforce 16px font size on inputs to prevent iOS/Android zoom on focus */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+    max-height: 100%;
+  }
+
+  /* 
+     ADMIN OVERRIDE FOR MOBILE
+     Force allow everything if body has .admin-mode class 
+  */
+  body.admin-mode,
+  body.admin-mode * {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+    -webkit-touch-callout: default !important;
+  }
+
+  /* The Exceptions for inputs on non-admin pages so users can type */
+  body:not(.admin-mode) input,
+  body:not(.admin-mode) textarea,
+  body:not(.admin-mode) [contenteditable="true"] {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    -webkit-touch-callout: default !important;
+    cursor: text !important;
+  }
+}
+
+/* PWA Specific */
+@media all and (display-mode: standalone) {
+
+  body,
+  #root {
+    background-color: #f8f7f4 !important;
+    /* Neutral App Background */
+  }
+  
+  html {
+    background-color: #064e3b !important; /* Force Forest Green for Status Bar */
+  }
+
+  html.dark,
+  html.dark body,
+  html.dark #root {
+    background-color: #000000 !important;
+  }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* --- Utility Classes --- */
+.pt-safe {
+  padding-top: env(safe-area-inset-top) !important;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom) !important;
+}
+
+.mt-safe {
+  margin-top: env(safe-area-inset-top) !important;
+}
+
+.mb-safe {
+  margin-bottom: env(safe-area-inset-bottom) !important;
+}
+
+.overscroll-none {
+  overscroll-behavior: none;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.prose a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 150ms var(--transition-ease);
+}
+
+.prose a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose strong {
+  color: var(--color-text-base);
+}
+
+.prose {
+  color: var(--color-text-base);
+}
+
+/* --- NUCLEAR TABLE FIX FOR MOBILE --- */
+/* Forces tables within legal pages (.prose) to handle overflow gracefully */
+.prose table {
+  display: block !important;
+  /* Makes the table itself a block container */
+  width: 100% !important;
+  overflow-x: auto !important;
+  /* Enables horizontal scrolling */
+  -webkit-overflow-scrolling: touch !important;
+  border-collapse: collapse !important;
+  margin-bottom: 1.5em !important;
+  margin-top: 1.5em !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+/* Force minimum width on cells to prevent text squishing/hiding */
+.prose th,
+.prose td {
+  padding: 12px 16px !important;
+  font-size: 0.875rem !important;
+  border: 1px solid #e5e7eb !important;
+  vertical-align: top !important;
+  min-width: 150px !important;
+  /* CRITICAL: Ensures columns don't collapse */
+  white-space: normal !important;
+  /* Allows text wrap if width permits */
+  word-wrap: break-word !important;
+}
+
+/* Header Styling */
+.prose thead tr {
+  background-color: #f9fafb !important;
+  border-bottom: 2px solid #e5e7eb !important;
+}
+
+.prose th {
+  font-weight: 700 !important;
+  color: #111827 !important;
+  text-transform: uppercase;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em;
+}
+
+/* Striping */
+.prose tbody tr:nth-child(even) {
+  background-color: #fcfcfc !important;
+}
+
+/* Optional wrapper helper if used in HTML */
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+  margin-bottom: 1rem;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+}
+
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-down {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveCloud {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-cloud-slow {
+  animation: moveCloud 60s linear infinite;
+}
+
+.animate-cloud-medium {
+  animation: moveCloud 40s linear infinite;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 300ms var(--transition-ease);
+}
+
+.animate-slide-in-down {
+  animation: slide-in-down 400ms var(--transition-ease);
+}
+
+.animate-hero-h1,
+.animate-hero-p,
+.animate-hero-buttons {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-name: fadeInUp;
+  animation-duration: 600ms;
+  animation-timing-function: var(--transition-ease);
+}
+
+.animate-hero-h1 {
+  animation-delay: 100ms;
+}
+
+.animate-hero-p {
+  animation-delay: 300ms;
+}
+
+.animate-hero-buttons {
+  animation-delay: 500ms;
+}
+
+.animate-fade-in {
+  animation: fadeIn 300ms var(--transition-ease);
+}
+
+.animate-fade-in-down {
+  animation: fadeInUp 400ms var(--transition-ease);
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+button,
+[role="button"],
+.button-like {
+  transition: transform 150ms var(--transition-ease), box-shadow 150ms var(--transition-ease);
+}
+
+button:active,
+[role="button"]:active,
+.button-like:active {
+  transform: scale(0.97);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.focus\:ring-amber-500:focus {
+  --tw-ring-color: var(--color-secondary) !important;
+}
+
+.focus\:ring-emerald-500:focus {
+  --tw-ring-color: var(--color-primary) !important;
+}
+
+.focus\:ring-blue-500:focus {
+  --tw-ring-color: var(--color-primary) !important;
+}
+
+@keyframes slide-horizontal {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-slide-horizontal {
+  animation: slide-horizontal 1.2s ease-in-out infinite;
+}
+
+/* --- Premium Toast Notification Animations --- */
+
+@keyframes toastSlideIn {
+  0% {
+    transform: translateX(120%) scale(0.9);
+    opacity: 0;
+  }
+
+  60% {
+    transform: translateX(-10px) scale(1.02);
+    opacity: 1;
+  }
+
+  80% {
+    transform: translateX(5px) scale(0.98);
+  }
+
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+
+.animate-toast-in {
+  animation: toastSlideIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes progressShrink {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+
+.animate-progress {
+  animation: progressShrink linear forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-down {
+  animation: slideInDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- Modal Styles --- */
+.custom-scrollbar::-webkit-scrollbar {
+  display: block !important;
+  width: 6px !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* --- Visual Editor Assistant Styles --- */
+
+.editor-full-width .max-w-7xl,
+.editor-full-width .max-w-6xl,
+.editor-full-width .max-w-5xl,
+.editor-full-width .max-w-4xl,
+.editor-full-width .max-w-3xl {
+  max-width: 100% !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+.editor-full-width .container {
+  max-width: 100% !important;
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes gradient-slow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-slow {
+  background-size: 200% 200%;
+  animation: gradient-slow 6s ease infinite;
+}
+
+/* Custom Primary Color Application */
+:root {
+  --primary-color: #064e3b;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.border-primary {
+  border-color: var(--primary-color) !important;
+}
+
+.ring-primary {
+  --tw-ring-color: var(--primary-color) !important;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hide Scrollbar Globally */
+::-webkit-scrollbar {
+  display: none !important;
+}
+
+html,
+body {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* Force hide all scrollbars */
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* --- LOCK BACKGROUND SCROLLING & UI CLEANUP --- */
+body.no-scroll {
+  overflow: hidden !important;
+}
+
+/* Hide all headers (mobile and desktop) when modal is open */
+body.no-scroll header {
+  display: none !important;
+}
+
+/* Lower sidebar priority so backdrop covers it */
+body.no-scroll aside {
+  z-index: 40 !important;
+}
+
+body.no-scroll .admin-container {
+  overflow: hidden !important;
+}
+
+* {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* ============================================================
+   DARK MODE - Full Black Theme
+   ============================================================ */
+
+html.dark,
+html.dark body,
+html.dark #root {
+  background-color: #000000 !important;
+  color: #f3f4f6 !important;
+}
+
+html.dark body,
+html.dark {
+  --color-background: #000000;
+  --color-surface: #111111;
+  --color-surface-muted: #1a1a1a;
+  --color-text-base: #f3f4f6;
+  --color-text-muted: #9ca3af;
+  --color-border: #2d2d2d;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+}
+
+/* --- Dark mode: Logic for Images (IMPORTANT) --- */
+html.dark img {
+  mix-blend-mode: normal !important; /* Stop images from disappearing in dark mode */
+}
+
+/* --- Dark mode: page backgrounds --- */
+html.dark .bg-white,
+html.dark .bg-gray-50,
+html.dark .bg-gray-100,
+html.dark .bg-slate-50,
+html.dark .bg-slate-100 {
+  background-color: #111111 !important;
+}
+
+html.dark .bg-gray-200,
+html.dark .bg-slate-200 {
+  background-color: #1a1a1a !important;
+}
+
+/* --- Dark mode: text --- */
+html.dark .text-gray-900,
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-gray-800,
+html.dark .text-black {
+  color: #f3f4f6 !important;
+}
+
+html.dark .text-gray-700,
+html.dark .text-slate-700,
+html.dark .text-gray-600,
+html.dark .text-slate-600 {
+  color: #d1d5db !important;
+}
+
+html.dark .text-gray-500,
+html.dark .text-slate-500,
+html.dark .text-gray-400,
+html.dark .text-slate-400 {
+  color: #9ca3af !important;
+}
+
+/* --- Dark mode: specific backgrounds --- */
+html.dark .bg-\[\#f4f5fb\],
+html.dark .bg-slate-50 {
+  background-color: #000000 !important;
+}
+
+html.dark .text-gray-300,
+html.dark .text-slate-300 {
+  color: #d1d5db !important;
+}
+
+/* --- Dark mode: borders --- */
+html.dark .border-gray-100,
+html.dark .border-gray-200,
+html.dark .border-slate-100,
+html.dark .border-slate-200 {
+  border-color: #2d2d2d !important;
+}
+
+html.dark .border-gray-300,
+html.dark .border-slate-300 {
+  border-color: #3d3d3d !important;
+}
+
+/* --- Dark mode: cards & surfaces --- */
+html.dark .bg-white\/95,
+html.dark .bg-white\/90,
+html.dark .bg-white\/80,
+html.dark .bg-white\/70,
+html.dark .bg-white\/60,
+html.dark .bg-white\/50,
+html.dark .bg-white\/40,
+html.dark .bg-white\/30 {
+  background-color: rgba(17, 17, 17, 0.95) !important;
+}
+
+html.dark .shadow-sm,
+html.dark .shadow-md,
+html.dark .shadow-lg,
+html.dark .shadow-xl {
+  --tw-shadow-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* --- Dark mode: inputs --- */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #1a1a1a !important;
+  color: #f3f4f6 !important;
+  border-color: #3d3d3d !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* --- Dark mode: tables --- */
+html.dark table,
+html.dark .prose table {
+  border-color: #2d2d2d !important;
+}
+
+html.dark thead,
+html.dark .prose thead tr {
+  background-color: #1a1a1a !important;
+  border-color: #3d3d3d !important;
+}
+
+html.dark th,
+html.dark td,
+html.dark .prose th,
+html.dark .prose td {
+  border-color: #2d2d2d !important;
+  color: #f3f4f6 !important;
+}
+
+html.dark tbody tr:nth-child(even),
+html.dark .prose tbody tr:nth-child(even) {
+  background-color: #0d0d0d !important;
+}
+
+/* --- Dark mode: Gradient Overrides (Fixes Profile Settings etc) --- */
+html.dark .from-gray-50, 
+html.dark .from-slate-50,
+html.dark .from-gray-100 {
+  --tw-gradient-from: #111111 !important;
+}
+
+html.dark .to-white,
+html.dark .to-slate-50,
+html.dark .to-gray-50 {
+  --tw-gradient-to: #050505 !important;
+}
+
+html.dark .from-white {
+  --tw-gradient-from: #111111 !important;
+}
+
+/* --- Additional Text Polish --- */
+html.dark .text-slate-500,
+html.dark .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+/* --- Dark mode: main layout --- */
+html.dark main.flex-grow,
+html.dark main {
+  background-color: #000000 !important;
+}
+
+html.dark .min-h-screen.bg-gray-50 {
+  background-color: #000000 !important;
+}
+
+/* --- Dark mode: admin panel --- */
+html.dark .admin-container {
+  background-color: #000000 !important;
+  color: #f3f4f6 !important;
+}
+
+html.dark .admin-container .bg-\[#FDFBF7\] {
+  background-color: #000000 !important;
+}
+
+/* Admin desktop header in dark mode */
+html.dark header.hidden.md\:flex,
+html.dark header.md\:hidden {
+  background-color: rgba(0, 0, 0, 0.97) !important;
+  border-color: #2d2d2d !important;
+}
+
+/* --- Dark mode: glass effects --- */
+html.dark .glass {
+  background: rgba(17, 17, 17, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* --- Dark mode: footer --- */
+html.dark footer {
+  background-color: #000000 !important;
+  border-color: #2d2d2d !important;
+  color: #9ca3af !important;
+}
+
+/* --- Light mode explicit --- */
+html.light body,
+html.light #root {
+  background-color: #f8f7f4;
+  color: #1f2937;
+}
+
+/* Dark mode transition on all elements */
+html.dark *,
+html.light * {
+  transition: background-color 0.25s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Dark mode toggle button styles */
+.theme-toggle-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 0;
+  transition: background 0.3s ease;
+}
+
+.theme-toggle-btn.dark {
+  background: #4f46e5;
+}
+
+.theme-toggle-btn.light {
+  background: #e5e7eb;
+}
+
+.theme-toggle-knob {
+  position: absolute;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.theme-toggle-btn.dark .theme-toggle-knob {
+  transform: translateX(18px);
+}
+
+.theme-toggle-btn.light .theme-toggle-knob {
+  transform: translateX(0);
+}

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "864103694948",
+    "project_id": "mobi-trash-store",
+    "storage_bucket": "mobi-trash-store.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864103694948:android:805d81dc337f21bbaad571",
+        "android_client_info": {
+          "package_name": "com.mobistore.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864103694948-j361sj4sfshordq7atj552i9onpgdr6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCivc-OdX5rvReXucOfO19XxzdL9iFdFxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864103694948-j361sj4sfshordq7atj552i9onpgdr6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

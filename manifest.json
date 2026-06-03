@@ -1,0 +1,79 @@
+{
+  "name": "Mobi Store",
+  "short_name": "Mobi Store",
+  "description": "Nepal's leading platform to sell used phones instantly, buy certified devices, and get expert mobile repairs.",
+  "lang": "en-US",
+  "dir": "ltr",
+  "start_url": "/",
+  "id": "com.mobistore.store",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#34d399",
+  "theme_color": "#34d399",
+  "orientation": "portrait",
+  "categories": [
+    "shopping",
+    "finance",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Sell Your Phone",
+      "short_name": "Sell",
+      "description": "Get an instant quote for your device in minutes.",
+      "url": "/sell",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Shop Now",
+      "short_name": "Shop",
+      "description": "Browse our latest certified pre-owned devices.",
+      "url": "/buy",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://ik.imagekit.io/fixedmyspeaker/pwa-ss-1.png?updatedAt=1764137357924",
+      "type": "image/png",
+      "sizes": "1080x2340",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "https://ik.imagekit.io/fixedmyspeaker/pwa-ss-2.png?updatedAt=1764137358100",
+      "type": "image/png",
+      "sizes": "1080x2340",
+      "form_factor": "narrow"
+    }
+  ]
+}

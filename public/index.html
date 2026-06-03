@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Status Bar Color Configuration -->
+  <meta name="theme-color" content="#064e3b" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#064e3b" media="(prefers-color-scheme: dark)" />
+
+  <!-- Viewport: STRICTLY LOCKED to prevent zooming -->
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+
+  <!-- Prevent Chrome Translation Popup & "Running in Chrome" context if possible -->
+  <meta name="google" content="notranslate" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Mobi Store" />
+  <meta name="application-name" content="Mobi Store" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- iOS Startup Splash Screen (Optimization) -->
+  <link rel="apple-touch-startup-image" href="/icon-512.png">
+
+  <!-- =============================================== -->
+  <!-- FAVICON & ICONS (For APK/PWA Icons)             -->
+  <!-- Optimized for all browsers and platforms        -->
+  <!-- =============================================== -->
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="/favicon.png" />
+  <link rel="shortcut icon" type="image/png"
+    href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="/favicon.png" />
+
+  <!-- =============================================== -->
+  <!-- PERFORMANCE: PRELOAD CRITICAL ASSETS            -->
+  <!-- =============================================== -->
+  <link rel="preload" as="image" href="/favicon.png" />
+  <!-- Preload fonts for faster text rendering -->
+  <link rel="preload" as="font"
+    href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMAdGHFzUXxw.woff2" type="font/woff2"
+    crossorigin>
+  <link rel="preload" as="font"
+    href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMAdGHFl2UXxw.woff2" type="font/woff2"
+    crossorigin>
+  <link rel="preload" as="font"
+    href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMAdGHFj2UXxw.woff2" type="font/woff2"
+    crossorigin>
+
+  <!-- =============================================== -->
+  <!-- PRIMARY SEO - HIGH POWERED GLOBAL META          -->
+  <!-- =============================================== -->
+  <!-- =============================================== -->
+  <!-- PRIMARY SEO - HIGH POWERED GLOBAL META          -->
+  <!-- =============================================== -->
+  <!-- Dynamic Meta Tags managed by React Helmet Async -->
+
+  <meta name="google-adsense-account" content="ca-pub-7257748018050891">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7257748018050891"
+    crossorigin="anonymous"></script>
+  <meta name="google-site-verification" content="oxF6z3AR6drhrd8QNRbYeyt6jj1W7fsCpOvvXysJhUo" />
+
+  <!-- =============================================== -->
+  <!-- LOCAL SEO (Geo-Targeting for Nepal)             -->
+  <!-- =============================================== -->
+  <meta name="geo.region" content="NP-P3" />
+  <meta name="geo.placename" content="Kathmandu" />
+  <meta name="geo.position" content="27.673981;85.277547" />
+  <meta name="ICBM" content="27.673981, 85.277547" />
+
+  <!-- =============================================== -->
+  <!-- OneSignal Push Notifications                    -->
+  <!-- =============================================== -->
+  <script defer src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"></script>
+  <script defer>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function (OneSignal) {
+      await OneSignal.init({
+        appId: "57ef8ba0-4ed2-44c6-9bbc-917123034494",
+        safari_web_id: "web.onesignal.auto.11a76d30-e2a9-4f46-9be9-382fbd4a01f1",
+        notifyButton: {
+          enable: false,
+        },
+      });
+    });
+  </script>
+
+  <!-- BLOCK CONTEXT MENU SCRIPT -->
+  <script defer>
+    (function () {
+      // --- INTERACTION BLOCKER (Context Menu & Selection Vibration Prevention) ---
+      function protectContent(e) {
+        // Allow Admin Mode to bypass
+        if (document.body && (document.body.classList.contains('admin-mode') || window.location.pathname.startsWith('/admin'))) {
+          return true;
+        }
+
+        // Only block on mobile devices
+        if (window.innerWidth > 768) { // If desktop, allow right-click
+          return true;
+        }
+
+        // Input Exception: Allow typing
+        let target = e.target;
+        let depth = 4; // Check up to 4 parents
+        while (target && target !== document && depth > 0) {
+          if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable || target.tagName === 'SELECT') {
+            return true;
+          }
+          target = target.parentElement;
+          depth--;
+        }
+
+        // Block Right Click / Long Press Context Menu on mobile only
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+
+      // Apply blockers globally for context menu
+      window.addEventListener('contextmenu', protectContent, { passive: false, capture: true });
+
+      // Disable text selection popup on long press for iOS
+      document.documentElement.style.webkitUserSelect = 'none'; // iOS
+      document.documentElement.style.userSelect = 'none'; // Standard
+    })();
+  </script>
+
+  <!-- Styles for Splash & Scroll & No-Select -->
+  <style>
+    /* NUCLEAR SCROLLBAR HIDING & NO-SELECT GLOBAL OVERRIDE */
+    html,
+    body,
+    #root,
+    * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+
+    /* --- MOBILE SPECIFIC BLOCKS (Max Width 768px) --- */
+    @media (max-width: 768px) {
+
+      html,
+      body,
+      #root,
+      * {
+        /* Disable touch callout (the magnifying glass / context menu on long press) */
+        -webkit-touch-callout: none !important;
+
+        /* Disable tap highlight color on mobile */
+        -webkit-tap-highlight-color: transparent !important;
+
+        /* Disable text selection on mobile to prevent vibration */
+        -webkit-user-select: none !important;
+        user-select: none !important;
+
+        /* Disable pinch zoom via CSS as backup */
+        touch-action: pan-x pan-y !important;
+      }
+
+      /* Explicitly re-enable text entry for inputs on mobile */
+      input,
+      textarea,
+      [contenteditable="true"],
+      select {
+        -webkit-user-select: text !important;
+        user-select: text !important;
+        -webkit-touch-callout: default !important;
+      }
+    }
+
+    /* Admin Mode Override */
+    body.admin-mode * {
+      -webkit-touch-callout: default !important;
+      -webkit-user-select: text !important;
+      user-select: text !important;
+    }
+
+    ::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+      -webkit-appearance: none !important;
+    }
+
+    ::-webkit-scrollbar-track,
+    ::-webkit-scrollbar-thumb {
+      display: none !important;
+    }
+
+    /* Base Reset */
+    :root {
+      --brand-primary: #064e3b;
+      /* Emerald 400 */
+    }
+
+    html {
+      height: 100%;
+      width: 100%;
+      /* FIXED: Allow scroll */
+      overflow-x: hidden;
+      background-color: var(--brand-primary);
+      /* Touch action pan-y allows vertical scroll but not zoom */
+      touch-action: pan-x pan-y;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      /* FIXED: Allow scroll */
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      background-color: var(--brand-primary);
+      /* Disable text selection global via script/css combo */
+    }
+
+    @media (max-width: 768px),
+    (display-mode: standalone) {
+
+      html,
+      body {
+        background-color: #064e3b !important;
+      }
+
+      #root {
+        background-color: #064e3b !important;
+        min-height: 100vh;
+        /* Ensure full height */
+      }
+    }
+
+    @media (min-width: 769px) and (display-mode: browser) {
+
+      html,
+      body {
+        background-color: #f3f4f6 !important;
+      }
+
+      #root {
+        background-color: transparent !important;
+        min-height: 100vh;
+      }
+    }
+
+    #splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #064e3b 0%, #054030 100%);
+      background-size: 200% 200%;
+      animation: gradientPulse 6s ease infinite;
+      color: black;
+      transition: opacity 0.5s ease-out;
+      touch-action: none;
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    @keyframes gradientPulse {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .splash-content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      justify-content: center;
+      gap: 0.2rem;
+      /* Reduced space between lines */
+    }
+
+    /* Animated Typewriter Letters */
+    .splash-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.05em;
+      flex-wrap: nowrap;
+    }
+
+    .splash-word-gap {
+      width: 0.3em;
+    }
+
+    .splash-letter {
+      font-size: 2.2rem;
+      /* Adjusted for 2 lines */
+      font-weight: 900;
+      color: #000000;
+      /* BLACK TEXT */
+      opacity: 0;
+      transform: translateY(20px);
+      animation: letterReveal 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+      display: inline-block;
+      line-height: 1.1;
+    }
+
+    @keyframes letterReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Cart Icon Animation */
+    .splash-icon-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.3rem;
+      opacity: 0;
+      animation: iconEnter 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .splash-cart-icon {
+      width: 32px;
+      height: 32px;
+      color: #000000;
+      /* BLACK ICON */
+      fill: #000000;
+      filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.4));
+    }
+
+    @keyframes iconEnter {
+      0% {
+        opacity: 0;
+        transform: scale(0) rotate(-20deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    .splash-cart-icon.animate-bounce {
+      animation: bounceIcon 2s ease-in-out infinite;
+    }
+
+    @keyframes bounceIcon {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .splash-footer {
+      position: absolute;
+      bottom: 30px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 1.8s forwards;
+    }
+
+    .splash-footer-text {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #000000;
+      opacity: 0.8;
+    }
+
+    .loader-bar {
+      width: 60px;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 2px;
+      margin-top: 1.5rem;
+      overflow: hidden;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out 0.2s forwards;
+    }
+
+    .loader-bar::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 40%;
+      background: #000000;
+      border-radius: 2px;
+      animation: loadingSwipe 1.5s infinite ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes loadingSwipe {
+      0% {
+        left: -40%;
+        width: 30%;
+      }
+
+      50% {
+        width: 60%;
+      }
+
+      100% {
+        left: 100%;
+        width: 30%;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .splash-letter {
+        font-size: 3.5rem;
+      }
+
+      .splash-cart-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .loader-bar {
+        width: 100px;
+        height: 5px;
+      }
+
+      .splash-footer-text {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+
+  <!-- Performance Optimizations -->
+  <link rel="preconnect" href="https://ik.imagekit.io" crossorigin />
+  <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- PWA Manifest with version to force update -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind & EmailJS & QrCode & Confetti -->
+  <script defer src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script defer src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="/index.css">
+
+  <!-- =============================================== -->
+  <!-- POWERFUL JSON-LD SCHEMA FOR SEO RANKING         -->
+  <!-- =============================================== -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://mobitrashstore.com/#organization",
+          "name": "Mobi Store",
+          "alternateName": ["Mobi Store Tech", "Mobi Store", "Mobi Store Tech Nepal"],
+          "url": "https://mobitrashstore.com",
+          "logo": "/icon-192.png",
+          "email": "support@mobitrashstore.com",
+          "foundingDate": "2025-11-25",
+          "taxID": "140158515",
+          "founder": {
+            "@type": "Person",
+            "name": "Mobi Store Team",
+            "jobTitle": "CEO & Developer",
+            "url": "https://mobitrashstore.com/about"
+          },
+          "description": "Mobi Store is a venture of Mobi Store Tech, Nepal's leading platform to sell used phones instantly, buy certified second-hand devices, and get expert mobile repairs.",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+977-9827801575",
+              "contactType": "customer service",
+              "areaServed": "NP",
+              "availableLanguage": ["en", "ne"]
+            },
+            {
+              "@type": "ContactPoint",
+              "telephone": "+977-9812141777",
+              "contactType": "technical support",
+              "areaServed": "NP",
+              "availableLanguage": ["en", "ne"]
+            }
+          ],
+          "sameAs": [
+            "https://www.facebook.com/share/17SwmmmU6f/?mibextid=wwXIfr",
+            "https://www.tiktok.com/@mobistoreapp",
+            "https://wa.me/+9779812141777"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Naya Bazar",
+            "addressLocality": "Kirtipur",
+            "addressRegion": "Kathmandu",
+            "postalCode": "44618",
+            "addressCountry": "NP"
+          }
+        },
+        {
+          "@type": "MobilePhoneStore",
+          "@id": "https://mobitrashstore.com/#store",
+          "parentOrganization": { "@id": "https://mobitrashstore.com/#organization" },
+          "name": "Mobi Store Tech - Mobi Store",
+          "image": "/icon-192.png",
+          "priceRange": "NPR",
+          "telephone": "+9779827801575",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Naya Bazar",
+            "addressLocality": "Kirtipur",
+            "addressRegion": "Kathmandu",
+            "postalCode": "44618",
+            "addressCountry": "NP"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 27.673981,
+            "longitude": 85.277547
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "10:00",
+            "closes": "18:00"
+          },
+          "hasMap": "https://maps.app.goo.gl/B6pQJzZ3mLa8ksnr5"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://mobitrashstore.com/#website",
+          "url": "https://mobitrashstore.com",
+          "name": "Mobi Store - Sell Used Phones in Nepal",
+          "description": "Instant cash for used smartphones. Best valuation in Nepal.",
+          "publisher": { "@id": "https://mobitrashstore.com/#organization" },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://mobitrashstore.com/buy?category={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+            "@type": "Service",
+            "name": "Mobile Repair Service",
+            "provider": { "@id": "https://mobitrashstore.com/#organization" },
+            "areaServed": { "@type": "City", "name": "Kathmandu" },
+            "description": "Professional mobile repair services including screen replacement, battery change, and motherboard repair."
+        },
+        {
+            "@type": "Service",
+            "name": "Phone Buyback Program",
+            "provider": { "@id": "https://mobitrashstore.com/#organization" },
+            "areaServed": "NP",
+            "description": "Sell your used smartphone online and get instant cash via bank transfer or eSewa."
+        }
+      ]
+    }
+    </script>
+
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "@google/genai": "https://esm.sh/@google/genai@0.14.0",
+    "firebase/compat/app": "https://esm.sh/firebase@10.12.2/compat/app",
+    "firebase/compat/auth": "https://esm.sh/firebase@10.12.2/compat/auth",
+    "firebase/compat/firestore": "https://esm.sh/firebase@10.12.2/compat/firestore",
+    "firebase/compat/storage": "https://esm.sh/firebase@10.12.2/compat/storage",
+    "chart.js/auto": "https://esm.sh/chart.js@4.4.3/auto",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/",
+    "recharts": "https://esm.sh/recharts@^3.6.0",
+    "chart.js/": "https://esm.sh/chart.js@^4.5.1/",
+    "@capacitor/core": "https://esm.sh/@capacitor/core@^8.0.0"
+  }
+}
+</script>
+</head>
+
+<body>
+  <!-- PAINT GUARD: Changed to Forest Green as requested -->
+  <div
+    style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #064e3b; z-index: -9999;">
+  </div>
+
+  <div id="splash-screen">
+    <div class="splash-content">
+      <!-- Line 1: Mobi Store -->
+      <div class="splash-line">
+        <span class="splash-letter" style="animation-delay: 0.05s">M</span>
+        <span class="splash-letter" style="animation-delay: 0.1s">o</span>
+        <span class="splash-letter" style="animation-delay: 0.15s">b</span>
+        <span class="splash-letter" style="animation-delay: 0.2s">i</span>
+      </div>
+
+      <!-- Line 2: Icon + Store -->
+      <div class="splash-line">
+        <div class="splash-icon-wrapper" style="animation-delay: 0.3s">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="splash-cart-icon">
+            <path fill-rule="evenodd"
+              d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 106 0v-.75a.75.75 0 011.5 0v.75a4.5 4.5 0 11-9 0v-.75a.75.75 0 011.5 0v.75Z"
+              clip-rule="evenodd" />
+          </svg>
+        </div>
+
+        <span class="splash-letter" style="animation-delay: 0.4s">S</span>
+        <span class="splash-letter" style="animation-delay: 0.45s">t</span>
+        <span class="splash-letter" style="animation-delay: 0.5s">o</span>
+        <span class="splash-letter" style="animation-delay: 0.55s">r</span>
+        <span class="splash-letter" style="animation-delay: 0.6s">e</span>
+      </div>
+
+      <div class="loader-bar"></div>
+    </div>
+
+    <div class="splash-footer">
+      <span class="splash-footer-text">By Mobi Store Tech</span>
+    </div>
+  </div>
+  <div id="root"></div>
+  <script defer type="module" src="/index.tsx"></script>
+  <script defer>
+    // Trigger cart bounce after entrance
+    setTimeout(() => {
+      const cart = document.querySelector('.splash-cart-icon');
+      if (cart) cart.classList.add('animate-bounce');
+    }, 2300);
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+
+    // Standalone detection helper for removing address bars
+    if (window.matchMedia('(display-mode: standalone)').matches || (window.navigator.standalone === true)) {
+      // Already in standalone - no action needed, meta tags handle it
+    }
+  </script>
+</body>
+
+</html>

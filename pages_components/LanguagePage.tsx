@@ -1,0 +1,27 @@
+
+
+import React from 'react';
+import MobileSkyHeader from '../components/MobileSkyHeader';
+import { LanguageIcon } from '../components/icons/LanguageIcon';
+
+interface LanguagePageProps {
+    navigate: (path: string) => void;
+}
+
+const LanguagePage: React.FC<LanguagePageProps> = ({ navigate }) => {
+    return (
+        <div className="bg-gray-50 min-h-screen pb-20">
+            {/* Disabled spacer and adjusted padding to remove gap */}
+            <MobileSkyHeader title="Select Language" Icon={LanguageIcon} hasSpacer={false} />
+            <div className="text-center py-10 pt-20 md:pt-10 flex flex-col items-center justify-center">
+                <h1 className="text-3xl font-bold text-gray-900 hidden md:block">Select Language</h1>
+                 <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200 max-w-md mx-auto mt-8">
+                    <LanguageIcon className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                    <p className="text-gray-600 text-lg">Multi-language support is coming soon!</p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default LanguagePage;

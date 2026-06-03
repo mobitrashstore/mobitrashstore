@@ -1,0 +1,10 @@
+
+{
+  "name": "Mobi Store",
+  "description": "An instant price estimator for users looking to sell their damaged or used phones to Mobi Store in Nepal. Users can select their phone's model and condition to receive a real-time valuation.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
