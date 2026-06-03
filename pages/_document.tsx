@@ -189,11 +189,11 @@ export default function Document() {
               flex-direction: column;
               align-items: center;
               justify-content: center;
-              background: radial-gradient(circle at center, #064e3b 0%, #054030 100%);
+              background: radial-gradient(circle at 30% 40%, #1e3a8a 0%, #0f172a 60%, #0a0f1e 100%);
               background-size: 200% 200%;
-              animation: gradientPulse 6s ease infinite;
-              color: black;
-              transition: opacity 0.5s ease-out;
+              animation: gradientPulse 4s ease infinite;
+              color: white;
+              transition: opacity 0.4s ease-out;
               padding: env(safe-area-inset-top) 2rem env(safe-area-inset-bottom) 2rem;
             }
 
@@ -230,10 +230,10 @@ export default function Document() {
               font-size: 1.1rem;
               font-weight: 600;
               letter-spacing: 0.1em;
-              color: #000000;
+              color: #00bfff;
               opacity: 0;
               transform: translateY(10px);
-              animation: fadeInTagline 0.8s ease-out 1.2s forwards;
+              animation: fadeInTagline 0.6s ease-out 0.8s forwards;
             }
 
             @keyframes fadeInTagline {
@@ -253,11 +253,11 @@ export default function Document() {
             .splash-letter {
               font-size: 2.2rem;
               font-weight: 900;
-              color: #000000;
+              color: #ffffff;
               opacity: 0;
               transform: translateY(20px);
-              animation: letterReveal 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-              text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4);
+              animation: letterReveal 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+              text-shadow: 0 0 20px rgba(0, 191, 255, 0.5), 0 2px 4px rgba(0,0,0,0.5);
               display: inline-block;
               line-height: 1.1;
             }
@@ -277,9 +277,9 @@ export default function Document() {
             .splash-cart-icon {
               width: 32px;
               height: 32px;
-              color: #000000;
-              fill: #000000;
-              filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.4));
+              color: #00bfff;
+              fill: #00bfff;
+              filter: drop-shadow(0 0 8px rgba(0, 191, 255, 0.7));
             }
 
             @keyframes iconEnter {
@@ -311,8 +311,8 @@ export default function Document() {
               font-weight: 700;
               text-transform: uppercase;
               letter-spacing: 0.15em;
-              color: #000000;
-              opacity: 0.8;
+              color: #ffffff;
+              opacity: 0.6;
             }
 
             .loader-bar {
@@ -334,9 +334,9 @@ export default function Document() {
               top: 0;
               height: 100%;
               width: 40%;
-              background: #000000;
+              background: linear-gradient(90deg, #00bfff, #3b82f6);
               border-radius: 2px;
-              animation: loadingSwipe 1.5s infinite ease-in-out;
+              animation: loadingSwipe 1s infinite ease-in-out;
             }
 
             @keyframes fadeIn { to { opacity: 1; } }
@@ -351,7 +351,7 @@ export default function Document() {
               .splash-mobile { display: none; }
               .splash-desktop { display: flex; }
               #splash-screen {
-                background: linear-gradient(135deg, #064e3b 0%, #054030 100%);
+                background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
               }
               .splash-letter { font-size: 3.5rem; }
               .splash-cart-icon { width: 48px; height: 48px; }

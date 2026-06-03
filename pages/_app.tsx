@@ -172,7 +172,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
         return;
       }
       if (window.innerWidth <= 768) {
-        document.documentElement.style.backgroundColor = '#064e3b';
+        document.documentElement.style.backgroundColor = '#0f172a';
         document.body.style.backgroundColor = '#f8f7f4';
       } else {
         document.documentElement.style.backgroundColor = '#f3f4f6';
@@ -181,13 +181,12 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
     };
 
     if (splashScreen) {
-      if (getComputedStyle(splashScreen).display !== 'none') {
+      // Fade out and hide splash screen quickly
+      setTimeout(() => {
         splashScreen.style.opacity = '0';
-        splashScreen.style.display = 'none';
+        setTimeout(() => { splashScreen.style.display = 'none'; }, 400);
         checkBackground();
-      } else {
-        checkBackground();
-      }
+      }, 300);
     } else {
       checkBackground();
     }
