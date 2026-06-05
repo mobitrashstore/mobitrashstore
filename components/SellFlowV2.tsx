@@ -54,15 +54,19 @@ const SellFlowV2: React.FC<SellFlowV2Props> = ({ navigate }) => {
   } | null>(null);
   const [deviceImages, setDeviceImages] = useState<string[]>([]);
 
+  React.useEffect(() => {
+    window.scrollTo({ top: 0 });
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }, [step]);
+
   const nextStep = () => {
-      const rootEl = document.getElementById('root');
-      if (rootEl) rootEl.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0 });
       setStep(prev => prev + 1);
   };
   
   const prevStep = () => {
-      const rootEl = document.getElementById('root');
-      if (rootEl) rootEl.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0 });
       setStep(prev => prev > 0 ? prev - 1 : 0);
   };
 
@@ -75,8 +79,7 @@ const SellFlowV2: React.FC<SellFlowV2Props> = ({ navigate }) => {
     setDeviceImages([]);
     setUploadedImageUrls([]);
     setIsUploading(false);
-    const rootEl = document.getElementById('root');
-    if (rootEl) rootEl.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0 });
   }
 
   const handleBrandSelected = (brand: string) => {

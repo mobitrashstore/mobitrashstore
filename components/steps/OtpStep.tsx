@@ -85,7 +85,7 @@ const OtpStep: React.FC<OtpStepProps> = ({ onBack, onNext }) => {
 
     return (
         <div className="animate-fade-in">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                 {/* Left Side: Form */}
                 <div className="w-full">
                     {view === 'details' ? (
