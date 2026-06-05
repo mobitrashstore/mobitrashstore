@@ -49,8 +49,8 @@ const mapAnswersToCondition = (features: PriceDisplayStepProps['features'], qna:
 
     return {
         powers_on: features.powersOn,
-        screen_cracks: qna.glassCondition === 'Flawless' ? 'none' : qna.glassCondition.includes('Minor') ? 'hairline' : 'major',
-        lcd_damage: qna.displayCondition === 'Flawless' ? 'none' : qna.displayCondition.includes('Lines') ? 'lines' : 'black_spots',
+        screen_cracks: (qna.glassCondition === 'Like New' || qna.glassCondition === 'Flawless') ? 'none' : qna.glassCondition.includes('Minor') ? 'hairline' : 'major',
+        lcd_damage: (qna.displayCondition === 'Like New' || qna.displayCondition === 'Flawless') ? 'none' : qna.displayCondition.includes('Lines') ? 'lines' : 'black_spots',
         water_damage: qna.waterDamage === 'Yes' ? 'indicator_tripped' : 'none',
         battery_health_pct: getBatteryHealth(qna.batteryHealth),
         face_id_touch_id: qna.faceIdTouchId === 'Yes' ? 'ok' : 'faulty',

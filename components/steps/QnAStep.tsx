@@ -29,15 +29,15 @@ const questionsData = [
         category: "Display & Screen",
         questions: [
             { id: 'screenOn', text: 'Is the screen original?', options: ['Yes', 'No'] },
-            { id: 'glassCondition', text: 'Front Glass Condition', options: ['Flawless', 'Minor Scratches', 'Major Cracks'] },
-            { id: 'displayCondition', text: 'Display (LCD/OLED) Condition', options: ['Flawless', 'Lines/Spots', 'Dead'] },
+            { id: 'glassCondition', text: 'Front Glass Condition', options: ['Like New', 'Minor Scratches', 'Major Cracks'] },
+            { id: 'displayCondition', text: 'Display (LCD/OLED) Condition', options: ['Like New', 'Lines/Spots', 'Dead'] },
         ]
     },
     {
         category: "Physical Condition",
         questions: [
-            { id: 'outerShell', text: 'Body/Back Condition', options: ['Flawless', 'Minor Dents', 'Major Dents', 'Cracked'] },
-            { id: 'sideEdges', text: 'Frame Condition', options: ['Flawless', 'Minor Scratches', 'Major Dents'] },
+            { id: 'outerShell', text: 'Body/Back Condition', options: ['Like New', 'Minor Dents', 'Major Dents', 'Cracked'] },
+            { id: 'sideEdges', text: 'Frame Condition', options: ['Like New', 'Minor Scratches', 'Major Dents'] },
         ]
     },
     {
@@ -132,8 +132,8 @@ const QnAStep: React.FC<QnAStepProps> = ({ deviceDetails, onBack, onNext }) => {
                 </div>
 
                 {/* Right Side: Sticky Summary Card */}
-                <div className="lg:col-span-4">
-                    <div className="sticky top-6 bg-slate-900 text-white rounded-3xl p-6 shadow-2xl border border-slate-800 overflow-hidden">
+                <div className="lg:col-span-4 w-full">
+                    <div className="lg:sticky lg:top-24 bg-slate-900 text-white rounded-3xl p-6 shadow-2xl border border-slate-800 overflow-hidden w-full">
                         <div className="absolute top-[-20%] right-[-20%] w-32 h-32 bg-amber-500/20 rounded-full blur-3xl"></div>
                         
                         <h3 className="text-xl font-bold text-white mb-6 text-center border-b border-slate-800 pb-4">Your Device</h3>

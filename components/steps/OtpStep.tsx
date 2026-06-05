@@ -145,21 +145,23 @@ const OtpStep: React.FC<OtpStepProps> = ({ onBack, onNext }) => {
                 </div>
 
                 {/* Right Side: Mascot */}
-                <div className="hidden md:flex flex-col items-center justify-center">
-                    <div className="relative mb-4">
-                        <div className="bg-white border border-gray-300 p-4 rounded-lg shadow-md w-64 text-center">
-                            <p className="text-sm text-gray-700">
+                <div className="hidden md:flex flex-col items-center justify-center lg:sticky lg:top-24 w-full">
+                    <div className="relative mb-6">
+                        <div className="bg-white border border-gray-200 p-5 rounded-2xl shadow-xl w-64 text-center relative">
+                            <p className="text-sm font-bold text-slate-700">
                                 {view === 'details' ? "Enter your email address for OTP." : "Check your email for the OTP."}
                             </p>
+                            {/* Speech bubble tail pointer */}
+                            <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-r border-b border-gray-200 rotate-45"></div>
                         </div>
                     </div>
-                    <img src="https://ik.imagekit.io/fixedmyspeaker/mobile%20all%20modal%20logo/Modal/features/img%20002.png?updatedAt=1762964474181" alt="Mascot" className="h-48 w-auto" />
+                    <img src="https://ik.imagekit.io/fixedmyspeaker/mobile%20all%20modal%20logo/Modal/features/img%20002.png?updatedAt=1762964474181" alt="Mascot" className="h-48 w-auto drop-shadow-2xl" />
                 </div>
             </div>
             <div className="mt-10 flex justify-start">
                 <button
                     onClick={onBack}
-                    className="bg-gray-300 text-black font-bold py-3 px-8 rounded-lg flex items-center gap-2 hover:bg-gray-400 transition-colors"
+                    className="bg-slate-100 text-slate-600 font-bold py-3 px-8 rounded-xl flex items-center gap-2 hover:bg-slate-200 transition-colors border border-slate-200"
                 >
                     <ArrowLeftIcon className="w-5 h-5" /> PREVIOUS
                 </button>
