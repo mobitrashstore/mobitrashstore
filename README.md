@@ -1,6 +1,6 @@
-# 📱 Mobi Trash Store
+# 📱 Mobi Store
 
-Mobi Trash Store is a premium, state-of-the-art web and mobile application designed for buying, selling, repairing, and comparing mobile phones. Built using **Next.js**, **Tailwind CSS**, and **Firebase**, it delivers a high-speed, glassmorphic, and responsive user experience integrated with a client-side AI/ML engine for automated text recognition, privacy protection, and barcode scanning.
+Mobi Store is a premium, state-of-the-art web and mobile application designed for buying, selling, repairing, and comparing mobile phones. Built using **Next.js**, **Tailwind CSS**, and **Firebase**, it delivers a high-speed, glassmorphic, and responsive user experience integrated with a client-side AI/ML engine for automated text recognition, privacy protection, and barcode scanning.
 
 ---
 
