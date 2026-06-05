@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GoogleGenAI, Type } from "@google/genai";
 import { MODELS } from '../constants';
 import Spinner from '../components/Spinner';
@@ -8,6 +8,8 @@ import { BoltIcon } from '../components/icons/BoltIcon';
 import { PencilSquareIcon } from '../components/icons/PencilSquareIcon';
 import { ListBulletIcon } from '../components/icons/ListBulletIcon';
 import { useNotification } from '../context/NotificationContext';
+import * as api from '../services/api';
+import { InventoryItem, SellModel } from '../types';
 
 export interface ComparePageProps {
     navigate: (path: string) => void;
@@ -94,6 +96,61 @@ const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
     const [loading, setLoading] = useState(false);
     const [hasCompared, setHasCompared] = useState(false);
     const { addNotification } = useNotification();
+
+    // States to cache products and trade-in models from db
+    const [inventoryItems, setInventoryItems] = useState<InventoryItem[]>([]);
+    const [sellModels, setSellModels] = useState<SellModel[]>([]);
+
+    useEffect(() => {
+        const loadDeviceData = async () => {
+            try {
+                const [items, models] = await Promise.all([
+                    api.getInventoryItems(),
+                    api.getSellModels()
+                ]);
+                setInventoryItems(items);
+                setSellModels(models);
+            } catch (e) {
+                console.warn("Failed to load inventory or sell models for comparison images:", e);
+            }
+        };
+        loadDeviceData();
+    }, []);
+
+    const getDeviceImage = (deviceName: string, defaultFallback: string) => {
+        if (!deviceName) return defaultFallback;
+        const normalizedSearch = deviceName.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+        // 1. Check shop inventory
+        const matchedItem = inventoryItems.find(item => {
+            const normalizedTitle = item.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const normalizedModel = (item.specs?.model || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            const normalizedSku = (item.sku || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            return normalizedTitle.includes(normalizedSearch) || 
+                   normalizedSearch.includes(normalizedTitle) ||
+                   normalizedModel.includes(normalizedSearch) ||
+                   normalizedSku.includes(normalizedSearch);
+        });
+
+        if (matchedItem && matchedItem.media && matchedItem.media.length > 0) {
+            return matchedItem.media[0];
+        }
+
+        // 2. Check trade-in sell models
+        const matchedModel = sellModels.find(m => {
+            const normalizedModelName = m.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const normalizedFullName = `${m.brand} ${m.name}`.toLowerCase().replace(/[^a-z0-9]/g, '');
+            return normalizedModelName.includes(normalizedSearch) || 
+                   normalizedSearch.includes(normalizedModelName) ||
+                   normalizedFullName.includes(normalizedSearch);
+        });
+
+        if (matchedModel && matchedModel.imageUrl) {
+            return matchedModel.imageUrl;
+        }
+
+        return defaultFallback;
+    };
 
     const handleCompare = async () => {
         if (!phone1.trim() || !phone2.trim()) {
@@ -231,14 +288,67 @@ Example format:
                     </div>
                 </div>
 
+                {/* Visual Side-by-Side Comparison */}
+                {hasCompared && !loading && (
+                    <div className="grid grid-cols-2 gap-4 md:gap-8 max-w-2xl mx-auto mb-8 animate-fade-in-up">
+                        <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center text-center">
+                            <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 mb-3 relative overflow-hidden">
+                                <img 
+                                    src={getDeviceImage(phone1, 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80')} 
+                                    alt={phone1} 
+                                    className="w-full h-full object-contain filter drop-shadow-md transition-transform duration-300 hover:scale-105" 
+                                    onError={(e) => {
+                                        e.currentTarget.src = 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80';
+                                    }}
+                                />
+                            </div>
+                            <h3 className="text-sm md:text-base font-bold text-gray-900 line-clamp-2 px-2 h-10 flex items-center justify-center">{phone1}</h3>
+                        </div>
+
+                        <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center text-center">
+                            <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 mb-3 relative overflow-hidden">
+                                <img 
+                                    src={getDeviceImage(phone2, 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80')} 
+                                    alt={phone2} 
+                                    className="w-full h-full object-contain filter drop-shadow-md transition-transform duration-300 hover:scale-105"
+                                    onError={(e) => {
+                                        e.currentTarget.src = 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80';
+                                    }}
+                                />
+                            </div>
+                            <h3 className="text-sm md:text-base font-bold text-gray-900 line-clamp-2 px-2 h-10 flex items-center justify-center">{phone2}</h3>
+                        </div>
+                    </div>
+                )}
+
                 {/* Comparison Results */}
                 {hasCompared && !loading && (
-                    <div className="animate-fade-in-up mt-12">
+                    <div className="animate-fade-in-up mt-8">
                         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-                            <div className="grid grid-cols-3 bg-gray-800 text-white p-4 text-sm md:text-lg font-bold text-left sticky top-0 z-10 rounded-t-2xl">
+                            <div className="grid grid-cols-3 bg-gray-800 text-white p-4 text-xs md:text-base font-bold text-left sticky top-0 z-10 rounded-t-2xl items-center">
                                 <div className="pl-2">Feature</div>
-                                <div className="text-amber-400 break-words px-2 text-center">{phone1}</div>
-                                <div className="text-sky-400 break-words px-2 text-center">{phone2}</div>
+                                <div className="text-amber-400 break-words px-2 text-center flex flex-col md:flex-row items-center justify-center gap-2">
+                                    <img 
+                                        src={getDeviceImage(phone1, 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=80&h=80&q=80')} 
+                                        alt="" 
+                                        className="w-8 h-8 object-contain rounded bg-white p-0.5 border border-gray-600 flex-shrink-0"
+                                        onError={(e) => {
+                                            e.currentTarget.src = 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=80&h=80&q=80';
+                                        }}
+                                    />
+                                    <span className="line-clamp-1">{phone1}</span>
+                                </div>
+                                <div className="text-sky-400 break-words px-2 text-center flex flex-col md:flex-row items-center justify-center gap-2">
+                                    <img 
+                                        src={getDeviceImage(phone2, 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=80&h=80&q=80')} 
+                                        alt="" 
+                                        className="w-8 h-8 object-contain rounded bg-white p-0.5 border border-gray-600 flex-shrink-0"
+                                        onError={(e) => {
+                                            e.currentTarget.src = 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=80&h=80&q=80';
+                                        }}
+                                    />
+                                    <span className="line-clamp-1">{phone2}</span>
+                                </div>
                             </div>
                             <div className="divide-y divide-gray-100">
                                 {comparisonData.map((row, index) => (
