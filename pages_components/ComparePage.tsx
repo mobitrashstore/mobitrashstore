@@ -101,9 +101,11 @@ const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
     const [inventoryItems, setInventoryItems] = useState<InventoryItem[]>([]);
     const [sellModels, setSellModels] = useState<SellModel[]>([]);
 
-    // Resolved phone image states (initially using Unsplash placeholders)
-    const [phone1Image, setPhone1Image] = useState<string>('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80');
-    const [phone2Image, setPhone2Image] = useState<string>('https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80');
+    // Resolved phone image lists and indices for client-side loading
+    const [phone1Images, setPhone1Images] = useState<string[]>([]);
+    const [phone1ImgIndex, setPhone1ImgIndex] = useState<number>(0);
+    const [phone2Images, setPhone2Images] = useState<string[]>([]);
+    const [phone2ImgIndex, setPhone2ImgIndex] = useState<number>(0);
 
     useEffect(() => {
         const loadDeviceData = async () => {
@@ -120,23 +122,6 @@ const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
         };
         loadDeviceData();
     }, []);
-
-    // Fetch high-quality device image from our server API route
-    const fetchRealDeviceImage = async (deviceName: string): Promise<string | null> => {
-        if (!deviceName || deviceName.trim().length < 2) return null;
-        try {
-            const res = await fetch(`/api/device-image?device=${encodeURIComponent(deviceName)}`);
-            if (res.ok) {
-                const data = await res.json();
-                if (data.imageUrl) {
-                    return data.imageUrl;
-                }
-            }
-        } catch (e) {
-            console.warn("Failed to fetch device image from API route:", e);
-        }
-        return null;
-    };
 
     const getDeviceImage = (deviceName: string, defaultFallback: string) => {
         if (!deviceName) return defaultFallback;
@@ -173,35 +158,128 @@ const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
         return defaultFallback;
     };
 
+    const getDeviceImageCandidates = async (deviceName: string, isPhone2: boolean): Promise<string[]> => {
+        const candidates: string[] = [];
+        if (!deviceName || deviceName.trim().length < 2) return candidates;
+
+        // 1. Local Database Image
+        const localImg = getDeviceImage(deviceName, '');
+        if (localImg) {
+            candidates.push(localImg);
+        }
+
+        // 2. Wikimedia Commons Smart Search (Client-Side Fetch)
+        try {
+            let query = deviceName.trim();
+            const modelNumbers = query.match(/\d+/g) || [];
+            if (/^\d/.test(query) && !/iphone|samsung|pixel|oneplus|xiaomi|huawei|oppo|vivo|realme/i.test(query)) {
+                query = `iPhone ${query}`;
+            }
+
+            const commonsUrl = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrsearch=${encodeURIComponent(query)}&gsrlimit=10&prop=imageinfo&iiprop=url&format=json&origin=*`;
+            
+            const res = await fetch(commonsUrl);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.query && data.query.pages) {
+                    const pages = data.query.pages;
+                    const candidateFiles = [];
+                    for (const pageId of Object.keys(pages)) {
+                        const page = pages[pageId];
+                        if (page.imageinfo && page.imageinfo[0] && page.imageinfo[0].url) {
+                            candidateFiles.push({
+                                title: page.title.toLowerCase(),
+                                url: page.imageinfo[0].url
+                            });
+                        }
+                    }
+
+                    const negativeKeywords = [
+                        'case', 'box', 'screenshot', 'lockscreen', 'sperrbildschirm', 
+                        'broken', 'packaging', 'charger', 'cable', 'manual', 'lens', 
+                        'cutout', 'logo', 'drawing', 'chart', 'diagram', 'graph', 
+                        'data', 'comparison', 'specifications', 'specs', 'pricing', 
+                        'table', 'ad', 'poster', 'mockup', '机型', '对比', '性能'
+                    ];
+
+                    for (const file of candidateFiles) {
+                        if (file.url.toLowerCase().endsWith('.svg')) continue;
+                        if (negativeKeywords.some(kw => file.title.includes(kw))) continue;
+
+                        let aligned = true;
+                        for (const num of modelNumbers) {
+                            if (!file.title.includes(num)) {
+                                aligned = false;
+                                break;
+                            }
+                        }
+                        if (aligned) {
+                            candidates.push(file.url);
+                            break; // Stop after first match to prioritize
+                        }
+                    }
+                }
+            }
+        } catch (e) {
+            console.warn("Client-side Wikimedia Commons query failed:", e);
+        }
+
+        // 3. GSMArena Candidates
+        const clean = deviceName.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '');
+        const parts = clean.split(/\s+/);
+        if (parts.length > 0) {
+            let brand = '';
+            let model = '';
+            const brands = ['apple', 'samsung', 'google', 'oneplus', 'xiaomi', 'huawei', 'oppo', 'vivo', 'realme', 'nokia', 'sony', 'motorola'];
+            if (brands.includes(parts[0])) {
+                brand = parts[0];
+                model = parts.slice(1).join('-');
+            } else {
+                if (clean.includes('iphone')) {
+                    brand = 'apple';
+                    model = parts.join('-');
+                } else {
+                    brand = parts[0];
+                    model = parts.slice(1).join('-');
+                }
+            }
+
+            if (model) {
+                let slug = model.startsWith(brand) ? model : `${brand}-${model}`;
+                candidates.push(`https://fdn2.gsmarena.com/vv/bigpic/${slug}.jpg`);
+                candidates.push(`https://fdn2.gsmarena.com/vv/bigpic/${slug}-5g.jpg`);
+                candidates.push(`https://fdn2.gsmarena.com/vv/bigpic/${slug}-4g.jpg`);
+                if (brand === 'apple' && !model.startsWith('iphone') && !model.startsWith('apple')) {
+                    candidates.push(`https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-${model}.jpg`);
+                }
+            }
+        }
+
+        // 4. Default unsplash fallback
+        candidates.push(
+            isPhone2 
+            ? 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80'
+            : 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80'
+        );
+
+        return candidates;
+    };
+
     // Live effect hooks to update device images automatically
     useEffect(() => {
         const updateImg1 = async () => {
-            if (!phone1.trim()) return;
-            // 1. Try local database first (instant match)
-            const localImg = getDeviceImage(phone1, '');
-            if (localImg) {
-                setPhone1Image(localImg);
-                return;
-            }
-            // 2. Try the smart backend API
-            const apiImg = await fetchRealDeviceImage(phone1);
-            setPhone1Image(apiImg || 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80');
+            const list = await getDeviceImageCandidates(phone1, false);
+            setPhone1Images(list);
+            setPhone1ImgIndex(0);
         };
         updateImg1();
     }, [phone1, inventoryItems, sellModels]);
 
     useEffect(() => {
         const updateImg2 = async () => {
-            if (!phone2.trim()) return;
-            // 1. Try local database first (instant match)
-            const localImg = getDeviceImage(phone2, '');
-            if (localImg) {
-                setPhone2Image(localImg);
-                return;
-            }
-            // 2. Try the smart backend API
-            const apiImg = await fetchRealDeviceImage(phone2);
-            setPhone2Image(apiImg || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80');
+            const list = await getDeviceImageCandidates(phone2, true);
+            setPhone2Images(list);
+            setPhone2ImgIndex(0);
         };
         updateImg2();
     }, [phone2, inventoryItems, sellModels]);
@@ -348,11 +426,15 @@ Example format:
                         <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center text-center">
                             <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 mb-3 relative overflow-hidden">
                                 <img 
-                                    src={phone1Image} 
+                                    src={phone1Images[phone1ImgIndex] || 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80'} 
                                     alt={phone1} 
                                     className="w-full h-full object-contain filter drop-shadow-md transition-transform duration-300 hover:scale-105" 
                                     onError={(e) => {
-                                        e.currentTarget.src = 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80';
+                                        if (phone1ImgIndex < phone1Images.length - 1) {
+                                            setPhone1ImgIndex(prev => prev + 1);
+                                        } else {
+                                            e.currentTarget.src = 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80';
+                                        }
                                     }}
                                 />
                             </div>
@@ -362,11 +444,15 @@ Example format:
                         <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center text-center">
                             <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 mb-3 relative overflow-hidden">
                                 <img 
-                                    src={phone2Image} 
+                                    src={phone2Images[phone2ImgIndex] || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80'} 
                                     alt={phone2} 
                                     className="w-full h-full object-contain filter drop-shadow-md transition-transform duration-300 hover:scale-105"
                                     onError={(e) => {
-                                        e.currentTarget.src = 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80';
+                                        if (phone2ImgIndex < phone2Images.length - 1) {
+                                            setPhone2ImgIndex(prev => prev + 1);
+                                        } else {
+                                            e.currentTarget.src = 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80';
+                                        }
                                     }}
                                 />
                             </div>
@@ -383,7 +469,7 @@ Example format:
                                 <div className="pl-2">Feature</div>
                                 <div className="text-amber-400 break-words px-2 text-center flex flex-col md:flex-row items-center justify-center gap-2">
                                     <img 
-                                        src={phone1Image} 
+                                        src={phone1Images[phone1ImgIndex] || 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=80&h=80&q=80'} 
                                         alt="" 
                                         className="w-8 h-8 object-contain rounded bg-white p-0.5 border border-gray-600 flex-shrink-0"
                                         onError={(e) => {
@@ -394,7 +480,7 @@ Example format:
                                 </div>
                                 <div className="text-sky-400 break-words px-2 text-center flex flex-col md:flex-row items-center justify-center gap-2">
                                     <img 
-                                        src={phone2Image} 
+                                        src={phone2Images[phone2ImgIndex] || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=80&h=80&q=80'} 
                                         alt="" 
                                         className="w-8 h-8 object-contain rounded bg-white p-0.5 border border-gray-600 flex-shrink-0"
                                         onError={(e) => {
