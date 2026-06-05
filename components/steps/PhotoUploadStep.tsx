@@ -172,17 +172,19 @@ const PhotoUploadStep: React.FC<PhotoUploadStepProps> = ({ onBack, onNext }) => 
 
                 {/* Right Side: Mascot */}
                 <div className="hidden md:flex flex-col items-center justify-center sticky top-10">
-                    <div className="relative mb-4">
-                        <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-xl w-64 text-center">
+                    <div className="relative mb-6">
+                        <div className="bg-white border border-slate-200 p-5 rounded-2xl shadow-xl w-64 text-center relative">
                             <p className="text-sm font-bold text-slate-700">
                                 Show us your device! 📸
                             </p>
                             <p className="text-xs text-slate-500 mt-1">
                                 High-quality direct uploads to Cloudinary help us evaluate your device at full fidelity.
                             </p>
+                            {/* Speech bubble tail pointer */}
+                            <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-r border-b border-slate-200 rotate-45"></div>
                         </div>
                     </div>
-                    <img src="https://ik.imagekit.io/fixedmyspeaker/mobile%20all%20modal%20logo/Modal/features/img%20002.png?updatedAt=1762964474181" alt="Mascot" className="h-48 w-auto drop-shadow-2xl animate-bounce-slow" />
+                    <img src="https://ik.imagekit.io/fixedmyspeaker/mobile%20all%20modal%20logo/Modal/features/img%20002.png?updatedAt=1762964474181" alt="Mascot" className="h-48 w-auto drop-shadow-2xl" />
                 </div>
             </div>
 
