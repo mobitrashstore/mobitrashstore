@@ -85,9 +85,9 @@ const OtpStep: React.FC<OtpStepProps> = ({ onBack, onNext }) => {
 
     return (
         <div className="animate-fade-in">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8" style={{alignItems: 'flex-start'}}>
                 {/* Left Side: Form */}
-                <div className="w-full">
+                <div className="w-full" style={{position: 'relative', zIndex: 1}}>
                     {view === 'details' ? (
                         <form onSubmit={handleSendRequest} className="space-y-4">
                             <h2 className="text-2xl font-bold text-gray-900 mb-4">Enter Your Details</h2>
@@ -144,12 +144,12 @@ const OtpStep: React.FC<OtpStepProps> = ({ onBack, onNext }) => {
                     )}
                 </div>
 
-                {/* Right Side: Mascot */}
-                <div className="hidden md:flex flex-col items-center justify-center lg:sticky lg:top-24 w-full">
+                {/* Right Side: Mascot — NO sticky, plain column */}
+                <div className="hidden md:flex flex-col items-center justify-start pt-4 w-full" style={{position: 'relative', zIndex: 0}}>
                     <div className="relative mb-6">
                         <div className="bg-white border border-gray-200 p-5 rounded-2xl shadow-xl w-64 text-center relative">
                             <p className="text-sm font-bold text-slate-700">
-                                {view === 'details' ? "Enter your email address for OTP." : "Check your email for the OTP."}
+                                {view === 'details' ? "Fill in your details so we can contact you." : "Check your email for the code we sent you."}
                             </p>
                             {/* Speech bubble tail pointer */}
                             <div className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-r border-b border-gray-200 rotate-45"></div>
