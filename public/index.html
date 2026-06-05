@@ -4,6 +4,11 @@
 <head>
   <meta charset="UTF-8" />
 
+  <!-- Force no-cache so iOS always fetches fresh icons -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
   <!-- Status Bar Color Configuration -->
   <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
@@ -25,7 +30,7 @@
   <meta name="format-detection" content="telephone=no">
 
   <!-- iOS Startup Splash Screen (Optimization) -->
-  <link rel="apple-touch-startup-image" href="/icon-512.png">
+  <link rel="apple-touch-startup-image" href="/apple-touch-icon-hd.png">
 
   <!-- =============================================== -->
   <!-- FAVICON & ICONS (For APK/PWA Icons)             -->
@@ -37,22 +42,23 @@
     href="/favicon.png" />
   <link rel="shortcut icon" type="image/png"
     href="/favicon.png" />
-  <!-- Apple Touch Icon: High-res icon for iPhone/iPad Add to Home Screen -->
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <!-- Apple Touch Icon: 1024x1024 HD icon for iPhone/iPad Add to Home Screen -->
+  <!-- RENAMED to apple-touch-icon-hd.png to bust iOS Safari icon cache -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon-hd.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-hd.png" />
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-hd.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-hd.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-hd.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-hd.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-hd.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-hd.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-hd.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-hd.png" />
 
   <!-- =============================================== -->
   <!-- PERFORMANCE: PRELOAD CRITICAL ASSETS            -->
   <!-- =============================================== -->
-  <link rel="preload" as="image" href="/apple-touch-icon.png" />
+  <link rel="preload" as="image" href="/apple-touch-icon-hd.png" />
   <link rel="preload" as="image" href="/favicon.png" />
   <!-- Preload fonts for faster text rendering -->
   <link rel="preload" as="font"
