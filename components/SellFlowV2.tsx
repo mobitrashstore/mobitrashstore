@@ -14,6 +14,7 @@ import { sendEmail, getSellOfferEmailTemplate } from '../services/email';
 
 interface SellFlowV2Props {
   navigate: (path: string) => void;
+  onStepChange?: (step: number) => void;
 }
 
 interface DeviceDetailsState {
@@ -25,7 +26,7 @@ interface DeviceDetailsState {
     storageOptions?: string[];
 }
 
-const SellFlowV2: React.FC<SellFlowV2Props> = ({ navigate }) => {
+const SellFlowV2: React.FC<SellFlowV2Props> = ({ navigate, onStepChange }) => {
   const [step, setStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionProgress, setSubmissionProgress] = useState(0);
@@ -58,7 +59,10 @@ const SellFlowV2: React.FC<SellFlowV2Props> = ({ navigate }) => {
     window.scrollTo({ top: 0 });
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  }, [step]);
+    if (onStepChange) {
+      onStepChange(step);
+    }
+  }, [step, onStepChange]);
 
   const nextStep = () => {
       window.scrollTo({ top: 0 });

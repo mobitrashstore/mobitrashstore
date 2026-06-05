@@ -100,6 +100,7 @@ const SellPageHero: React.FC<SellPageHeroProps> = ({ onHasBanners }) => {
 const SellPage: React.FC<{ navigate: (path: string) => void }> = ({ navigate }) => {
   const [hasBanners, setHasBanners] = useState(false);
   const [config, setConfig] = useState(SELL_PAGE_CONFIG_DEFAULT);
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     const fetchConfig = async () => {
@@ -131,7 +132,7 @@ const SellPage: React.FC<{ navigate: (path: string) => void }> = ({ navigate }) 
       {/* Main content wrapper */}
       <div className="md:px-6 lg:px-8 md:py-6">
 
-        <SellPageHero onHasBanners={setHasBanners} />
+        {currentStep === 0 && <SellPageHero onHasBanners={setHasBanners} />}
 
         {/* Form and other content */}
         <div className="px-4 sm:px-0 pt-4 md:pt-8">
@@ -149,7 +150,7 @@ const SellPage: React.FC<{ navigate: (path: string) => void }> = ({ navigate }) 
               />
             </p>
           </div>
-          <SellFlowV2 navigate={navigate} />
+          <SellFlowV2 navigate={navigate} onStepChange={setCurrentStep} />
 
           {/* SEO Content for Crawlers (Visible but low priority visually) */}
           <div className="mt-8 text-xs text-gray-400 text-center px-4 pb-4">

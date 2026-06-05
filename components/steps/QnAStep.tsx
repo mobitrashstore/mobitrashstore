@@ -73,23 +73,23 @@ const QnAStep: React.FC<QnAStepProps> = ({ deviceDetails, onBack, onNext }) => {
 
     return (
         <div className="animate-fade-in max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            <div className="mb-8">
+                <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-2">Assess Condition</h2>
+                <p className="text-slate-500 mb-6">Please answer honestly for an accurate quote.</p>
+                
+                {/* Progress Bar */}
+                <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div 
+                        className="h-full bg-gradient-to-r from-amber-400 to-orange-500 transition-all duration-500 ease-out" 
+                        style={{ width: `${progress}%` }}
+                    ></div>
+                </div>
+                <p className="text-right text-xs font-bold text-amber-600 mt-2">{Math.round(progress)}% Complete</p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                 {/* Left Side: Questions */}
                 <div className="lg:col-span-8">
-                    <div className="mb-8">
-                        <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-2">Assess Condition</h2>
-                        <p className="text-slate-500 mb-6">Please answer honestly for an accurate quote.</p>
-                        
-                        {/* Progress Bar */}
-                        <div className="h-3 w-full bg-slate-100 rounded-full overflow-hidden">
-                            <div 
-                                className="h-full bg-gradient-to-r from-amber-400 to-orange-500 transition-all duration-500 ease-out" 
-                                style={{ width: `${progress}%` }}
-                            ></div>
-                        </div>
-                        <p className="text-right text-xs font-bold text-amber-600 mt-2">{Math.round(progress)}% Complete</p>
-                    </div>
-
                     <div className="space-y-10">
                         {questionsData.map(category => (
                             <div key={category.category} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
