@@ -14,7 +14,6 @@ interface SelectModelStepProps {
 }
 
 const SelectModelStep: React.FC<SelectModelStepProps> = ({ brand, onBack, onNext }) => {
-    const [selectedModel, setSelectedModel] = useState<SellModel | null>(null);
     const [modelsForBrand, setModelsForBrand] = useState<SellModel[]>([]);
     const [filteredModels, setFilteredModels] = useState<SellModel[]>([]);
     const [loading, setLoading] = useState(true);
@@ -23,10 +22,6 @@ const SelectModelStep: React.FC<SelectModelStepProps> = ({ brand, onBack, onNext
     useEffect(() => {
         const fetchModels = async () => {
             setLoading(true);
-            setSelectedModel(null);
-            
-            // Note: We removed the static list of Apple models. 
-            // Now, ALL models, including Apple, are fetched from the database.
             
             try {
                 const dbModels = await api.getSellModelsByBrand(brand);
@@ -85,14 +80,8 @@ const SelectModelStep: React.FC<SelectModelStepProps> = ({ brand, onBack, onNext
                         <button
                             key={m.id}
                             type="button"
-                            onClick={() => setSelectedModel(m)}
-                            className={`
-                                group relative flex flex-col items-center justify-between p-4 rounded-2xl border-2 transition-all duration-200 h-full
-                                ${selectedModel?.name === m.name 
-                                    ? 'border-amber-500 bg-amber-50 shadow-lg scale-105 z-10' 
-                                    : 'bg-white border-slate-100 hover:border-amber-200 hover:shadow-md'
-                                }
-                            `}
+                            onClick={() => onNext(m)}
+                            className="group relative flex flex-col items-center justify-between p-4 rounded-2xl border-2 border-slate-100 bg-white hover:border-amber-200 hover:shadow-md transition-all duration-200 h-full active:scale-95"
                         >
                             <div className="h-28 w-full flex items-center justify-center mb-3">
                                 <img 
@@ -104,12 +93,6 @@ const SelectModelStep: React.FC<SelectModelStepProps> = ({ brand, onBack, onNext
                             <span className="font-bold text-sm text-center text-slate-700 group-hover:text-slate-900 leading-tight">
                                 {m.name}
                             </span>
-                            
-                            {selectedModel?.name === m.name && (
-                                <div className="absolute top-2 right-2 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center text-white shadow-sm">
-                                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                                </div>
-                            )}
                         </button>
                     ))}
                 </div>
@@ -121,23 +104,12 @@ const SelectModelStep: React.FC<SelectModelStepProps> = ({ brand, onBack, onNext
                 </div>
             )}
             
-            <div className="mt-12 flex justify-between items-center max-w-2xl mx-auto">
+            <div className="mt-12 flex justify-start max-w-5xl mx-auto">
                  <button
                     onClick={onBack}
                     className="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors"
                 >
                     <ArrowLeftIcon className="w-5 h-5" /> Back
-                </button>
-                <button
-                    onClick={() => { if(selectedModel) onNext(selectedModel)}}
-                    disabled={!selectedModel}
-                    className="
-                        flex items-center gap-2 px-8 py-3 rounded-full font-bold text-white shadow-lg transition-all transform
-                        disabled:bg-slate-200 disabled:text-slate-400 disabled:shadow-none disabled:cursor-not-allowed
-                        enabled:bg-amber-600 enabled:hover:bg-amber-700 enabled:active:scale-95
-                    "
-                >
-                    Next Step <ArrowRightIcon className="w-5 h-5" />
                 </button>
             </div>
         </div>
