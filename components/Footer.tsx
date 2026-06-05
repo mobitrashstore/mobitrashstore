@@ -1,4 +1,4 @@
-﻿
+
 import React, { useState, useEffect } from 'react';
 import { FacebookIcon } from './icons/FacebookIcon';
 import { TikTokIcon } from './icons/TikTokIcon';
@@ -177,7 +177,7 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
                                 <div className="mt-8">
                                     <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Download App</p>
                                     <div className="flex flex-wrap gap-2">
-                                        <a href="https://play.google.com/store/apps/details?id=com.mobistore.store" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 hover:scale-105 transition-all" title="Download Official App from Play Store">
+                                        <a href="https://play.google.com/store/apps/details?id=com.mobistore.shop" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 hover:scale-105 transition-all" title="Download Official App from Play Store">
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store" width="135" height="40" className="h-8 w-auto" />
                                         </a>
                                         <button onClick={handleAppStoreClick} className="opacity-80 hover:opacity-100 hover:scale-105 transition-all" title="Download Official App from App Store (Coming Soon)">

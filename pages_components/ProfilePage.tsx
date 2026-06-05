@@ -1,4 +1,4 @@
-﻿
+
 
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
@@ -600,7 +600,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
                 subtitle="Rate us on Play Store"
                 onClick={() =>
                   window.open(
-                    'https://play.google.com/store/apps/details?id=com.mobistore.store',
+                    'https://play.google.com/store/apps/details?id=com.mobistore.shop',
                     '_blank'
                   )
                 }

@@ -1,4 +1,4 @@
-package com.mobistore.app;
+package com.mobistore.shop;
 
 import com.getcapacitor.BridgeActivity;
 
