@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { ProblemReport } from '../types';
@@ -34,7 +34,7 @@ const ReportDetailsModal: React.FC<{ report: ProblemReport; onClose: () => void 
                         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                             <h3 className="font-bold text-slate-400 text-xs uppercase tracking-wider mb-3 border-b border-slate-200 pb-1">Info</h3>
                             <p className="mb-1"><span className="font-bold text-slate-700 text-sm">Type:</span> <span className="text-slate-800 font-medium">{report.type}</span></p>
-                            <p className="mb-1"><span className="font-bold text-slate-700 text-sm">Status:</span> <span className={`font-bold ${report.status === 'New' ? 'text-rose-600' : 'text-green-600'}`}>{report.status}</span></p>
+                            <p className="mb-1"><span className="font-bold text-slate-700 text-sm">Status:</span> <span className={`font-bold ${report.status === 'New' ? 'text-rose-600' : 'text-orange-600'}`}>{report.status}</span></p>
                             <p><span className="font-bold text-slate-700 text-sm">Date:</span> <span className="text-slate-800">{new Date(report.createdAt).toLocaleString()}</span></p>
                         </div>
                         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
@@ -156,7 +156,7 @@ const AdminProblemReportsPage: React.FC<AdminProblemReportsPageProps> = ({ navig
                                             <td className="px-6 py-4 max-w-xs truncate text-slate-600">{report.description}</td>
                                             <td className="px-6 py-4 text-slate-500">{report.userEmail || 'Anonymous'}</td>
                                             <td className="px-6 py-4">
-                                                <span className={`px-2 py-1 text-xs font-bold rounded-full border ${report.status === 'New' ? 'bg-rose-50 text-rose-600 border-rose-200' : 'bg-green-50 text-green-600 border-green-200'
+                                                <span className={`px-2 py-1 text-xs font-bold rounded-full border ${report.status === 'New' ? 'bg-rose-50 text-rose-600 border-rose-200' : 'bg-orange-50 text-orange-600 border-orange-200'
                                                     }`}>
                                                     {report.status}
                                                 </span>
@@ -172,7 +172,7 @@ const AdminProblemReportsPage: React.FC<AdminProblemReportsPageProps> = ({ navig
                                                     <button
                                                         onClick={() => handleToggleStatus(report)}
                                                         className={`px-3 py-1.5 rounded-lg font-medium text-xs border transition-colors ${report.status === 'New'
-                                                            ? 'text-green-600 border-green-200 bg-green-50 hover:bg-green-100'
+                                                            ? 'text-orange-600 border-orange-200 bg-orange-50 hover:bg-orange-100'
                                                             : 'text-slate-500 border-slate-200 bg-slate-50 hover:bg-slate-100'
                                                             }`}
                                                     >
@@ -198,7 +198,7 @@ const AdminProblemReportsPage: React.FC<AdminProblemReportsPageProps> = ({ navig
                                         <span className="text-xs font-medium text-slate-400">{new Date(report.createdAt).toLocaleDateString()}</span>
                                         <h3 className="font-bold text-slate-800 text-lg">{report.type}</h3>
                                     </div>
-                                    <span className={`px-3 py-1 text-xs font-bold rounded-full border ${report.status === 'New' ? 'bg-rose-50 text-rose-600 border-rose-200' : 'bg-green-50 text-green-600 border-green-200'
+                                    <span className={`px-3 py-1 text-xs font-bold rounded-full border ${report.status === 'New' ? 'bg-rose-50 text-rose-600 border-rose-200' : 'bg-orange-50 text-orange-600 border-orange-200'
                                         }`}>
                                         {report.status}
                                     </span>
@@ -220,7 +220,7 @@ const AdminProblemReportsPage: React.FC<AdminProblemReportsPageProps> = ({ navig
                                         </button>
                                         <button
                                             onClick={() => handleToggleStatus(report)}
-                                            className={`px-4 py-2 rounded-lg text-xs font-bold border active:scale-95 transition-transform ${report.status === 'New' ? 'bg-green-50 text-green-600 border-green-200' : 'bg-slate-50 text-slate-600 border-slate-200'
+                                            className={`px-4 py-2 rounded-lg text-xs font-bold border active:scale-95 transition-transform ${report.status === 'New' ? 'bg-orange-50 text-orange-600 border-orange-200' : 'bg-slate-50 text-slate-600 border-slate-200'
                                                 }`}
                                         >
                                             {report.status === 'New' ? 'Done' : 'Undo'}

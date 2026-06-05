@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, ReactNode } from 'react';
 import Spinner from './Spinner';
 
@@ -112,7 +112,7 @@ const PullToRefresh: React.FC<PullToRefreshProps> = ({ children, onRefresh, disa
                     opacity: currentY > 10 ? 1 : 0
                 }}
             >
-                <div className="bg-white/95 backdrop-blur-md p-3 rounded-full shadow-xl border border-emerald-100/50 ring-4 ring-black/5">
+                <div className="bg-white/95 backdrop-blur-md p-3 rounded-full shadow-xl border border-orange-100/50 ring-4 ring-black/5">
                     <Spinner size="w-6 h-6" />
                 </div>
             </div>

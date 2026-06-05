@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import SellFlowV2 from '../components/SellFlowV2';
 import * as api from '../services/api';
 import { Banner } from '../types';
@@ -123,7 +123,7 @@ const SellPage: React.FC<{ navigate: (path: string) => void }> = ({ navigate }) 
       <SEO
         title="Sell Used Phone Online in Nepal | Instant Cash"
         description="Sell your old iPhone, Samsung or Android device instantly. Get the best price, free doorstep pickup in Kathmandu, and instant payment."
-        keywords="sell old mobile nepal, exchange phone kathmandu, sell iphone nepal, second hand mobile price, mobi trash store"
+        keywords="sell old mobile nepal, exchange phone kathmandu, sell iphone nepal, second hand mobile price, Mobi Store"
         canonicalUrl="https://mobitrashstore.com/sell"
       />
 

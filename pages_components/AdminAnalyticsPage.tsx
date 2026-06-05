@@ -1,4 +1,4 @@
-// ... (imports remain the same)
+﻿// ... (imports remain the same)
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import * as api from '../services/api';
 import { SiteVisit, Order } from '../types';
@@ -26,7 +26,7 @@ const TrendIndicator: React.FC<{ value: number }> = ({ value }) => {
     if (value === 0) return <span className="text-slate-400 text-xs font-bold ml-2">─ 0%</span>;
     const isPositive = value > 0;
     return (
-        <span className={`text-xs font-bold ml-2 flex items-center gap-0.5 ${isPositive ? 'text-emerald-500' : 'text-rose-500'}`}>
+        <span className={`text-xs font-bold ml-2 flex items-center gap-0.5 ${isPositive ? 'text-orange-500' : 'text-rose-500'}`}>
             {isPositive ? '▲' : '▼'} {Math.abs(value).toFixed(1)}%
         </span>
     );
@@ -384,7 +384,7 @@ const AdminAnalyticsPage: React.FC<AdminAnalyticsPageProps> = () => {
                         {
                             label: 'Tablet',
                             data: analysis.deviceTrends.tablet,
-                            borderColor: '#10b981', // Emerald
+                            borderColor: '#f97316', // Emerald
                             backgroundColor: 'rgba(16, 185, 129, 0.1)',
                             tension: 0.4,
                             fill: true
@@ -517,11 +517,11 @@ const AdminAnalyticsPage: React.FC<AdminAnalyticsPageProps> = () => {
                 </div>
 
                 {/* Unique Users */}
-                <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 hover:border-emerald-200 transition-colors group">
+                <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 hover:border-orange-200 transition-colors group">
                     <div className="flex items-center justify-between mb-2">
                         <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider">Unique Users</span>
-                        <div className="p-2 bg-emerald-50 rounded-lg group-hover:bg-emerald-100 transition-colors">
-                            <UsersIcon className="w-5 h-5 text-emerald-600" />
+                        <div className="p-2 bg-orange-50 rounded-lg group-hover:bg-orange-100 transition-colors">
+                            <UsersIcon className="w-5 h-5 text-orange-600" />
                         </div>
                     </div>
                     <div className="flex items-baseline">
@@ -589,7 +589,7 @@ const AdminAnalyticsPage: React.FC<AdminAnalyticsPageProps> = () => {
                             <p className="text-sm font-black text-slate-800">{analysis.deviceTotals.desktop}</p>
                         </div>
                         <div className="p-2 rounded-lg">
-                            <p className="text-[10px] uppercase font-bold text-emerald-500 mb-1">Tablet</p>
+                            <p className="text-[10px] uppercase font-bold text-orange-500 mb-1">Tablet</p>
                             <p className="text-sm font-black text-slate-800">{analysis.deviceTotals.tablet}</p>
                         </div>
                     </div>

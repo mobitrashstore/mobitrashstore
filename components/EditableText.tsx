@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { useVisualEditing } from '../context/VisualEditingContext';
 import { useNotification } from '../context/NotificationContext';
 import { CheckIcon } from './icons/CheckIcon';
@@ -110,7 +110,7 @@ const EditableText: React.FC<EditableTextProps> = ({
                 <div className="absolute -top-10 right-0 flex items-center gap-1 z-[100] animate-fade-in">
                     <button
                         onClick={handleSave}
-                        className="p-1.5 bg-emerald-500 text-white rounded-full shadow-lg hover:bg-emerald-600 transition-colors"
+                        className="p-1.5 bg-orange-500 text-white rounded-full shadow-lg hover:bg-orange-600 transition-colors"
                         title="Save Changes"
                     >
                         <CheckIcon className="w-3.5 h-3.5" />
@@ -126,7 +126,7 @@ const EditableText: React.FC<EditableTextProps> = ({
             )}
 
             {isSaving && (
-                <div className="absolute right-0 top-0 -mt-2 -mr-2 bg-emerald-500 text-white p-1 rounded-full shadow-lg animate-pulse z-50">
+                <div className="absolute right-0 top-0 -mt-2 -mr-2 bg-orange-500 text-white p-1 rounded-full shadow-lg animate-pulse z-50">
                     <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                 </div>
             )}

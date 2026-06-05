@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import * as api from '../services/api';
 import { SpinWheelConfig, SpinSegment, SpinParticipant } from '../types';
@@ -543,7 +543,7 @@ const SpinWinPage: React.FC<SpinWinPageProps> = ({ navigate }) => {
                                 <UserCircleIcon className="w-6 h-6 text-amber-500" />
                                 Participants
                             </h3>
-                            <div className="bg-emerald-100 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full border border-emerald-200 animate-pulse">
+                            <div className="bg-orange-100 text-orange-700 text-xs font-bold px-3 py-1 rounded-full border border-orange-200 animate-pulse">
                                 Live
                             </div>
                         </div>
@@ -577,7 +577,7 @@ const SpinWinPage: React.FC<SpinWinPageProps> = ({ navigate }) => {
                                         <p className="text-[10px] text-slate-400 truncate">{p.productBought}</p>
                                     </div>
                                     {p.status === 'Approved' ? (
-                                        <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+                                        <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
                                     ) : (
                                         <div className="w-2 h-2 rounded-full bg-amber-500/50"></div>
                                     )}

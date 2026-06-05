@@ -1,4 +1,4 @@
-
+﻿
 
 import React, { useState, useMemo, useEffect } from 'react';
 // FIX: Corrected import syntax for api service
@@ -475,7 +475,7 @@ const BuyPage: React.FC<BuyPageProps> = ({ navigate }) => {
             <SEO
                 title={seoTitle}
                 description="Shop certified used phones, premium accessories, and electronic items in Nepal. Apple, Samsung, and more with 1-Year Warranty. Best deals at Mobi Store."
-                keywords="buy used iphone nepal, second hand mobile shop, refurbished phones kathmandu, mobi trash store, buy sell exchange mobile, cheap iphone nepal, mobile accessories nepal, electronic shop kathmandu"
+                keywords="buy used iphone nepal, second hand mobile shop, refurbished phones kathmandu, Mobi Store, buy sell exchange mobile, cheap iphone nepal, mobile accessories nepal, electronic shop kathmandu"
                 canonicalUrl="https://mobitrashstore.com/buy"
                 schema={itemListSchema}
             />
@@ -528,7 +528,7 @@ const BuyPage: React.FC<BuyPageProps> = ({ navigate }) => {
                         <select
                             value={sortOrder}
                             onChange={e => setSortOrder(e.target.value)}
-                            className="flex-1 bg-gray-50 border border-gray-200 rounded-lg text-xs py-2 px-2 font-semibold text-gray-700 outline-none focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 min-w-0"
+                            className="flex-1 bg-gray-50 border border-gray-200 rounded-lg text-xs py-2 px-2 font-semibold text-gray-700 outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 min-w-0"
                         >
                             <option value="featured">Featured</option>
                             <option value="views">Most Popular 🔥</option>
@@ -689,7 +689,7 @@ const BuyPage: React.FC<BuyPageProps> = ({ navigate }) => {
                                             <button
                                                 onClick={() => { setCurrentPage(p => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                                 disabled={safeCurrentPage === 1}
-                                                className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-bold text-sm shadow-sm"
+                                                className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-bold text-sm shadow-sm"
                                                 aria-label="Previous page"
                                             >
                                                 ‹
@@ -704,8 +704,8 @@ const BuyPage: React.FC<BuyPageProps> = ({ navigate }) => {
                                                         onClick={() => { setCurrentPage(page as number); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                                         className={`w-9 h-9 flex items-center justify-center rounded-lg border text-sm font-bold transition-all shadow-sm ${
                                                             safeCurrentPage === page
-                                                                ? 'bg-emerald-600 border-emerald-600 text-white shadow-md'
-                                                                : 'border-gray-200 bg-white text-gray-700 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700'
+                                                                ? 'bg-orange-600 border-orange-600 text-white shadow-md'
+                                                                : 'border-gray-200 bg-white text-gray-700 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700'
                                                         }`}
                                                         aria-label={`Page ${page}`}
                                                         aria-current={safeCurrentPage === page ? 'page' : undefined}
@@ -719,7 +719,7 @@ const BuyPage: React.FC<BuyPageProps> = ({ navigate }) => {
                                             <button
                                                 onClick={() => { setCurrentPage(p => Math.min(totalPages, p + 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                                 disabled={safeCurrentPage === totalPages}
-                                                className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-bold text-sm shadow-sm"
+                                                className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all font-bold text-sm shadow-sm"
                                                 aria-label="Next page"
                                             >
                                                 ›

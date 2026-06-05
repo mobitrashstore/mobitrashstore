@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useRef } from 'react';
 
 const OfflineBanner: React.FC = () => {
@@ -69,7 +69,7 @@ const OfflineBanner: React.FC = () => {
             <div className={`
                 rounded-xl shadow-xl border p-2 px-4 backdrop-blur-md transition-colors duration-500
                 ${isRestored 
-                    ? 'bg-emerald-500/90 border-emerald-400/30 text-white' 
+                    ? 'bg-orange-500/90 border-orange-400/30 text-white' 
                     : 'bg-amber-600/90 border-amber-400/30 text-white'
                 }
             `}>

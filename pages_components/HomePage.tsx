@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useRef } from 'react';
 // REMOVED LAZY LOADING FOR ABOVE-THE-FOLD COMPONENTS TO ELIMINATE FLICKER
 import ProductCarousel from '../components/ProductCarousel';
@@ -384,8 +384,8 @@ const StatsAndRewards: React.FC<{
 
         {/* rating pill */}
         <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm">
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-semibold border border-emerald-100">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 mr-2" />
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-orange-50 text-orange-700 font-semibold border border-orange-100">
+                <span className="w-2 h-2 rounded-full bg-orange-500 mr-2" />
                 <EditableText
                     value={config.liveStoreText}
                     onSave={(val) => onUpdate && onUpdate({ ...config, liveStoreText: val })}
@@ -396,23 +396,23 @@ const StatsAndRewards: React.FC<{
                 href="https://g.page/r/CdivF-h7mkT_EAE/review"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-slate-700 group hover:text-emerald-600 transition-colors"
+                className="flex items-center gap-1 text-slate-700 group hover:text-orange-600 transition-colors"
             >
                 <span className="text-amber-400 text-sm">★★★★★</span>
                 <span className="font-semibold">{config.customerRating.replace('★', '')}/5</span>
-                <span className="text-slate-500 group-hover:text-emerald-600 transition-colors">from {config.reviewCount} customer reviews</span>
-                <ArrowRightIcon className="w-4 h-4 text-emerald-500 animate-slide-horizontal ml-1" />
+                <span className="text-slate-500 group-hover:text-orange-600 transition-colors">from {config.reviewCount} customer reviews</span>
+                <ArrowRightIcon className="w-4 h-4 text-orange-500 animate-slide-horizontal ml-1" />
             </a>
         </div>
 
         {/* rewards center strip */}
         <div className="bg-slate-900 text-white rounded-3xl px-4 py-4 md:px-8 md:py-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
             <div className="flex items-start gap-3 md:gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-emerald-500 flex items-center justify-center shadow-md">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-orange-500 flex items-center justify-center shadow-md">
                     <SparklesIcon className="w-5 h-5 md:w-6 md:h-6 text-slate-900" />
                 </div>
                 <div>
-                    <p className="text-[11px] md:text-xs uppercase tracking-[0.18em] text-emerald-300 font-semibold">
+                    <p className="text-[11px] md:text-xs uppercase tracking-[0.18em] text-orange-300 font-semibold">
                         Rewards Center
                     </p>
                     <h3 className="text-sm md:text-base font-semibold">
@@ -432,7 +432,7 @@ const StatsAndRewards: React.FC<{
             </div>
             <button
                 onClick={() => navigate('/spin-win')}
-                className="inline-flex items-center justify-center px-5 md:px-6 py-2.5 rounded-full bg-emerald-400 text-slate-900 font-semibold text-sm shadow-[0_14px_30px_rgba(52,211,153,0.4)] hover:brightness-110 active:scale-95"
+                className="inline-flex items-center justify-center px-5 md:px-6 py-2.5 rounded-full bg-orange-400 text-slate-900 font-semibold text-sm shadow-[0_14px_30px_rgba(52,211,153,0.4)] hover:brightness-110 active:scale-95"
             >
                 Open Spin &amp; Win
                 <SparklesIcon className="w-4 h-4 ml-1.5" />
@@ -447,8 +447,8 @@ const ServiceFeatures = () => (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 py-2 md:py-4 px-4 md:px-0">
         {[
             { icon: ShieldCheckIcon, title: 'Extended Warranty', desc: 'On all certified devices', color: 'text-blue-600', bg: 'bg-blue-50' },
-            { icon: TruckIcon, title: 'Fast Shipping', desc: 'Secure worldwide delivery', color: 'text-emerald-600', bg: 'bg-emerald-50' },
-            { icon: ArrowPathIcon, title: 'Hassle-Free Replacement', desc: '7 days return policy', color: 'text-green-600', bg: 'bg-green-50' },
+            { icon: TruckIcon, title: 'Fast Shipping', desc: 'Secure worldwide delivery', color: 'text-orange-600', bg: 'bg-orange-50' },
+            { icon: ArrowPathIcon, title: 'Hassle-Free Replacement', desc: '7 days return policy', color: 'text-orange-600', bg: 'bg-orange-50' },
             { icon: BanknotesIcon, title: 'Best Value', desc: 'Guaranteed price match', color: 'text-purple-600', bg: 'bg-purple-50' },
         ].map((item, i) => (
             <div
@@ -478,13 +478,13 @@ const RepairPromo: React.FC<{
     onUpdate?: (newConfig: typeof HOME_CONFIG_DEFAULT.repair) => void;
 }> = ({ navigate, config = HOME_CONFIG_DEFAULT.repair, onUpdate }) => (
     <section className="my-3 md:my-5 relative overflow-hidden md:rounded-3xl bg-white shadow-xl border-y md:border border-slate-100 md:mx-6">
-        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-emerald-100/50 blur-3xl"></div>
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-orange-100/50 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-blue-100/50 blur-3xl"></div>
 
         <div className="relative z-10 flex flex-col md:flex-row items-center">
             <div className="flex-1 p-6 md:p-10 text-center md:text-left">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
-                    <WrenchIcon className="w-4 h-4 text-emerald-500" /> Expert Service
+                    <WrenchIcon className="w-4 h-4 text-orange-500" /> Expert Service
                 </div>
                 <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 leading-tight">
                     <EditableText
@@ -492,7 +492,7 @@ const RepairPromo: React.FC<{
                         onSave={(val) => onUpdate && onUpdate({ ...config, title: val })}
                         tag="span"
                     /> <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-green-600">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
                         <EditableText
                             value={config.highlight}
                             onSave={(val) => onUpdate && onUpdate({ ...config, highlight: val })}
@@ -513,10 +513,10 @@ const RepairPromo: React.FC<{
                         <DevicePhoneMobileIcon className="w-5 h-5 text-blue-500" /> Screen
                     </div>
                     <div className="flex items-center gap-2 text-slate-700 text-xs md:text-sm font-bold bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
-                        <BoltIcon className="w-5 h-5 text-emerald-500" /> Battery
+                        <BoltIcon className="w-5 h-5 text-orange-500" /> Battery
                     </div>
                     <div className="flex items-center gap-2 text-slate-700 text-xs md:text-sm font-bold bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
-                        <WrenchIcon className="w-5 h-5 text-green-500" /> Hardware
+                        <WrenchIcon className="w-5 h-5 text-orange-500" /> Hardware
                     </div>
                 </div>
 
@@ -766,7 +766,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             <SEO
                 title="Mobi Store - Buy & Sell Certified Phones, Accessories & Electronics Worldwide"
                 description="The global trusted destination to sell used phones for instant cash and buy certified pre-owned devices, premium accessories, and electronics with warranty."
-                keywords="sell phone, buy used iphone, mobile accessories, electronics shop, mobi trash store"
+                keywords="sell phone, buy used iphone, mobile accessories, electronics shop, Mobi Store"
                 canonicalUrl="https://mobitrashstore.com/"
             />
 
@@ -838,7 +838,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                                     loading="lazy"
                                 />
                             </div>
-                            <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-[#ff5722] rounded-full"></div>
+                            <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-orange-500 border-2 border-[#ff5722] rounded-full"></div>
                         </a>
 
                         <button
@@ -948,7 +948,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                     {/* Daraz + partners strip */}
                     {darazConfig?.enabled && (
                         <section className="my-3 md:my-4 px-4 md:px-0">
-                            <div className="bg-gradient-to-r from-emerald-500 via-green-600 to-emerald-700 rounded-2xl md:rounded-3xl p-4 md:5 shadow-xl text-white">
+                            <div className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 rounded-2xl md:rounded-3xl p-4 md:5 shadow-xl text-white">
                                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
                                     <div className="flex items-center gap-3 md:gap-4 w-full md:w-auto">
                                         <div className="bg-white rounded-xl p-2 md:p-3 shadow-md">

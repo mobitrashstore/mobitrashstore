@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { MagnifyingGlassIcon } from './icons/MagnifyingGlassIcon';
 import { XMarkIcon } from './icons/XMarkIcon';
@@ -60,15 +60,15 @@ const PAGE_ROUTES: { label: string; path: string; category: string; keywords: st
 const STATUS_COLORS: Record<string, string> = {
     'Processing': 'bg-blue-100 text-blue-700',
     'Shipped': 'bg-purple-100 text-purple-700',
-    'Delivered': 'bg-green-100 text-green-700',
+    'Delivered': 'bg-orange-100 text-orange-700',
     'Cancelled': 'bg-red-100 text-red-700',
     'Payment Pending': 'bg-amber-100 text-amber-700',
     'Pending Pickup': 'bg-amber-100 text-amber-700',
     'Inspecting': 'bg-blue-100 text-blue-700',
-    'Completed': 'bg-green-100 text-green-700',
+    'Completed': 'bg-orange-100 text-orange-700',
     'Rejected': 'bg-red-100 text-red-700',
     'Pending': 'bg-amber-100 text-amber-700',
-    'In Stock': 'bg-green-100 text-green-700',
+    'In Stock': 'bg-orange-100 text-orange-700',
     'Out of Stock': 'bg-red-100 text-red-700',
     'Confirmed': 'bg-blue-100 text-blue-700',
     'admin': 'bg-purple-100 text-purple-700',

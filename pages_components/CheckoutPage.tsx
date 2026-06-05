@@ -1,4 +1,4 @@
-
+﻿
 
 
 import React, { useState, useEffect } from 'react';
@@ -108,8 +108,8 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
             <div className="mt-8 pt-6 border-t border-gray-100">
                 <label htmlFor="coupon" className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Promotional Discount</label>
                 {appliedCoupon ? (
-                    <div className="flex items-center justify-between bg-emerald-50 p-4 rounded-xl border border-emerald-100 animate-fade-in">
-                        <div className="flex items-center gap-3 text-emerald-700">
+                    <div className="flex items-center justify-between bg-orange-50 p-4 rounded-xl border border-orange-100 animate-fade-in">
+                        <div className="flex items-center gap-3 text-orange-700">
                             <TicketIcon className="w-5 h-5" />
                             <span className="font-mono font-bold text-base">{appliedCoupon.code}</span>
                         </div>
@@ -162,7 +162,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
                     </div>
                 )}
                 {appliedCoupon && (
-                    <div className="flex justify-between items-center text-sm text-emerald-600 font-bold bg-emerald-50/30 p-2 rounded-lg">
+                    <div className="flex justify-between items-center text-sm text-orange-600 font-bold bg-orange-50/30 p-2 rounded-lg">
                         <span className="flex items-center gap-1.5">
                             <TicketIcon className="w-4 h-4" />
                             Discount
@@ -610,7 +610,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ navigate }) => {
                                     </div>
                                     {/* Location Status Badge */}
                                     <div className="mt-2 flex items-center gap-2">
-                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${isInsideValley ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
+                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${isInsideValley ? 'bg-orange-100 text-orange-800' : 'bg-blue-100 text-blue-800'}`}>
                                             {deliveryLocationType}
                                         </span>
                                         <span className="text-xs text-gray-500">
@@ -737,16 +737,16 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ navigate }) => {
                                                         </div>
 
                                                         {paymentProofData && (
-                                                            <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-100 flex items-center gap-3 animate-fade-in">
+                                                            <div className="mt-4 p-3 bg-orange-50 rounded-lg border border-orange-100 flex items-center gap-3 animate-fade-in">
                                                                 <div className="relative">
-                                                                    <img src={paymentProofData} alt="Payment proof preview" className="w-16 h-16 object-cover rounded-md border border-green-200 shadow-sm" />
-                                                                    <div className="absolute -top-1 -right-1 bg-green-500 text-white rounded-full p-0.5">
+                                                                    <img src={paymentProofData} alt="Payment proof preview" className="w-16 h-16 object-cover rounded-md border border-orange-200 shadow-sm" />
+                                                                    <div className="absolute -top-1 -right-1 bg-orange-500 text-white rounded-full p-0.5">
                                                                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                                                     </div>
                                                                 </div>
                                                                 <div>
-                                                                    <p className="text-sm font-bold text-green-800">Screenshot Uploaded</p>
-                                                                    <p className="text-xs text-green-600">Ready to place order</p>
+                                                                    <p className="text-sm font-bold text-orange-800">Screenshot Uploaded</p>
+                                                                    <p className="text-xs text-orange-600">Ready to place order</p>
                                                                 </div>
                                                             </div>
                                                         )}

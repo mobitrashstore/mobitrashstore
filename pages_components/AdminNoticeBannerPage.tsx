@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useRef } from 'react';
 import * as api from '../services/api';
 import { NoticeBanner } from '../types';
@@ -49,7 +49,7 @@ const AdminNoticeBannerPage: React.FC<AdminNoticeBannerPageProps> = ({ navigate 
         imageUrl: '',
         isStripActive: false,
         isPopupActive: false,
-        backgroundColor: '#10b981',
+        backgroundColor: '#f97316',
         textColor: '#ffffff',
         showCloseButton: true,
         popupDelay: 0,
@@ -146,12 +146,12 @@ const AdminNoticeBannerPage: React.FC<AdminNoticeBannerPageProps> = ({ navigate 
                     
                     {/* VISIBILITY TOGGLES */}
                     <div className="flex flex-col md:flex-row gap-4">
-                        <div className={`flex-1 p-5 border rounded-xl transition-all ${banner.isStripActive ? 'bg-emerald-50 border-emerald-200' : 'bg-white border-slate-200'}`}>
+                        <div className={`flex-1 p-5 border rounded-xl transition-all ${banner.isStripActive ? 'bg-orange-50 border-orange-200' : 'bg-white border-slate-200'}`}>
                             <div className="flex items-center justify-between">
-                                <h3 className={`font-bold text-sm ${banner.isStripActive ? 'text-emerald-800' : 'text-slate-800'}`}>Header Strip Live</h3>
+                                <h3 className={`font-bold text-sm ${banner.isStripActive ? 'text-orange-800' : 'text-slate-800'}`}>Header Strip Live</h3>
                                 <label className="relative inline-flex items-center cursor-pointer">
                                     <input type="checkbox" name="isStripActive" checked={banner.isStripActive} onChange={handleChange} className="sr-only peer" />
-                                    <div className="w-10 h-5 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                                    <div className="w-10 h-5 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-orange-500"></div>
                                 </label>
                             </div>
                         </div>

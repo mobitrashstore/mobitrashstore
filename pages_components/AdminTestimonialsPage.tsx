@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { Testimonial } from '../types';
@@ -134,7 +134,7 @@ const AdminTestimonialsPage: React.FC<AdminTestimonialsPageProps> = ({ navigate 
                 <h1 className="text-3xl font-bold text-slate-800 drop-shadow-sm">Testimonials Manager</h1>
                 <button
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-green-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-green-700 flex items-center gap-2 shadow-md transition-all transform active:scale-95"
+                    className="bg-orange-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-orange-700 flex items-center gap-2 shadow-md transition-all transform active:scale-95"
                 >
                     <PlusCircleIcon className="w-5 h-5" /> Add Testimonial
                 </button>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+﻿import React, { useState, useEffect, useMemo, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { AnimatePresence } from 'framer-motion';
@@ -85,7 +85,7 @@ const RelatedProductCard: React.FC<{
         >
             {discount > 0 && (
                 <div className="absolute top-2 left-2 z-10">
-                    <span className="inline-block px-2 py-0.5 text-[10px] font-bold text-green-700 bg-green-100 rounded-md">
+                    <span className="inline-block px-2 py-0.5 text-[10px] font-bold text-orange-700 bg-orange-100 rounded-md">
                         {discount}% OFF
                     </span>
                 </div>
@@ -127,7 +127,7 @@ const AppDownloadSection = () => (
             </div>
             <p className="text-[13px] font-extrabold text-slate-800 leading-snug tracking-tight">
                 Download app to enjoy<br />
-                <span className="text-emerald-600">exclusive discounts!</span>
+                <span className="text-orange-600">exclusive discounts!</span>
             </p>
             <div className="flex items-center gap-2 mt-3 text-[11px] text-slate-400 font-bold uppercase tracking-wider">
                 <div className="p-1 bg-slate-100 rounded-md">
@@ -738,7 +738,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
                         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white dark:from-[#111] via-white/80 dark:via-[#111]/80 to-transparent flex items-end justify-center pb-2">
                             <button
                                 onClick={() => setIsDescriptionExpanded(true)}
-                                className="px-8 py-2.5 bg-slate-900 dark:bg-emerald-600 text-white text-sm font-bold rounded-full shadow-xl hover:bg-slate-800 dark:hover:bg-emerald-700 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+                                className="px-8 py-2.5 bg-slate-900 dark:bg-orange-600 text-white text-sm font-bold rounded-full shadow-xl hover:bg-slate-800 dark:hover:bg-orange-700 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
                             >
                                 Read Full Description
                                 <ChevronDownIcon className="w-4 h-4" />
@@ -969,7 +969,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
 
                                     <div className="flex flex-wrap gap-3 mb-6">
                                         {displayStock > 0 ? (
-                                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 text-xs font-bold uppercase rounded">
+                                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-orange-100 text-orange-700 text-xs font-bold uppercase rounded">
                                                 IN STOCK
                                             </span>
                                         ) : (

@@ -1,4 +1,4 @@
-import { functions } from './firebase';
+﻿import { functions } from './firebase';
 
 const GAS_URL = "https://script.google.com/macros/s/AKfycbyDW2mX3eObrb22xceVlBlltvi33KwXIR0071KqsP51M43f_JgqMa0yL-ewosr7n8nl/exec";
 
@@ -64,7 +64,7 @@ export const getOtpEmailTemplate = (name: string, otp: string) => {
         <div class="container">
             <div class="header">
                 <h1>Your OTP Code</h1>
-                <p>Mobi trash store _by_ BT</p>
+                <p>Mobi Store _by_ BT</p>
             </div>
             <div class="content">
                 <p class="greeting">Hello ${name},</p>
@@ -78,7 +78,7 @@ export const getOtpEmailTemplate = (name: string, otp: string) => {
                     <h4>Security Notice:</h4>
                     <ul>
                         <li>Do not share this OTP with anyone.</li>
-                        <li>Mobi trash Store will never ask for your OTP over phone or email.</li>
+                        <li>Mobi Store will never ask for your OTP over phone or email.</li>
                         <li>If you didn't request this OTP, please ignore this email.</li>
                     </ul>
                 </div>
@@ -167,7 +167,7 @@ export const getOrderEmailTemplate = (order: any, title: string, subtitle: strin
     <body>
         <div class="wrapper">
             <div class="header">
-                <img src="https://ik.imagekit.io/fixedmyspeaker/main%20logo.PNG" alt="Mobi trash store logo">
+                <img src="https://ik.imagekit.io/fixedmyspeaker/main%20logo.PNG" alt="Mobi Store logo">
                 <h1>${title}</h1>
                 <p>${subtitle}</p>
             </div>
@@ -234,7 +234,7 @@ export const getOrderEmailTemplate = (order: any, title: string, subtitle: strin
                     <a href="https://wa.me/+9779812141777"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/767px-WhatsApp.svg.png" alt="WA"></a>
                     <a href="https://www.tiktok.com/@mobistoreapp?_r=1&_t=ZS-91M9tAbNqqK"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Tiktok_icon.svg/2048px-Tiktok_icon.svg.png" alt="TK"></a>
                 </div>
-                <p>&copy; ${new Date().getFullYear()} Mobi trash store. All rights reserved.</p>
+                <p>&copy; ${new Date().getFullYear()} Mobi Store. All rights reserved.</p>
                 <p>Kirtipur Nayabazar, Kathmandu, Nepal</p>
                 <p>9812141777 | Support@mobitrashstore.com</p>
             </div>
@@ -283,7 +283,7 @@ export const getSellOfferEmailTemplate = (data: {
     <body>
         <div class="wrapper">
             <div class="header">
-                <img src="https://ik.imagekit.io/fixedmyspeaker/main%20logo.PNG" alt="Mobi trash store logo">
+                <img src="https://ik.imagekit.io/fixedmyspeaker/main%20logo.PNG" alt="Mobi Store logo">
                 <h1>${data.isAdminView ? 'New Sell Offer Alert' : 'Your Sell Offer Update'}</h1>
                 <div class="status-badge">Offer ${data.status}</div>
             </div>
@@ -322,7 +322,7 @@ export const getSellOfferEmailTemplate = (data: {
             </div>
 
             <div class="footer">
-                <p>&copy; ${new Date().getFullYear()} Mobi trash store. Powered by BT Mobile Care.</p>
+                <p>&copy; ${new Date().getFullYear()} Mobi Store. Powered by BT Mobile Care.</p>
                 <p>9812141777 | Support@mobitrashstore.com</p>
             </div>
         </div>
@@ -375,7 +375,7 @@ export const getAbandonedCartEmailTemplate = (data: {
     <body>
         <div class="wrapper">
             <div class="header">
-                <img src="https://ik.imagekit.io/fixedmyspeaker/main%20logo.PNG" alt="Mobi trash store logo">
+                <img src="https://ik.imagekit.io/fixedmyspeaker/main%20logo.PNG" alt="Mobi Store logo">
                 <h1>Wait! You left something behind...</h1>
             </div>
             
@@ -403,7 +403,7 @@ export const getAbandonedCartEmailTemplate = (data: {
             </div>
 
             <div class="footer">
-                <p>&copy; ${new Date().getFullYear()} Mobi trash store. All rights reserved.</p>
+                <p>&copy; ${new Date().getFullYear()} Mobi Store. All rights reserved.</p>
                 <p>9812141777 | Support@mobitrashstore.com</p>
             </div>
         </div>

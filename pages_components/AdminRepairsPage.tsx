@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+﻿import React, { useState, useEffect, useMemo } from 'react';
 import * as api from '../services/api';
 import { RepairBooking } from '../types';
 import Spinner from '../components/Spinner';
@@ -160,7 +160,7 @@ const AdminRepairsPage: React.FC<AdminRepairsPageProps> = ({ navigate }) => {
         switch (status) {
             case 'Pending': return 'bg-blue-100 text-blue-700 border-blue-200';
             case 'Confirmed': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
-            case 'Completed': return 'bg-green-100 text-green-700 border-green-200';
+            case 'Completed': return 'bg-orange-100 text-orange-700 border-orange-200';
             case 'Cancelled': return 'bg-rose-100 text-rose-700 border-rose-200';
             default: return 'bg-slate-100 text-slate-600 border-slate-200';
         }

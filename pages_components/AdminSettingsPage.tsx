@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useRef } from 'react';
 import * as api from '../services/api';
 import { DarazConfig, PaymentPartner, PathaoConfig } from '../types';
@@ -469,7 +469,7 @@ const AdminSettingsPage: React.FC<AdminSettingsPageProps> = ({ navigate }) => {
                             disabled={isGeneratingSitemap}
                             className="bg-slate-800 text-white font-bold py-3 px-6 rounded-xl hover:bg-slate-900 transition-colors flex items-center gap-2 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {isGeneratingSitemap ? <Spinner size="w-5 h-5"/> : <GlobeAltIcon className="w-5 h-5 text-green-400"/>}
+                            {isGeneratingSitemap ? <Spinner size="w-5 h-5"/> : <GlobeAltIcon className="w-5 h-5 text-orange-400"/>}
                             Generate Full Sitemap.xml
                         </button>
                         
@@ -596,7 +596,7 @@ const AdminSettingsPage: React.FC<AdminSettingsPageProps> = ({ navigate }) => {
                                 <input type="text" placeholder="Logo URL" value={newPartner.logoUrl} onChange={e => setNewPartner(prev => ({...prev, logoUrl: e.target.value}))} className="flex-grow p-3 border border-slate-300 bg-white rounded-xl text-slate-800 focus:ring-amber-500 focus:border-amber-500" required />
                                 {newPartner.logoUrl && <img src={newPartner.logoUrl} alt="Preview" className="h-11 w-11 object-contain border border-slate-200 rounded-lg bg-white p-1" />}
                             </div>
-                            <button type="submit" disabled={isAddingPartner} className="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-green-700 transition-colors disabled:bg-slate-300 flex items-center justify-center gap-2 shadow-md">
+                            <button type="submit" disabled={isAddingPartner} className="w-full bg-orange-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-orange-700 transition-colors disabled:bg-slate-300 flex items-center justify-center gap-2 shadow-md">
                                 {isAddingPartner ? <Spinner size="w-5 h-5" /> : <><PlusCircleIcon className="w-5 h-5"/> Add Partner</>}
                             </button>
                         </form>

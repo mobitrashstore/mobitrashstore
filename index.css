@@ -1,4 +1,4 @@
-@import "tailwindcss/base";
+﻿@import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
@@ -468,7 +468,7 @@ button:active,
   --tw-ring-color: var(--color-secondary) !important;
 }
 
-.focus\:ring-emerald-500:focus {
+.focus\:ring-orange-500:focus {
   --tw-ring-color: var(--color-primary) !important;
 }
 

@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useMemo } from 'react';
 import * as api from '../services/api';
 import { ProductRequest } from '../types';
@@ -26,7 +26,7 @@ const RequestDetailsModal: React.FC<{ request: ProductRequest; onClose: () => vo
             <div className="bg-white border border-slate-200 rounded-2xl shadow-2xl w-full max-w-lg flex flex-col overflow-hidden mb-10 max-h-[85vh]" onClick={e => e.stopPropagation()}>
                 <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50">
                     <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-                        <ShoppingBagIcon className="w-5 h-5 text-emerald-600" />
+                        <ShoppingBagIcon className="w-5 h-5 text-orange-600" />
                         Request Details
                     </h2>
                     <button onClick={onClose} className="p-2 text-slate-400 hover:text-slate-700 bg-white border border-slate-200 rounded-full shadow-sm transition-colors"><XMarkIcon className="w-5 h-5" /></button>
@@ -44,7 +44,7 @@ const RequestDetailsModal: React.FC<{ request: ProductRequest; onClose: () => vo
                         </div>
                         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Budget</p>
-                            <p className="font-black text-emerald-600">NPR {request.budget.toLocaleString()}</p>
+                            <p className="font-black text-orange-600">NPR {request.budget.toLocaleString()}</p>
                         </div>
                     </div>
 
@@ -107,7 +107,7 @@ const AdminProductRequestsPage: React.FC<AdminProductRequestsPageProps> = () => 
         switch (status) {
             case 'Pending': return 'bg-blue-100 text-blue-700 border-blue-200';
             case 'Sourcing': return 'bg-amber-100 text-amber-700 border-amber-200';
-            case 'Arrived': return 'bg-green-100 text-green-700 border-green-200';
+            case 'Arrived': return 'bg-orange-100 text-orange-700 border-orange-200';
             case 'Cancelled': return 'bg-rose-100 text-rose-700 border-rose-200';
             case 'Completed': return 'bg-slate-100 text-slate-600 border-slate-200';
             default: return 'bg-slate-50 text-slate-500';
@@ -166,7 +166,7 @@ const AdminProductRequestsPage: React.FC<AdminProductRequestsPageProps> = () => 
                                             <p className="text-xs text-slate-500">{r.userPhone}</p>
                                         </td>
                                         <td className="px-6 py-4 font-bold text-slate-700">{r.productName}</td>
-                                        <td className="px-6 py-4 font-extrabold text-emerald-600">NPR {r.budget.toLocaleString()}</td>
+                                        <td className="px-6 py-4 font-extrabold text-orange-600">NPR {r.budget.toLocaleString()}</td>
                                         <td className="px-6 py-4">
                                             <span className={`px-2.5 py-1 text-[10px] font-bold rounded-full border ${getStatusColor(r.status)}`}>
                                                 {r.status.toUpperCase()}

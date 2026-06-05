@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useMemo } from 'react';
 import { ArrowLeftIcon } from '../icons/ArrowLeftIcon';
 import { ArrowRightIcon } from '../icons/ArrowRightIcon';
@@ -109,7 +109,7 @@ const FeaturesStep: React.FC<FeaturesStepProps> = ({ deviceDetails, onBack, onNe
                             <button
                                 type="button"
                                 onClick={() => setShowIMEIScanner(true)}
-                                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-lg hover:from-emerald-600 hover:to-green-700 transition-all shadow-md"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all shadow-md"
                                 title="Scan IMEI with Camera"
                             >
                                 <CameraIcon className="w-5 h-5" />
@@ -150,8 +150,8 @@ const FeaturesStep: React.FC<FeaturesStepProps> = ({ deviceDetails, onBack, onNe
                             className={`
                                 flex items-center justify-center gap-2 p-4 border-2 rounded-xl cursor-pointer transition-all
                                 ${powersOn === true
-                                    ? 'border-green-500 bg-green-50 text-green-700 font-bold'
-                                    : 'border-slate-200 bg-white text-slate-600 hover:border-green-200'
+                                    ? 'border-orange-500 bg-orange-50 text-orange-700 font-bold'
+                                    : 'border-slate-200 bg-white text-slate-600 hover:border-orange-200'
                                 }
                             `}
                         >

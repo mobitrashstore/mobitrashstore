@@ -1,4 +1,4 @@
-
+﻿
 
 import React, { useState } from 'react';
 import MobileSkyHeader from '../components/MobileSkyHeader';
@@ -62,8 +62,8 @@ const RequestProductPage: React.FC<RequestProductPageProps> = ({ navigate }) => 
             <div className="bg-gray-50 min-h-screen">
                 <MobileSkyHeader title="Request Received" Icon={ShoppingBagIcon} hasSpacer={false} />
                 <div className="flex flex-col items-center justify-center min-h-[60vh] px-6 text-center pt-20">
-                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                        <CheckCircleIcon className="w-10 h-10 text-green-600" />
+                    <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <CheckCircleIcon className="w-10 h-10 text-orange-600" />
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">Request Submitted!</h2>
                     <p className="text-gray-600 mb-8 max-w-xs">

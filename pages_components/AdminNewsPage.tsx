@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { NewsSource, OfficialNews } from '../types';
@@ -57,7 +57,7 @@ const DEFAULT_SOURCES: NewsSource[] = [
         url: 'https://baahrakhari.com',
         feedUrl: 'https://baahrakhari.com/feed',
         logoUrl: 'https://baahrakhari.com/images/logo.png',
-        color: '#16a34a'
+        color: '#ea580c'
     }
 ];
 
@@ -503,7 +503,7 @@ const AdminNewsPage: React.FC<AdminNewsPageProps> = ({ navigate }) => {
                     <div className="flex justify-end">
                         <button
                             onClick={() => { setEditingNews(null); setIsNewsModalOpen(true); }}
-                            className="bg-green-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-green-700 flex items-center gap-2 shadow-md transition-all transform active:scale-95"
+                            className="bg-orange-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-orange-700 flex items-center gap-2 shadow-md transition-all transform active:scale-95"
                         >
                             <PlusCircleIcon className="w-5 h-5" /> Compose Article
                         </button>
@@ -556,7 +556,7 @@ const AdminNewsPage: React.FC<AdminNewsPageProps> = ({ navigate }) => {
                         </button>
                         <button
                             onClick={() => { setEditingSource(null); setIsSourceModalOpen(true); }}
-                            className="bg-green-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-green-700 flex items-center gap-2 shadow-md transition-all transform active:scale-95"
+                            className="bg-orange-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-orange-700 flex items-center gap-2 shadow-md transition-all transform active:scale-95"
                         >
                             <PlusCircleIcon className="w-5 h-5" /> Add Source
                         </button>

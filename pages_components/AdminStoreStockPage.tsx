@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+﻿import React, { useState, useEffect, useMemo, useRef } from 'react';
 import * as api from '../services/api';
 import { StoreStockItem } from '../types';
 import { STORE_STOCK_CATEGORIES } from '../constants';
@@ -606,7 +606,7 @@ const AdminStoreStockPage: React.FC<AdminStoreStockPageProps> = ({ navigate, sho
                                                 <div className="flex items-center bg-slate-100 rounded-lg p-1">
                                                     <button onClick={() => handleQuantityChange(item.id, -1)} className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-rose-600 hover:bg-white rounded-md transition-all font-bold">-</button>
                                                     <span className="w-10 text-center text-sm font-black text-slate-800">{item.quantity}</span>
-                                                    <button onClick={() => handleQuantityChange(item.id, 1)} className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-emerald-600 hover:bg-white rounded-md transition-all font-bold">+</button>
+                                                    <button onClick={() => handleQuantityChange(item.id, 1)} className="w-6 h-6 flex items-center justify-center text-slate-500 hover:text-orange-600 hover:bg-white rounded-md transition-all font-bold">+</button>
                                                 </div>
                                                 {item.quantity <= 5 && (
                                                     <span className="text-[9px] font-black text-rose-500 bg-rose-50 px-1.5 py-0.5 rounded uppercase leading-none">Low</span>

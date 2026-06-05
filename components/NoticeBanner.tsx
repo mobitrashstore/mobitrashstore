@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useCallback } from 'react';
 import * as api from '../services/api';
 import { NoticeBanner as NoticeBannerType } from '../types';
@@ -149,7 +149,7 @@ const NoticeBanner: React.FC<NoticeBannerProps> = ({ navigate }) => {
             {isStripVisible && banner.isStripActive && (
                 <div
                     className="relative z-[100] w-full py-2.5 px-4 animate-slide-down flex items-center justify-center cursor-pointer border-b border-black/10"
-                    style={{ backgroundColor: banner.backgroundColor || '#10b981', color: banner.textColor || '#ffffff' }}
+                    style={{ backgroundColor: banner.backgroundColor || '#f97316', color: banner.textColor || '#ffffff' }}
                     onClick={handleBannerAction}
                 >
                     <div className="flex items-center gap-3 overflow-hidden max-w-7xl mx-auto w-full justify-center">

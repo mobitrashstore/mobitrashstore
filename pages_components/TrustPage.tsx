@@ -1,4 +1,4 @@
-
+﻿
 
 import React, { useState } from 'react';
 import MobileSkyHeader from '../components/MobileSkyHeader';
@@ -40,7 +40,7 @@ const SecurityFeature: React.FC<{
     title: string;
     desc: string;
     colorClass?: string;
-}> = ({ icon: Icon, title, desc, colorClass = "text-emerald-600" }) => (
+}> = ({ icon: Icon, title, desc, colorClass = "text-orange-600" }) => (
     <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
         <div className={`p-2 bg-white rounded-lg shadow-sm ${colorClass}`}>
             <Icon className="w-6 h-6" />
@@ -59,12 +59,12 @@ const PaymentMethod: React.FC<{
     direction: 'in' | 'out';
 }> = ({ title, desc, logos, direction }) => (
     <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col h-full relative overflow-hidden">
-        <div className={`absolute top-0 right-0 p-2 opacity-5 ${direction === 'in' ? 'bg-green-500' : 'bg-blue-500'} rounded-bl-3xl`}>
+        <div className={`absolute top-0 right-0 p-2 opacity-5 ${direction === 'in' ? 'bg-orange-500' : 'bg-blue-500'} rounded-bl-3xl`}>
             <BanknotesIcon className="w-16 h-16" />
         </div>
 
         <div className="flex items-center gap-2 mb-3">
-            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${direction === 'out' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}`}>
+            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${direction === 'out' ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700'}`}>
                 {direction === 'out' ? 'We Pay You' : 'You Pay Us'}
             </span>
         </div>
@@ -101,11 +101,11 @@ const TrustPage: React.FC<TrustPageProps> = ({ navigate }) => {
 
                 {/* Hero Section */}
                 <div className="text-center mb-10">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-4 border border-emerald-200 shadow-sm">
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-orange-800 text-xs font-bold uppercase tracking-wider mb-4 border border-orange-200 shadow-sm">
                         <ShieldCheckIcon className="w-4 h-4" /> Official & Verified
                     </div>
                     <h1 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
-                        Your Safety is Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-500">#1 Priority.</span>
+                        Your Safety is Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-500">#1 Priority.</span>
                     </h1>
                     <p className="text-slate-600 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
                         Mobi Store operates with full transparency. We are a registered, tax-paying, and compliant business operating under the laws of Nepal.
@@ -128,13 +128,13 @@ const TrustPage: React.FC<TrustPageProps> = ({ navigate }) => {
                     </div>
 
                     {/* Gradient Mesh for Premium Feel */}
-                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-emerald-100/40 to-transparent rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-orange-100/40 to-transparent rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
                     <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-blue-100/40 to-transparent rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none"></div>
 
                     <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
                         <div className="flex-1 text-center md:text-left">
                             <h2 className="text-2xl md:text-3xl font-black mb-4 flex items-center justify-center md:justify-start gap-3 text-slate-900">
-                                <div className="p-2 bg-emerald-100 rounded-xl text-emerald-600 shadow-sm border border-emerald-200">
+                                <div className="p-2 bg-orange-100 rounded-xl text-orange-600 shadow-sm border border-orange-200">
                                     <DocumentCheckIcon className="w-8 h-8" />
                                 </div>
                                 Government Registered
@@ -208,15 +208,15 @@ const TrustPage: React.FC<TrustPageProps> = ({ navigate }) => {
                         icon={ShieldCheckIcon}
                         title="Comprehensive Warranty"
                         description="Buying from us? Every certified phone comes with a 1-Year Warranty and a 7-Day Replacement Policy. We stand behind every device we sell."
-                        bgClass="bg-emerald-50"
-                        colorClass="text-emerald-600"
+                        bgClass="bg-orange-50"
+                        colorClass="text-orange-600"
                     />
                 </div>
 
                 {/* Payment Transparency Section */}
                 <div className="mb-12">
                     <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                        <BanknotesIcon className="w-6 h-6 text-emerald-600" />
+                        <BanknotesIcon className="w-6 h-6 text-orange-600" />
                         Transparent Payment Ecosystem
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -299,10 +299,10 @@ const TrustPage: React.FC<TrustPageProps> = ({ navigate }) => {
                         <img
                             src="https://i.ibb.co/RpStGhqm/IMG-5251-Original.jpg"
                             alt="Mobi Store Team"
-                            className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md ring-2 ring-emerald-100"
+                            className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md ring-2 ring-orange-100"
                             onError={(e) => { (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=Bishal+Mishra&background=0D8ABC&color=fff'; }}
                         />
-                        <div className="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full"></div>
+                        <div className="absolute bottom-0 right-0 w-4 h-4 bg-orange-500 border-2 border-white rounded-full"></div>
                     </div>
                     <div>
                         <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-0.5">A Promise from the CEO</p>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import MobileSkyHeader from '../components/MobileSkyHeader';
 import { ExclamationTriangleIcon } from '../components/icons/ExclamationTriangleIcon';
 import { PhotoIcon } from '../components/icons/PhotoIcon';
@@ -91,8 +91,8 @@ const ReportProblemPage: React.FC<ReportProblemPageProps> = ({ navigate }) => {
 
             <div className="w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-44 md:pt-16">
                 {submitted ? (
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border border-green-100 text-center animate-fade-in">
-                        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border border-orange-100 text-center animate-fade-in">
+                        <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
                             <span className="text-4xl">👍</span>
                         </div>
                         <h2 className="text-2xl font-bold text-gray-900 mb-2">Thanks for your feedback!</h2>

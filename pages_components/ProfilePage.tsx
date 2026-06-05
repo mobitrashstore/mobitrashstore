@@ -1,4 +1,4 @@
-
+﻿
 
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
@@ -393,9 +393,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
             {
               label: 'Coupons',
               icon: TicketIcon,
-              color: 'text-emerald-600',
-              bg: 'bg-emerald-50',
-              border: 'border-emerald-100',
+              color: 'text-orange-600',
+              bg: 'bg-orange-50',
+              border: 'border-orange-100',
               path: '/coupons',
             },
           ].map((action, idx) => (
@@ -467,7 +467,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
                 title="Trust & Safety"
                 subtitle="Certificates, Privacy & Security"
                 onClick={() => navigate('/trust')}
-                iconBgClass="bg-green-50 text-green-600"
+                iconBgClass="bg-orange-50 text-orange-600"
               />
               <div className="md:hidden">
                 <ProfileLink
@@ -571,7 +571,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
                 title="EMI Calculator"
                 subtitle="Plan your payments"
                 onClick={() => navigate('/emi-calculator')}
-                iconBgClass="bg-emerald-50 text-emerald-600"
+                iconBgClass="bg-orange-50 text-orange-600"
               />
               <ProfileLink
                 icon={<GiftIcon className="w-4 h-4" />}
@@ -625,7 +625,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
                 title="About Us"
                 subtitle="Our Story & Mission"
                 onClick={() => navigate('/about')}
-                iconBgClass="bg-emerald-50 text-emerald-600"
+                iconBgClass="bg-orange-50 text-orange-600"
               />
               <ProfileLink
                 icon={<ChatBubbleLeftRightIcon className="w-4 h-4" />}

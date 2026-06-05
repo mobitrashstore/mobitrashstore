@@ -1,4 +1,4 @@
-import { db, storage } from './firebase';
+﻿import { db, storage } from './firebase';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import { InventoryItem, BlogPost, Order, TradeIn, User, ContactMessage, SellModel, StoreStockItem, Category, Banner, GlobalNotification, Referral, Coupon, Address, ValuationBaseline, ValuationDeduction, OfflineSale, DarazConfig, PathaoConfig, PaymentPartner, SpinWheelConfig, SpinParticipant, AboutPageConfig, Testimonial, Brand, RepairBooking, LegalPageContent, NotebookEntry, ProblemReport, Review, GalleryItem, SiteVisit, SystemLog, ProductRequest, RedemptionRequest, NewsSource, OfficialNews, NoticeBanner, BroadcastLog } from '../types';
@@ -1657,7 +1657,7 @@ export const updateShopBanner = async (shopLocation: string, imageUrl: string): 
 const sanitizeBrandingText = (text: string): string => {
     if (!text) return '';
     let sanitized = text;
-    // Replace "Mobi Trash Store" first to avoid partial matches
+    // Replace "Mobi Store" first to avoid partial matches
     sanitized = sanitized.replace(/Mobi\s+Trash\s+Store/gi, 'Mobi Store');
     // Replace "Mobi Trash"
     sanitized = sanitized.replace(/Mobi\s+Trash/gi, 'Mobi Store');
@@ -1845,7 +1845,7 @@ export const getNoticeBanner = async (): Promise<NoticeBanner> => {
             displayFrequency: 'session',
             targetPage: 'all',
             targetDevice: 'all',
-            backgroundColor: '#10b981',
+            backgroundColor: '#f97316',
             textColor: '#ffffff',
             showCloseButton: true,
             updatedAt: new Date().toISOString()

@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { InventoryItem, BlogPost, Category } from '../types';
@@ -225,7 +225,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, navigate }) 
             >
                 <div className="max-w-4xl mx-auto w-full flex flex-col h-full">
                     <div className="flex items-center p-4 gap-4 border-b border-gray-100">
-                        <MagnifyingGlassIcon className="w-6 h-6 text-emerald-500" />
+                        <MagnifyingGlassIcon className="w-6 h-6 text-orange-500" />
                         <input
                             type="text"
                             value={query}
@@ -255,10 +255,10 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, navigate }) 
                                     <button
                                         key={item.id}
                                         onClick={() => handleResultClick(item.path)}
-                                        className={`w-full flex items-center gap-4 py-3 hover:bg-gray-50 transition-colors text-left group px-2 rounded-lg ${item.highlight ? 'bg-emerald-50 hover:bg-emerald-100 border border-emerald-100 my-2' : ''}`}
+                                        className={`w-full flex items-center gap-4 py-3 hover:bg-gray-50 transition-colors text-left group px-2 rounded-lg ${item.highlight ? 'bg-orange-50 hover:bg-orange-100 border border-orange-100 my-2' : ''}`}
                                     >
                                         {/* Icon/Image Logic */}
-                                        <div className={`w-12 h-12 flex-shrink-0 rounded-lg flex items-center justify-center overflow-hidden ${item.type === 'tracking' ? 'bg-emerald-100 text-emerald-600' :
+                                        <div className={`w-12 h-12 flex-shrink-0 rounded-lg flex items-center justify-center overflow-hidden ${item.type === 'tracking' ? 'bg-orange-100 text-orange-600' :
                                             item.type === 'admin' ? 'bg-slate-800 text-white' :
                                                 item.type === 'page' ? 'bg-blue-50 text-blue-600' :
                                                     item.type === 'category' ? 'bg-purple-50 text-purple-600' :
@@ -272,7 +272,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, navigate }) 
                                         </div>
 
                                         <div className="flex-grow min-w-0">
-                                            <h4 className={`font-bold text-gray-900 truncate group-hover:text-[#ff5722] transition-colors ${item.type === 'tracking' ? 'text-emerald-700' : ''}`}>
+                                            <h4 className={`font-bold text-gray-900 truncate group-hover:text-[#ff5722] transition-colors ${item.type === 'tracking' ? 'text-orange-700' : ''}`}>
                                                 {item.title}
                                             </h4>
                                             <p className="text-xs text-gray-500 truncate">{item.subtitle}</p>
@@ -285,10 +285,10 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, navigate }) 
 
                                             <span className={`text-[10px] px-2 py-0.5 rounded-full mt-1 ${item.type === 'product' ? 'bg-gray-100 text-gray-600' :
                                                 item.type === 'blog' ? 'bg-blue-50 text-blue-600' :
-                                                    item.type === 'tracking' ? 'bg-emerald-100 text-emerald-700' :
+                                                    item.type === 'tracking' ? 'bg-orange-100 text-orange-700' :
                                                         item.type === 'admin' ? 'bg-slate-100 text-slate-800 font-bold' :
                                                             item.type === 'category' ? 'bg-purple-50 text-purple-600' :
-                                                                'bg-green-50 text-green-600'
+                                                                'bg-orange-50 text-orange-600'
                                                 }`}>
                                                 {item.type.toUpperCase()}
                                             </span>
@@ -303,16 +303,16 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, navigate }) 
                             <div className="py-6">
                                 <p className="text-xs font-bold text-gray-400 uppercase mb-4 tracking-wider">Quick Actions</p>
                                 <div className="grid grid-cols-2 gap-3">
-                                    <button onClick={() => handleResultClick('/sell')} className="p-3 bg-emerald-50 rounded-xl border border-emerald-100 flex flex-col items-center text-center hover:bg-emerald-100 transition-colors">
-                                        <CurrencyDollarIcon className="w-6 h-6 text-emerald-600 mb-1" />
+                                    <button onClick={() => handleResultClick('/sell')} className="p-3 bg-orange-50 rounded-xl border border-orange-100 flex flex-col items-center text-center hover:bg-orange-100 transition-colors">
+                                        <CurrencyDollarIcon className="w-6 h-6 text-orange-600 mb-1" />
                                         <span className="text-sm font-bold text-gray-800">Sell Phone</span>
                                     </button>
                                     <button onClick={() => handleResultClick('/repair')} className="p-3 bg-blue-50 rounded-xl border border-blue-100 flex flex-col items-center text-center hover:bg-blue-100 transition-colors">
                                         <WrenchIcon className="w-6 h-6 text-blue-600 mb-1" />
                                         <span className="text-sm font-bold text-gray-800">Book Repair</span>
                                     </button>
-                                    <button onClick={() => handleResultClick('/track')} className="p-3 bg-green-50 rounded-xl border border-green-100 flex flex-col items-center text-center hover:bg-green-100 transition-colors">
-                                        <TruckIcon className="w-6 h-6 text-green-600 mb-1" />
+                                    <button onClick={() => handleResultClick('/track')} className="p-3 bg-orange-50 rounded-xl border border-orange-100 flex flex-col items-center text-center hover:bg-orange-100 transition-colors">
+                                        <TruckIcon className="w-6 h-6 text-orange-600 mb-1" />
                                         <span className="text-sm font-bold text-gray-800">Track Order</span>
                                     </button>
                                     <button onClick={() => handleResultClick('/trust')} className="p-3 bg-teal-50 rounded-xl border border-teal-100 flex flex-col items-center text-center hover:bg-teal-100 transition-colors">

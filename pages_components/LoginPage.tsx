@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { ExclamationTriangleIcon } from '../components/icons/ExclamationTriangleIcon';
 import * as api from '../services/api';
@@ -56,7 +56,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
       bg: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80',
       icon: (
         <div key="icon-1" className="w-24 h-24 mb-6 relative">
-          <div className="absolute inset-0 bg-emerald-400/20 blur-xl rounded-full"></div>
+          <div className="absolute inset-0 bg-orange-400/20 blur-xl rounded-full"></div>
           <svg viewBox="0 0 80 80" className="w-full h-full relative z-10 drop-shadow-2xl">
             <circle cx="40" cy="40" r="36" fill="white" fillOpacity="0.1" stroke="white" strokeOpacity="0.2" />
             <path d="M40 18C27.85 18 18 27.85 18 40C18 52.15 27.85 62 40 62C52.15 62 62 52.15 62 40" stroke="#34d399" strokeWidth="3" strokeLinecap="round" fill="none" />
@@ -388,8 +388,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
         </div>
 
         <div className="max-w-md w-full relative z-10 px-6 text-center animate-in fade-in zoom-in duration-500">
-          <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <ShieldCheckIcon className="w-10 h-10 text-emerald-500" />
+          <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <ShieldCheckIcon className="w-10 h-10 text-orange-500" />
           </div>
           <h2 className="text-2xl font-bold text-black mb-2">Check Your Email!</h2>
           <p className="text-gray-500 text-sm leading-relaxed mb-8">

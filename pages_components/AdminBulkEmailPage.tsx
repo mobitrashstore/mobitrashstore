@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { User, BroadcastLog } from '../types';
@@ -340,9 +340,9 @@ const AdminBulkEmailPage: React.FC<AdminBulkEmailPageProps> = ({ navigate }) => 
                                     ></div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4 pt-2">
-                                    <div className="bg-green-50 p-3 rounded-xl border border-green-100">
-                                        <p className="text-[10px] uppercase font-bold text-green-600/70 tracking-wider">Success</p>
-                                        <p className="text-2xl font-black text-green-700">{results.success}</p>
+                                    <div className="bg-orange-50 p-3 rounded-xl border border-orange-100">
+                                        <p className="text-[10px] uppercase font-bold text-orange-600/70 tracking-wider">Success</p>
+                                        <p className="text-2xl font-black text-orange-700">{results.success}</p>
                                     </div>
                                     <div className="bg-rose-50 p-3 rounded-xl border border-rose-100">
                                         <p className="text-[10px] uppercase font-bold text-rose-600/70 tracking-wider">Failed</p>
@@ -355,8 +355,8 @@ const AdminBulkEmailPage: React.FC<AdminBulkEmailPageProps> = ({ navigate }) => 
 
                         {status === 'completed' && (
                             <div className="text-center py-4 space-y-4">
-                                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                                    <CheckCircleIcon className="w-10 h-10 text-green-600" />
+                                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
+                                    <CheckCircleIcon className="w-10 h-10 text-orange-600" />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-slate-800">Broadcast Finished!</h3>
@@ -560,7 +560,7 @@ const AdminBulkEmailPage: React.FC<AdminBulkEmailPageProps> = ({ navigate }) => 
                                         <td className="px-6 py-4">
                                             <div className="flex items-center justify-center gap-3">
                                                 <div className="text-center">
-                                                    <p className="text-[10px] font-bold text-green-600">SUCCESS</p>
+                                                    <p className="text-[10px] font-bold text-orange-600">SUCCESS</p>
                                                     <p className="text-sm font-black text-slate-700">{log.successCount}</p>
                                                 </div>
                                                 <div className="h-6 w-px bg-slate-100"></div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { labelImage, suggestCategory, blurFaces, detectFaces } from '../services/mlService';
 import { SparklesIcon } from './icons/SparklesIcon';
 import { CheckCircleIcon } from './icons/CheckCircleIcon';
@@ -112,7 +112,7 @@ const SmartImageAnalyzer: React.FC<SmartImageAnalyzerProps> = ({
             {suggestedCategory && (
                 <div className="mb-3 p-3 bg-white/80 rounded-xl border border-purple-200">
                     <div className="flex items-center gap-2">
-                        <CheckCircleIcon className="w-4 h-4 text-green-600" />
+                        <CheckCircleIcon className="w-4 h-4 text-orange-600" />
                         <div>
                             <p className="text-xs font-semibold text-purple-900">Suggested Category:</p>
                             <p className="text-sm font-bold text-purple-700">{suggestedCategory}</p>
@@ -142,10 +142,10 @@ const SmartImageAnalyzer: React.FC<SmartImageAnalyzerProps> = ({
 
             {/* Success state */}
             {!isProcessing && processingStage === 'Analysis complete!' && (
-                <div className="mt-3 p-2 bg-green-50 rounded-lg border border-green-200">
+                <div className="mt-3 p-2 bg-orange-50 rounded-lg border border-orange-200">
                     <div className="flex items-center gap-2">
-                        <CheckCircleIcon className="w-4 h-4 text-green-600" />
-                        <span className="text-xs font-semibold text-green-700">Analysis complete!</span>
+                        <CheckCircleIcon className="w-4 h-4 text-orange-600" />
+                        <span className="text-xs font-semibold text-orange-700">Analysis complete!</span>
                     </div>
                 </div>
             )}

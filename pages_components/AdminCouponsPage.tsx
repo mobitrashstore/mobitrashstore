@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+﻿import React, { useState, useEffect, useMemo } from 'react';
 import * as api from '../services/api';
 import { Coupon, Category, InventoryItem } from '../types';
 import { PlusCircleIcon } from '../components/icons/PlusCircleIcon';
@@ -295,7 +295,7 @@ const AdminCouponsPage: React.FC<AdminCouponsPageProps> = ({ navigate }) => {
                 <h1 className="text-3xl font-bold text-slate-800 drop-shadow-sm">Coupon Management</h1>
                 <button
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-green-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-700 flex items-center gap-2 shadow-md transition-colors"
+                    className="bg-orange-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-700 flex items-center gap-2 shadow-md transition-colors"
                 >
                     <PlusCircleIcon className="w-5 h-5" /> Create Coupon
                 </button>
@@ -348,7 +348,7 @@ const AdminCouponsPage: React.FC<AdminCouponsPageProps> = ({ navigate }) => {
                                                 <td className="px-6 py-4">
                                                     <div className="flex flex-col">
                                                         <span>{coupon.expiryDate}</span>
-                                                        <span className={`text-[10px] uppercase font-bold ${new Date(coupon.expiryDate) > new Date() ? 'text-green-600' : 'text-rose-500'}`}>
+                                                        <span className={`text-[10px] uppercase font-bold ${new Date(coupon.expiryDate) > new Date() ? 'text-orange-600' : 'text-rose-500'}`}>
                                                             {new Date(coupon.expiryDate) > new Date() ? 'Active' : 'Expired'}
                                                         </span>
                                                     </div>

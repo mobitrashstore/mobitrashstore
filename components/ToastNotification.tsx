@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import { useNotification } from '../context/NotificationContext';
 import { Notification, NotificationType } from '../types';
 import { CheckCircleIcon } from './icons/CheckCircleIcon';
@@ -16,11 +16,11 @@ const styles: {
   };
 } = {
   success: { 
-      iconBg: 'bg-gradient-to-br from-emerald-400 to-green-600', 
+      iconBg: 'bg-gradient-to-br from-orange-400 to-orange-600', 
       iconColor: 'text-white', 
       Icon: CheckCircleIcon,
       title: 'Success',
-      progressBar: 'bg-emerald-500'
+      progressBar: 'bg-orange-500'
   },
   info: { 
       iconBg: 'bg-gradient-to-br from-blue-400 to-indigo-600', 

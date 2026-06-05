@@ -1,4 +1,4 @@
-
+﻿
 import React, { ReactNode, useState, useEffect, useRef } from 'react';
 import AdminSidebar from './AdminSidebar';
 import GlobalSearch from './GlobalSearch';
@@ -193,7 +193,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
                                                 (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=Bishal+Mishra&background=0D8ABC&color=fff';
                                             }}
                                         />
-                                        <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full"></div>
+                                        <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-orange-500 border-2 border-white rounded-full"></div>
                                     </div>
                                 </div>
                             </>
@@ -265,7 +265,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
                                             (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=Bishal+Mishra&background=0D8ABC&color=fff';
                                         }}
                                     />
-                                    <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full ring-1 ring-slate-100"></div>
+                                    <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-orange-500 border-2 border-white rounded-full ring-1 ring-slate-100"></div>
                                 </div>
                             </div>
                         </div>

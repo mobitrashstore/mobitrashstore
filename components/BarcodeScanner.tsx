@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { scanBarcode } from '../services/mlService';
 import { CameraIcon } from './icons/CameraIcon';
 import { XMarkIcon } from './icons/XMarkIcon';
@@ -98,13 +98,13 @@ const BarcodeScanner: React.FC<BarcodeScannerProps> = ({ onBarcodeDetected, onCl
 
                 {/* Detected barcode */}
                 {detectedBarcode && !isProcessing && (
-                    <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-xl">
+                    <div className="mb-4 p-4 bg-orange-50 border border-orange-200 rounded-xl">
                         <div className="flex items-start gap-3">
-                            <CheckCircleIcon className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                            <CheckCircleIcon className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
                             <div className="flex-1">
-                                <p className="text-sm font-semibold text-green-700">Barcode detected!</p>
-                                <p className="text-xs text-green-600 mt-1 font-mono">{detectedBarcode}</p>
-                                <p className="text-xs text-green-600 mt-1">Format: {barcodeFormat}</p>
+                                <p className="text-sm font-semibold text-orange-700">Barcode detected!</p>
+                                <p className="text-xs text-orange-600 mt-1 font-mono">{detectedBarcode}</p>
+                                <p className="text-xs text-orange-600 mt-1">Format: {barcodeFormat}</p>
                             </div>
                         </div>
                     </div>

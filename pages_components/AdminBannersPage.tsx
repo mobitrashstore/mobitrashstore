@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useRef } from 'react';
 import * as api from '../services/api';
 import { Banner, BannerSection } from '../types';
@@ -224,7 +224,7 @@ const AdminBannersPage: React.FC<AdminBannersPageProps> = ({ navigate }) => {
                         <button
                             onClick={handleAddBanner}
                             disabled={adding || !newBannerUrl}
-                            className="bg-green-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-green-700 transition-all shadow-md disabled:bg-slate-300 disabled:text-slate-500 disabled:shadow-none flex items-center justify-center gap-2 w-full active:scale-95"
+                            className="bg-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-orange-700 transition-all shadow-md disabled:bg-slate-300 disabled:text-slate-500 disabled:shadow-none flex items-center justify-center gap-2 w-full active:scale-95"
                         >
                             {adding ? <Spinner size="w-5 h-5" /> : <PlusCircleIcon className="w-5 h-5" />}
                             Add Banner to "{currentSectionInfo?.label}"

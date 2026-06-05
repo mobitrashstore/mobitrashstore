@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { GlobalNotification } from '../types';
@@ -219,7 +219,7 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                                                     <UserCircleIcon className="w-3 h-3"/> {notif.targetEmail}
                                                 </span>
                                             ) : (
-                                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 border border-green-200">
+                                                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-orange-100 text-orange-700 border border-orange-200">
                                                     <UsersIcon className="w-3 h-3"/> Public
                                                 </span>
                                             )}

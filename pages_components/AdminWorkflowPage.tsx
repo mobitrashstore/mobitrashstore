@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { UsersIcon } from '../components/icons/UsersIcon';
 import { CubeIcon } from '../components/icons/CubeIcon';
 import { SparklesIcon } from '../components/icons/SparklesIcon';
@@ -35,8 +35,8 @@ const statusStyles: Record<
   { badge: string; dot: string; label: string }
 > = {
   online: {
-    badge: 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300/90',
-    dot: 'bg-emerald-400',
+    badge: 'border-orange-500/40 bg-orange-500/10 text-orange-300/90',
+    dot: 'bg-orange-400',
     label: 'Online',
   },
   active: {
@@ -264,10 +264,10 @@ const AdminWorkflowPage: React.FC<AdminWorkflowPageProps> = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-xs">
-            <div className="flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-emerald-200 shadow-[0_0_18px_rgba(16,185,129,0.25)]">
+            <div className="flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-3 py-1 text-orange-200 shadow-[0_0_18px_rgba(16,185,129,0.25)]">
               <span className="relative inline-flex h-2.5 w-2.5 items-center justify-center">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/40" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400/40" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-orange-400" />
               </span>
               <span className="font-medium">All systems operational</span>
             </div>
@@ -419,7 +419,7 @@ const AdminWorkflowPage: React.FC<AdminWorkflowPageProps> = () => {
               <p className="text-[11px] uppercase tracking-wide text-slate-500">
                 Error rate
               </p>
-              <p className="mt-1 text-sm font-semibold text-emerald-300">0.3%</p>
+              <p className="mt-1 text-sm font-semibold text-orange-300">0.3%</p>
               <p className="text-[11px] text-slate-500">Aggregated across all services</p>
             </div>
           </div>
@@ -428,7 +428,7 @@ const AdminWorkflowPage: React.FC<AdminWorkflowPageProps> = () => {
           <div className="mt-6 w-full max-w-4xl overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/90">
             <div className="activity-shimmer flex items-center gap-4 px-4 py-3 text-[11px] text-slate-200 bg-[linear-gradient(110deg,rgba(15,23,42,0.9),rgba(8,47,73,0.95),rgba(30,64,175,0.7),rgba(15,23,42,0.9))]">
               <span className="inline-flex items-center gap-1 rounded-full bg-slate-900/70 px-2 py-0.5 text-[10px] uppercase tracking-wide text-cyan-200">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="h-1.5 w-1.5 rounded-full bg-orange-400 animate-pulse" />
                 Live traffic feed
               </span>
               <span>· User #543 requested price suggestion</span>

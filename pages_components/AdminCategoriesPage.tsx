@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { Category } from '../types';
@@ -116,7 +116,7 @@ const AdminCategoriesPage: React.FC<AdminCategoriesPageProps> = ({ navigate }) =
         <div className="animate-fade-in pb-10">
             <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
                 <h1 className="text-3xl font-bold text-slate-800 drop-shadow-sm">Manage Categories</h1>
-                <button onClick={handleOpenAddModal} className="bg-green-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-green-700 flex items-center gap-2 shadow-md transition-all transform active:scale-95">
+                <button onClick={handleOpenAddModal} className="bg-orange-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-orange-700 flex items-center gap-2 shadow-md transition-all transform active:scale-95">
                     <PlusCircleIcon className="w-5 h-5" />
                     Add Category
                 </button>

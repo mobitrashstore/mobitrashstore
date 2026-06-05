@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+﻿import React, { useState, useEffect, useMemo } from 'react';
 import { 
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer 
 } from 'recharts';
@@ -418,7 +418,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                                 <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
                                     <DollarSign className="w-5 h-5" />
                                 </div>
-                                <span className="text-[10px] font-bold text-emerald-600 uppercase flex items-center gap-1">
+                                <span className="text-[10px] font-bold text-orange-600 uppercase flex items-center gap-1">
                                     This Month
                                 </span>
                              </div>
@@ -441,10 +441,10 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                         {/* KPI 3: Site Visits */}
                         <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm transition-shadow">
                              <div className="flex justify-between items-start mb-4">
-                                <div className="p-2 bg-emerald-50 rounded-lg text-emerald-600">
+                                <div className="p-2 bg-orange-50 rounded-lg text-orange-600">
                                     <Activity className="w-5 h-5" />
                                 </div>
-                                <span className="text-[10px] font-bold text-emerald-600 uppercase">Active</span>
+                                <span className="text-[10px] font-bold text-orange-600 uppercase">Active</span>
                              </div>
                              <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Total Clicks</p>
                              <h3 className="text-xl font-bold text-gray-900 mt-1">{analyticsSummary.totalClicks}</h3>
@@ -523,7 +523,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                                     <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#9CA3AF' }} tickFormatter={(val) => `Rs ${val}`} />
                                     <RechartsTooltip contentStyle={{ borderRadius: '8px', border: '1px solid #E5E7EB', fontSize: '12px' }} />
                                     <Line type="monotone" dataKey="Sales" stroke="#3B82F6" strokeWidth={2} dot={false} />
-                                    <Line type="monotone" dataKey="Revenue" stroke="#10B981" strokeWidth={2} dot={false} />
+                                    <Line type="monotone" dataKey="Revenue" stroke="#f97316" strokeWidth={2} dot={false} />
                                     <Line type="monotone" dataKey="Profit" stroke="#F59E0B" strokeWidth={2} dot={false} />
                                 </LineChart>
                             </ResponsiveContainer>
@@ -552,7 +552,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                                     <YAxis yAxisId="right" orientation="right" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#9CA3AF' }} tickFormatter={(val) => `Rs ${val}`} />
                                     <RechartsTooltip contentStyle={{ borderRadius: '8px', border: '1px solid #E5E7EB', fontSize: '12px' }} />
                                     <Line yAxisId="left" type="monotone" dataKey="Traffic" stroke="#3B82F6" strokeWidth={2} dot={false} fillOpacity={1} fill="url(#colorTraffic)" />
-                                    <Line yAxisId="right" type="monotone" dataKey="Sales" stroke="#10B981" strokeWidth={2} dot={false} />
+                                    <Line yAxisId="right" type="monotone" dataKey="Sales" stroke="#f97316" strokeWidth={2} dot={false} />
                                     
                                     <defs>
                                         <linearGradient id="colorTraffic" x1="0" y1="0" x2="0" y2="1">
@@ -568,7 +568,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                                 <div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div> Traffic
                             </div>
                             <div className="flex items-center gap-2">
-                                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div> Sales
+                                <div className="w-2.5 h-2.5 rounded-full bg-orange-500"></div> Sales
                             </div>
                         </div>
                     </div>
@@ -898,7 +898,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                              <p className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2">Rev Streams</p>
                              <div className="flex gap-2 mt-1">
                                 <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">Fonepay</span>
-                                <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Cash</span>
+                                <span className="text-[10px] font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded">Cash</span>
                              </div>
                         </div>
                     </div>
@@ -972,7 +972,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                                             </span>
                                         </td>
                                         <td className="py-4 px-6">
-                                            <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase ${repair.status === 'Completed' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>
+                                            <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase ${repair.status === 'Completed' ? 'bg-orange-50 text-orange-600' : 'bg-amber-50 text-amber-600'}`}>
                                                 {repair.status}
                                             </span>
                                         </td>
@@ -1107,7 +1107,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
 
                         <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
                              <div className="flex items-center gap-2 mb-4">
-                                <Activity className="w-5 h-5 text-emerald-500" />
+                                <Activity className="w-5 h-5 text-orange-500" />
                                 <h4 className="text-sm font-bold text-gray-900">Sync</h4>
                              </div>
                              <p className="text-xs text-gray-500 mb-6">Repair slugs and clear front-end cache.</p>

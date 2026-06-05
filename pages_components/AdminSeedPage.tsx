@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState } from 'react';
 import * as api from '../services/api';
 import { DEFAULT_INVENTORY_ITEMS, BLOG_POSTS, PRICE_BASELINE, DEFAULT_DEDUCTIONS, BRANDS_DATA } from '../constants';
@@ -165,12 +165,12 @@ const AdminSeedPage: React.FC<AdminSeedPageProps> = ({ navigate }) => {
                  {(valuationResult || deductionResult) && (
                     <div className="mt-6 space-y-2">
                         {valuationResult && (
-                            <div className={`p-4 rounded-lg text-sm border ${valuationResult.success ? 'bg-green-50 text-green-700 border-green-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>
+                            <div className={`p-4 rounded-lg text-sm border ${valuationResult.success ? 'bg-orange-50 text-orange-700 border-orange-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>
                                 <p>{valuationResult.message}</p>
                             </div>
                         )}
                          {deductionResult && (
-                            <div className={`p-4 rounded-lg text-sm border ${deductionResult.success ? 'bg-green-50 text-green-700 border-green-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>
+                            <div className={`p-4 rounded-lg text-sm border ${deductionResult.success ? 'bg-orange-50 text-orange-700 border-orange-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>
                                 <p>{deductionResult.message}</p>
                             </div>
                         )}
@@ -195,7 +195,7 @@ const AdminSeedPage: React.FC<AdminSeedPageProps> = ({ navigate }) => {
                     </button>
                 </div>
                 {brandsResult && (
-                    <div className={`mt-6 p-4 rounded-lg text-sm border ${brandsResult.success ? 'bg-green-50 text-green-700 border-green-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>
+                    <div className={`mt-6 p-4 rounded-lg text-sm border ${brandsResult.success ? 'bg-orange-50 text-orange-700 border-orange-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>
                         <p>{brandsResult.message}</p>
                     </div>
                 )}
@@ -225,7 +225,7 @@ const AdminSeedPage: React.FC<AdminSeedPageProps> = ({ navigate }) => {
                     </button>
                 </div>
                 {productResult && (
-                    <div className={`mt-6 p-4 rounded-lg text-sm border ${productResult.success ? 'bg-green-50 text-green-700 border-green-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>
+                    <div className={`mt-6 p-4 rounded-lg text-sm border ${productResult.success ? 'bg-orange-50 text-orange-700 border-orange-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>
                         <p>{productResult.message}</p>
                     </div>
                 )}
@@ -251,7 +251,7 @@ const AdminSeedPage: React.FC<AdminSeedPageProps> = ({ navigate }) => {
                     </button>
                 </div>
                  {blogResult && (
-                    <div className={`mt-6 p-4 rounded-lg text-sm border ${blogResult.success ? 'bg-green-50 text-green-700 border-green-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>
+                    <div className={`mt-6 p-4 rounded-lg text-sm border ${blogResult.success ? 'bg-orange-50 text-orange-700 border-orange-200' : 'bg-rose-50 text-rose-700 border-rose-200'}`}>
                         <p>{blogResult.message}</p>
                     </div>
                 )}

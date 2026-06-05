@@ -1,4 +1,4 @@
-
+﻿
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { ChartBarIcon } from './icons/ChartBarIcon';
@@ -95,7 +95,7 @@ const navSections = [
             { path: '/admin/dashboard', label: 'Dashboard', icon: <ChartBarIcon className="w-5 h-5" /> },
             { path: '/admin/orders', label: 'Orders', icon: <ClipboardDocumentListIcon className="w-5 h-5" /> },
             { path: '/admin/trade-ins', label: 'Sale Requests', icon: <ClipboardDocumentListIcon className="w-5 h-5" /> },
-            { path: '/admin/product-requests', label: 'Product Requests', icon: <ShoppingBagIcon className="w-5 h-5 text-emerald-600" /> },
+            { path: '/admin/product-requests', label: 'Product Requests', icon: <ShoppingBagIcon className="w-5 h-5 text-orange-600" /> },
             { path: '/admin/repairs', label: 'Repair Bookings', icon: <WrenchIcon className="w-5 h-5" /> },
             { path: '/admin/notebook/townplanning', label: 'Khata: Townplanning', icon: <CalendarDaysIcon className="w-5 h-5 text-amber-600" /> },
             { path: '/admin/notebook/nayabazar', label: 'Khata: Nayabazar', icon: <CalendarDaysIcon className="w-5 h-5 text-purple-600" /> },
@@ -129,7 +129,7 @@ const navSections = [
             { path: '/admin/notifications', label: 'Notifications', icon: <BellIcon className="w-5 h-5" /> },
             { path: '/admin/bulk-email', label: 'Bulk Email', icon: <EnvelopeIcon className="w-5 h-5 text-blue-500" /> },
             { path: '/admin/banners', label: 'Banners', icon: <PhotoIcon className="w-5 h-5" /> },
-            { path: '/admin/notice-banner', label: 'Notice Banner', icon: <MegaphoneIcon className="w-5 h-5 text-emerald-600" /> },
+            { path: '/admin/notice-banner', label: 'Notice Banner', icon: <MegaphoneIcon className="w-5 h-5 text-orange-600" /> },
         ]
     },
     {

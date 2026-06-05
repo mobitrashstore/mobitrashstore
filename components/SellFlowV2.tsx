@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import NewStepIndicator from './NewStepIndicator';
 import SelectBrandStep from './steps/SelectBrandStep';
 import SelectModelStep from './steps/SelectModelStep';
@@ -258,8 +258,8 @@ const SellFlowV2: React.FC<SellFlowV2Props> = ({ navigate, onStepChange }) => {
        case 99:
         return (
             <div className="text-center py-16 animate-fade-in">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-white shadow-lg">
-                    <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-white shadow-lg">
+                    <svg className="w-10 h-10 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                     </svg>
                 </div>
@@ -284,9 +284,15 @@ const SellFlowV2: React.FC<SellFlowV2Props> = ({ navigate, onStepChange }) => {
     }
   };
 
+  const getIndicatorStep = (val: number) => {
+    if (val === 5) return 4; // OtpStep is also part of Verify
+    if (val >= 6) return 5;  // PriceDisplay and onwards are Quote
+    return val;
+  };
+
   return (
     <div className="w-full">
-      <NewStepIndicator currentStep={step} />
+      <NewStepIndicator currentStep={getIndicatorStep(step)} />
       <div className="p-4 md:p-10 bg-white min-h-[400px]">
         {renderStepComponent()}
       </div>

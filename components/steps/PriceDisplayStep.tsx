@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { DeclaredCondition, QuoteInput, QuoteRejection, QuoteResponse } from '../../types';
 import { computeQuote } from '../../services/quoteService';
@@ -145,8 +145,8 @@ const PriceDisplayStep: React.FC<PriceDisplayStepProps> = ({ deviceDetails, feat
                         <span className="text-2xl align-top text-slate-400 mr-1 font-bold">NPR</span>
                         {quote.calc.calculated_value.toLocaleString()}
                     </h1>
-                    <div className="inline-flex items-center justify-center gap-1.5 bg-green-50 text-green-700 px-4 py-1.5 rounded-full mt-2 border border-green-100">
-                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <div className="inline-flex items-center justify-center gap-1.5 bg-orange-50 text-orange-700 px-4 py-1.5 rounded-full mt-2 border border-orange-100">
+                        <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>
                         <span className="text-xs font-bold">Price Locked for 7 Days</span>
                     </div>
                 </div>
@@ -199,7 +199,7 @@ const PriceDisplayStep: React.FC<PriceDisplayStepProps> = ({ deviceDetails, feat
                     href="https://wa.me/+9779812141777"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-bold text-green-600 hover:text-green-700 bg-green-100 px-4 py-2 rounded-lg transition-colors"
+                    className="flex items-center gap-2 text-sm font-bold text-orange-600 hover:text-orange-700 bg-orange-100 px-4 py-2 rounded-lg transition-colors"
                 >
                     <WhatsAppIcon className="w-4 h-4" /> Contact Support
                 </a>

@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import * as api from '../services/api';
 import { NotebookEntry } from '../types';
@@ -268,13 +268,13 @@ Contact: ${shopPhone}
                                 <span>Subtotal</span>
                                 <span className="font-medium">NPR {entry.totalAmount.toLocaleString()}</span>
                             </div>
-                            <div className="flex justify-between text-green-600 font-medium">
+                            <div className="flex justify-between text-orange-600 font-medium">
                                 <span>Paid Amount</span>
                                 <span>- NPR {entry.paidAmount.toLocaleString()}</span>
                             </div>
                             <div className="flex justify-between text-xl font-black text-slate-900 border-t-2 border-slate-800 pt-3 mt-2">
                                 <span>Balance Due</span>
-                                <span className={entry.dueAmount > 0 ? "text-rose-600" : "text-green-600"}>NPR {entry.dueAmount.toLocaleString()}</span>
+                                <span className={entry.dueAmount > 0 ? "text-rose-600" : "text-orange-600"}>NPR {entry.dueAmount.toLocaleString()}</span>
                             </div>
                         </div>
                     </div>
@@ -302,7 +302,7 @@ Contact: ${shopPhone}
                 <div className="p-5 bg-slate-50 border-t border-slate-200 flex justify-end gap-4 rounded-b-2xl no-print">
                     <button
                         onClick={handleShare}
-                        className="flex items-center gap-2 px-5 py-2.5 bg-green-100 text-green-700 rounded-xl font-bold hover:bg-green-200 transition-colors border border-green-200"
+                        className="flex items-center gap-2 px-5 py-2.5 bg-orange-100 text-orange-700 rounded-xl font-bold hover:bg-orange-200 transition-colors border border-orange-200"
                     >
                         <WhatsAppIcon className="w-5 h-5" /> Share via WhatsApp
                     </button>
@@ -614,7 +614,7 @@ const AdminNotebookPage: React.FC<AdminNotebookPageProps> = ({ navigate, shopLoc
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
                     <p className="text-xs text-slate-500 uppercase font-extrabold tracking-wider mb-1">Collected</p>
-                    <p className="text-3xl font-black text-green-600 tracking-tight">NPR {stats.collected.toLocaleString()}</p>
+                    <p className="text-3xl font-black text-orange-600 tracking-tight">NPR {stats.collected.toLocaleString()}</p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
                     <p className="text-xs text-slate-500 uppercase font-extrabold tracking-wider mb-1">Due Today</p>
@@ -693,11 +693,11 @@ const AdminNotebookPage: React.FC<AdminNotebookPageProps> = ({ navigate, shopLoc
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 font-bold text-slate-800">
-                                                {entry.status === 'Paid' ? <span className="text-green-600 flex items-center gap-1"><CheckCircleIcon className="w-4 h-4" /> Paid</span> : `NPR ${entry.dueAmount.toLocaleString()}`}
+                                                {entry.status === 'Paid' ? <span className="text-orange-600 flex items-center gap-1"><CheckCircleIcon className="w-4 h-4" /> Paid</span> : `NPR ${entry.dueAmount.toLocaleString()}`}
                                             </td>
                                             <td className="px-6 py-4">
                                                 <span className={`px-3 py-1 text-xs font-bold rounded-full border 
-                                                    ${entry.status === 'Paid' ? 'bg-green-100 text-green-700 border-green-200' :
+                                                    ${entry.status === 'Paid' ? 'bg-orange-100 text-orange-700 border-orange-200' :
                                                         entry.status === 'Partial' ? 'bg-yellow-100 text-yellow-700 border-yellow-200' :
                                                             'bg-rose-100 text-rose-700 border-rose-200'}`}>
                                                     {entry.status}
@@ -709,7 +709,7 @@ const AdminNotebookPage: React.FC<AdminNotebookPageProps> = ({ navigate, shopLoc
                                                         <DocumentTextIcon className="w-5 h-5" />
                                                     </button>
                                                     {entry.status !== 'Paid' && (
-                                                        <button onClick={() => handleMarkPaid(entry)} className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors" title="Mark Paid">
+                                                        <button onClick={() => handleMarkPaid(entry)} className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors" title="Mark Paid">
                                                             <CheckCircleIcon className="w-5 h-5" />
                                                         </button>
                                                     )}
@@ -742,7 +742,7 @@ const AdminNotebookPage: React.FC<AdminNotebookPageProps> = ({ navigate, shopLoc
                                         </a>
                                     </div>
                                     <span className={`px-3 py-1 text-xs font-bold rounded-full border 
-                                        ${entry.status === 'Paid' ? 'bg-green-100 text-green-700 border-green-200' :
+                                        ${entry.status === 'Paid' ? 'bg-orange-100 text-orange-700 border-orange-200' :
                                             entry.status === 'Partial' ? 'bg-yellow-100 text-yellow-700 border-yellow-200' :
                                                 'bg-rose-100 text-rose-700 border-rose-200'}`}>
                                         {entry.status}
@@ -771,7 +771,7 @@ const AdminNotebookPage: React.FC<AdminNotebookPageProps> = ({ navigate, shopLoc
                                         <DocumentTextIcon className="w-5 h-5" />
                                     </button>
                                     {entry.status !== 'Paid' && (
-                                        <button onClick={() => handleMarkPaid(entry)} className="flex items-center gap-1 px-4 py-2 bg-green-50 text-green-600 rounded-xl text-xs font-bold border border-green-100 active:scale-95 transition-transform">
+                                        <button onClick={() => handleMarkPaid(entry)} className="flex items-center gap-1 px-4 py-2 bg-orange-50 text-orange-600 rounded-xl text-xs font-bold border border-orange-100 active:scale-95 transition-transform">
                                             <CheckCircleIcon className="w-4 h-4" /> Paid
                                         </button>
                                     )}

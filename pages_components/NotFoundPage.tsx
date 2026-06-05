@@ -1,4 +1,4 @@
-
+﻿
 
 import React from 'react';
 import { ArrowPathIcon } from '../components/icons/ArrowPathIcon';
@@ -25,8 +25,8 @@ const NotFoundPage: React.FC<NotFoundPageProps> = ({ navigate }) => {
             <meta name="robots" content="noindex, follow" />
             
             <div className="relative">
-                <div className="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center border-2 border-emerald-100 mb-6">
-                     <TrashIcon className="w-12 h-12 text-emerald-500" />
+                <div className="w-24 h-24 bg-orange-50 rounded-full flex items-center justify-center border-2 border-orange-100 mb-6">
+                     <TrashIcon className="w-12 h-12 text-orange-500" />
                 </div>
                 <div className="absolute -top-2 -right-2 bg-white rounded-full p-1 shadow-sm border border-gray-100">
                     <span className="text-xl">🤔</span>
@@ -44,7 +44,7 @@ const NotFoundPage: React.FC<NotFoundPageProps> = ({ navigate }) => {
                 <a 
                     href="/" 
                     onClick={handleGoHome} 
-                    className="inline-flex items-center justify-center bg-emerald-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-emerald-700 transition-all shadow-md active:scale-95"
+                    className="inline-flex items-center justify-center bg-orange-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-orange-700 transition-all shadow-md active:scale-95"
                 >
                     Back to Home
                 </a>

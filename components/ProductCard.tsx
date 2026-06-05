@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { InventoryItem } from '../types';
 import { HeartIcon } from './icons/HeartIcon';
 import { ShoppingCartIcon } from './icons/ShoppingCartIcon';
@@ -120,7 +120,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
                         decoding="async"
                     />
                     {discount > 0 && (
-                        <span className="absolute top-0 left-0 bg-green-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-br-lg rounded-tl-lg">
+                        <span className="absolute top-0 left-0 bg-orange-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-br-lg rounded-tl-lg">
                             {discount}% OFF
                         </span>
                     )}
@@ -182,7 +182,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
             {/* Discount Badge */}
             {discount > 0 && (
                 <div className="absolute top-3 left-3 z-10">
-                    <span className="inline-flex items-center px-2 py-1 text-[10px] font-black text-white bg-green-600 rounded-md shadow-sm tracking-wide uppercase">
+                    <span className="inline-flex items-center px-2 py-1 text-[10px] font-black text-white bg-orange-600 rounded-md shadow-sm tracking-wide uppercase">
                         -{discount}%
                     </span>
                 </div>

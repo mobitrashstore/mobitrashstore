@@ -1,4 +1,4 @@
-
+﻿
 // ... existing imports ...
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
@@ -250,7 +250,7 @@ const AdminTradeInsPage: React.FC<AdminTradeInsPageProps> = ({ navigate }) => {
         switch (status) {
             case 'Pending Pickup': return 'bg-blue-100 text-blue-700 border-blue-200';
             case 'Inspecting': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
-            case 'Completed': return 'bg-green-100 text-green-700 border-green-200';
+            case 'Completed': return 'bg-orange-100 text-orange-700 border-orange-200';
             default: return 'bg-slate-100 text-slate-600 border-slate-200';
         }
     };

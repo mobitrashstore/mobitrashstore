@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { Referral, RedemptionRequest } from '../types';
@@ -116,7 +116,7 @@ const AdminPointsPage: React.FC<AdminPointsPageProps> = ({ navigate }) => {
                  {/* 0. Redemption Requests (Priority) */}
                  <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 lg:col-span-2">
                     <h2 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
-                        <BanknotesIcon className="w-6 h-6 text-emerald-500" /> Redemption Requests
+                        <BanknotesIcon className="w-6 h-6 text-orange-500" /> Redemption Requests
                     </h2>
                     
                     {loading ? (
@@ -124,19 +124,19 @@ const AdminPointsPage: React.FC<AdminPointsPageProps> = ({ navigate }) => {
                     ) : redemptions.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             {redemptions.map(req => (
-                                <div key={req.id} className="bg-emerald-50 p-4 rounded-xl border border-emerald-100 relative overflow-hidden">
+                                <div key={req.id} className="bg-orange-50 p-4 rounded-xl border border-orange-100 relative overflow-hidden">
                                     <div className="flex justify-between items-start mb-2">
                                         <div>
                                             <p className="font-bold text-slate-800">{req.userName}</p>
                                             <p className="text-xs text-slate-500">{req.userEmail}</p>
                                         </div>
                                         <div className="text-right">
-                                            <p className="text-xs font-bold text-emerald-700 uppercase">Cash Value</p>
+                                            <p className="text-xs font-bold text-orange-700 uppercase">Cash Value</p>
                                             <p className="text-lg font-black text-slate-900">NPR {req.cashValue.toLocaleString()}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2 mb-4">
-                                        <span className="text-xs font-medium bg-white px-2 py-0.5 rounded border border-emerald-200 text-emerald-800">
+                                        <span className="text-xs font-medium bg-white px-2 py-0.5 rounded border border-orange-200 text-orange-800">
                                             {req.points} Points
                                         </span>
                                         <span className="text-[10px] text-slate-400">{new Date(req.date).toLocaleDateString()}</span>
@@ -144,7 +144,7 @@ const AdminPointsPage: React.FC<AdminPointsPageProps> = ({ navigate }) => {
                                     
                                     <button 
                                         onClick={() => handleProcessRedemption(req)}
-                                        className="w-full py-2 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 transition-colors shadow-sm text-sm flex items-center justify-center gap-2"
+                                        className="w-full py-2 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-colors shadow-sm text-sm flex items-center justify-center gap-2"
                                     >
                                         <CheckCircleIcon className="w-4 h-4" /> Process & Reset Points
                                     </button>
@@ -230,7 +230,7 @@ const AdminPointsPage: React.FC<AdminPointsPageProps> = ({ navigate }) => {
                                     <div className="flex items-center justify-between pt-3 border-t border-slate-200">
                                         <span className="font-bold text-amber-600">+{ref.points} Points</span>
                                         <div className="flex gap-2">
-                                            <button onClick={() => handleApproveReferral(ref)} className="p-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors" title="Approve">
+                                            <button onClick={() => handleApproveReferral(ref)} className="p-2 bg-orange-100 text-orange-700 rounded-lg hover:bg-orange-200 transition-colors" title="Approve">
                                                 <CheckCircleIcon className="w-5 h-5" />
                                             </button>
                                             <button onClick={() => handleRejectReferral(ref)} className="p-2 bg-rose-100 text-rose-700 rounded-lg hover:bg-rose-200 transition-colors" title="Reject">

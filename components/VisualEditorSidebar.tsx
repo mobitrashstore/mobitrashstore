@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useVisualEditing } from '../context/VisualEditingContext';
 import { Squares2x2Icon } from './icons/Squares2x2Icon';
 import { PencilSquareIcon } from './icons/PencilSquareIcon';
@@ -93,14 +93,14 @@ const VisualEditorSidebar: React.FC = () => {
             <div className="flex bg-[#701a3d] border-b border-[#9d174d]">
                 <button
                     onClick={() => setActiveTab('elements')}
-                    className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${activeTab === 'elements' ? 'text-white border-b-2 border-emerald-400 bg-[#831843]' : 'text-pink-300 hover:text-white'}`}
+                    className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${activeTab === 'elements' ? 'text-white border-b-2 border-orange-400 bg-[#831843]' : 'text-pink-300 hover:text-white'}`}
                 >
                     <Squares2x2Icon className="w-3.5 h-3.5" />
                     Elements
                 </button>
                 <button
                     onClick={() => setActiveTab('settings')}
-                    className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${activeTab === 'settings' ? 'text-white border-b-2 border-emerald-400 bg-[#831843]' : 'text-pink-300 hover:text-white'}`}
+                    className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${activeTab === 'settings' ? 'text-white border-b-2 border-orange-400 bg-[#831843]' : 'text-pink-300 hover:text-white'}`}
                 >
                     <AdjustmentsHorizontalIcon className="w-3.5 h-3.5" />
                     Settings
@@ -165,7 +165,7 @@ const VisualEditorSidebar: React.FC = () => {
                                     <span className="text-[10px] font-bold text-white uppercase tracking-wider">Full Width Interface</span>
                                     <button
                                         onClick={() => setFullWidth(!fullWidth)}
-                                        className={`w-10 h-5 rounded-full relative transition-colors ${fullWidth ? 'bg-emerald-500' : 'bg-[#5a1230]'}`}
+                                        className={`w-10 h-5 rounded-full relative transition-colors ${fullWidth ? 'bg-orange-500' : 'bg-[#5a1230]'}`}
                                     >
                                         <div className={`absolute top-1 w-3 h-3 rounded-full bg-white transition-all ${fullWidth ? 'left-6' : 'left-1'}`} />
                                     </button>
@@ -178,7 +178,7 @@ const VisualEditorSidebar: React.FC = () => {
                             <label className="text-[10px] uppercase font-black tracking-widest text-pink-300 block mb-3">Workspace Actions</label>
                             <div className="space-y-2">
                                 <button className="w-full bg-[#5a1230] text-pink-200 py-2.5 px-3 rounded-lg text-[9px] font-black uppercase tracking-widest text-left hover:bg-rose-500 hover:text-white transition-all shadow-md">Reset to Default</button>
-                                <button className="w-full bg-[#5a1230] text-pink-200 py-2.5 px-3 rounded-lg text-[9px] font-black uppercase tracking-widest text-left hover:bg-emerald-500 hover:text-white transition-all shadow-md">Export Config (JSON)</button>
+                                <button className="w-full bg-[#5a1230] text-pink-200 py-2.5 px-3 rounded-lg text-[9px] font-black uppercase tracking-widest text-left hover:bg-orange-500 hover:text-white transition-all shadow-md">Export Config (JSON)</button>
                             </div>
                         </div>
                     </div>
@@ -188,7 +188,7 @@ const VisualEditorSidebar: React.FC = () => {
             {/* Footer */}
             <div className="p-4 bg-[#701a3d] border-t border-[#9d174d] mt-auto">
                 <button
-                    className="w-full bg-emerald-500 text-white py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-emerald-400 transition-all active:scale-95 shadow-xl shadow-emerald-950/20 group"
+                    className="w-full bg-orange-500 text-white py-4 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-orange-400 transition-all active:scale-95 shadow-xl shadow-emerald-950/20 group"
                     onClick={() => {
                         const btn = document.getElementById('publish-btn-text');
                         if (btn) btn.innerText = "SAVING CHANGES...";
@@ -198,7 +198,7 @@ const VisualEditorSidebar: React.FC = () => {
                     }}
                 >
                     <span id="publish-btn-text" className="flex items-center justify-center gap-2">
-                        <BoltIcon className="w-4 h-4 text-emerald-100 group-hover:animate-pulse" />
+                        <BoltIcon className="w-4 h-4 text-orange-100 group-hover:animate-pulse" />
                         Publish Changes
                     </span>
                 </button>

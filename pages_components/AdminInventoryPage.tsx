@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import * as api from '../services/api';
 import { InventoryItem, Category, Brand, ProductVariant } from '../types';
@@ -921,7 +921,7 @@ const ProductModal: React.FC<{
                                 Save
                             </button>
 
-                            <button type="button" onClick={(e) => handleFinalSubmit(e, true)} className="bg-green-600 text-white text-xs font-bold py-2.5 px-5 rounded-xl hover:bg-green-700 shadow-md transition-all active:scale-95 flex items-center gap-1.5">
+                            <button type="button" onClick={(e) => handleFinalSubmit(e, true)} className="bg-orange-600 text-white text-xs font-bold py-2.5 px-5 rounded-xl hover:bg-orange-700 shadow-md transition-all active:scale-95 flex items-center gap-1.5">
                                 Save & Exit
                             </button>
                         </div>
@@ -1155,7 +1155,7 @@ Would you like to open Google Search Console to manually request an "Instant Ind
                 </div>
                 {categories.length > 0 ? (
                     categories.map(cat => (
-                        <a key={cat.id} href="#" onClick={(e) => { e.preventDefault(); handleOpenAddModal(cat.name); }} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-green-50 hover:text-green-600 border-b border-slate-100 transition-colors">
+                        <a key={cat.id} href="#" onClick={(e) => { e.preventDefault(); handleOpenAddModal(cat.name); }} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-orange-50 hover:text-orange-600 border-b border-slate-100 transition-colors">
                             Add to {cat.name}
                         </a>
                     ))
@@ -1167,7 +1167,7 @@ Would you like to open Google Search Console to manually request an "Instant Ind
                 <a
                     href="#/admin/categories"
                     onClick={(e) => { e.preventDefault(); navigate('/admin/categories'); }}
-                    className="block px-4 py-4 text-sm font-bold text-white bg-green-600 hover:bg-green-700 sticky bottom-0 z-20 text-center transition-colors"
+                    className="block px-4 py-4 text-sm font-bold text-white bg-orange-600 hover:bg-orange-700 sticky bottom-0 z-20 text-center transition-colors"
                 >
                     + Create New Category
                 </a>
@@ -1244,7 +1244,7 @@ Would you like to open Google Search Console to manually request an "Instant Ind
                             <button
                                 onClick={handleGenerateSitemap}
                                 title="Download Fresh Sitemap"
-                                className="p-2.5 text-emerald-600 hover:bg-white rounded-lg transition-all flex items-center gap-2 font-bold text-xs"
+                                className="p-2.5 text-orange-600 hover:bg-white rounded-lg transition-all flex items-center gap-2 font-bold text-xs"
                             >
                                 <ArrowDownTrayIcon className="w-5 h-5" />
                                 <span className="hidden lg:inline">Sitemap</span>
@@ -1253,7 +1253,7 @@ Would you like to open Google Search Console to manually request an "Instant Ind
 
                         <button
                             onClick={() => setIsAddDropdownOpen(prev => !prev)}
-                            className="w-full sm:w-auto bg-green-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-green-700 flex items-center justify-center gap-2 shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 active:scale-95"
+                            className="w-full sm:w-auto bg-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-orange-700 flex items-center justify-center gap-2 shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 active:scale-95"
                         >
                             <PlusCircleIcon className="w-5 h-5" />
                             <span>Add Product</span>

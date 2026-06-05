@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import * as api from '../services/api';
 import { SpinWheelConfig, SpinSegment, SpinParticipant } from '../types';
@@ -166,7 +166,7 @@ const AdminSpinWheelPage: React.FC<AdminSpinWheelPageProps> = ({ navigate }) => 
                         datasets: [{
                             label: 'Times Won',
                             data: stats.rewards.map(r => r.timesWon),
-                            backgroundColor: stats.rewards.map(r => r.type === 'loss' ? '#f43f5e' : r.type === 'points' ? '#10b981' : '#3b82f6'),
+                            backgroundColor: stats.rewards.map(r => r.type === 'loss' ? '#f43f5e' : r.type === 'points' ? '#f97316' : '#3b82f6'),
                             borderRadius: 6,
                         }]
                     },
@@ -384,7 +384,7 @@ const AdminSpinWheelPage: React.FC<AdminSpinWheelPageProps> = ({ navigate }) => 
              </div>
              
              {simWinner && (
-                 <div className="absolute bottom-20 bg-emerald-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-bounce-in">
+                 <div className="absolute bottom-20 bg-orange-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-bounce-in">
                      Result: {simWinner}
                  </div>
              )}
@@ -409,7 +409,7 @@ const AdminSpinWheelPage: React.FC<AdminSpinWheelPageProps> = ({ navigate }) => 
                 </div>
                 
                 {activeTab === 'config' && (
-                    <button onClick={handleSave} disabled={saving} className="bg-green-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-green-700 shadow-md transition-colors disabled:bg-slate-300 w-full sm:w-auto">
+                    <button onClick={handleSave} disabled={saving} className="bg-orange-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-orange-700 shadow-md transition-colors disabled:bg-slate-300 w-full sm:w-auto">
                         {saving ? 'Saving...' : 'Save Changes'}
                     </button>
                 )}
@@ -435,7 +435,7 @@ const AdminSpinWheelPage: React.FC<AdminSpinWheelPageProps> = ({ navigate }) => 
                                  </div>
                                  <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-center min-w-[100px]">
                                      <p className="text-[10px] font-bold text-slate-400 uppercase">Approved</p>
-                                     <p className="text-xl font-black text-green-500">{participants.filter(p => p.status === 'Approved').length}</p>
+                                     <p className="text-xl font-black text-orange-500">{participants.filter(p => p.status === 'Approved').length}</p>
                                  </div>
                                  <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-center min-w-[100px]">
                                      <p className="text-[10px] font-bold text-slate-400 uppercase">Total</p>
@@ -462,7 +462,7 @@ const AdminSpinWheelPage: React.FC<AdminSpinWheelPageProps> = ({ navigate }) => 
                                     <div className="flex items-center gap-4">
                                         <div className="relative">
                                             {p.photoURL ? <img src={p.photoURL} className="w-12 h-12 rounded-full object-cover border border-slate-200" /> : <UserCircleIcon className="w-12 h-12 text-slate-300" />}
-                                            <div className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white ${p.status === 'Approved' ? 'bg-green-500' : p.status === 'Rejected' ? 'bg-red-500' : 'bg-amber-400'}`}></div>
+                                            <div className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white ${p.status === 'Approved' ? 'bg-orange-500' : p.status === 'Rejected' ? 'bg-red-500' : 'bg-amber-400'}`}></div>
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-slate-800">{p.name}</h3>
@@ -483,7 +483,7 @@ const AdminSpinWheelPage: React.FC<AdminSpinWheelPageProps> = ({ navigate }) => 
                                         
                                         <div className="flex gap-2">
                                             {p.status !== 'Approved' && (
-                                                <button onClick={() => handleApprove(p.id)} className="flex items-center gap-1 px-3 py-2 bg-green-50 text-green-700 rounded-lg font-bold text-xs hover:bg-green-100 border border-green-200 transition-colors">
+                                                <button onClick={() => handleApprove(p.id)} className="flex items-center gap-1 px-3 py-2 bg-orange-50 text-orange-700 rounded-lg font-bold text-xs hover:bg-orange-100 border border-orange-200 transition-colors">
                                                     <CheckCircleIcon className="w-4 h-4" /> Approve
                                                 </button>
                                             )}

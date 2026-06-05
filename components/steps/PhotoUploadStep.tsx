@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { ArrowLeftIcon } from '../icons/ArrowLeftIcon';
 import { Camera, RefreshCw } from 'lucide-react';
 import * as api from '../../services/api';
@@ -149,13 +149,13 @@ const PhotoUploadStep: React.FC<PhotoUploadStepProps> = ({ onBack, onNext }) => 
                     <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-8">
                         <div className="flex justify-between items-center mb-1">
                             <span className="text-xs font-bold text-slate-500 uppercase font-mono">Cloudinary Direct Queue</span>
-                            <span className={`text-xs font-black ${uploadedUrls.length >= 1 ? 'text-green-600' : 'text-slate-400'}`}>
+                            <span className={`text-xs font-black ${uploadedUrls.length >= 1 ? 'text-orange-600' : 'text-slate-400'}`}>
                                 {uploadedUrls.length}/4 Uploaded
                             </span>
                         </div>
                         <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
                             <div 
-                                className={`h-full transition-all duration-500 ${uploadedUrls.length >= 1 ? 'bg-green-500' : 'bg-slate-300'}`}
+                                className={`h-full transition-all duration-500 ${uploadedUrls.length >= 1 ? 'bg-orange-500' : 'bg-slate-300'}`}
                                 style={{ width: `${(uploadedUrls.length / 4) * 100}%` }}
                             ></div>
                         </div>

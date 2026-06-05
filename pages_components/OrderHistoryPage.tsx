@@ -1,4 +1,4 @@
-
+﻿
 
 
 import React, { useState, useEffect } from 'react';
@@ -74,7 +74,7 @@ const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({ navigate }) => {
     switch (status) {
         case 'Processing': return 'bg-blue-100 text-blue-800';
         case 'Shipped': return 'bg-yellow-100 text-yellow-800';
-        case 'Delivered': return 'bg-green-100 text-green-800';
+        case 'Delivered': return 'bg-orange-100 text-orange-800';
         case 'Cancelled': return 'bg-rose-100 text-rose-800';
         default: return 'bg-gray-200 text-gray-800';
     }
@@ -116,7 +116,7 @@ const OrderHistoryPage: React.FC<OrderHistoryPageProps> = ({ navigate }) => {
                           <div className="flex items-center gap-2">
                             <span className="font-mono text-sm text-gray-700 font-semibold">{order.id}</span>
                             <button onClick={() => handleCopy(order.id, order.id)} className="text-gray-400 hover:text-amber-600 transition-colors">
-                                {copiedId === order.id ? <CheckCircleIcon className="w-4 h-4 text-green-500"/> : <ClipboardIcon className="w-4 h-4"/>}
+                                {copiedId === order.id ? <CheckCircleIcon className="w-4 h-4 text-orange-500"/> : <ClipboardIcon className="w-4 h-4"/>}
                             </button>
                           </div>
                       </div>

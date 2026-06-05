@@ -1,4 +1,4 @@
-
+﻿
 
 import React, { useState, useEffect, useCallback } from 'react';
 import * as api from '../services/api';
@@ -133,7 +133,7 @@ const TrackPage: React.FC<TrackPageProps> = ({ navigate }) => {
                                     title="Copy ID"
                                 >
                                     {/* FIX: Check 'copiedId' state */}
-                                    {copiedId === `id-${result.id}` ? <CheckCircleIcon className="w-5 h-5 text-green-500" /> : <ClipboardIcon className="w-5 h-5" />}
+                                    {copiedId === `id-${result.id}` ? <CheckCircleIcon className="w-5 h-5 text-orange-500" /> : <ClipboardIcon className="w-5 h-5" />}
                                 </button>
                             </h2>
                             <div className="mt-4 space-y-2 text-gray-700">
@@ -152,7 +152,7 @@ const TrackPage: React.FC<TrackPageProps> = ({ navigate }) => {
                                                     className="ml-1 text-blue-400 hover:text-blue-600"
                                                 >
                                                     {/* FIX: Check 'copiedId' state */}
-                                                    {copiedId === `tc-${result.id}` ? <CheckCircleIcon className="w-4 h-4 text-green-500" /> : <ClipboardIcon className="w-4 h-4" />}
+                                                    {copiedId === `tc-${result.id}` ? <CheckCircleIcon className="w-4 h-4 text-orange-500" /> : <ClipboardIcon className="w-4 h-4" />}
                                                 </button>
                                             </div>
                                         )}

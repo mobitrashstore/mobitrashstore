@@ -1,4 +1,4 @@
-
+﻿
 import React, { useEffect, useState, useMemo } from 'react';
 import * as api from '../services/api';
 import { BlogPost } from '../types';
@@ -252,13 +252,13 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ slug, navigate }) => {
           <div className="w-full px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
             <button
               onClick={handleBackToBlog}
-              className="inline-flex items-center text-[10px] font-black text-slate-400 hover:text-emerald-600 mb-6 uppercase tracking-[0.2em] transition-colors"
+              className="inline-flex items-center text-[10px] font-black text-slate-400 hover:text-orange-600 mb-6 uppercase tracking-[0.2em] transition-colors"
             >
               ← BACK TO ARCHIVE
             </button>
 
             {category && (
-              <p className="text-[10px] tracking-[0.4em] uppercase text-emerald-600 font-black mb-3">
+              <p className="text-[10px] tracking-[0.4em] uppercase text-orange-600 font-black mb-3">
                 {category}
               </p>
             )}
@@ -310,7 +310,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ slug, navigate }) => {
                 <span className="w-1 h-1 rounded-full bg-slate-300" />
                 <span>{readTime || '3 min read'}</span>
               </div>
-              <div className="flex items-center gap-2 text-emerald-600">
+              <div className="flex items-center gap-2 text-orange-600">
                 <EyeIcon className="w-4 h-4" />
                 <span className="font-black">{viewCount.toLocaleString()} Reads</span>
               </div>
@@ -486,7 +486,7 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ slug, navigate }) => {
                   />
                   <button
                     type="submit"
-                    className={`w-full py-2 rounded-lg text-sm font-bold transition-all ${sidebarSubscribed ? 'bg-green-600' : 'bg-blue-600 hover:bg-blue-700'
+                    className={`w-full py-2 rounded-lg text-sm font-bold transition-all ${sidebarSubscribed ? 'bg-orange-600' : 'bg-blue-600 hover:bg-blue-700'
                       }`}
                   >
                     {sidebarSubscribed ? 'Subscribed!' : 'Join Now'}
@@ -505,8 +505,8 @@ const BlogPostPage: React.FC<BlogPostPageProps> = ({ slug, navigate }) => {
           onClick={handleBackToBlog}
           className="group flex flex-col items-center gap-4 mx-auto"
         >
-          <div className="h-px w-20 bg-slate-200 group-hover:w-40 group-hover:bg-emerald-500 transition-all duration-700"></div>
-          <span className="text-[11px] font-black text-slate-300 uppercase tracking-[0.8em] group-hover:text-emerald-600 transition-colors">
+          <div className="h-px w-20 bg-slate-200 group-hover:w-40 group-hover:bg-orange-500 transition-all duration-700"></div>
+          <span className="text-[11px] font-black text-slate-300 uppercase tracking-[0.8em] group-hover:text-orange-600 transition-colors">
             END OF ENTRY
           </span>
         </button>

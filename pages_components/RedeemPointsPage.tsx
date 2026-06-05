@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import MobileSkyHeader from '../components/MobileSkyHeader';
 import { StarIcon } from '../components/icons/StarIcon';
 import { ShareIcon } from '../components/icons/ShareIcon';
@@ -186,7 +186,7 @@ const RedeemPointsPage: React.FC<RedeemPointsPageProps> = ({ navigate }) => {
                          <div className="text-right bg-black/20 px-3 py-2 rounded-lg backdrop-blur-sm border border-white/10">
                              <p className="text-amber-100 text-xs font-medium uppercase tracking-wide">Cash Value</p>
                              <p className="text-xl font-bold text-white flex items-center justify-end gap-1">
-                                 <BanknotesIcon className="w-5 h-5 text-green-300" />
+                                 <BanknotesIcon className="w-5 h-5 text-orange-300" />
                                  NPR {nprValue.toLocaleString()}
                              </p>
                          </div>
@@ -237,16 +237,16 @@ const RedeemPointsPage: React.FC<RedeemPointsPageProps> = ({ navigate }) => {
                                     disabled={!!isClaimed}
                                     className={`flex items-center justify-between p-2.5 rounded-lg border transition-all ${
                                         isClaimed 
-                                        ? 'bg-green-50 border-green-200 cursor-default' 
+                                        ? 'bg-orange-50 border-orange-200 cursor-default' 
                                         : 'bg-white border-gray-200 hover:border-amber-400 hover:shadow-sm active:scale-95'
                                     }`}
                                 >
                                     <div className="flex items-center gap-3">
                                         {task.icon}
-                                        <span className={`font-medium text-sm ${isClaimed ? 'text-green-800' : 'text-gray-700'}`}>{task.name}</span>
+                                        <span className={`font-medium text-sm ${isClaimed ? 'text-orange-800' : 'text-gray-700'}`}>{task.name}</span>
                                     </div>
                                     {isClaimed ? (
-                                        <div className="flex items-center gap-1 text-green-600 text-xs font-bold">
+                                        <div className="flex items-center gap-1 text-orange-600 text-xs font-bold">
                                             <CheckCircleIcon className="w-4 h-4" />
                                             Earned
                                         </div>
@@ -274,7 +274,7 @@ const RedeemPointsPage: React.FC<RedeemPointsPageProps> = ({ navigate }) => {
                                 <p className="text-lg font-mono font-bold text-gray-800 tracking-wider">{user.referralCode || 'Generating...'}</p>
                             </div>
                             <button onClick={handleCopy} className="p-2 text-gray-500 hover:text-amber-600 transition-colors">
-                                {copied ? <CheckCircleIcon className="w-6 h-6 text-green-500"/> : <ClipboardIcon className="w-6 h-6"/>}
+                                {copied ? <CheckCircleIcon className="w-6 h-6 text-orange-500"/> : <ClipboardIcon className="w-6 h-6"/>}
                             </button>
                         </div>
                         
@@ -302,13 +302,13 @@ const RedeemPointsPage: React.FC<RedeemPointsPageProps> = ({ navigate }) => {
                                      </div>
                                      <div className="text-right">
                                          <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold 
-                                            ${ref.status === 'Approved' ? 'bg-green-100 text-green-700' : 
+                                            ${ref.status === 'Approved' ? 'bg-orange-100 text-orange-700' : 
                                               ref.status === 'Rejected' ? 'bg-rose-100 text-rose-700' : 
                                               'bg-yellow-100 text-yellow-700'}`}>
                                              {ref.status}
                                          </span>
                                          {ref.status === 'Approved' && (
-                                             <p className="text-[10px] text-green-600 font-bold mt-0.5">+ {ref.points} Pts</p>
+                                             <p className="text-[10px] text-orange-600 font-bold mt-0.5">+ {ref.points} Pts</p>
                                          )}
                                      </div>
                                  </div>

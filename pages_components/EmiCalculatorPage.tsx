@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import MobileSkyHeader from '../components/MobileSkyHeader';
 import { CalculatorIcon } from '../components/icons/CalculatorIcon';
@@ -88,7 +88,7 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
         if (!monthlyIncome || monthlyIncome === 0) return { score: 0, status: 'Unknown', color: 'text-gray-400' };
         const ratio = (results.emi / monthlyIncome) * 100;
 
-        if (ratio <= 20) return { score: ratio, status: 'Excellent', color: 'text-emerald-500', bg: 'bg-emerald-50', border: 'border-emerald-100', note: 'Easily affordable for your budget.' };
+        if (ratio <= 20) return { score: ratio, status: 'Excellent', color: 'text-orange-500', bg: 'bg-orange-50', border: 'border-orange-100', note: 'Easily affordable for your budget.' };
         if (ratio <= 40) return { score: ratio, status: 'Good', color: 'text-blue-500', bg: 'bg-blue-50', border: 'border-blue-100', note: 'Reasonable within typical financial limits.' };
         if (ratio <= 50) return { score: ratio, status: 'Warning', color: 'text-amber-500', bg: 'bg-amber-50', border: 'border-amber-100', note: 'Higher than recommended. Consider increasing tenure to reduce EMI.' };
         return { score: ratio, status: 'Risky', color: 'text-rose-500', bg: 'bg-rose-50', border: 'border-rose-100', note: 'May strain your monthly finances significantly. We recommend a longer tenure.' };
@@ -109,7 +109,7 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
                         labels: ['Principal', 'Interest', 'Fees'],
                         datasets: [{
                             data: [results.principal, results.totalInterest, results.feeAmount],
-                            backgroundColor: ['#10b981', '#f59e0b', '#6366f1'], // Emerald, Amber, Indigo
+                            backgroundColor: ['#f97316', '#f59e0b', '#6366f1'], // Emerald, Amber, Indigo
                             hoverOffset: 10,
                             borderWidth: 0,
                             borderRadius: 5
@@ -200,7 +200,7 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
                         </button>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-4 tracking-tight">
-                        Calculate with <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Precision.</span>
+                        Calculate with <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-teal-500">Precision.</span>
                     </h1>
                     <p className="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed">
                         Go beyond simple math. Professional financing tool for clear and smart investment decisions.
@@ -221,8 +221,8 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
                                         <label className="font-bold text-slate-700 flex items-center">
                                             Total Phone Price
                                         </label>
-                                        <div className="bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-100">
-                                            <span className="text-emerald-700 font-black text-sm">NPR {totalPrice.toLocaleString()}</span>
+                                        <div className="bg-orange-50 px-3 py-1 rounded-lg border border-orange-100">
+                                            <span className="text-orange-700 font-black text-sm">NPR {totalPrice.toLocaleString()}</span>
                                         </div>
                                     </div>
                                     <input
@@ -343,7 +343,7 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
                                             value={monthlyIncome}
                                             onChange={(e) => setMonthlyIncome(Number(e.target.value))}
                                             placeholder="Your monthly salary"
-                                            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-emerald-500 outline-none font-bold text-slate-700"
+                                            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-orange-500 outline-none font-bold text-slate-700"
                                         />
                                     </div>
                                 </div>
@@ -382,7 +382,7 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
                                             return (
                                                 <tr key={yearIdx} className="hover:bg-slate-50/50 transition-colors">
                                                     <td className="px-6 py-4 font-black text-slate-900 italic">Year {yearIdx + 1}</td>
-                                                    <td className="px-6 py-4 text-right text-emerald-600 font-bold">{Math.round(yearlyPrincipal).toLocaleString()}</td>
+                                                    <td className="px-6 py-4 text-right text-orange-600 font-bold">{Math.round(yearlyPrincipal).toLocaleString()}</td>
                                                     <td className="px-6 py-4 text-right text-amber-500 font-bold">{Math.round(yearlyInterest).toLocaleString()}</td>
                                                     <td className="px-6 py-4 text-right font-black text-slate-800">NPR {Math.round(yearEndBalance).toLocaleString()}</td>
                                                 </tr>
@@ -399,7 +399,7 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
 
                         {/* Main Result */}
                         <div className="bg-slate-900 text-white p-8 md:p-10 rounded-[3rem] shadow-2xl relative overflow-hidden group">
-                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-emerald-500/20 opacity-50"></div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-orange-500/20 opacity-50"></div>
                             <div className="absolute -top-24 -right-24 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700"></div>
 
                             <div className="relative z-10">
@@ -427,7 +427,7 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
                                     </div>
                                     <div className="flex justify-between items-center pt-4">
                                         <span className="text-slate-300 font-black uppercase text-sm">Grand Total</span>
-                                        <span className="text-xl font-black text-emerald-400">NPR {results.totalPayable.toLocaleString()}</span>
+                                        <span className="text-xl font-black text-orange-400">NPR {results.totalPayable.toLocaleString()}</span>
                                     </div>
                                 </div>
                             </div>
@@ -448,7 +448,7 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
                                     {monthlyIncome > 0 ? (
                                         <div className="w-full bg-white/50 rounded-full h-3 p-0.5 border border-slate-200">
                                             <div
-                                                className={`h-full rounded-full ${affordability.score > 50 ? 'bg-rose-500' : 'bg-emerald-500'} transition-all duration-1000`}
+                                                className={`h-full rounded-full ${affordability.score > 50 ? 'bg-rose-500' : 'bg-orange-500'} transition-all duration-1000`}
                                                 style={{ width: `${Math.min(100, affordability.score)}%` }}
                                             ></div>
                                         </div>
@@ -479,7 +479,7 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
                         <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
                             <div className="flex justify-between items-center mb-6">
                                 <h3 className="font-black text-slate-800 flex items-center gap-2 uppercase tracking-tight">
-                                    <BanknotesIcon className="w-5 h-5 text-emerald-500" /> Apply <span className="text-slate-400">Bank Rates</span>
+                                    <BanknotesIcon className="w-5 h-5 text-orange-500" /> Apply <span className="text-slate-400">Bank Rates</span>
                                 </h3>
                                 <InformationCircleIcon className="w-4 h-4 text-slate-300" />
                             </div>
@@ -492,15 +492,15 @@ const EmiCalculatorPage: React.FC<AdminEmiPageProps> = ({ navigate }) => {
                                     >
                                         <div className="text-left flex-1">
                                             <div className="flex items-center gap-2">
-                                                <p className="text-sm font-black text-slate-700 group-hover:text-emerald-600 transition-colors uppercase">{item.bank}</p>
+                                                <p className="text-sm font-black text-slate-700 group-hover:text-orange-600 transition-colors uppercase">{item.bank}</p>
                                                 {item.bank === bestBank.bank && (
-                                                    <span className="text-[8px] font-black bg-emerald-500 text-white px-1.5 py-0.5 rounded-md uppercase tracking-tighter">Best Rate</span>
+                                                    <span className="text-[8px] font-black bg-orange-500 text-white px-1.5 py-0.5 rounded-md uppercase tracking-tighter">Best Rate</span>
                                                 )}
                                             </div>
                                             <p className="text-[10px] text-slate-400 font-bold">{item.range}</p>
                                         </div>
-                                        <div className="bg-slate-100 group-hover:bg-emerald-100 px-3 py-1 rounded-full transition-colors">
-                                            <span className="text-xs font-black text-slate-600 group-hover:text-emerald-700">{item.rate}%</span>
+                                        <div className="bg-slate-100 group-hover:bg-orange-100 px-3 py-1 rounded-full transition-colors">
+                                            <span className="text-xs font-black text-slate-600 group-hover:text-orange-700">{item.rate}%</span>
                                         </div>
                                     </button>
                                 ))}

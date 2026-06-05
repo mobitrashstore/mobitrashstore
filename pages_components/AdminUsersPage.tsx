@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { User } from '../types';
@@ -165,7 +165,7 @@ const UserDetailsModal: React.FC<{
                             <button
                                 onClick={handleSave}
                                 disabled={isSaving}
-                                className="px-6 py-2 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors shadow-md flex items-center gap-2"
+                                className="px-6 py-2 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-colors shadow-md flex items-center gap-2"
                             >
                                 {isSaving ? 'Saving...' : <><CheckCircleIcon className="w-5 h-5" /> Save Changes</>}
                             </button>

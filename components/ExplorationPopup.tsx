@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { SparklesIcon } from './icons/SparklesIcon';
 import { CameraIcon } from './icons/CameraIcon';
@@ -103,7 +103,7 @@ const ExplorationPopup: React.FC<ExplorationPopupProps> = ({ onClose }) => {
                         </div>
                     ) : (
                         <div className="text-center animate-fade-in">
-                            <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <div className="w-20 h-20 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <CheckCircleIcon className="w-12 h-12" />
                             </div>
                             <h3 className="text-2xl font-black text-slate-900 mb-2">You're All Set!</h3>

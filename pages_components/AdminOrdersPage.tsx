@@ -1,4 +1,4 @@
-
+﻿
 // ... existing imports ...
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
@@ -225,7 +225,7 @@ const OrderDetailsModal: React.FC<{
                             🚚 Pathao Courier Integration
                         </h3>
                         {trackingCode && trackingCode.length > 5 ? (
-                            <div className="p-3 bg-emerald-50 text-emerald-700 rounded-lg text-sm border border-emerald-200 font-medium">
+                            <div className="p-3 bg-orange-50 text-orange-700 rounded-lg text-sm border border-orange-200 font-medium">
                                 ✔ Sent to Pathao. Consignment: <strong className="font-mono">{trackingCode}</strong>
                             </div>
                         ) : (
@@ -340,7 +340,7 @@ const AdminOrdersPage: React.FC<AdminOrdersPageProps> = ({ navigate }) => {
         switch (status) {
             case 'Processing': return 'bg-blue-100 text-blue-700 border-blue-200';
             case 'Shipped': return 'bg-amber-100 text-amber-700 border-amber-200';
-            case 'Delivered': return 'bg-emerald-100 text-emerald-700 border-emerald-200';
+            case 'Delivered': return 'bg-orange-100 text-orange-700 border-orange-200';
             case 'Payment Pending': return 'bg-rose-100 text-rose-700 border-rose-200';
             default: return 'bg-slate-100 text-slate-600 border-slate-200';
         }
@@ -350,7 +350,7 @@ const AdminOrdersPage: React.FC<AdminOrdersPageProps> = ({ navigate }) => {
         switch (status) {
             case 'Processing': return '#3b82f6';
             case 'Shipped': return '#f59e0b';
-            case 'Delivered': return '#10b981';
+            case 'Delivered': return '#f97316';
             case 'Payment Pending': return '#f43f5e';
             default: return '#4b5563';
         }

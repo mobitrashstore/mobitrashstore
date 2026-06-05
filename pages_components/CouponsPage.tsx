@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import MobileSkyHeader from '../components/MobileSkyHeader';
 import { TicketIcon } from '../components/icons/TicketIcon';
 import * as api from '../services/api';
@@ -82,7 +82,7 @@ const CouponsPage: React.FC<CouponsPageProps> = ({ navigate }) => {
                                         onClick={() => handleCopy(coupon.code, coupon.id)}
                                         className="text-gray-500 hover:text-amber-600 transition-colors"
                                     >
-                                        {copiedId === coupon.id ? <CheckCircleIcon className="w-6 h-6 text-green-500" /> : <ClipboardIcon className="w-6 h-6" />}
+                                        {copiedId === coupon.id ? <CheckCircleIcon className="w-6 h-6 text-orange-500" /> : <ClipboardIcon className="w-6 h-6" />}
                                     </button>
                                 </div>
                             </div>

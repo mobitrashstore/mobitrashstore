@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import { BlogPost } from '../types';
 import * as api from '../services/api';
@@ -32,19 +32,19 @@ const HomeBlogSection: React.FC<{ navigate: (path: string) => void }> = ({ navig
             <div className="px-4 md:px-6">
                 <div className="flex flex-row items-end justify-between mb-8 md:mb-10">
                     <div>
-                        <p className="text-emerald-600 font-bold uppercase tracking-wider text-xs mb-2">
+                        <p className="text-orange-600 font-bold uppercase tracking-wider text-xs mb-2">
                             Latest Updates
                         </p>
                         <h2 className="text-2xl md:text-3xl font-black text-slate-900">
-                            From the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-green-600">Blog</span>
+                            From the <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">Blog</span>
                         </h2>
                     </div>
                     <button
                         onClick={() => navigate('/blog')}
-                        className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-emerald-600 transition-colors"
+                        className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-orange-600 transition-colors"
                     >
                         <span className="hidden md:block">View All Articles</span>
-                        <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-emerald-50 md:bg-transparent flex items-center justify-center text-emerald-600 active:scale-90 transition-transform">
+                        <div className="w-10 h-10 md:w-auto md:h-auto rounded-full bg-orange-50 md:bg-transparent flex items-center justify-center text-orange-600 active:scale-90 transition-transform">
                             <ArrowRightIcon className="w-6 h-6 md:w-4 md:h-4" />
                         </div>
                     </button>
@@ -80,7 +80,7 @@ const HomeBlogSection: React.FC<{ navigate: (path: string) => void }> = ({ navig
                                     </>
                                 )}
                             </div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-2 leading-tight group-hover:text-emerald-600 transition-colors line-clamp-2">
+                            <h3 className="text-lg font-bold text-slate-900 mb-2 leading-tight group-hover:text-orange-600 transition-colors line-clamp-2">
                                 {post.title}
                             </h3>
                             <p className="text-slate-500 text-sm line-clamp-2 mb-4">
@@ -88,7 +88,7 @@ const HomeBlogSection: React.FC<{ navigate: (path: string) => void }> = ({ navig
                             </p>
                             <div className="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between">
                                 <span className="text-xs font-bold text-slate-600">Read More</span>
-                                <ArrowRightIcon className="w-4 h-4 text-emerald-500 group-hover:translate-x-1 transition-transform" />
+                                <ArrowRightIcon className="w-4 h-4 text-orange-500 group-hover:translate-x-1 transition-transform" />
                             </div>
                         </div>
                     </div>
@@ -123,8 +123,8 @@ const HomeBlogSection: React.FC<{ navigate: (path: string) => void }> = ({ navig
                                     {post.title}
                                 </h3>
                                 <div className="mt-auto pt-3 border-t border-slate-50 flex items-center justify-between">
-                                    <span className="text-[10px] font-bold text-emerald-600">Read Article</span>
-                                    <ArrowRightIcon className="w-3.5 h-3.5 text-emerald-500" />
+                                    <span className="text-[10px] font-bold text-orange-600">Read Article</span>
+                                    <ArrowRightIcon className="w-3.5 h-3.5 text-orange-500" />
                                 </div>
                             </div>
                         </div>

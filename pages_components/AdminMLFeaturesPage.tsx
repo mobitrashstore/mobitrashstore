@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import {
     labelImage,
     recognizeText,
@@ -43,7 +43,7 @@ const AdminMLFeaturesPage: React.FC<AdminMLFeaturesPageProps> = ({ navigate }) =
             name: 'IMEI Extraction',
             description: 'Automatically extract IMEI numbers from photos',
             icon: '📱',
-            color: 'from-emerald-500 to-green-600'
+            color: 'from-orange-500 to-orange-600'
         },
         {
             id: 'barcode-scanning',
@@ -168,9 +168,9 @@ const AdminMLFeaturesPage: React.FC<AdminMLFeaturesPageProps> = ({ navigate }) =
 
             case 'imei':
                 return (
-                    <div className="p-4 bg-emerald-50 rounded-lg">
-                        <h3 className="font-bold text-emerald-900 mb-2">IMEI Number:</h3>
-                        <p className="text-2xl font-mono font-bold text-emerald-700">{results.data || 'Not found'}</p>
+                    <div className="p-4 bg-orange-50 rounded-lg">
+                        <h3 className="font-bold text-orange-900 mb-2">IMEI Number:</h3>
+                        <p className="text-2xl font-mono font-bold text-orange-700">{results.data || 'Not found'}</p>
                     </div>
                 );
 

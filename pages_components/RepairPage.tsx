@@ -1,4 +1,4 @@
-
+﻿
 
 import React, { useState, useEffect, useRef } from 'react';
 import { WrenchIcon } from '../components/icons/WrenchIcon';
@@ -813,8 +813,8 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                     </p>
 
                     <div className="inline-flex bg-gray-800/80 p-1 rounded-full backdrop-blur-md border border-gray-700">
-                        <button onClick={() => setActiveTab('professional')} className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all ${activeTab === 'professional' ? 'bg-emerald-500 text-white shadow-lg scale-105' : 'text-gray-400 hover:text-white'}`}>Book Expert</button>
-                        <button onClick={() => setActiveTab('self-service')} className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all ${activeTab === 'self-service' ? 'bg-emerald-500 text-white shadow-lg scale-105' : 'text-gray-400 hover:text-white'}`}>Self Repair</button>
+                        <button onClick={() => setActiveTab('professional')} className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all ${activeTab === 'professional' ? 'bg-orange-500 text-white shadow-lg scale-105' : 'text-gray-400 hover:text-white'}`}>Book Expert</button>
+                        <button onClick={() => setActiveTab('self-service')} className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all ${activeTab === 'self-service' ? 'bg-orange-500 text-white shadow-lg scale-105' : 'text-gray-400 hover:text-white'}`}>Self Repair</button>
                     </div>
                 </div>
             </div>
@@ -827,7 +827,7 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                             {repairConfig.features.map((feature, idx) => (
                                 <div key={idx} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
-                                    <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <div className="w-12 h-12 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-3">
                                         {idx === 0 ? <ShieldCheckIcon className="w-6 h-6" /> : idx === 1 ? <BoltIcon className="w-6 h-6" /> : <CheckCircleIcon className="w-6 h-6" />}
                                     </div>
                                     <h3 className="text-base font-bold text-gray-900">
@@ -873,27 +873,27 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                                     />
                                 </p>
                                 <ul className="space-y-3 text-sm text-gray-300">
-                                    <li className="flex items-center gap-2"><CheckCircleIcon className="w-4 h-4 text-green-400" /> Free Diagnostics</li>
-                                    <li className="flex items-center gap-2"><CheckCircleIcon className="w-4 h-4 text-green-400" /> Data Safe Guarantee</li>
-                                    <li className="flex items-center gap-2"><CheckCircleIcon className="w-4 h-4 text-green-400" /> No Fix, No Fee Policy</li>
+                                    <li className="flex items-center gap-2"><CheckCircleIcon className="w-4 h-4 text-orange-400" /> Free Diagnostics</li>
+                                    <li className="flex items-center gap-2"><CheckCircleIcon className="w-4 h-4 text-orange-400" /> Data Safe Guarantee</li>
+                                    <li className="flex items-center gap-2"><CheckCircleIcon className="w-4 h-4 text-orange-400" /> No Fix, No Fee Policy</li>
                                 </ul>
                             </div>
                             <div className="md:w-2/3 p-6 md:p-8">
                                 <form onSubmit={handleBookingSubmit} className="space-y-5">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                        <input type="text" name="customerName" value={formData.customerName} onChange={handleInputChange} required className="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 text-sm" placeholder="Your Name" />
-                                        <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 text-sm" placeholder="98XXXXXXXX" />
+                                        <input type="text" name="customerName" value={formData.customerName} onChange={handleInputChange} required className="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 text-sm" placeholder="Your Name" />
+                                        <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 text-sm" placeholder="98XXXXXXXX" />
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                        <input type="text" name="deviceModel" value={formData.deviceModel} onChange={handleInputChange} required className="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 text-sm" placeholder="e.g. iPhone 13 Pro" />
-                                        <select name="issueType" value={formData.issueType} onChange={handleInputChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 bg-white text-sm">
+                                        <input type="text" name="deviceModel" value={formData.deviceModel} onChange={handleInputChange} required className="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 text-sm" placeholder="e.g. iPhone 13 Pro" />
+                                        <select name="issueType" value={formData.issueType} onChange={handleInputChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 bg-white text-sm">
                                             {services.map(s => <option key={s.name} value={s.name}>{s.name}</option>)}
                                             <option value="Other">Other / Not Listed</option>
                                         </select>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                        <input type="date" name="appointmentDate" value={formData.appointmentDate} onChange={handleInputChange} min={today} required className="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 text-sm" />
-                                        <select name="serviceMode" value={formData.serviceMode} onChange={handleInputChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 bg-white text-sm">
+                                        <input type="date" name="appointmentDate" value={formData.appointmentDate} onChange={handleInputChange} min={today} required className="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 text-sm" />
+                                        <select name="serviceMode" value={formData.serviceMode} onChange={handleInputChange} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 bg-white text-sm">
                                             <option value="Walk-in">Walk-in Visit</option>
                                             <option value="Pickup">Pickup & Delivery</option>
                                         </select>
@@ -941,28 +941,28 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Active Provider</p>
                                         <h3 className="text-xl font-bold text-slate-800">{netStats?.isp || 'Analyzing...'}</h3>
                                     </div>
-                                    <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center border border-emerald-200"><WifiIcon className="w-8 h-8" /></div>
+                                    <div className="w-14 h-14 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center border border-orange-200"><WifiIcon className="w-8 h-8" /></div>
                                 </div>
                             </div>
 
                             {/* Is It Worth Fixing? Calculator (White Theme) */}
                             <div className="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
                                 <div className="flex items-center gap-3 mb-4 border-b border-slate-100 pb-3">
-                                    <div className="p-2 bg-emerald-100 rounded-lg text-emerald-600"><CalculatorIcon className="w-6 h-6" /></div>
+                                    <div className="p-2 bg-orange-100 rounded-lg text-orange-600"><CalculatorIcon className="w-6 h-6" /></div>
                                     <h3 className="text-lg font-bold text-slate-800 uppercase tracking-wide">Investment Analyzer</h3>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4 mb-4">
-                                    <input type="number" placeholder="Device Value (NPR)" value={calcState.deviceValue} onChange={e => setCalcState({ ...calcState, deviceValue: e.target.value })} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold focus:ring-2 focus:ring-emerald-500 outline-none" />
-                                    <input type="number" placeholder="Repair Cost (NPR)" value={calcState.repairCost} onChange={e => setCalcState({ ...calcState, repairCost: e.target.value })} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold focus:ring-2 focus:ring-emerald-500 outline-none" />
+                                    <input type="number" placeholder="Device Value (NPR)" value={calcState.deviceValue} onChange={e => setCalcState({ ...calcState, deviceValue: e.target.value })} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold focus:ring-2 focus:ring-orange-500 outline-none" />
+                                    <input type="number" placeholder="Repair Cost (NPR)" value={calcState.repairCost} onChange={e => setCalcState({ ...calcState, repairCost: e.target.value })} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold focus:ring-2 focus:ring-orange-500 outline-none" />
                                 </div>
                                 {calcResult ? (
                                     <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 animate-fade-in">
                                         <div className="flex justify-between items-center mb-2">
                                             <span className="text-xs text-slate-500 uppercase font-bold tracking-widest">Our Assessment</span>
-                                            <span className={`text-lg font-black px-3 py-1 rounded-full ${calcResult.decision === 'FIX IT' ? 'bg-green-100 text-green-700' : 'bg-rose-100 text-rose-700'}`}>{calcResult.decision}</span>
+                                            <span className={`text-lg font-black px-3 py-1 rounded-full ${calcResult.decision === 'FIX IT' ? 'bg-orange-100 text-orange-700' : 'bg-rose-100 text-rose-700'}`}>{calcResult.decision}</span>
                                         </div>
                                         <p className="text-sm text-slate-600 font-medium">{calcResult.message}</p>
-                                        <button onClick={() => setCalcResult(null)} className="mt-3 text-[10px] font-bold text-slate-400 hover:text-emerald-600 uppercase transition-colors">Re-calculate</button>
+                                        <button onClick={() => setCalcResult(null)} className="mt-3 text-[10px] font-bold text-slate-400 hover:text-orange-600 uppercase transition-colors">Re-calculate</button>
                                     </div>
                                 ) : (
                                     <button onClick={calculateWorth} disabled={!calcState.deviceValue || !calcState.repairCost} className="w-full bg-slate-900 text-white font-bold py-3.5 rounded-xl hover:bg-slate-800 transition-colors shadow-md disabled:opacity-50">Analyze Now</button>
@@ -976,17 +976,17 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                                 </h2>
                                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
                                     {/* Mic Check */}
-                                    <button onClick={toggleMicTest} className={`p-5 rounded-3xl border-2 flex flex-col items-center justify-center transition-all ${isMicActive ? 'border-emerald-500 bg-emerald-50' : 'border-slate-200 bg-white hover:border-emerald-300'}`}>
-                                        <MicrophoneIcon className={`w-8 h-8 mb-2 ${isMicActive ? 'text-emerald-500' : 'text-slate-400'}`} style={isMicActive ? { transform: `scale(${1 + micLevel / 300})` } : {}} />
+                                    <button onClick={toggleMicTest} className={`p-5 rounded-3xl border-2 flex flex-col items-center justify-center transition-all ${isMicActive ? 'border-orange-500 bg-orange-50' : 'border-slate-200 bg-white hover:border-orange-300'}`}>
+                                        <MicrophoneIcon className={`w-8 h-8 mb-2 ${isMicActive ? 'text-orange-500' : 'text-slate-400'}`} style={isMicActive ? { transform: `scale(${1 + micLevel / 300})` } : {}} />
                                         <span className="font-black text-slate-700 text-[10px] uppercase">Mic Check</span>
-                                        {isMicActive && <div className="w-full h-1 bg-slate-200 rounded-full mt-2 overflow-hidden"><div className="h-full bg-emerald-500" style={{ width: `${Math.min(micLevel, 100)}%` }}></div></div>}
+                                        {isMicActive && <div className="w-full h-1 bg-slate-200 rounded-full mt-2 overflow-hidden"><div className="h-full bg-orange-500" style={{ width: `${Math.min(micLevel, 100)}%` }}></div></div>}
                                     </button>
 
                                     {/* Net Speed */}
                                     <button onClick={runRealSpeedTest} disabled={isNetTesting} className={`p-5 rounded-3xl border-2 flex flex-col items-center justify-center transition-all relative overflow-hidden ${isNetTesting ? 'border-amber-500 bg-amber-50' : 'border-slate-200 bg-white hover:border-amber-300'}`}>
                                         {isNetTesting ? <Spinner size="w-8 h-8" /> : <WifiIcon className="w-8 h-8 mb-2 text-slate-400" />}
                                         <span className="font-black text-slate-700 text-[10px] uppercase">{isNetTesting ? 'Testing...' : 'Net Speed'}</span>
-                                        {netStats && !isNetTesting && <span className="absolute bottom-1 text-[8px] font-bold text-emerald-600">{netStats.dl} Mbps</span>}
+                                        {netStats && !isNetTesting && <span className="absolute bottom-1 text-[8px] font-bold text-orange-600">{netStats.dl} Mbps</span>}
                                     </button>
 
                                     {/* Touch Test */}
@@ -1026,7 +1026,7 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                                     </button>
 
                                     {/* NEW: Dead Pixel Test */}
-                                    <button onClick={startScreenTest} className="p-5 rounded-3xl border-2 border-slate-200 bg-white hover:border-emerald-300 flex flex-col items-center justify-center transition-all">
+                                    <button onClick={startScreenTest} className="p-5 rounded-3xl border-2 border-slate-200 bg-white hover:border-orange-300 flex flex-col items-center justify-center transition-all">
                                         <EyeIcon className="w-8 h-8 mb-2 text-slate-400" />
                                         <span className="font-black text-slate-700 text-[10px] uppercase">Dead Pixels</span>
                                     </button>
@@ -1040,7 +1040,7 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
 
                                 {/* Sensor Data Display */}
                                 {isMotionTestActive && motionData && (
-                                    <div className="mt-4 bg-slate-900 text-emerald-400 p-4 rounded-2xl font-mono text-xs flex justify-around animate-fade-in border border-emerald-900/50">
+                                    <div className="mt-4 bg-slate-900 text-orange-400 p-4 rounded-2xl font-mono text-xs flex justify-around animate-fade-in border border-orange-900/50">
                                         <span>X: {motionData.x}</span>
                                         <span>Y: {motionData.y}</span>
                                         <span>Z: {motionData.z}</span>
@@ -1054,7 +1054,7 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                                         <div className="text-center border-r border-slate-100">
                                             <p className="text-[10px] text-slate-400 uppercase font-black mb-1">Download</p>
-                                            <p className="text-2xl font-black text-emerald-500">{netStats.dl} <span className="text-xs">Mbps</span></p>
+                                            <p className="text-2xl font-black text-orange-500">{netStats.dl} <span className="text-xs">Mbps</span></p>
                                         </div>
                                         <div className="text-center border-r border-slate-100">
                                             <p className="text-[10px] text-slate-400 uppercase font-black mb-1">Upload</p>
@@ -1128,7 +1128,7 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
 
                             {/* Lab Inventory */}
                             <div>
-                                <h2 className="text-xl font-black text-slate-800 mb-4 flex items-center gap-2"><ShoppingCartIcon className="w-6 h-6 text-emerald-600" /> Lab Inventory</h2>
+                                <h2 className="text-xl font-black text-slate-800 mb-4 flex items-center gap-2"><ShoppingCartIcon className="w-6 h-6 text-orange-600" /> Lab Inventory</h2>
                                 {isInventoryLoading ? (
                                     <div className="text-slate-500 text-center py-8">
                                         <Spinner />
@@ -1163,7 +1163,7 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                                 <div className="bg-gradient-to-r from-slate-900 to-slate-800 p-4 flex items-center gap-3">
                                     <div className="relative">
                                         <img src="https://i.ibb.co/RpStGhqm/IMG-5251-Original.jpg" alt="Mobi Store Tech AI" className="w-12 h-12 rounded-full border-2 border-white object-cover" />
-                                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-slate-800 rounded-full animate-pulse"></div>
+                                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-orange-500 border-2 border-slate-800 rounded-full animate-pulse"></div>
                                     </div>
                                     <div>
                                         <h3 className="text-white font-bold text-sm">BT Mobile Care AI</h3>

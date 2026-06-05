@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { extractIMEI, recognizeText } from '../services/mlService';
 import { CameraIcon } from './icons/CameraIcon';
 import { XMarkIcon } from './icons/XMarkIcon';
@@ -103,11 +103,11 @@ const IMEIScanner: React.FC<IMEIScannerProps> = ({ onIMEIDetected, onClose }) =>
 
                 {/* Detected text */}
                 {detectedText && !isProcessing && (
-                    <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-xl">
+                    <div className="mb-4 p-4 bg-orange-50 border border-orange-200 rounded-xl">
                         <div className="flex items-start gap-3">
-                            <CheckCircleIcon className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                            <CheckCircleIcon className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
                             <div className="flex-1">
-                                <p className="text-sm font-semibold text-green-700 whitespace-pre-wrap">{detectedText}</p>
+                                <p className="text-sm font-semibold text-orange-700 whitespace-pre-wrap">{detectedText}</p>
                             </div>
                         </div>
                     </div>

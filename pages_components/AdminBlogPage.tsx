@@ -1,4 +1,4 @@
-
+﻿
 
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
@@ -391,7 +391,7 @@ const BlogModal: React.FC<{
                                 onClick={() =>
                                     insertText('<img src="URL_HERE" alt="Image" class="w-full h-auto rounded-xl my-4 shadow-sm" />')
                                 }
-                                className="px-2 py-1 bg-white border border-slate-300 rounded text-xs hover:bg-slate-100 text-emerald-600 flex items-center gap-1 shadow-sm"
+                                className="px-2 py-1 bg-white border border-slate-300 rounded text-xs hover:bg-slate-100 text-orange-600 flex items-center gap-1 shadow-sm"
                                 title="Insert Image Tag"
                             >
                                 <PhotoIcon className="w-3 h-3" /> Img
@@ -552,7 +552,7 @@ const AdminBlogPage: React.FC<AdminBlogPageProps> = ({ navigate }) => {
                 </h1>
                 <button
                     onClick={handleCreateNew}
-                    className="bg-green-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-green-700 flex items-center gap-2 shadow-md transition-all transform active:scale-95"
+                    className="bg-orange-600 text-white font-bold py-2.5 px-6 rounded-xl hover:bg-orange-700 flex items-center gap-2 shadow-md transition-all transform active:scale-95"
                 >
                     <PlusCircleIcon className="w-5 h-5" /> Write New Post
                 </button>

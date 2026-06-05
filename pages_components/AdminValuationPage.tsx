@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+﻿import React, { useState, useEffect, useMemo } from 'react';
 import * as api from '../services/api';
 import { ValuationBaseline, ValuationDeduction, SellModel } from '../types';
 import { PlusCircleIcon } from '../components/icons/PlusCircleIcon';
@@ -384,7 +384,7 @@ const AdminValuationPage: React.FC<{ navigate: (path: string) => void }> = () =>
                         </div>
                         <button
                             onClick={() => { setEditingValuation(null); setIsValuationModalOpen(true); }}
-                            className="bg-green-600 text-white font-bold py-2.5 px-6 rounded-lg hover:bg-green-700 flex items-center justify-center gap-2 shadow-md transition-colors active:scale-95"
+                            className="bg-orange-600 text-white font-bold py-2.5 px-6 rounded-lg hover:bg-orange-700 flex items-center justify-center gap-2 shadow-md transition-colors active:scale-95"
                         >
                             <PlusCircleIcon className="w-5 h-5" /> Add Valuation
                         </button>

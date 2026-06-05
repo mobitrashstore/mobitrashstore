@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { GalleryItem } from '../types';
@@ -184,7 +184,7 @@ const AdminGalleryPage: React.FC<AdminGalleryPageProps> = ({ navigate }) => {
                             <button 
                                 type="submit" 
                                 disabled={isSubmitting || !form.url}
-                                className="w-full bg-green-600 text-white font-bold py-3 rounded-xl hover:bg-green-700 transition-colors disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md active:scale-95"
+                                className="w-full bg-orange-600 text-white font-bold py-3 rounded-xl hover:bg-orange-700 transition-colors disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md active:scale-95"
                             >
                                 {isSubmitting ? <Spinner size="w-5 h-5"/> : <><PlusCircleIcon className="w-5 h-5"/> Add Item</>}
                             </button>

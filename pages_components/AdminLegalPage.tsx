@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { LegalPageContent } from '../types';
 import Spinner from '../components/Spinner';
@@ -559,7 +559,7 @@ const AdminLegalPage: React.FC<AdminLegalPageProps> = () => {
                     onClick={handleSeedAllToDatabase}
                     disabled={seeding}
                     title="Overwrites all 5 legal pages in Firestore with the clean Mobi Store templates"
-                    className="bg-emerald-600 text-white font-bold py-2.5 px-5 rounded-xl hover:bg-emerald-700 transition-colors disabled:bg-slate-300 shadow-md active:scale-95 text-sm flex items-center gap-2"
+                    className="bg-orange-600 text-white font-bold py-2.5 px-5 rounded-xl hover:bg-orange-700 transition-colors disabled:bg-slate-300 shadow-md active:scale-95 text-sm flex items-center gap-2"
                 >
                     {seeding ? '⏳ Seeding...' : '🔄 Fix All Pages in Database'}
                 </button>
