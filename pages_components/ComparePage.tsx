@@ -101,6 +101,10 @@ const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
     const [inventoryItems, setInventoryItems] = useState<InventoryItem[]>([]);
     const [sellModels, setSellModels] = useState<SellModel[]>([]);
 
+    // Resolved phone image states (initially using Unsplash placeholders)
+    const [phone1Image, setPhone1Image] = useState<string>('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80');
+    const [phone2Image, setPhone2Image] = useState<string>('https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80');
+
     useEffect(() => {
         const loadDeviceData = async () => {
             try {
@@ -116,6 +120,23 @@ const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
         };
         loadDeviceData();
     }, []);
+
+    // Fetch high-quality device image from our server API route
+    const fetchRealDeviceImage = async (deviceName: string): Promise<string | null> => {
+        if (!deviceName || deviceName.trim().length < 2) return null;
+        try {
+            const res = await fetch(`/api/device-image?device=${encodeURIComponent(deviceName)}`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.imageUrl) {
+                    return data.imageUrl;
+                }
+            }
+        } catch (e) {
+            console.warn("Failed to fetch device image from API route:", e);
+        }
+        return null;
+    };
 
     const getDeviceImage = (deviceName: string, defaultFallback: string) => {
         if (!deviceName) return defaultFallback;
@@ -151,6 +172,39 @@ const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
 
         return defaultFallback;
     };
+
+    // Live effect hooks to update device images automatically
+    useEffect(() => {
+        const updateImg1 = async () => {
+            if (!phone1.trim()) return;
+            // 1. Try local database first (instant match)
+            const localImg = getDeviceImage(phone1, '');
+            if (localImg) {
+                setPhone1Image(localImg);
+                return;
+            }
+            // 2. Try the smart backend API
+            const apiImg = await fetchRealDeviceImage(phone1);
+            setPhone1Image(apiImg || 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80');
+        };
+        updateImg1();
+    }, [phone1, inventoryItems, sellModels]);
+
+    useEffect(() => {
+        const updateImg2 = async () => {
+            if (!phone2.trim()) return;
+            // 1. Try local database first (instant match)
+            const localImg = getDeviceImage(phone2, '');
+            if (localImg) {
+                setPhone2Image(localImg);
+                return;
+            }
+            // 2. Try the smart backend API
+            const apiImg = await fetchRealDeviceImage(phone2);
+            setPhone2Image(apiImg || 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80');
+        };
+        updateImg2();
+    }, [phone2, inventoryItems, sellModels]);
 
     const handleCompare = async () => {
         if (!phone1.trim() || !phone2.trim()) {
@@ -294,7 +348,7 @@ Example format:
                         <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center text-center">
                             <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 mb-3 relative overflow-hidden">
                                 <img 
-                                    src={getDeviceImage(phone1, 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&h=300&q=80')} 
+                                    src={phone1Image} 
                                     alt={phone1} 
                                     className="w-full h-full object-contain filter drop-shadow-md transition-transform duration-300 hover:scale-105" 
                                     onError={(e) => {
@@ -308,7 +362,7 @@ Example format:
                         <div className="bg-white p-4 rounded-2xl shadow-sm border border-gray-200 flex flex-col items-center text-center">
                             <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-2 mb-3 relative overflow-hidden">
                                 <img 
-                                    src={getDeviceImage(phone2, 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=300&h=300&q=80')} 
+                                    src={phone2Image} 
                                     alt={phone2} 
                                     className="w-full h-full object-contain filter drop-shadow-md transition-transform duration-300 hover:scale-105"
                                     onError={(e) => {
@@ -329,7 +383,7 @@ Example format:
                                 <div className="pl-2">Feature</div>
                                 <div className="text-amber-400 break-words px-2 text-center flex flex-col md:flex-row items-center justify-center gap-2">
                                     <img 
-                                        src={getDeviceImage(phone1, 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=80&h=80&q=80')} 
+                                        src={phone1Image} 
                                         alt="" 
                                         className="w-8 h-8 object-contain rounded bg-white p-0.5 border border-gray-600 flex-shrink-0"
                                         onError={(e) => {
@@ -340,7 +394,7 @@ Example format:
                                 </div>
                                 <div className="text-sky-400 break-words px-2 text-center flex flex-col md:flex-row items-center justify-center gap-2">
                                     <img 
-                                        src={getDeviceImage(phone2, 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=80&h=80&q=80')} 
+                                        src={phone2Image} 
                                         alt="" 
                                         className="w-8 h-8 object-contain rounded bg-white p-0.5 border border-gray-600 flex-shrink-0"
                                         onError={(e) => {
