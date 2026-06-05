@@ -8,8 +8,8 @@
   "id": "com.mobistore.store",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#ff5722",
+  "theme_color": "#ff5722",
   "orientation": "portrait",
   "categories": [
     "shopping",

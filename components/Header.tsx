@@ -223,7 +223,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                 <a
                   href="/categories"
                   onClick={(e) => handleNav(e, '/categories')}
-                  className={`flex items-center gap-1.5 font-bold text-sm tracking-wide transition-colors py-2 ${isHoveringCategories ? 'text-[#00bfff]' : 'text-slate-600 hover:text-[#00bfff]'}`}
+                  className={`flex items-center gap-1.5 font-bold text-sm tracking-wide transition-colors py-2 ${isHoveringCategories ? 'text-[#ff5722]' : 'text-slate-600 hover:text-[#ff5722]'}`}
                   title="Explore Product Categories"
                 >
                   <Squares2x2Icon className="w-5 h-5 opacity-50" /> Categories
@@ -245,10 +245,10 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                           className="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 transition-colors group text-left"
                           title={`View ${cat.name}`}
                         >
-                          <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center border border-gray-200 group-hover:border-[#00bfff] transition-colors">
+                          <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center border border-gray-200 group-hover:border-[#ff5722] transition-colors">
                             <img src={cat.imageUrl} alt={cat.name} className="w-full h-full object-contain p-1" />
                           </div>
-                          <span className="text-sm font-bold text-gray-700 group-hover:text-[#00bfff] line-clamp-1">
+                          <span className="text-sm font-bold text-gray-700 group-hover:text-[#ff5722] line-clamp-1">
                             {cat.name}
                           </span>
                         </button>
@@ -258,11 +258,11 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                 )}
               </div>
 
-              <a href="/product" onClick={(e) => handleNav(e, '/product')} className="font-bold text-sm text-slate-600 hover:text-[#00bfff] transition-all uppercase tracking-wide" title="Shop All Devices">Buy</a>
-              <a href="/sell" onClick={(e) => handleNav(e, '/sell')} className="font-bold text-sm text-slate-600 hover:text-[#00bfff] transition-all uppercase tracking-wide" title="Sell Your Used Device">Sell</a>
-              <a href="/repair" onClick={(e) => handleNav(e, '/repair')} className="font-bold text-sm text-slate-600 hover:text-[#00bfff] transition-all uppercase tracking-wide" title="Expert Repair Services">Repair</a>
-              <a href="/compare" onClick={(e) => handleNav(e, '/compare')} className="font-bold text-sm text-slate-600 hover:text-[#00bfff] transition-all uppercase tracking-wide" title="Compare Device Specifications">Compare</a>
-              <a href="/blog" onClick={(e) => handleNav(e, '/blog')} className="font-bold text-sm text-slate-600 hover:text-[#00bfff] transition-all uppercase tracking-wide" title="Read Latest Tech News">Blog</a>
+              <a href="/product" onClick={(e) => handleNav(e, '/product')} className="font-bold text-sm text-slate-600 hover:text-[#ff5722] transition-all uppercase tracking-wide" title="Shop All Devices">Buy</a>
+              <a href="/sell" onClick={(e) => handleNav(e, '/sell')} className="font-bold text-sm text-slate-600 hover:text-[#ff5722] transition-all uppercase tracking-wide" title="Sell Your Used Device">Sell</a>
+              <a href="/repair" onClick={(e) => handleNav(e, '/repair')} className="font-bold text-sm text-slate-600 hover:text-[#ff5722] transition-all uppercase tracking-wide" title="Expert Repair Services">Repair</a>
+              <a href="/compare" onClick={(e) => handleNav(e, '/compare')} className="font-bold text-sm text-slate-600 hover:text-[#ff5722] transition-all uppercase tracking-wide" title="Compare Device Specifications">Compare</a>
+              <a href="/blog" onClick={(e) => handleNav(e, '/blog')} className="font-bold text-sm text-slate-600 hover:text-[#ff5722] transition-all uppercase tracking-wide" title="Read Latest Tech News">Blog</a>
               {user?.role === 'admin' && (
                 <a href="/admin/dashboard" onClick={(e) => handleNav(e, '/admin/dashboard')} className="font-bold text-sm text-amber-600 hover:text-amber-500 uppercase tracking-wide" title="Open Admin Control Panel">Admin</a>
               )}
@@ -273,10 +273,10 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                 <VisualEditorHeaderToggle />
               </div>
 
-              <button onClick={() => setIsSearchOpen(true)} className="p-2 text-slate-500 hover:text-[#00bfff] transition-colors" title="Search Products" aria-label="Search Products">
+              <button onClick={() => setIsSearchOpen(true)} className="p-2 text-slate-500 hover:text-[#ff5722] transition-colors" title="Search Products" aria-label="Search Products">
                 <MagnifyingGlassIcon className="w-6 h-6" />
               </button>
-              <NotificationBell navigate={navigate} iconClassName="w-6 h-6 text-slate-500 hover:text-[#00bfff]" />
+              <NotificationBell navigate={navigate} iconClassName="w-6 h-6 text-slate-500 hover:text-[#ff5722]" />
 
               {/* Dark/Light Mode Toggle */}
               <button
@@ -289,10 +289,10 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                   {theme === 'dark' ? '🌙' : '☀️'}
                 </span>
               </button>
-              <button onClick={openCart} className="relative p-2 text-slate-500 hover:text-[#00bfff] transition-colors" title={`View Shopping Cart (${cartItemCount} items)`} aria-label={`View Shopping Cart - ${cartItemCount} items`}>
+              <button onClick={openCart} className="relative p-2 text-slate-500 hover:text-[#ff5722] transition-colors" title={`View Shopping Cart (${cartItemCount} items)`} aria-label={`View Shopping Cart - ${cartItemCount} items`}>
                 <ShoppingCartIcon className="w-6 h-6" />
                 {cartItemCount > 0 && (
-                  <span className="absolute top-0 right-0 block h-5 w-5 rounded-full bg-[#FFA500] text-white text-[10px] font-black flex items-center justify-center transform -translate-y-1/2 translate-x-1/2">
+                  <span className="absolute top-0 right-0 block h-5 w-5 rounded-full bg-[#ff5722] text-white text-[10px] font-black flex items-center justify-center transform -translate-y-1/2 translate-x-1/2">
                     {cartItemCount}
                   </span>
                 )}
@@ -301,7 +301,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
               <div className="hidden md:flex items-center border-l border-gray-200 pl-4">
                 {user ? (
                   <div className="flex items-center gap-3">
-                    <a href="/profile" onClick={(e) => handleNav(e, '/profile')} className="text-slate-500 hover:text-[#00bfff]" title="My Profile Settings" aria-label="My Profile Settings">
+                    <a href="/profile" onClick={(e) => handleNav(e, '/profile')} className="text-slate-500 hover:text-[#ff5722]" title="My Profile Settings" aria-label="My Profile Settings">
                       {user.photoURL ? (
                         <img src={user.photoURL} alt="Profile" width="32" height="32" className="w-8 h-8 rounded-full object-cover ring-2 ring-gray-200" />
                       ) : (
@@ -315,7 +315,7 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
                 ) : (
                   <div className="flex items-center gap-2">
                     <a href="/login" onClick={(e) => handleNav(e, '/login')} className="text-xs font-black text-slate-600 hover:text-slate-900 uppercase tracking-widest" title="Log into Your Account">Login</a>
-                    <a href="/signup" onClick={(e) => handleNav(e, '/signup')} className="text-xs font-black bg-[#00bfff] text-black px-4 py-2 rounded-lg hover:bg-[#00aeee] transition-all uppercase tracking-widest" title="Create New Account">Join</a>
+                    <a href="/signup" onClick={(e) => handleNav(e, '/signup')} className="text-xs font-black bg-[#ff5722] text-black px-4 py-2 rounded-lg hover:bg-[#e64a19] transition-all uppercase tracking-widest" title="Create New Account">Join</a>
                   </div>
                 )}
               </div>

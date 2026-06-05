@@ -49,7 +49,7 @@ const ExplorationPopup: React.FC<ExplorationPopupProps> = ({ onClose }) => {
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
             <div className="bg-white rounded-[2.5rem] shadow-2xl max-w-lg w-full overflow-hidden relative border border-white/20">
                 {/* Visual Header */}
-                <div className="bg-gradient-to-br from-[#1e3a8a] to-[#0f172a] p-8 text-center relative overflow-hidden">
+                <div className="bg-gradient-to-br from-[#ff5722] to-[#0f172a] p-8 text-center relative overflow-hidden">
                     <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-0 left-0 -ml-10 -mb-10 w-32 h-32 bg-black/10 rounded-full blur-2xl"></div>
                     

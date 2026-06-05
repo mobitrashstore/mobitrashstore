@@ -32,16 +32,16 @@ const Newsletter: React.FC = () => {
         <section className="py-8 md:py-12 px-4 md:px-0 mb-8">
             <div className="relative overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl">
                 {/* Abstract Background Shapes */}
-                <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div className="relative z-10 px-6 py-10 md:p-16 text-center max-w-2xl mx-auto">
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-slate-800 mb-6 shadow-inner border border-slate-700">
-                        <MailIcon className="w-6 h-6 text-blue-400" />
+                        <MailIcon className="w-6 h-6 text-orange-400" />
                     </div>
 
                     <h2 className="text-2xl md:text-3xl font-black text-white mb-4 tracking-tight">
-                        Join the <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-sky-400">Eco-Movement.</span>
+                        Join the <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-400">Eco-Movement.</span>
                     </h2>
 
                     <p className="text-slate-400 mb-8 leading-relaxed">
@@ -56,12 +56,12 @@ const Newsletter: React.FC = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="flex-1 bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
+                            className="flex-1 bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 rounded-xl px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500 transition-all"
                         />
                         <button
                             type="submit"
                             disabled={status === 'submitting' || status === 'success'}
-                            className={`px-8 py-3.5 rounded-xl font-bold bg-blue-600 text-white shadow-lg shadow-blue-500/20 hover:bg-blue-500 focus:ring-4 focus:ring-blue-500/30 transition-all ${status === 'success' ? 'bg-blue-700 cursor-default' : ''
+                            className={`px-8 py-3.5 rounded-xl font-bold bg-[#ff5722] text-white shadow-lg shadow-orange-500/20 hover:bg-[#e64a19] focus:ring-4 focus:ring-orange-500/30 transition-all ${status === 'success' ? 'bg-orange-700 cursor-default' : ''
                                 }`}
                         >
                             {status === 'submitting' ? 'Joining...' : status === 'success' ? 'Welcome!' : 'Subscribe'}

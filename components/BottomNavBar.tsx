@@ -55,24 +55,24 @@ const BottomNavBar: React.FC<BottomNavBarProps> = ({ navigate, currentPath }) =>
               <div className="relative -top-6 w-full flex flex-col items-center">
                 <button
                   onClick={() => handleTabTrigger(idx)}
-                  className="w-16 h-16 bg-[#2ecc71] rounded-full flex items-center justify-center shadow-[0_8px_16px_rgba(46,204,113,0.3)] border-4 border-white transition-transform active:scale-95"
+                  className="w-16 h-16 bg-[#ff5722] rounded-full flex items-center justify-center shadow-[0_8px_16px_rgba(255,87,34,0.3)] border-4 border-white transition-transform active:scale-95"
                 >
                   <div className="relative w-8 h-8">
-                    <BoltIcon className="absolute inset-0 w-full h-full text-white/40" />
-                    <motion.div 
+                     <BoltIcon className="absolute inset-0 w-full h-full text-white/40" />
+                     <motion.div 
                       className="absolute inset-x-0 bottom-0 overflow-hidden pointer-events-none"
                       animate={{ height: ['0%', '100%', '0%'] }}
                       transition={{ 
-                        repeat: Infinity, 
-                        duration: 3, 
-                        ease: "easeInOut" 
+                         repeat: Infinity, 
+                         duration: 3, 
+                         ease: "easeInOut" 
                       }}
                     >
-                      <BoltIcon className="absolute bottom-0 inset-x-0 w-8 h-8 text-amber-400 fill-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" />
-                    </motion.div>
+                       <BoltIcon className="absolute bottom-0 inset-x-0 w-8 h-8 text-amber-400 fill-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" />
+                     </motion.div>
                   </div>
                 </button>
-                <span className="mt-1 text-[11px] font-bold text-[#2ecc71] tracking-wide uppercase">
+                <span className="mt-1 text-[11px] font-bold text-[#ff5722] tracking-wide uppercase">
                   {tab.label}
                 </span>
               </div>
@@ -80,7 +80,7 @@ const BottomNavBar: React.FC<BottomNavBarProps> = ({ navigate, currentPath }) =>
               <button
                 onClick={() => handleTabTrigger(idx)}
                 className={`flex flex-col items-center justify-center w-full h-full transition-colors ${
-                  activeIndex === idx ? 'text-[#2ecc71]' : 'text-gray-400'
+                  activeIndex === idx ? 'text-[#ff5722]' : 'text-gray-400'
                 }`}
               >
                 <div className="relative">

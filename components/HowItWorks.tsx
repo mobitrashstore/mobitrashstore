@@ -6,17 +6,17 @@ import { ShieldCheckIcon } from './icons/ShieldCheckIcon';
 const HowItWorks: React.FC = () => {
     const steps = [
         {
-            icon: <CashIcon className="w-10 h-10 text-[#00bfff]" />,
+            icon: <CashIcon className="w-10 h-10 text-[#ff5722]" />,
             title: "Get an Instant Quote",
             description: "Select your device and tell us its condition. Our smart algorithm gives you a fair, real-time price in under a minute.",
         },
         {
-            icon: <TruckIcon className="w-10 h-10 text-[#00bfff]" />,
+            icon: <TruckIcon className="w-10 h-10 text-[#ff5722]" />,
             title: "Free & Insured Pickup",
             description: "Happy with your quote? We'll arrange a free, convenient, and insured pickup from your doorstep, anywhere in Nepal.",
         },
         {
-            icon: <ShieldCheckIcon className="w-10 h-10 text-[#00bfff]" />,
+            icon: <ShieldCheckIcon className="w-10 h-10 text-[#ff5722]" />,
             title: "Fast Inspection & Payment",
             description: "Once we receive your device, our experts verify its condition. We then process your payment fast via your chosen method.",
         },
@@ -34,7 +34,7 @@ const HowItWorks: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {steps.map((step, index) => (
                         <div key={index} className="bg-white border border-gray-200 p-8 rounded-lg shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
-                            <div className="flex items-center justify-center w-20 h-20 mx-auto bg-[#00bfff]/10 rounded-full">
+                            <div className="flex items-center justify-center w-20 h-20 mx-auto bg-[#ff5722]/10 rounded-full">
                                 {step.icon}
                             </div>
                             <h3 className="mt-6 text-xl font-bold text-gray-900">{step.title}</h3>

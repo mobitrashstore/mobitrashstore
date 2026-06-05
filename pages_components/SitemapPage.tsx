@@ -26,7 +26,7 @@ const LinkItem: React.FC<{ path: string, label: string, navigate: (path: string)
         <a
             href={path}
             onClick={(e) => { e.preventDefault(); navigate(path); }}
-            className="text-gray-600 hover:text-[#00bfff] hover:underline transition-colors block py-1"
+            className="text-gray-600 hover:text-[#ff5722] hover:underline transition-colors block py-1"
         >
             {label}
         </a>

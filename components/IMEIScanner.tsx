@@ -75,7 +75,7 @@ const IMEIScanner: React.FC<IMEIScannerProps> = ({ onIMEIDetected, onClose }) =>
 
                 {/* Header */}
                 <div className="text-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-[#1e3a8a] to-[#0f172a] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#ff5722] to-[#0f172a] rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <CameraIcon className="w-8 h-8 text-white" />
                     </div>
                     <h2 className="text-2xl font-black text-slate-900">Scan IMEI</h2>

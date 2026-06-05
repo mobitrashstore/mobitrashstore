@@ -93,22 +93,22 @@ const OtpStep: React.FC<OtpStepProps> = ({ onBack, onNext }) => {
                             <h2 className="text-2xl font-bold text-gray-900 mb-4">Enter Your Details</h2>
                             <div>
                                 <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">Full Name</label>
-                                <input type="text" name="fullName" id="fullName" value={details.fullName} onChange={handleDetailsChange} placeholder="Enter full name here." required className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-[#00bfff] focus:border-[#00bfff]" />
+                                <input type="text" name="fullName" id="fullName" value={details.fullName} onChange={handleDetailsChange} placeholder="Enter full name here." required className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-[#ff5722] focus:border-[#ff5722]" />
                             </div>
                             <div>
                                 <label htmlFor="address" className="block text-sm font-medium text-gray-700">Address</label>
-                                <input type="text" name="address" id="address" value={details.address} onChange={handleDetailsChange} placeholder="Enter address here." required className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-[#00bfff] focus:border-[#00bfff]" />
+                                <input type="text" name="address" id="address" value={details.address} onChange={handleDetailsChange} placeholder="Enter address here." required className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-[#ff5722] focus:border-[#ff5722]" />
                             </div>
                             <div>
                                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
-                                <input type="tel" name="phone" id="phone" value={details.phone} onChange={handleDetailsChange} placeholder="Enter phone number here." required className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-[#00bfff] focus:border-[#00bfff]" />
+                                <input type="tel" name="phone" id="phone" value={details.phone} onChange={handleDetailsChange} placeholder="Enter phone number here." required className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-[#ff5722] focus:border-[#ff5722]" />
                             </div>
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                                <input type="email" name="email" id="email" value={details.email} onChange={handleDetailsChange} placeholder="Enter email address here." required className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-[#00bfff] focus:border-[#00bfff]" />
+                                <input type="email" name="email" id="email" value={details.email} onChange={handleDetailsChange} placeholder="Enter email address here." required className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-[#ff5722] focus:border-[#ff5722]" />
                             </div>
                             {error && <p className="text-xs text-red-600">{error}</p>}
-                            <button type="submit" disabled={!isDetailsFormValid || loading} className="w-full bg-[#00bfff] text-black font-bold py-3 px-4 rounded-md hover:bg-[#00aeee] transition-colors disabled:bg-gray-300 disabled:cursor-wait">
+                            <button type="submit" disabled={!isDetailsFormValid || loading} className="w-full bg-[#ff5722] text-black font-bold py-3 px-4 rounded-md hover:bg-[#e64a19] transition-colors disabled:bg-gray-300 disabled:cursor-wait">
                                 {loading ? 'Sending...' : 'SEND REQUEST'}
                             </button>
                         </form>
@@ -118,12 +118,12 @@ const OtpStep: React.FC<OtpStepProps> = ({ onBack, onNext }) => {
                             <p className="text-sm text-gray-600">An OTP has been sent to {details.email}. Please enter it below.</p>
                             <div>
                                 <label htmlFor="otp" className="block text-sm font-medium text-gray-700">OTP</label>
-                                <input type="text" name="otp" id="otp" value={otpInput} onChange={(e) => setOtpInput(e.target.value)} placeholder="Enter OTP" required maxLength={4} className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-[#00bfff] focus:border-[#00bfff]" />
+                                <input type="text" name="otp" id="otp" value={otpInput} onChange={(e) => setOtpInput(e.target.value)} placeholder="Enter OTP" required maxLength={4} className="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-[#ff5722] focus:border-[#ff5722]" />
                             </div>
                             {error && <p className="text-xs text-red-600">{error}</p>}
                             
                             <div className="flex flex-col gap-3">
-                                <button type="submit" disabled={loading} className="w-full bg-[#00bfff] text-black font-bold py-3 px-4 rounded-md hover:bg-[#00aeee] transition-colors disabled:bg-gray-300 disabled:cursor-wait">
+                                <button type="submit" disabled={loading} className="w-full bg-[#ff5722] text-black font-bold py-3 px-4 rounded-md hover:bg-[#e64a19] transition-colors disabled:bg-gray-300 disabled:cursor-wait">
                                     {loading ? 'Verifying...' : 'VERIFY OTP'}
                                 </button>
                                 
@@ -131,7 +131,7 @@ const OtpStep: React.FC<OtpStepProps> = ({ onBack, onNext }) => {
                                     type="button" 
                                     disabled={resendTimer > 0 || loading}
                                     onClick={handleSendRequest}
-                                    className="w-full text-sm font-bold text-[#00bfff] disabled:text-gray-400 hover:underline transition-colors"
+                                    className="w-full text-sm font-bold text-[#ff5722] disabled:text-gray-400 hover:underline transition-colors"
                                 >
                                     {resendTimer > 0 ? `Resend Code in ${resendTimer}s` : 'Resend Code'}
                                 </button>

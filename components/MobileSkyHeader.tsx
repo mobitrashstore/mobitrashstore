@@ -21,7 +21,7 @@ const MobileSkyHeader: React.FC<MobileSkyHeaderProps> = ({ title, Icon, onBack, 
                 - Updated to Emerald/Green Vertical Gradient to match Status Bar (#34d399)
                 - Added pt-[env(safe-area-inset-top)] to push content below status bar
             */}
-            <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] shadow-lg overflow-visible rounded-b-[2.5rem] pb-4 pt-[env(safe-area-inset-top)]">
+            <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[#ff5722] to-[#0f172a] shadow-lg overflow-visible rounded-b-[2.5rem] pb-4 pt-[env(safe-area-inset-top)]">
                 
                 {/* Top Row: Back Button, Bell, Close Button */}
                 <div className="flex items-center justify-between px-4 pt-4 z-20 relative">

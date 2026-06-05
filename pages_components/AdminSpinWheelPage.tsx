@@ -228,7 +228,7 @@ const AdminSpinWheelPage: React.FC<AdminSpinWheelPageProps> = ({ navigate }) => 
     const newSegment: SpinSegment = {
       id: Date.now().toString(),
       label: 'New Reward',
-      color: '#00bfff',
+      color: '#ff5722',
       probability: 10,
       type: 'points',
       value: 0,

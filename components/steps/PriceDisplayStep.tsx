@@ -88,7 +88,7 @@ const PriceDisplayStep: React.FC<PriceDisplayStepProps> = ({ deviceDetails, feat
                             particleCount: 150,
                             spread: 70,
                             origin: { y: 0.6 },
-                            colors: ['#f59e0b', '#00bfff', '#ffffff']
+                            colors: ['#f59e0b', '#ff5722', '#ffffff']
                         });
                     }
                 }

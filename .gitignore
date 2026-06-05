@@ -108,3 +108,8 @@ dist/
 .env*.local
 .env.local
 node_modules
+
+# Local SDKs and environment setup tools
+android-sdk/
+openjdk21/
+run_sdkmanager.bat

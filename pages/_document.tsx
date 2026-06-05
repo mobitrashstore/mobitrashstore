@@ -7,7 +7,7 @@ export default function Document() {
         <meta charSet="UTF-8" />
         
         {/* Status Bar Color Configuration */}
-        <meta name="theme-color" content="#0f172a" />
+        <meta name="theme-color" content="#ff5722" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -189,7 +189,7 @@ export default function Document() {
               flex-direction: column;
               align-items: center;
               justify-content: center;
-              background: radial-gradient(circle at 30% 40%, #1e3a8a 0%, #0f172a 60%, #0a0f1e 100%);
+              background: radial-gradient(circle at 30% 40%, #ff5722 0%, #0f172a 60%, #0a0f1e 100%);
               background-size: 200% 200%;
               animation: gradientPulse 4s ease infinite;
               color: white;
@@ -230,7 +230,7 @@ export default function Document() {
               font-size: 1.1rem;
               font-weight: 600;
               letter-spacing: 0.1em;
-              color: #00bfff;
+              color: #ff5722;
               opacity: 0;
               transform: translateY(10px);
               animation: fadeInTagline 0.6s ease-out 0.8s forwards;
@@ -277,8 +277,8 @@ export default function Document() {
             .splash-cart-icon {
               width: 32px;
               height: 32px;
-              color: #00bfff;
-              fill: #00bfff;
+              color: #ff5722;
+              fill: #ff5722;
               filter: drop-shadow(0 0 8px rgba(0, 191, 255, 0.7));
             }
 
@@ -334,7 +334,7 @@ export default function Document() {
               top: 0;
               height: 100%;
               width: 40%;
-              background: linear-gradient(90deg, #00bfff, #3b82f6);
+              background: linear-gradient(90deg, #ff5722, #3b82f6);
               border-radius: 2px;
               animation: loadingSwipe 1s infinite ease-in-out;
             }
@@ -351,7 +351,7 @@ export default function Document() {
               .splash-mobile { display: none; }
               .splash-desktop { display: flex; }
               #splash-screen {
-                background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+                background: linear-gradient(135deg, #0f172a 0%, #ff5722 50%, #0f172a 100%);
               }
               .splash-letter { font-size: 3.5rem; }
               .splash-cart-icon { width: 48px; height: 48px; }

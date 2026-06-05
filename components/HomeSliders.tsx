@@ -81,10 +81,10 @@ export const HomeCategorySlider: React.FC<HomeCategorySliderProps> = ({ categori
                                 onClick={() => navigate(`/product?category=${encodeURIComponent(cat.name)}`)}
                                 className="flex flex-col items-center space-y-2 group min-w-[80px]"
                             >
-                                <div className="w-14 h-14 rounded-full bg-gray-50 border border-gray-100 shadow-sm flex items-center justify-center p-2 group-hover:border-[#00bfff] group-hover:bg-white transition-all overflow-hidden">
+                                <div className="w-14 h-14 rounded-full bg-gray-50 border border-gray-100 shadow-sm flex items-center justify-center p-2 group-hover:border-[#ff5722] group-hover:bg-white transition-all overflow-hidden">
                                     <img src={getOptimizedImageUrl(cat.imageUrl, 80, 75)} alt={cat.name} width="56" height="56" className="w-full h-full object-contain transform group-hover:scale-110 transition-transform" loading="lazy" decoding="async" />
                                 </div>
-                                <span className="text-xs font-bold text-gray-600 group-hover:text-[#00bfff] text-center whitespace-nowrap">{cat.name}</span>
+                                <span className="text-xs font-bold text-gray-600 group-hover:text-[#ff5722] text-center whitespace-nowrap">{cat.name}</span>
                             </button>
                         ))}
                     </div>
@@ -100,7 +100,7 @@ export const HomeCategorySlider: React.FC<HomeCategorySliderProps> = ({ categori
                             onClick={() => navigate(`/product?category=${encodeURIComponent(cat.name)}`)}
                             className="flex flex-col items-center space-y-1.5 group min-w-[72px]"
                         >
-                            <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center p-3 group-hover:border-[#00bfff] transition-all overflow-hidden">
+                            <div className="w-16 h-16 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center p-3 group-hover:border-[#ff5722] transition-all overflow-hidden">
                                 <img src={getOptimizedImageUrl(cat.imageUrl, 80, 75)} alt={cat.name} width="64" height="64" className="w-full h-full object-contain" loading="lazy" decoding="async" />
                             </div>
                             <span className="text-[10px] font-bold text-gray-700 text-center leading-tight px-1 truncate w-full">{cat.name}</span>

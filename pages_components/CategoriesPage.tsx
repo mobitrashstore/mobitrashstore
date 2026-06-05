@@ -63,10 +63,10 @@ const CategoriesPage: React.FC<CategoriesPageProps> = ({ navigate }) => {
                                 onClick={() => handleCategoryClick(cat.name)}
                                 className="flex flex-col items-center group"
                             >
-                                <div className="w-full aspect-square bg-gray-50 rounded-xl p-4 flex items-center justify-center border border-gray-100 shadow-sm group-hover:border-[#00bfff] group-hover:shadow-md transition-all duration-200">
+                                <div className="w-full aspect-square bg-gray-50 rounded-xl p-4 flex items-center justify-center border border-gray-100 shadow-sm group-hover:border-[#ff5722] group-hover:shadow-md transition-all duration-200">
                                     <img src={cat.imageUrl} alt={cat.name} className="w-full h-full object-contain" />
                                 </div>
-                                <span className="mt-2 text-sm font-medium text-gray-700 group-hover:text-[#00bfff] text-center leading-tight">{cat.name}</span>
+                                <span className="mt-2 text-sm font-medium text-gray-700 group-hover:text-[#ff5722] text-center leading-tight">{cat.name}</span>
                             </button>
                         ))}
                     </div>

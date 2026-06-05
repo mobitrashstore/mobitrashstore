@@ -48,7 +48,7 @@ const Accordion: React.FC<{
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex justify-between items-center w-full text-left group"
             >
-                <span className="font-bold text-gray-800 text-sm uppercase tracking-wide group-hover:text-[#00bfff] transition-colors">{title}</span>
+                <span className="font-bold text-gray-800 text-sm uppercase tracking-wide group-hover:text-[#ff5722] transition-colors">{title}</span>
                 {isOpen ? <ChevronUpIcon className="w-4 h-4 text-gray-400" /> : <ChevronDownIcon className="w-4 h-4 text-gray-400" />}
             </button>
             {isOpen && (
@@ -73,9 +73,9 @@ const CheckboxFilter: React.FC<{
                 type="checkbox"
                 checked={checked}
                 onChange={onChange}
-                className="h-4 w-4 rounded border-gray-300 text-[#00bfff] focus:ring-[#00bfff] cursor-pointer"
+                className="h-4 w-4 rounded border-gray-300 text-[#ff5722] focus:ring-[#ff5722] cursor-pointer"
             />
-            <span className={`ml-3 text-sm ${checked ? 'text-gray-900 font-bold' : 'text-gray-600'} group-hover:text-[#00bfff] transition-colors`}>{label}</span>
+            <span className={`ml-3 text-sm ${checked ? 'text-gray-900 font-bold' : 'text-gray-600'} group-hover:text-[#ff5722] transition-colors`}>{label}</span>
         </div>
         {count !== undefined && <span className="text-xs text-gray-400 font-medium">{count}</span>}
     </label>
@@ -481,7 +481,7 @@ const BuyPage: React.FC<BuyPageProps> = ({ navigate }) => {
             />
 
             {/* Search Header Mobile - FIXED to cover overlaps and safe area */}
-            <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] shadow-xl rounded-b-[2.5rem] overflow-hidden">
+            <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-gradient-to-b from-[#ff5722] to-[#0f172a] shadow-xl rounded-b-[2.5rem] overflow-hidden">
                 <div className="pt-[env(safe-area-inset-top)] pb-5 px-4">
                     <div className="relative mt-2">
                         <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />

@@ -59,7 +59,7 @@ const TrustBadge: React.FC<{ icon?: React.ElementType, imgUrl?: string, label: s
             {imgUrl ? (
                 <img src={imgUrl} alt={label} className="w-full h-full object-contain" />
             ) : (
-                Icon && <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-[#00bfff]">
+                Icon && <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-[#ff5722]">
                     <Icon className="w-6 h-6" />
                 </div>
             )}
@@ -100,7 +100,7 @@ const RelatedProductCard: React.FC<{
                         <p className="font-bold text-sm text-gray-900">NPR {item.price.toLocaleString()}</p>
                         {item.oldPrice && <p className="text-[10px] text-gray-400 line-through">{item.oldPrice.toLocaleString()}</p>}
                     </div>
-                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); onAddToCart(item); }} className="p-2 bg-gray-100 rounded-full hover:bg-[#00bfff] hover:text-white transition-colors">
+                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); onAddToCart(item); }} className="p-2 bg-gray-100 rounded-full hover:bg-[#ff5722] hover:text-white transition-colors">
                         <ShoppingCartIcon className="w-4 h-4" />
                     </button>
                 </div>
@@ -769,7 +769,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
                 className="flex w-full items-center justify-between py-2 text-lg font-bold text-gray-900"
             >
                 Product Specifications
-                {showSpecs ? <ChevronUpIcon className="w-5 h-5 text-[#00bfff]" /> : <ChevronDownIcon className="w-5 h-5 text-gray-400" />}
+                {showSpecs ? <ChevronUpIcon className="w-5 h-5 text-[#ff5722]" /> : <ChevronDownIcon className="w-5 h-5 text-gray-400" />}
             </button>
 
             {showSpecs && (
@@ -802,7 +802,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
             />
 
             <div
-                className="sticky top-0 z-30 bg-gradient-to-b from-[#1e3a8a] to-[#0f172a] border-b border-slate-800 px-4 py-3 flex items-center justify-between md:hidden pt-2 shadow-sm"
+                className="sticky top-0 z-30 bg-gradient-to-b from-[#ff5722] to-[#0f172a] border-b border-slate-800 px-4 py-3 flex items-center justify-between md:hidden pt-2 shadow-sm"
                 style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.75rem)' }}
             >
                 <button onClick={() => window.history.back()} className="p-2 -ml-2 text-white hover:bg-white/20 rounded-full transition-colors">
@@ -818,7 +818,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
                     <button onClick={openCart} className="p-2 text-white hover:bg-white/20 rounded-full transition-colors">
                         <ShoppingCartIcon className="w-6 h-6" />
                         {cartItemCount > 0 && (
-                            <span className="absolute top-0 right-0 block h-5 w-5 rounded-full bg-[#FFA500] text-white text-xs flex items-center justify-center transform -translate-y-1/2 translate-x-1/2 border-2 border-sky-300">
+                            <span className="absolute top-0 right-0 block h-5 w-5 rounded-full bg-[#ff5722] text-white text-xs flex items-center justify-center transform -translate-y-1/2 translate-x-1/2 border-2 border-sky-300">
                                 {cartItemCount > 9 ? '9+' : cartItemCount}
                             </span>
                         )}
@@ -865,7 +865,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
 
                                     <button
                                         onClick={handleAddToCartAction}
-                                        className="absolute bottom-3 right-3 p-2 bg-white rounded-full text-gray-400 hover:text-[#00bfff] shadow-md z-30 border border-gray-100"
+                                        className="absolute bottom-3 right-3 p-2 bg-white rounded-full text-gray-400 hover:text-[#ff5722] shadow-md z-30 border border-gray-100"
                                         aria-label="Add to cart"
                                     >
                                         <ShoppingCartIcon className="w-6 h-6" />
@@ -910,7 +910,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
                                         <button
                                             key={index}
                                             onClick={() => { setActiveImageIndex(index); setShowVideo(false); if (autoSlideRef.current) clearInterval(autoSlideRef.current); }}
-                                            className={`w-16 h-16 flex-shrink-0 rounded-lg border-2 p-1 bg-white transition-all ${!showVideo && activeImageIndex === index ? 'border-[#00bfff] scale-105 opacity-100' : 'border-gray-200 opacity-60 hover:opacity-100'}`}
+                                            className={`w-16 h-16 flex-shrink-0 rounded-lg border-2 p-1 bg-white transition-all ${!showVideo && activeImageIndex === index ? 'border-[#ff5722] scale-105 opacity-100' : 'border-gray-200 opacity-60 hover:opacity-100'}`}
                                         >
                                             <img src={getTransformedImageUrl(img, 200)} alt={`View ${index}`} className="w-full h-full object-contain" />
                                         </button>
@@ -919,7 +919,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
                                     {videoData && (
                                         <button
                                             onClick={() => { setShowVideo(true); if (autoSlideRef.current) clearInterval(autoSlideRef.current); }}
-                                            className={`w-16 h-16 flex-shrink-0 rounded-lg border-2 flex items-center justify-center bg-gray-900 text-white transition-all ${showVideo ? 'border-[#00bfff] scale-105' : 'border-gray-200 opacity-60'}`}
+                                            className={`w-16 h-16 flex-shrink-0 rounded-lg border-2 flex items-center justify-center bg-gray-900 text-white transition-all ${showVideo ? 'border-[#ff5722] scale-105' : 'border-gray-200 opacity-60'}`}
                                             title="Watch Video"
                                         >
                                             <PlayIcon className="w-8 h-8" />
@@ -1036,7 +1036,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
                                             {product.colors && product.colors.length > 0 && (
                                                 <div>
                                                     <div className="flex items-center justify-between mb-3">
-                                                        <h3 className="text-sm font-bold text-gray-900 border-l-4 border-[#00bfff] pl-3 uppercase tracking-wider">
+                                                        <h3 className="text-sm font-bold text-gray-900 border-l-4 border-[#ff5722] pl-3 uppercase tracking-wider">
                                                             Choose Colour
                                                         </h3>
                                                         {selectedColor && (
