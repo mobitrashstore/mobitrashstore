@@ -101,7 +101,8 @@ const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
             return;
         }
 
-        if (!process.env.API_KEY) {
+        const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.API_KEY;
+        if (!apiKey) {
             addNotification("The AI API Key is not configured for this application.", "error");
             return;
         }
@@ -109,7 +110,7 @@ const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
         setLoading(true);
         setHasCompared(false);
         try {
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+            const ai = new GoogleGenAI({ apiKey });
 
             const prompt = `Provide a highly detailed technical comparison between "${phone1}" and "${phone2}".
 Return a JSON array of objects. Each object must have keys "feature", "val1" (for ${phone1}), and "val2" (for ${phone2}).

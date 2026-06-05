@@ -313,7 +313,7 @@ const ProductModal: React.FC<{
         }
 
         setIsGeneratingAi(true);
-        let key = (process.env as any).API_KEY || (process.env as any).GEMINI_API_KEY || (import.meta as any).env.VITE_GEMINI_API_KEY;
+        let key = (process.env as any).NEXT_PUBLIC_GEMINI_API_KEY || (process.env as any).API_KEY || (process.env as any).GEMINI_API_KEY || (import.meta as any).env.VITE_GEMINI_API_KEY;
         if (key) key = key.toString().replace(/^["']|["']$/g, '');
         
         if (!key) {

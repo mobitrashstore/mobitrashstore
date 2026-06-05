@@ -450,7 +450,8 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
         setAiGuideResult(null);
 
         try {
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+            const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.API_KEY;
+            const ai = new GoogleGenAI({ apiKey });
             const prompt = `
                 You are "Mobi Store Tech AI" technical specialist.
                 User wants a professional DIY repair guide for: "${aiGuideQuery}"
@@ -494,7 +495,8 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
         setIsChatLoading(true);
 
         try {
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+            const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.API_KEY;
+            const ai = new GoogleGenAI({ apiKey });
 
             // CONTEXT BUILD: Product-Awareness Injection
             const productContext = allInventory.slice(0, 40).map(item =>

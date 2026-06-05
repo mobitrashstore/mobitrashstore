@@ -104,7 +104,8 @@ const BlogModal: React.FC<{
 
         setIsGenerating(true);
         try {
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+            const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.API_KEY;
+            const ai = new GoogleGenAI({ apiKey });
 
             const prompt = `You are an elite Tech Content Specialist and SEO expert for "Mobi Store" in Nepal. 
             Your goal is to write a MASTER-CLASS, high-authority blog post that will rank #1 on Google and satisfy AdSense "High Value Content" requirements.

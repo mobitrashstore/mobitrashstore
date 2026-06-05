@@ -44,7 +44,8 @@ const AdminAboutPage: React.FC<AdminAboutPageProps> = ({ navigate }) => {
         if (!formData) return;
         setIsGenerating(true);
         try {
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+            const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.API_KEY;
+            const ai = new GoogleGenAI({ apiKey });
             const prompt = `Write a compelling, professional, and SEO-friendly 'About Us' story for "Mobi Store", a venture of "Mobi Store Tech" based in Nepal.
             
             Key Points to Include:
