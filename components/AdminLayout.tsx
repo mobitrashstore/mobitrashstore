@@ -1,4 +1,4 @@
-﻿
+
 import React, { ReactNode, useState, useEffect, useRef } from 'react';
 import AdminSidebar from './AdminSidebar';
 import GlobalSearch from './GlobalSearch';
@@ -53,8 +53,11 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
     const [adminMobileHeaderHeight, setAdminMobileHeaderHeight] = useState(0);
+    const [mounted, setMounted] = useState(false);
     const mobileHeaderRef = useRef<HTMLDivElement>(null);
     const { theme, toggleTheme } = useTheme();
+
+    useEffect(() => { setMounted(true); }, []);
 
     const nepaliDate = useNepaliDate();
 
@@ -155,16 +158,18 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
                                     </button>
 
                                     {/* Dark/Light Mode Toggle - Mobile Admin */}
-                                    <button
-                                        onClick={toggleTheme}
-                                        className={`theme-toggle-btn ${theme}`}
-                                        title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-                                        aria-label="Toggle dark/light mode"
-                                    >
-                                        <span className="theme-toggle-knob">
-                                            {theme === 'dark' ? '🌙' : '☀️'}
-                                        </span>
-                                    </button>
+                                    {mounted && (
+                                        <button
+                                            onClick={toggleTheme}
+                                            className={`theme-toggle-btn ${theme}`}
+                                            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                                            aria-label="Toggle dark/light mode"
+                                        >
+                                            <span className="theme-toggle-knob">
+                                                {theme === 'dark' ? '🌙' : '☀️'}
+                                            </span>
+                                        </button>
+                                    )}
 
                                     {/* Broadcast / Send Notification Button - Now Paper Airplane */}
                                     <button
@@ -239,16 +244,18 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
                             </div>
 
                             {/* Dark/Light Mode Toggle - Desktop Admin */}
-                            <button
-                                onClick={toggleTheme}
-                                className={`theme-toggle-btn ${theme}`}
-                                title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-                                aria-label="Toggle dark/light mode"
-                            >
-                                <span className="theme-toggle-knob">
-                                    {theme === 'dark' ? '🌙' : '☀️'}
-                                </span>
-                            </button>
+                            {mounted && (
+                                <button
+                                    onClick={toggleTheme}
+                                    className={`theme-toggle-btn ${theme}`}
+                                    title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                                    aria-label="Toggle dark/light mode"
+                                >
+                                    <span className="theme-toggle-knob">
+                                        {theme === 'dark' ? '🌙' : '☀️'}
+                                    </span>
+                                </button>
+                            )}
 
                             <div className="flex items-center gap-3 pl-6 border-l border-slate-200">
                                 <div className="text-right hidden xl:block">

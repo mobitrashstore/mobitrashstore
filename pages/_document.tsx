@@ -122,7 +122,7 @@ export default function Document() {
         <style dangerouslySetInnerHTML={{
           __html: `
             :root {
-              --brand-primary: #0f172a;
+              --brand-primary: #ff5722;
             }
 
             html {
@@ -157,7 +157,7 @@ export default function Document() {
 
             @media (max-width: 768px), (display-mode: standalone) {
               html {
-                background-color: #0f172a !important;
+                background-color: #ff5722 !important;
               }
               body {
                 background-color: #f8f7f4 !important;
@@ -189,18 +189,10 @@ export default function Document() {
               flex-direction: column;
               align-items: center;
               justify-content: center;
-              background: radial-gradient(circle at 30% 40%, #ff5722 0%, #0f172a 60%, #0a0f1e 100%);
-              background-size: 200% 200%;
-              animation: gradientPulse 4s ease infinite;
+              background-color: #ff5722;
               color: white;
               transition: opacity 0.4s ease-out;
               padding: env(safe-area-inset-top) 2rem env(safe-area-inset-bottom) 2rem;
-            }
-
-            @keyframes gradientPulse {
-              0% { background-position: 0% 50%; }
-              50% { background-position: 100% 50%; }
-              100% { background-position: 0% 50%; }
             }
 
             .splash-mobile {
@@ -257,7 +249,7 @@ export default function Document() {
               opacity: 0;
               transform: translateY(20px);
               animation: letterReveal 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-              text-shadow: 0 0 20px rgba(0, 191, 255, 0.5), 0 2px 4px rgba(0,0,0,0.5);
+              text-shadow: 0 2px 4px rgba(0,0,0,0.3);
               display: inline-block;
               line-height: 1.1;
             }
@@ -277,9 +269,9 @@ export default function Document() {
             .splash-cart-icon {
               width: 32px;
               height: 32px;
-              color: #ff5722;
-              fill: #ff5722;
-              filter: drop-shadow(0 0 8px rgba(0, 191, 255, 0.7));
+              color: #ffffff;
+              fill: #ffffff;
+              filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
             }
 
             @keyframes iconEnter {
@@ -318,7 +310,7 @@ export default function Document() {
             .loader-bar {
               width: 60px;
               height: 4px;
-              background: rgba(0, 0, 0, 0.1);
+              background: rgba(255, 255, 255, 0.3);
               border-radius: 2px;
               margin-top: 1.5rem;
               overflow: hidden;
@@ -334,7 +326,7 @@ export default function Document() {
               top: 0;
               height: 100%;
               width: 40%;
-              background: linear-gradient(90deg, #ff5722, #3b82f6);
+              background: rgba(255, 255, 255, 0.9);
               border-radius: 2px;
               animation: loadingSwipe 1s infinite ease-in-out;
             }
@@ -350,9 +342,6 @@ export default function Document() {
             @media (min-width: 769px) {
               .splash-mobile { display: none; }
               .splash-desktop { display: flex; }
-              #splash-screen {
-                background: linear-gradient(135deg, #0f172a 0%, #ff5722 50%, #0f172a 100%);
-              }
               .splash-letter { font-size: 3.5rem; }
               .splash-cart-icon { width: 48px; height: 48px; }
               .loader-bar { width: 100px; height: 5px; margin-top: 2rem; }

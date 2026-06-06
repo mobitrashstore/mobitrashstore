@@ -279,16 +279,18 @@ const Header: React.FC<HeaderProps> = ({ navigate }) => {
               <NotificationBell navigate={navigate} iconClassName="w-6 h-6 text-slate-500 hover:text-[#ff5722]" />
 
               {/* Dark/Light Mode Toggle */}
-              <button
-                onClick={toggleTheme}
-                className={`theme-toggle-btn ${theme}`}
-                title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-                aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              >
-                <span className="theme-toggle-knob">
-                  {theme === 'dark' ? '🌙' : '☀️'}
-                </span>
-              </button>
+              {mounted && (
+                <button
+                  onClick={toggleTheme}
+                  className={`theme-toggle-btn ${theme}`}
+                  title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                  aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                >
+                  <span className="theme-toggle-knob">
+                    {theme === 'dark' ? '🌙' : '☀️'}
+                  </span>
+                </button>
+              )}
               <button onClick={openCart} className="relative p-2 text-slate-500 hover:text-[#ff5722] transition-colors" title={`View Shopping Cart (${cartItemCount} items)`} aria-label={`View Shopping Cart - ${cartItemCount} items`}>
                 <ShoppingCartIcon className="w-6 h-6" />
                 {cartItemCount > 0 && (
