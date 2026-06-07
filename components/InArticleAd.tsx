@@ -28,7 +28,7 @@ const InArticleAd: React.FC = () => {
                     style={{ display: 'block', textAlign: 'center' }}
                     data-ad-layout="in-article"
                     data-ad-format="fluid"
-                    data-ad-client="ca-pub-7257748018050891"
+                    data-ad-client="ca-pub-2257248018050891"
                     data-ad-slot="9813801750"
                 ></ins>
             </div>

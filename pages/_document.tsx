@@ -38,8 +38,8 @@ export default function Document() {
         <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMAdGHFj2UXxw.woff2" type="font/woff2" crossOrigin="anonymous" />
 
         {/* Google Adsense: loaded with async defer to avoid blocking rendering */}
-        <meta name="google-adsense-account" content="ca-pub-7257748018050891" />
-        <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7257748018050891" crossOrigin="anonymous" />
+        <meta name="google-adsense-account" content="ca-pub-2257248018050891" />
+        <script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2257248018050891" crossOrigin="anonymous" />
         <meta name="google-site-verification" content="oxF6z3AR6drhrd8QNRbYeyt6jj1W7fsCpOvvXysJhUo" />
 
         {/* OneSignal Push Notifications */}

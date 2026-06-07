@@ -1,4 +1,4 @@
-﻿import type { AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -25,6 +25,7 @@ import VisualEditorSidebar from '../components/VisualEditorSidebar';
 import NoticeBanner from '../components/NoticeBanner';
 import BackToExitBanner from '../components/BackToExitBanner';
 import { AdMob } from '@capacitor-community/admob';
+import AdBanner from '../components/AdBanner';
 import { App as CapacitorApp } from '@capacitor/app';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Capacitor } from '@capacitor/core';
@@ -293,6 +294,9 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
         <OfflineBanner />
         {isAuthenticating && <AuthOverlay />}
         <BackToExitBanner show={showExitBanner} />
+        {Capacitor.isNativePlatform() && !isAdminPage && (
+          <AdBanner margin={showBottomNav ? 60 : 0} />
+        )}
       </div>
     </div>
   );

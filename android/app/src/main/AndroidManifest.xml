@@ -31,7 +31,7 @@
         <!-- Google AdMob App ID (Replace with your own ca-app-pub-xxx~xxx later) -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"
+            android:value="ca-app-pub-2257248018050891~3783893998"
         />
 
         <property

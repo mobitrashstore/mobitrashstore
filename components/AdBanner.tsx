@@ -4,6 +4,7 @@ import { AdMob, BannerAdPosition, BannerAdSize } from '@capacitor-community/admo
 interface AdBannerProps {
     adId?: string;
     isTesting?: boolean;
+    margin?: number;
 }
 
 /**
@@ -12,8 +13,9 @@ interface AdBannerProps {
  * Note: Banner ads in Capacitor are overlays, so this component handles the showing/hiding.
  */
 const AdBanner: React.FC<AdBannerProps> = ({
-    adId = 'ca-app-pub-3940256099942544/6300978111', // Default Test ID
-    isTesting = true
+    adId = 'ca-app-pub-2257248018050891/7527697883', // Real Ad Unit ID for Mobi Store Banner
+    isTesting = false,
+    margin = 60
 }) => {
     useEffect(() => {
         const initializeBanner = async () => {
@@ -23,7 +25,7 @@ const AdBanner: React.FC<AdBannerProps> = ({
                     adId: adId,
                     adSize: BannerAdSize.ADAPTIVE_BANNER,
                     position: BannerAdPosition.BOTTOM_CENTER,
-                    margin: 60, // Leave space for bottom nav bar if needed
+                    margin: margin, // Leave space for bottom nav bar if needed
                     isTesting: isTesting
                 });
             } catch (e) {
