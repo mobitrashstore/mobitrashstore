@@ -38,7 +38,7 @@ export const GlobalNotificationProvider: React.FC<{ children: ReactNode }> = ({ 
         
         setNotifications(merged);
 
-        const lastRead = window.localStorage.getItem(STORAGE_KEY_LAST_READ);
+        const lastRead = typeof window !== 'undefined' ? window.localStorage.getItem(STORAGE_KEY_LAST_READ) : null;
         const lastReadTime = lastRead ? new Date(lastRead).getTime() : 0;
         
         const count = merged.filter(n => new Date(n.createdAt).getTime() > lastReadTime).length;

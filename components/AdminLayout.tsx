@@ -104,7 +104,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
                 <div className="absolute bottom-0 right-0 w-[50%] h-[50%] bg-gradient-to-tl from-blue-100/40 to-transparent opacity-50"></div>
             </div>
 
-            <div className="relative z-10 flex w-full md:pt-0">
+            <div className="relative flex w-full md:pt-0">
                 <AdminSidebar
                     navigate={navigate}
                     isCollapsed={isSidebarCollapsed}
@@ -114,7 +114,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
                 />
 
                 {/* Main Content Area */}
-                <div className={`flex-1 flex flex-col transition-all duration-300 min-w-0 ${isSidebarCollapsed ? 'md:pl-20' : 'xl:pl-72 lg:pl-64 md:pl-60'}`}>
+                <div className={`flex-1 flex flex-col transition-all duration-300 min-w-0 ${isSidebarCollapsed ? 'md:pl-16' : 'md:pl-56'}`}>
 
                     {/* Mobile Header - Enhanced with Search, Notifications & Dev Profile */}
                     <header
@@ -148,7 +148,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
                                     {/* Date on Mobile - Increased Size & Font */}
                                     <div className="flex flex-col border-l border-slate-200 pl-3">
                                         <span className="text-xs font-bold text-slate-400 font-mono tracking-widest uppercase">BS</span>
-                                        <span className="text-sm font-extrabold text-amber-600 font-mono tracking-wide leading-none">{nepaliDate}</span>
+                                        <span className="text-sm font-extrabold text-emerald-600 font-mono tracking-wide leading-none">{nepaliDate}</span>
                                     </div>
                                 </div>
 
@@ -198,7 +198,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
                                                 (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=Bishal+Mishra&background=0D8ABC&color=fff';
                                             }}
                                         />
-                                        <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-orange-500 border-2 border-white rounded-full"></div>
+                                        <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full"></div>
                                     </div>
                                 </div>
                             </>
@@ -217,7 +217,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
                             />
                             <div className="flex items-center gap-2 pl-1">
                                 <span className="text-[10px] font-bold text-slate-400 font-mono tracking-widest uppercase">BS DATE:</span>
-                                <p className="text-xs font-bold text-amber-600 font-mono tracking-wider uppercase">
+                                <p className="text-xs font-bold text-emerald-600 font-mono tracking-wider uppercase">
                                     {nepaliDate}
                                 </p>
                             </div>
@@ -229,7 +229,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, navigate }) => {
                             {/* Broadcast / Send Notification Button - Now Paper Airplane */}
                             <button
                                 onClick={() => navigate('/admin/notifications')}
-                                className="p-2 text-slate-400 hover:text-amber-600 transition-colors bg-white/50 hover:bg-white rounded-full shadow-sm border border-slate-100 flex items-center justify-center group hover:scale-110 active:scale-95 transform"
+                                className="p-2 text-slate-400 hover:text-emerald-600 transition-colors bg-white/50 hover:bg-white rounded-full shadow-sm border border-slate-100 flex items-center justify-center group hover:scale-110 active:scale-95 transform"
                                 title="Send Notification"
                             >
                                 <MegaphoneIcon className="w-5 h-5" />

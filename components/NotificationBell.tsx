@@ -122,8 +122,8 @@ const NotificationBell: React.FC<NotificationBellProps> = ({
                              
                              {/* Modal Card */}
                              <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-white/20 overflow-hidden pointer-events-auto animate-slide-in-down relative z-10 flex flex-col max-h-[60vh]">
-                                 {/* Header - Styled to match the Main App Header (Navy Gradient) */}
-                                 <div className="p-4 border-b border-white/10 bg-gradient-to-r from-[#059669] to-[#0f172a] flex justify-between items-center sticky top-0 z-20 shadow-md">
+                                 {/* Header - Styled with pure Emerald Green */}
+                                 <div className="p-4 border-b border-white/10 bg-[#059669] flex justify-between items-center sticky top-0 z-20 shadow-md">
                                      <h3 className="font-bold text-white text-lg">Notifications</h3>
                                      <button onClick={() => setIsOpen(false)} className="p-1.5 bg-white/20 rounded-full text-white hover:bg-white/30 transition-colors backdrop-blur-md">
                                          <XMarkIcon className="w-5 h-5" />

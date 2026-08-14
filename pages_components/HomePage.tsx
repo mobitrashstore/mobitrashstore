@@ -35,7 +35,7 @@ import { ArrowPathIcon } from '../components/icons/ArrowPathIcon';
 import { BanknotesIcon } from '../components/icons/BanknotesIcon';
 import { WrenchIcon } from '../components/icons/WrenchIcon';
 import { ArrowRightIcon } from '../components/icons/ArrowRightIcon';
-import { SparklesIcon } from '../components/icons/SparklesIcon';
+import { GiftIcon } from '../components/icons/GiftIcon';
 import { BellIcon } from '../components/icons/BellIcon';
 import { BoltIcon } from '../components/icons/BoltIcon';
 import { useAuth } from '../context/AuthContext';
@@ -383,21 +383,13 @@ const StatsAndRewards: React.FC<{
 
         {/* rating pill */}
         <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm">
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 font-medium border border-emerald-100">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 mr-2" />
-                <EditableText
-                    value={config.liveStoreText}
-                    onSave={(val) => onUpdate && onUpdate({ ...config, liveStoreText: val })}
-                    tag="span"
-                />
-            </span>
             <a
                 href="https://g.page/r/CdivF-h7mkT_EAE/review"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-slate-700 group hover:text-emerald-700 transition-colors"
+                className="flex items-center gap-1.5 text-slate-700 group hover:text-emerald-700 transition-colors"
             >
-                <span className="text-amber-400 text-sm">★★★★★</span>
+                <span className="text-emerald-500 text-sm">★★★★★</span>
                 <span className="font-semibold">{config.customerRating.replace('★', '')}/5</span>
                 <span className="text-slate-500 group-hover:text-emerald-700 transition-colors">from {config.reviewCount} customer reviews</span>
                 <ArrowRightIcon className="w-4 h-4 text-emerald-600 ml-1" />
@@ -408,7 +400,7 @@ const StatsAndRewards: React.FC<{
         <div className="bg-slate-900 text-white rounded-2xl px-4 py-4 md:px-8 md:py-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-md">
             <div className="flex items-start gap-3 md:gap-4">
                 <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-emerald-600 flex items-center justify-center shadow-md">
-                    <SparklesIcon className="w-5 h-5 md:w-6 md:h-6 text-white" />
+                    <GiftIcon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                 </div>
                 <div>
                     <p className="text-[11px] md:text-xs uppercase tracking-[0.18em] text-emerald-400 font-semibold">
@@ -434,7 +426,7 @@ const StatsAndRewards: React.FC<{
                 className="inline-flex items-center justify-center px-5 md:px-6 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-md active:scale-95 transition-all"
             >
                 Open Spin &amp; Win
-                <SparklesIcon className="w-4 h-4 ml-1.5" />
+                <ArrowRightIcon className="w-4 h-4 ml-2" />
             </button>
         </div>
     </section>

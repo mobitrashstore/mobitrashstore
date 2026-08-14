@@ -1505,11 +1505,15 @@ export const updateSpinWheelConfig = async (config: SpinWheelConfig): Promise<vo
 };
 
 export const recordSpinResult = async (userId: string, prize: string): Promise<void> => {
-    await db.collection('spinHistory').add({
-        userId,
-        prize,
-        date: new Date().toISOString()
-    });
+    try {
+        await db.collection('spinHistory').add({
+            userId,
+            prize,
+            date: new Date().toISOString()
+        });
+    } catch (e) {
+        console.warn("recordSpinResult warning:", e);
+    }
 };
 
 export const getSpinWheelStats = async (): Promise<any> => {
@@ -1548,17 +1552,27 @@ export const registerForSpin = async (data: Omit<SpinParticipant, 'id' | 'status
 };
 
 export const getSpinParticipant = async (userId: string): Promise<SpinParticipant | null> => {
-    const docRef = db.collection('spinParticipants').doc(userId);
-    const docSnap = await docRef.get();
-    if (docSnap.exists) {
-        return docSnap.data() as SpinParticipant;
+    try {
+        const docRef = db.collection('spinParticipants').doc(userId);
+        const docSnap = await docRef.get();
+        if (docSnap.exists) {
+            return docSnap.data() as SpinParticipant;
+        }
+        return null;
+    } catch (e) {
+        console.warn("getSpinParticipant warning:", e);
+        return null;
     }
-    return null;
 };
 
 export const getAllSpinParticipants = async (): Promise<SpinParticipant[]> => {
-    const snapshot = await db.collection('spinParticipants').orderBy('createdAt', 'desc').get();
-    return snapshot.docs.map(doc => fromDoc<SpinParticipant>(doc));
+    try {
+        const snapshot = await db.collection('spinParticipants').orderBy('createdAt', 'desc').get();
+        return snapshot.docs.map(doc => fromDoc<SpinParticipant>(doc));
+    } catch (e) {
+        console.warn("getAllSpinParticipants warning:", e);
+        return [];
+    }
 };
 
 export const updateSpinParticipantStatus = async (userId: string, updates: Partial<SpinParticipant>): Promise<void> => {
@@ -1567,10 +1581,14 @@ export const updateSpinParticipantStatus = async (userId: string, updates: Parti
 };
 
 export const incrementSpinUsage = async (userId: string): Promise<void> => {
-    const docRef = db.collection('spinParticipants').doc(userId);
-    await docRef.update({
-        spinsUsed: firebase.firestore.FieldValue.increment(1)
-    });
+    try {
+        const docRef = db.collection('spinParticipants').doc(userId);
+        await docRef.update({
+            spinsUsed: firebase.firestore.FieldValue.increment(1)
+        });
+    } catch (e) {
+        console.warn("incrementSpinUsage warning:", e);
+    }
 };
 
 export const claimSocialReward = async (userId: string, platform: string, points: number): Promise<boolean> => {

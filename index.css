@@ -987,3 +987,40 @@ html.light * {
 .theme-toggle-btn.light .theme-toggle-knob {
   transform: translateX(0);
 }
+
+/* ==========================================================================
+   ADMIN SIDEBAR RULES: DESKTOP vs MOBILE
+   ========================================================================== */
+
+/* 1. DESKTOP RULE (min-width: 768px):
+   When ANY modal, form, or edit dialog is open, auto-hide the desktop sidebar
+   completely so the modal gets full center focus without any side overlap. */
+@media (min-width: 768px) {
+  body.modal-open aside,
+  body.no-scroll aside,
+  body:has(.fixed.inset-0.z-\[99999\]) aside {
+    transform: translateX(-100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    transition: transform 0.25s ease-in-out, opacity 0.2s ease-in-out !important;
+  }
+}
+
+/* 2. MOBILE RULE (max-width: 767px):
+   On mobile, the sidebar drawer opens cleanly when triggered by the hamburger button. */
+@media (max-width: 767px) {
+  aside.translate-x-0 {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* 3. HIDE SCROLL-TO-TOP BUTTON IN ADMIN PANEL */
+body:has(.admin-container) button[aria-label="Scroll to top"],
+body.admin-mode button[aria-label="Scroll to top"],
+.admin-container ~ button[aria-label="Scroll to top"] {
+  display: none !important;
+}

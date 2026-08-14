@@ -1,10 +1,10 @@
-﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import * as api from '../services/api';
 import { SpinWheelConfig, SpinSegment, SpinParticipant } from '../types';
 import Spinner from '../components/Spinner';
 import MobileSkyHeader from '../components/MobileSkyHeader';
-import { SparklesIcon } from '../components/icons/SparklesIcon';
+import { GiftIcon } from '../components/icons/GiftIcon';
 import { LockClosedIcon } from '../components/icons/LockClosedIcon';
 import { useNotification } from '../context/NotificationContext';
 import { UserCircleIcon } from '../components/icons/UserCircleIcon';
@@ -199,29 +199,27 @@ const SpinWinPage: React.FC<SpinWinPageProps> = ({ navigate }) => {
         // 3. Calculate Rotation (Math for landing on the segment)
         const segmentCount = config.segments.length;
         const segmentArc = 360 / segmentCount;
-        // Align the winning segment to the top (pointer is usually at top/270deg or 90deg depending on CSS)
-        // We add extra spins for effect
         const winningSegmentCenterAngle = winningIndex * segmentArc + segmentArc / 2;
-        const extraSpins = 360 * 5;
-        const targetRotation = 360 - winningSegmentCenterAngle;
-        const newRotation = rotation + extraSpins + targetRotation;
+        const fullSpins = 360 * 8; // 8 full spins for exciting animation
+        const currentMod = rotation % 360;
+        const targetOffset = 360 - winningSegmentCenterAngle;
+        const delta = (targetOffset - currentMod + 360) % 360;
+        const newRotation = rotation + fullSpins + delta;
 
         setRotation(newRotation);
 
-        // 4. Update Server (Optimistic UI handled in step 5)
-        try {
-            await api.incrementSpinUsage(user.id);
-
-            // Record result
-            api.recordSpinResult(user.id, winningSegment.label);
-
-            // Add Points if applicable
-            if (winningSegment.type === 'points' && Number(winningSegment.value) > 0) {
-                api.addPoints(user.id, Number(winningSegment.value));
+        // 4. Update Server asynchronously in background without blocking animation
+        (async () => {
+            try {
+                await api.incrementSpinUsage(user.id);
+                await api.recordSpinResult(user.id, winningSegment.label);
+                if (winningSegment.type === 'points' && Number(winningSegment.value) > 0) {
+                    await api.addPoints(user.id, Number(winningSegment.value));
+                }
+            } catch (e) {
+                console.warn("Background spin sync:", e);
             }
-        } catch (e) {
-            console.error("Spin record failed", e);
-        }
+        })();
 
         // 5. End Spin & Show Prize
         setTimeout(() => {
@@ -265,9 +263,9 @@ const SpinWinPage: React.FC<SpinWinPageProps> = ({ navigate }) => {
                     </svg>
                 </div>
 
-                <MobileSkyHeader title="Spin & Win" Icon={SparklesIcon} hasSpacer={false} />
+                <MobileSkyHeader title="Spin & Win" Icon={GiftIcon} hasSpacer={false} />
                 <div className="mt-20 relative z-10 bg-white/80 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white">
-                    <SparklesIcon className="w-16 h-16 text-amber-500 mb-6 mx-auto animate-pulse" />
+                    <GiftIcon className="w-16 h-16 text-amber-500 mb-6 mx-auto animate-pulse" />
                     <h1 className="text-3xl font-black mb-4 text-slate-900">Login Required</h1>
                     <p className="text-slate-500 mb-8 max-w-xs mx-auto">Please login to participate in the Spin & Win contest and win exclusive prizes.</p>
                     <a href="/login" className="bg-amber-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-amber-700 transition-colors shadow-lg shadow-amber-500/20">Login Now</a>
@@ -295,12 +293,12 @@ const SpinWinPage: React.FC<SpinWinPageProps> = ({ navigate }) => {
                     </svg>
                 </div>
 
-                <MobileSkyHeader title="Join Spin & Win" Icon={SparklesIcon} hasSpacer={false} />
+                <MobileSkyHeader title="Join Spin & Win" Icon={GiftIcon} hasSpacer={false} />
 
                 <div className="w-full max-w-lg mt-24 animate-fade-in-up relative z-10">
                     <div className="text-center mb-6">
                         <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-600 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-2xl shadow-amber-500/20 transform -rotate-6">
-                            <SparklesIcon className="w-10 h-10 text-white" />
+                            <GiftIcon className="w-10 h-10 text-white" />
                         </div>
                         <h2 className="text-3xl font-black tracking-tight text-slate-900">Unlock Your Luck!</h2>
                         <p className="text-slate-500 text-sm mt-2 px-4">Register as a verified customer to spin the wheel and win gadgets.</p>
@@ -385,7 +383,7 @@ const SpinWinPage: React.FC<SpinWinPageProps> = ({ navigate }) => {
 
     return (
         <div className="bg-slate-50 min-h-screen overflow-hidden relative flex flex-col pb-20">
-            <MobileSkyHeader title="Spin & Win" Icon={SparklesIcon} hasSpacer={false} />
+            <MobileSkyHeader title="Spin & Win" Icon={GiftIcon} hasSpacer={false} />
 
             {/* POWERFUL LIGHT GRAPHIC BACKGROUND */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -471,13 +469,17 @@ const SpinWinPage: React.FC<SpinWinPageProps> = ({ navigate }) => {
                             </div>
 
                             {/* The Wheel */}
-                            <div className="rounded-full p-3 bg-gradient-to-b from-yellow-300 via-amber-500 to-orange-600 shadow-[0_20px_50px_rgba(245,158,11,0.5)] border-4 border-white">
+                            <div className="rounded-full p-3 bg-gradient-to-b from-emerald-400 via-emerald-500 to-emerald-700 shadow-[0_20px_50px_rgba(5,150,105,0.4)] border-4 border-white">
                                 <div className="rounded-full p-1 bg-white">
                                     <div
-                                        className="w-[80vw] h-[80vw] max-w-[380px] max-h-[380px] rounded-full relative overflow-hidden transition-transform duration-[5000ms] cubic-bezier(0.15, 0.9, 0.2, 1.0) border-4 border-slate-100"
+                                        className="w-[80vw] h-[80vw] max-w-[380px] max-h-[380px] rounded-full relative overflow-hidden border-4 border-slate-100"
                                         style={{
                                             background: `conic-gradient(${gradientParts})`,
                                             transform: `rotate(${rotation}deg)`,
+                                            transition: isSpinning
+                                                ? 'transform 5000ms cubic-bezier(0.15, 0.9, 0.2, 1.0)'
+                                                : 'none',
+                                            willChange: 'transform',
                                         }}
                                     >
                                         {/* Grid Lines */}
@@ -513,9 +515,14 @@ const SpinWinPage: React.FC<SpinWinPageProps> = ({ navigate }) => {
                             </div>
 
                             {/* Center Hub */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-full shadow-[0_5px_15px_rgba(0,0,0,0.15)] flex items-center justify-center z-30 border-4 border-slate-100">
-                                <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-600 rounded-full flex items-center justify-center text-white font-black text-xl shadow-inner">★</div>
-                            </div>
+                            <button
+                                onClick={handleSpin}
+                                disabled={isSpinning || spinsLeft <= 0}
+                                title="Click to Spin"
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white rounded-full shadow-[0_5px_15px_rgba(0,0,0,0.15)] flex items-center justify-center z-30 border-4 border-slate-100 cursor-pointer active:scale-95 transition-transform"
+                            >
+                                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-full flex items-center justify-center text-white font-black text-xl shadow-inner">★</div>
+                            </button>
                         </div>
 
                         {/* Mobile BIG Spin Button (Below Wheel) */}

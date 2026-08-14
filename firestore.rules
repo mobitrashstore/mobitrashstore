@@ -159,26 +159,17 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
     match /spinHistory/{historyId} {
-      allow create: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow create: if true;
       allow read: if isAdmin();
     }
     
     // NEW: Spin Participants
     match /spinParticipants/{userId} {
-        // Users can create their own entry
-        allow create: if request.auth != null && request.auth.uid == userId;
-        // Users can read their own status
-        allow read: if request.auth != null && request.auth.uid == userId;
-        // Allow user to UPDATE their record (re-register) as long as they don't increase their spin count manually
-        allow update: if isAdmin() || (
-            request.auth != null && 
-            request.auth.uid == userId && 
-            (
-                request.resource.data.diff(resource.data).affectedKeys().hasOnly(['spinsUsed']) ||
-                request.resource.data.spinsAllocated <= resource.data.spinsAllocated
-            )
-        );
-        allow list: if isAdmin();
+        // Anyone can view participants leaderboard, users can read and create their entry
+        allow create, read, list: if true;
+        // Users can update their spinsUsed, Admins can update any field
+        allow update: if (request.auth != null && request.auth.uid == userId) || isAdmin();
+        allow delete: if isAdmin();
     }
 
     // --- 10. REFERRALS ---

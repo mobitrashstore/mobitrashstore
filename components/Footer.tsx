@@ -65,8 +65,8 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
 
                                 {/* Official Govt Badge - High Visibility */}
                                 <div className="inline-flex items-center gap-4 px-4 py-3 bg-[#0f0f0f] border border-white/10 rounded-xl shadow-lg relative overflow-hidden group">
-                                    <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                    <div className="p-2 bg-orange-500/10 rounded-lg text-orange-500">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div className="p-2 bg-emerald-500/10 rounded-lg text-emerald-500">
                                         <ShieldCheckIcon className="w-6 h-6" />
                                     </div>
                                     <div>
@@ -92,13 +92,13 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
                                             alt="Mobi Store Team"
                                             width="40"
                                             height="40"
-                                            className="w-10 h-10 rounded-full object-cover border-2 border-[#0a0a0a] group-hover:border-amber-500/50 transition-colors"
+                                            className="w-10 h-10 rounded-full object-cover border-2 border-[#0a0a0a] group-hover:border-emerald-500/50 transition-colors"
                                             onError={(e) => { (e.target as HTMLImageElement).src = 'https://ui-avatars.com/api/?name=Bishal+Mishra&background=0D8ABC&color=fff'; }}
                                         />
-                                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-orange-500 border-2 border-[#0a0a0a] rounded-full"></div>
+                                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-[#0a0a0a] rounded-full"></div>
                                     </div>
                                     <div>
-                                        <p className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors leading-none">Mobi Store Team</p>
+                                        <p className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors leading-none">Mobi Store Team</p>
                                         <p className="text-[10px] text-slate-500 group-hover:text-slate-400 mt-0.5">Lead Engineer & CEO</p>
                                     </div>
                                 </a>
@@ -126,7 +126,7 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
                                                 href={darazConfig.url}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="inline-flex items-center gap-2 text-[#f85606] hover:text-white transition-colors group text-xs font-bold bg-[#f85606]/10 px-3 py-1.5 rounded-lg border border-[#f85606]/20 hover:bg-[#f85606] hover:border-[#f85606]"
+                                                className="inline-flex items-center gap-2 text-emerald-400 hover:text-white transition-colors group text-xs font-bold bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20 hover:bg-emerald-600 hover:border-emerald-600"
                                                 title="Shop Our Official Products on Daraz"
                                             >
                                                 <span>Visit Daraz Store</span>
@@ -142,8 +142,8 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
                                 <h4 className="font-bold text-white text-xs uppercase tracking-widest mb-4">Company</h4>
                                 <ul className="space-y-2 text-sm text-slate-400">
                                     <li><a href="/about" onClick={(e) => handleNav(e, '/about')} className="hover:text-white transition-colors block" title="About Mobi Store">About Us</a></li>
-                                    <li><a href="/trust" onClick={(e) => handleNav(e, '/trust')} className="hover:text-orange-400 transition-colors flex items-center gap-1.5 font-bold" title="Our Commitment to Trust & Safety"><ShieldCheckIcon className="w-3.5 h-3.5" /> Trust & Safety</a></li>
-                                    <li><a href="/tech-news" onClick={(e) => handleNav(e, '/tech-news')} className="hover:text-white transition-colors block font-bold text-rose-400" title="Read Latest Global Tech News">Tech News</a></li>
+                                    <li><a href="/trust" onClick={(e) => handleNav(e, '/trust')} className="hover:text-emerald-400 text-emerald-500/90 transition-colors flex items-center gap-1.5 font-bold" title="Our Commitment to Trust & Safety"><ShieldCheckIcon className="w-3.5 h-3.5" /> Trust & Safety</a></li>
+                                    <li><a href="/tech-news" onClick={(e) => handleNav(e, '/tech-news')} className="hover:text-white transition-colors block" title="Read Latest Global Tech News">Tech News</a></li>
                                     <li><a href="/gallery" onClick={(e) => handleNav(e, '/gallery')} className="hover:text-white transition-colors block" title="View Our Collection & Store Gallery">Gallery</a></li>
                                     <li><a href="/blog" onClick={(e) => handleNav(e, '/blog')} className="hover:text-white transition-colors block" title="Explore Our Tech Blog">Blog</a></li>
                                     <li><a href="/contact" onClick={(e) => handleNav(e, '/contact')} className="hover:text-white transition-colors block" title="Contact Our Support Team">Contact Support</a></li>
@@ -151,7 +151,7 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
                                     <li className="pt-2">
                                         <button
                                             onClick={() => setShowCertificate(true)}
-                                            className="text-orange-500 hover:text-orange-400 transition-colors flex items-center gap-1.5 text-xs font-bold"
+                                            className="text-emerald-500 hover:text-emerald-400 transition-colors flex items-center gap-1.5 text-xs font-bold"
                                             title="View Official Government Certifications"
                                         >
                                             <ShieldCheckIcon className="w-4 h-4" />
@@ -169,8 +169,8 @@ const Footer: React.FC<FooterProps> = ({ navigate }) => {
                                         <li><a href="/terms" onClick={(e) => handleNav(e, '/terms')} className="hover:text-white transition-colors block" title="Read Terms of Service">Terms of Service</a></li>
                                         <li><a href="/privacy" onClick={(e) => handleNav(e, '/privacy')} className="hover:text-white transition-colors block" title="Review Privacy Policy">Privacy Policy</a></li>
                                         <li><a href="/return-policy" onClick={(e) => handleNav(e, '/return-policy')} className="hover:text-white transition-colors block" title="Check Returns & Refunds Policy">Returns & Refunds</a></li>
-                                        <li><a href="/data-deletion" onClick={(e) => handleNav(e, '/data-deletion')} className="hover:text-rose-400 text-rose-500/80 transition-colors block" title="Request Data Deletion">Data Deletion</a></li>
-                                        <li><a href="/report-problem" onClick={(e) => handleNav(e, '/report-problem')} className="hover:text-rose-400 text-rose-500/80 transition-colors block" title="Report a Technical Problem">Report Problem</a></li>
+                                        <li><a href="/data-deletion" onClick={(e) => handleNav(e, '/data-deletion')} className="hover:text-white text-slate-400 transition-colors block" title="Request Data Deletion">Data Deletion</a></li>
+                                        <li><a href="/report-problem" onClick={(e) => handleNav(e, '/report-problem')} className="hover:text-white text-slate-400 transition-colors block" title="Report a Technical Problem">Report Problem</a></li>
                                     </ul>
                                 </div>
 

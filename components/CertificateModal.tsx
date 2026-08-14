@@ -1,4 +1,4 @@
-﻿
+
 import React from 'react';
 import { XMarkIcon } from './icons/XMarkIcon';
 import { ShieldCheckIcon } from './icons/ShieldCheckIcon';
@@ -24,7 +24,7 @@ const CertificateModal: React.FC<CertificateModalProps> = ({ onClose }) => {
                 {/* Header - Fixed Height */}
                 <div className="bg-slate-50 p-4 border-b border-slate-100 flex justify-between items-center shrink-0 z-30 relative">
                     <div className="flex items-center gap-2">
-                        <ShieldCheckIcon className="w-6 h-6 text-orange-600" />
+                        <ShieldCheckIcon className="w-6 h-6 text-emerald-600" />
                         <div>
                             <h3 className="text-lg font-bold text-slate-800 leading-none">Official Registration</h3>
                             <p className="text-xs text-slate-500 mt-0.5">Govt. of Nepal &middot; Inland Revenue Dept.</p>

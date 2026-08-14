@@ -176,11 +176,11 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ navigate, isCollapsed, togg
 
             {/* SIDEBAR CONTAINER - Sleek & Powerful */}
             <aside className={`
-                fixed inset-y-0 left-0 z-50 flex flex-col
-                bg-white/95 backdrop-blur-2xl border-r border-slate-200/80 shadow-2xl
+                fixed inset-y-0 left-0 z-30 flex flex-col
+                bg-white/95 backdrop-blur-2xl border-r border-slate-200/80 shadow-xl
                 transition-all duration-300 ease-out
-                ${isCollapsed ? 'w-20' : 'xl:w-72 lg:w-64 w-60'} 
-                ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+                ${isCollapsed ? 'w-16' : 'w-56'} 
+                ${isMobileOpen ? 'translate-x-0 !z-50' : '-translate-x-full md:translate-x-0'}
                 pt-[env(safe-area-inset-top)]
             `}>
 

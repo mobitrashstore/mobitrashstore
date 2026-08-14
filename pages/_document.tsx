@@ -12,8 +12,6 @@ export default function Document() {
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        {/* Viewport: Allow zooming for accessibility (Lighthouse requirement) */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
 
         {/* Prevent Chrome Translation Popup & "Running in Chrome" context if possible */}
         <meta name="google" content="notranslate" />

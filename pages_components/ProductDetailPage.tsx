@@ -832,7 +832,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ sku, navigate }) 
             />
 
             <div
-                className="sticky top-0 z-30 bg-gradient-to-b from-[#059669] to-[#0f172a] border-b border-slate-800 px-4 py-3 flex items-center justify-between md:hidden pt-2 shadow-sm"
+                className="sticky top-0 z-30 bg-[#059669] border-b border-emerald-600/50 px-4 py-3 flex items-center justify-between md:hidden pt-2 shadow-sm"
                 style={{ paddingTop: 'calc(env(safe-area-inset-top) + 0.75rem)' }}
             >
                 <button onClick={() => window.history.back()} className="p-2 -ml-2 text-white hover:bg-white/20 rounded-full transition-colors">

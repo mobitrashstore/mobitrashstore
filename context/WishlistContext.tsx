@@ -23,10 +23,10 @@ export const useWishlist = () => useContext(WishlistContext);
 export const WishlistProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [wishlist, setWishlist] = useState<WishlistItem[]>(() => {
     try {
+      if (typeof window === 'undefined') return [];
       const item = window.localStorage.getItem(WISHLIST_STORAGE_KEY);
       return item ? JSON.parse(item) : [];
-    } catch (error) {
-      console.error("Failed to parse wishlist from localStorage", error);
+    } catch {
       return [];
     }
   });

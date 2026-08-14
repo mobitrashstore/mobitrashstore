@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer 
 } from 'recharts';
@@ -345,7 +345,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                                 onClick={() => setActiveTab(tab as any)}
                                 className={`pb-3 font-bold transition-all relative whitespace-nowrap tracking-tight ${
                                     activeTab === tab 
-                                    ? 'text-blue-600 border-b-2 border-blue-600' 
+                                    ? 'text-emerald-600 border-b-2 border-emerald-600' 
                                     : 'text-gray-400 hover:text-gray-800'
                                 }`}
                             >
@@ -364,7 +364,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                                     onClick={() => setActiveTab(tab as any)}
                                     className={`pb-3 font-bold transition-all relative whitespace-nowrap text-[12px] md:text-sm tracking-tight ${
                                         activeTab === tab 
-                                        ? 'text-blue-600 border-b-2 border-blue-600' 
+                                        ? 'text-emerald-600 border-b-2 border-emerald-600' 
                                         : 'text-gray-400 hover:text-gray-800'
                                     }`}
                                 >
@@ -378,7 +378,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                             <button 
                                 className={`pb-3 font-bold transition-all relative whitespace-nowrap text-[12px] md:text-sm tracking-tight flex items-center gap-0.5 ${
                                     ['Homepage', 'Database'].includes(activeTab) 
-                                    ? 'text-blue-600 border-b-2 border-blue-600' 
+                                    ? 'text-emerald-600 border-b-2 border-emerald-600' 
                                     : 'text-gray-400 hover:text-gray-800'
                                 }`}
                             >
@@ -394,7 +394,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                                         onClick={() => setActiveTab(tab as any)}
                                         className={`w-full text-left px-5 py-3 text-[12px] font-bold transition-colors ${
                                             activeTab === tab 
-                                            ? 'bg-blue-50 text-blue-600' 
+                                            ? 'bg-emerald-50 text-emerald-600' 
                                             : 'text-gray-500 hover:bg-gray-50'
                                         }`}
                                     >
@@ -415,10 +415,10 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                         {/* KPI 1: Net Sales */}
                         <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm transition-shadow">
                              <div className="flex justify-between items-start mb-4">
-                                <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
+                                <div className="p-2 bg-emerald-50 rounded-lg text-emerald-600">
                                     <DollarSign className="w-5 h-5" />
                                 </div>
-                                <span className="text-[10px] font-bold text-orange-600 uppercase flex items-center gap-1">
+                                <span className="text-[10px] font-bold text-emerald-600 uppercase flex items-center gap-1">
                                     This Month
                                 </span>
                              </div>
@@ -429,10 +429,10 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                         {/* KPI 2: Total Orders */}
                         <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm transition-shadow">
                              <div className="flex justify-between items-start mb-4">
-                                <div className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
+                                <div className="p-2 bg-emerald-50 rounded-lg text-emerald-600">
                                     <ShoppingCart className="w-5 h-5" />
                                 </div>
-                                <span className="text-[10px] font-bold text-indigo-600 uppercase">Confirmed</span>
+                                <span className="text-[10px] font-bold text-emerald-600 uppercase">Confirmed</span>
                              </div>
                              <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Orders</p>
                              <h3 className="text-xl font-bold text-gray-900 mt-1">{analyticsSummary.totalOrders}</h3>
@@ -441,10 +441,10 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                         {/* KPI 3: Site Visits */}
                         <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm transition-shadow">
                              <div className="flex justify-between items-start mb-4">
-                                <div className="p-2 bg-orange-50 rounded-lg text-orange-600">
+                                <div className="p-2 bg-emerald-50 rounded-lg text-emerald-600">
                                     <Activity className="w-5 h-5" />
                                 </div>
-                                <span className="text-[10px] font-bold text-orange-600 uppercase">Active</span>
+                                <span className="text-[10px] font-bold text-emerald-600 uppercase">Active</span>
                              </div>
                              <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Total Clicks</p>
                              <h3 className="text-xl font-bold text-gray-900 mt-1">{analyticsSummary.totalClicks}</h3>
@@ -453,10 +453,10 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                         {/* KPI 4: Pending Repairs */}
                         <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm transition-shadow">
                              <div className="flex justify-between items-start mb-4">
-                                <div className="p-2 bg-amber-50 rounded-lg text-amber-600">
+                                <div className="p-2 bg-emerald-50 rounded-lg text-emerald-600">
                                     <Wrench className="w-5 h-5" />
                                 </div>
-                                <span className="text-[10px] font-bold text-amber-600 uppercase">Urgent</span>
+                                <span className="text-[10px] font-bold text-emerald-600 uppercase">Urgent</span>
                              </div>
                              <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">Services</p>
                              <h3 className="text-xl font-bold text-gray-900 mt-1">{repairBookings.length}</h3>
@@ -480,7 +480,7 @@ const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ navigate }) => 
                                         <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#64748b' }} dy={10} />
                                         <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#64748b' }} />
                                         <RechartsTooltip />
-                                        <Line type="monotone" dataKey="Sales" stroke="#3b82f6" strokeWidth={2} dot={{ r: 3 }} />
+                                        <Line type="monotone" dataKey="Sales" stroke="#059669" strokeWidth={2} dot={{ r: 3 }} />
                                     </LineChart>
                                 </ResponsiveContainer>
                             </div>

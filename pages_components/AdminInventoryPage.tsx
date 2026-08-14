@@ -1,4 +1,4 @@
-﻿
+
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import * as api from '../services/api';
 import { InventoryItem, Category, Brand, ProductVariant } from '../types';
@@ -465,11 +465,11 @@ const ProductModal: React.FC<{
     // Kept for form implicit submit (Enter key), defaults to Keep Open
     const handleSubmit = (e: React.FormEvent) => handleFinalSubmit(e, false);
 
-    // Lock Body Scroll when modal is open
+    // Lock Body Scroll and hide sidebar when modal is open
     useEffect(() => {
-        document.body.classList.add('no-scroll');
+        document.body.classList.add('no-scroll', 'modal-open');
         return () => {
-            document.body.classList.remove('no-scroll');
+            document.body.classList.remove('no-scroll', 'modal-open');
         };
     }, []);
 
@@ -478,7 +478,7 @@ const ProductModal: React.FC<{
     const specTemplateKeys = SPEC_TEMPLATES[formData.category] ? SPEC_TEMPLATES[formData.category].map(s => s.key) : [];
 
     return (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-[9999] flex items-start justify-center p-4 pt-16 overflow-y-auto animate-fade-in custom-scrollbar">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-[99999] flex items-start justify-center p-4 pt-16 overflow-y-auto animate-fade-in custom-scrollbar">
             <div className="bg-white border border-slate-200 rounded-2xl shadow-2xl w-full max-w-5xl flex flex-col h-auto max-h-[85vh] overflow-hidden relative z-10 my-4 sm:my-8">
                 <div className="flex items-center justify-between p-5 border-b border-gray-200 bg-white shrink-0">
                     <div>
@@ -899,7 +899,7 @@ const ProductModal: React.FC<{
                                         localStorage.setItem('admin_product_draft', JSON.stringify(draftData));
                                         alert("Draft saved locally!");
                                     }}
-                                    className="hidden lg:flex items-center gap-2 px-3 py-2 bg-amber-100 text-amber-700 rounded-lg text-xs font-bold hover:bg-amber-200"
+                                    className="hidden lg:flex items-center gap-2 px-3 py-2 bg-emerald-100 text-emerald-700 rounded-lg text-xs font-bold hover:bg-emerald-200 transition-colors"
                                 >
                                     <ArchiveBoxIcon className="w-4 h-4" /> Save Draft
                                 </button>
@@ -917,11 +917,11 @@ const ProductModal: React.FC<{
                                 Exit
                             </button>
 
-                            <button type="button" onClick={(e) => handleFinalSubmit(e, false)} className="bg-amber-600 text-white text-xs font-bold py-2.5 px-5 rounded-xl hover:bg-amber-700 shadow-md transition-all active:scale-95 flex items-center gap-1.5">
+                            <button type="button" onClick={(e) => handleFinalSubmit(e, false)} className="bg-[#059669] text-white text-xs font-bold py-2.5 px-5 rounded-xl hover:bg-[#047857] shadow-md transition-all active:scale-95 flex items-center gap-1.5">
                                 Save
                             </button>
 
-                            <button type="button" onClick={(e) => handleFinalSubmit(e, true)} className="bg-orange-600 text-white text-xs font-bold py-2.5 px-5 rounded-xl hover:bg-orange-700 shadow-md transition-all active:scale-95 flex items-center gap-1.5">
+                            <button type="button" onClick={(e) => handleFinalSubmit(e, true)} className="bg-emerald-700 text-white text-xs font-bold py-2.5 px-5 rounded-xl hover:bg-emerald-800 shadow-md transition-all active:scale-95 flex items-center gap-1.5">
                                 Save & Exit
                             </button>
                         </div>
@@ -1253,7 +1253,7 @@ Would you like to open Google Search Console to manually request an "Instant Ind
 
                         <button
                             onClick={() => setIsAddDropdownOpen(prev => !prev)}
-                            className="w-full sm:w-auto bg-orange-600 text-white font-bold py-3 px-6 rounded-xl hover:bg-orange-700 flex items-center justify-center gap-2 shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 active:scale-95"
+                            className="w-full sm:w-auto bg-[#059669] text-white font-bold py-3 px-6 rounded-xl hover:bg-[#047857] flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 active:scale-95"
                         >
                             <PlusCircleIcon className="w-5 h-5" />
                             <span>Add Product</span>
@@ -1297,10 +1297,10 @@ Would you like to open Google Search Console to manually request an "Instant Ind
                     {/* Desktop Category Filter */}
                     <div className="hidden md:flex flex-wrap gap-2 items-center relative">
                         <span className="text-sm font-bold text-slate-500 mr-1 uppercase tracking-wide">Filter:</span>
-                        <button onClick={() => setActiveCategory('All')} className={`px-4 py-1.5 text-sm rounded-full transition-all border font-medium ${activeCategory === 'All' ? 'bg-amber-600 text-white border-amber-600 shadow-sm' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'}`}>All</button>
+                        <button onClick={() => setActiveCategory('All')} className={`px-4 py-1.5 text-sm rounded-full transition-all border font-medium ${activeCategory === 'All' ? 'bg-[#059669] text-white border-[#059669] shadow-sm' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'}`}>All</button>
 
                         {categories.slice(0, 5).map(cat => (
-                            <button key={cat.name} onClick={() => setActiveCategory(cat.name)} className={`px-4 py-1.5 text-sm rounded-full transition-all border font-medium ${activeCategory === cat.name ? 'bg-amber-600 text-white border-amber-600 shadow-sm' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'}`}>{cat.name}</button>
+                            <button key={cat.name} onClick={() => setActiveCategory(cat.name)} className={`px-4 py-1.5 text-sm rounded-full transition-all border font-medium ${activeCategory === cat.name ? 'bg-[#059669] text-white border-[#059669] shadow-sm' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'}`}>{cat.name}</button>
                         ))}
 
                         {categories.length > 5 && (
@@ -1308,7 +1308,7 @@ Would you like to open Google Search Console to manually request an "Instant Ind
                                 <button
                                     onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
                                     className={`px-3 py-1.5 text-sm rounded-full border flex items-center gap-1 font-medium ${!['All', ...categories.slice(0, 5).map(c => c.name), 'Hot Product'].includes(activeCategory)
-                                        ? 'bg-amber-600 text-white border-amber-600 shadow-sm'
+                                        ? 'bg-[#059669] text-white border-[#059669] shadow-sm'
                                         : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'
                                         }`}
                                 >
@@ -1324,7 +1324,7 @@ Would you like to open Google Search Console to manually request an "Instant Ind
                                                 <button
                                                     key={cat.name}
                                                     onClick={() => { setActiveCategory(cat.name); setIsCategoryDropdownOpen(false); }}
-                                                    className={`block w-full text-left px-4 py-2 text-sm hover:bg-slate-50 ${activeCategory === cat.name ? 'text-amber-600 font-bold bg-amber-50' : 'text-slate-700'}`}
+                                                    className={`block w-full text-left px-4 py-2 text-sm hover:bg-slate-50 ${activeCategory === cat.name ? 'text-emerald-600 font-bold bg-emerald-50' : 'text-slate-700'}`}
                                                 >
                                                     {cat.name}
                                                 </button>
@@ -1334,7 +1334,7 @@ Would you like to open Google Search Console to manually request an "Instant Ind
                                 )}
                             </div>
                         )}
-                        <button onClick={() => setActiveCategory('Hot Product')} className={`px-4 py-1.5 text-sm rounded-full transition-all border font-medium ${activeCategory === 'Hot Product' ? 'bg-amber-600 text-white border-amber-600 shadow-sm' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'}`}>Hot Products</button>
+                        <button onClick={() => setActiveCategory('Hot Product')} className={`px-4 py-1.5 text-sm rounded-full transition-all border font-medium ${activeCategory === 'Hot Product' ? 'bg-[#059669] text-white border-[#059669] shadow-sm' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'}`}>Hot Products</button>
                     </div>
 
                     {/* Mobile Dropdown Replacement */}

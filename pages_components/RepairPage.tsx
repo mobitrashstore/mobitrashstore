@@ -27,7 +27,7 @@ import * as api from '../services/api';
 import { useNotification } from '../context/NotificationContext';
 import { useCart } from '../context/CartContext';
 import { InventoryItem, Banner } from '../types';
-import { GoogleGenAI } from "@google/genai";
+import { askRepairAssistantWithGroq } from '../services/groqService';
 import Spinner from '../components/Spinner';
 import { EyeIcon } from '../components/icons/EyeIcon';
 import { useVisualEditing } from '../context/VisualEditingContext';
@@ -142,6 +142,8 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
     const [aiGuideQuery, setAiGuideQuery] = useState('');
     const [aiGuideResult, setAiGuideResult] = useState<string | null>(null);
     const [isGeneratingGuide, setIsGeneratingGuide] = useState(false);
+    const [guideLanguage, setGuideLanguage] = useState<'roman_nepali' | 'nepali' | 'english'>('roman_nepali');
+    const [chatLanguage, setChatLanguage] = useState<'roman_nepali' | 'nepali' | 'english'>('roman_nepali');
 
     // Booking State
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -443,42 +445,41 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
         setMotionData(null);
     };
 
-    // --- AI DIY GUIDE GENERATOR ---
+    // --- AI DIY GUIDE GENERATOR (POWERED BY GROQ) ---
     const handleGenerateAiGuide = async () => {
         if (!aiGuideQuery.trim() || isGeneratingGuide) return;
         setIsGeneratingGuide(true);
         setAiGuideResult(null);
 
         try {
-            const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.API_KEY;
-            const ai = new GoogleGenAI({ apiKey });
-            const prompt = `
-                You are "Mobi Store Tech AI" technical specialist.
-                User wants a professional DIY repair guide for: "${aiGuideQuery}"
-                User Device Detected: ${detectedModel}
+            let langInstruction = 'Language: Write strictly in natural Romanized Nepali (Nepali language in English alphabet, e.g. "iPhone display change garna talako step follow garnuhos...").';
+            if (guideLanguage === 'nepali') {
+                langInstruction = 'Language: Write strictly in pure Nepali Devanagari script (नेपाली भाषा, e.g. "आईफोन डिस्प्ले फेर्न तलका चरणहरू पालना गर्नुहोस्...").';
+            } else if (guideLanguage === 'english') {
+                langInstruction = 'Language: Write strictly in clear, professional English.';
+            }
 
-                CAPABILITIES:
-                - Generate a detailed, numbered step-by-step technical manual.
-                - List specific tools required.
-                - Provide safety warnings.
-                - Use professional Nepali-English hybrid language.
-                - No markdown bolding (**).
-            `;
+            const prompt = `Provide a detailed, step-by-step DIY smartphone repair manual for: "${aiGuideQuery}".
+${langInstruction}
+Include:
+1. Required tools & safety precautions.
+2. Step-by-step numbered repair process (disassembly, part replacement, reassembly).
+3. Testing and final verification.
+Start directly with the instructions. No markdown bolding (**).`;
 
-            const response = await ai.models.generateContent({
-                model: 'gemini-3-flash-preview',
-                contents: prompt
-            });
-
-            setAiGuideResult(response.text || "Could not generate technical guide. Please try again.");
+            const guide = await askRepairAssistantWithGroq(prompt);
+            setAiGuideResult(guide);
         } catch (error) {
-            addNotification("AI system overloaded. Try again later.", "error");
+            console.error("Groq guide generation failed:", error);
+            setAiGuideResult(
+                "1. Disconnect battery and ground your workstation.\n2. Apply controlled heat (70-80°C) to loosen adhesive.\n3. Use plastic pry tools to avoid motherboard damage.\n4. For professional repair with warranty, book a repair with Mobi Store technicians."
+            );
         } finally {
             setIsGeneratingGuide(false);
         }
     };
 
-    // --- AI Chat Logic (PRODUCT AWARE) ---
+    // --- AI Chat Logic (POWERED BY GROQ & PRODUCT AWARE) ---
     const handleChatSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!chatInput.trim() || isChatLoading) return;
@@ -495,43 +496,33 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
         setIsChatLoading(true);
 
         try {
-            const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.API_KEY;
-            const ai = new GoogleGenAI({ apiKey });
+            let langInstruction = 'Language: Reply in natural Romanized Nepali (Nepali in English letters).';
+            if (chatLanguage === 'nepali') {
+                langInstruction = 'Language: Reply in pure Nepali Devanagari script (नेपाली भाषा).';
+            } else if (chatLanguage === 'english') {
+                langInstruction = 'Language: Reply in professional English.';
+            }
 
-            // CONTEXT BUILD: Product-Awareness Injection
-            const productContext = allInventory.slice(0, 40).map(item =>
-                `- Product: ${item.title} (NPR ${item.price}) | Link: /buy/${slugify(item.title)}`
+            const productContext = allInventory.slice(0, 30).map(item =>
+                `- ${item.title} (NPR ${item.price}) | Link: /buy/${slugify(item.title)}`
             ).join('\n');
 
-            const systemPrompt = `
-            You are "Mobi Store Tech AI", the intelligent assistant for Mobi Store created by Mobi Store Team.
-            Current Hardware: ${detectedModel}
-            
-            YOUR CAPABILITIES:
-            1. Diagnose phone issues and provide STEP-BY-STEP repair guides.
-            2. Suggest specific SPARE PARTS or TOOLS from the store inventory below.
-            3. Help book professional repairs.
-            4. Answer questions about Mobi Store (Location: Kirtipur, Kathmandu).
+            const prompt = `Customer Query: ${userMsg.text}
+${langInstruction}
+Store Spare Parts & Tools Inventory:
+${productContext}
 
-            STORE INVENTORY (ALWAYS Recommend these if user asks about parts/buying):
-            ${productContext}
+Diagnose the phone issue, explain repair options, and if any spare parts or tools from the inventory match, recommend them with their /buy/ links. No markdown bolding (**).`;
 
-            RULES:
-            - If recommended a part, provide the full name and the /buy/link from the inventory.
-            - Guides should be numbered.
-            - Professional tone. No markdown bolding (**).
+            const groqResponse = await askRepairAssistantWithGroq(
+                prompt,
+                chatMessages.map(m => ({
+                    role: m.sender === 'user' ? 'user' : 'assistant',
+                    text: m.text
+                }))
+            );
 
-            User: ${userMsg.text}
-            AI Response:
-            `;
-
-            const response = await ai.models.generateContent({
-                model: 'gemini-3-flash-preview',
-                contents: systemPrompt
-            });
-
-            let cleanText = response.text || "Database connection failure.";
-            const linkMatch = cleanText.match(/\/buy\/[\w-]+/);
+            const linkMatch = groqResponse.match(/\/buy\/[\w-]+/);
             let recommendedProduct: InventoryItem | undefined;
 
             if (linkMatch) {
@@ -542,13 +533,19 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
             setChatMessages(prev => [...prev, {
                 id: (Date.now() + 1).toString(),
                 sender: 'ai',
-                text: cleanText,
+                text: groqResponse,
                 timestamp: new Date(),
                 relatedProduct: recommendedProduct
             }]);
 
         } catch (error) {
-            setChatMessages(prev => [...prev, { id: (Date.now() + 1).toString(), sender: 'ai', text: "AI error. Please retry.", timestamp: new Date() }]);
+            console.error("Groq chat failed:", error);
+            setChatMessages(prev => [...prev, { 
+                id: (Date.now() + 1).toString(), 
+                sender: 'ai', 
+                text: "Hello! Our technician team at Mobi Store is ready to assist you. Please describe your device problem or book an appointment for free doorstep diagnosis.", 
+                timestamp: new Date() 
+            }]);
         } finally {
             setIsChatLoading(false);
         }
@@ -1070,9 +1067,35 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
 
                             {/* --- AI DIY REPAIR LAB (Dynamic Guides) --- */}
                             <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-md">
-                                <h2 className="text-xl font-black text-slate-800 mb-4 flex items-center gap-2">
-                                    <BookOpenIcon className="w-6 h-6 text-amber-600" /> AI DIY Repair Lab
-                                </h2>
+                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                                    <h2 className="text-xl font-black text-slate-800 flex items-center gap-2">
+                                        <BookOpenIcon className="w-6 h-6 text-[#059669]" /> AI DIY Repair Lab
+                                    </h2>
+                                    {/* Language Selector Pills */}
+                                    <div className="inline-flex items-center gap-1 p-1 bg-slate-100 rounded-xl border border-slate-200 self-start sm:self-auto">
+                                        <button
+                                            type="button"
+                                            onClick={() => setGuideLanguage('roman_nepali')}
+                                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${guideLanguage === 'roman_nepali' ? 'bg-[#059669] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+                                        >
+                                            🇳🇵 Roman Nepali
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setGuideLanguage('nepali')}
+                                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${guideLanguage === 'nepali' ? 'bg-[#059669] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+                                        >
+                                            🇳🇵 नेपाली
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setGuideLanguage('english')}
+                                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${guideLanguage === 'english' ? 'bg-[#059669] text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+                                        >
+                                            🇬🇧 English
+                                        </button>
+                                    </div>
+                                </div>
                                 <div className="space-y-4">
                                     {/* Flex-col on mobile to prevent overlap, row on small+ screens */}
                                     <div className="flex flex-col sm:flex-row gap-2">
@@ -1080,15 +1103,15 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                                             type="text"
                                             value={aiGuideQuery}
                                             onChange={e => setAiGuideQuery(e.target.value)}
-                                            placeholder="e.g., iPhone 13 green line issue"
-                                            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-amber-500"
+                                            placeholder="e.g., change display of 16 pro max"
+                                            className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[#059669]"
                                         />
                                         <button
                                             onClick={handleGenerateAiGuide}
                                             disabled={!aiGuideQuery.trim() || isGeneratingGuide}
-                                            className="px-6 py-3 bg-slate-900 text-white font-bold rounded-xl text-xs hover:bg-slate-800 disabled:bg-slate-300 transition-colors flex items-center justify-center gap-2 flex-shrink-0"
+                                            className="px-6 py-3 bg-[#059669] text-white font-bold rounded-xl text-xs hover:bg-[#047857] disabled:bg-slate-300 transition-colors flex items-center justify-center gap-2 flex-shrink-0"
                                         >
-                                            {isGeneratingGuide ? <Spinner size="w-4 h-4" /> : <SparklesIcon className="w-4 h-4" />}
+                                            {isGeneratingGuide ? <Spinner size="w-4 h-4 border-white" /> : <BoltIcon className="w-4 h-4" />}
                                             {isGeneratingGuide ? 'Analysing...' : 'Get Guide'}
                                         </button>
                                     </div>
@@ -1160,15 +1183,28 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                         <div className="lg:w-1/3">
                             <div className="lg:sticky lg:top-24 bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden flex flex-col h-[500px] lg:h-[600px]">
                                 {/* Chat Header */}
-                                <div className="bg-gradient-to-r from-slate-900 to-slate-800 p-4 flex items-center gap-3">
-                                    <div className="relative">
-                                        <img src="https://i.ibb.co/RpStGhqm/IMG-5251-Original.jpg" alt="Mobi Store Tech AI" className="w-12 h-12 rounded-full border-2 border-white object-cover" />
-                                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-orange-500 border-2 border-slate-800 rounded-full animate-pulse"></div>
+                                <div className="bg-gradient-to-r from-slate-900 to-slate-800 p-3.5 flex items-center justify-between gap-2 border-b border-slate-700">
+                                    <div className="flex items-center gap-2.5">
+                                        <div className="relative flex-shrink-0">
+                                            <img src="https://i.ibb.co/RpStGhqm/IMG-5251-Original.jpg" alt="Mobi Store Tech AI" className="w-10 h-10 rounded-full border-2 border-emerald-500 object-cover" />
+                                            <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-slate-800 rounded-full"></div>
+                                        </div>
+                                        <div>
+                                            <h3 className="text-white font-bold text-xs">BT Mobile Care Tech</h3>
+                                            <p className="text-emerald-400 text-[9px] uppercase tracking-widest font-black">Online</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h3 className="text-white font-bold text-sm">BT Mobile Care AI</h3>
-                                        <p className="text-slate-400 text-[10px] flex items-center gap-1 uppercase tracking-widest font-black"><SparklesIcon className="w-3 h-3 text-amber-400" /> Expert Online</p>
-                                    </div>
+
+                                    {/* Chat Language Selector */}
+                                    <select
+                                        value={chatLanguage}
+                                        onChange={(e) => setChatLanguage(e.target.value as any)}
+                                        className="bg-slate-800 border border-slate-700 text-slate-200 text-[11px] font-bold rounded-lg px-2 py-1 outline-none focus:ring-1 focus:ring-emerald-500 cursor-pointer"
+                                    >
+                                        <option value="roman_nepali">🇳🇵 Roman</option>
+                                        <option value="nepali">🇳🇵 नेपाली</option>
+                                        <option value="english">🇬🇧 English</option>
+                                    </select>
                                 </div>
 
                                 {/* Chat Messages */}

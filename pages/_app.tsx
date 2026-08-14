@@ -33,6 +33,7 @@ import { Capacitor } from '@capacitor/core';
 import * as api from '../services/api';
 import emailjs from '@emailjs/browser';
 import { newsService } from '../services/newsService';
+import ScrollToTopButton from '../components/ScrollToTopButton';
 import '../index.css';
 
 // Error Boundary Component
@@ -257,6 +258,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
   return (
     <div className={`min-h-screen w-full bg-gray-50 transition-all duration-300 overflow-x-hidden ${isEditing ? 'pl-80' : ''} ${fullWidth ? 'editor-full-width' : ''}`}>
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
         <link rel="canonical" href={canonicalUrl} key="canonical" />
         <meta name="robots" content={isAdminPage ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} key="robots" />
       </Head>
@@ -266,9 +268,9 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
         {!isAdminPage && <Header navigate={navigate} />}
 
         <main className={`flex-grow flex flex-col bg-white relative overflow-hidden ${showBottomNav ? 'pb-[calc(64px+env(safe-area-inset-bottom))] md:pb-0' : ''}`}>
-          <div className="absolute top-0 left-0 w-64 h-64 bg-orange-500/5 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-[60px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent"></div>
+          <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-500/5 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[60px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent"></div>
 
           <ErrorBoundary>
             <PullToRefresh onRefresh={handleRefresh} disabled={isAdminPage}>
@@ -298,6 +300,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
 
         {!isAdminPage && !isSpinWinPage && <Footer navigate={navigate} />}
         {showBottomNav && <BottomNavBar navigate={navigate} currentPath={normalizedPath} />}
+        <ScrollToTopButton />
         <CartModal isOpen={isCartOpen} onClose={closeCart} navigate={navigate} />
         <OfflineBanner />
         {isAuthenticating && <AuthOverlay />}

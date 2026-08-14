@@ -42,10 +42,10 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
+      if (typeof window === 'undefined') return [];
       const item = window.localStorage.getItem(CART_STORAGE_KEY);
       return item ? JSON.parse(item) : [];
-    } catch (error) {
-      console.error("Failed to parse cart from localStorage", error);
+    } catch {
       return [];
     }
   });
