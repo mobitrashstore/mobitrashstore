@@ -134,30 +134,6 @@ const HeroSection: React.FC<{
 
         return (
             <section className="bg-white text-slate-900 -mt-20 md:mt-0 relative z-0 pt-20 md:pt-0 overflow-hidden">
-                {/* Subtle Background Elements to blend with Amber Header */}
-                {/* Ultra-Modern Powerful SVG Background */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    {/* Tech Grid Pattern */}
-                    <svg className="absolute inset-0 w-full h-full opacity-[0.03]" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <pattern id="hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-slate-900" />
-                                <rect x="0" y="0" width="2" height="2" fill="currentColor" className="text-orange-500" />
-                            </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#hero-grid)" />
-                    </svg>
-
-                    {/* Dynamic Power Blobs */}
-                    <div className="absolute -top-[30%] -right-[15%] w-[900px] h-[900px] bg-gradient-radial from-orange-100/40 via-orange-50/10 to-transparent blur-[80px] mix-blend-multiply"></div>
-                    <div className="absolute -bottom-[20%] -left-[10%] w-[800px] h-[800px] bg-gradient-radial from-orange-50/50 via-orange-50/20 to-transparent blur-[100px] mix-blend-multiply opacity-80"></div>
-
-                    {/* Geometric Accents */}
-                    <svg className="absolute -right-20 top-20 w-96 h-96 text-orange-500/10 animate-pulse-slow" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="currentColor" d="M45.7,-76.3C58.9,-69.3,69.1,-55.5,76.5,-41.2C83.9,-26.9,88.5,-12.1,85.2,1.2C81.9,14.5,70.7,26.3,60.5,36.9C50.3,47.5,41.1,56.9,30.3,63.9C19.5,70.9,7.1,75.5,-3.8,80.7C-14.7,85.9,-24.1,91.7,-34.7,88.4C-45.3,85.1,-57.1,72.7,-65.9,59.9C-74.7,47.1,-80.5,33.9,-82.7,20.1C-84.9,6.3,-83.5,-8.1,-77.3,-21.1C-71.1,-34.1,-60.1,-45.7,-48.3,-53.2C-36.5,-60.7,-23.9,-64.1,-11.1,-62.7C1.7,-61.3,13.4,-55.1,32.5,-83.3L45.7,-76.3Z" transform="translate(100 100)" />
-                    </svg>
-                </div>
-
                 <div className="w-full md:px-6 pt-8 pb-12 md:pt-16 md:pb-20 flex flex-col md:flex-row items-center gap-10 relative z-10"> {/* Removed max-w-7xl mx-auto */}
                     {/* LEFT: TEXT SIDE */}
                     <div className="flex-1 text-center md:text-left space-y-5 md:space-y-6 px-4 md:px-0">
