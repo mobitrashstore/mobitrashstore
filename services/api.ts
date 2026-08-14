@@ -547,17 +547,44 @@ const uploadToCloudinary = async (
     folder: string,
     onProgress?: (progress: number) => void
 ): Promise<string> => {
-    const getEnvVal = (nextKey: string, viteKey: string, fallback: string): string => {
-        if (typeof process !== 'undefined' && process.env && process.env[nextKey]) return process.env[nextKey] as string;
-        try {
-            const metaEnv = (import.meta as any).env;
-            if (metaEnv && metaEnv[viteKey]) return metaEnv[viteKey];
-        } catch(e){}
-        return fallback;
-    };
-    const cloudName = getEnvVal('NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME', 'VITE_CLOUDINARY_CLOUD_NAME', 'df4he5ovu');
-    const apiKey = getEnvVal('NEXT_PUBLIC_CLOUDINARY_API_KEY', 'VITE_CLOUDINARY_API_KEY', '252214753723296');
-    const apiSecret = getEnvVal('NEXT_PUBLIC_CLOUDINARY_API_SECRET', 'VITE_CLOUDINARY_API_SECRET', 'TlpeLMZtVRJcjXNDPc6zORlZurU');
+    // 1. Primary: Use Server-side Next.js API Route
+    try {
+        if (onProgress) onProgress(25);
+        let base64Data: string;
+        if (typeof fileData === 'string') {
+            base64Data = fileData;
+        } else {
+            base64Data = await new Promise<string>((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result as string);
+                reader.onerror = reject;
+                reader.readAsDataURL(fileData);
+            });
+        }
+
+        if (onProgress) onProgress(55);
+
+        const res = await fetch('/api/upload', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ file: base64Data, folder })
+        });
+
+        if (res.ok) {
+            const data = await res.json();
+            if (data.url) {
+                if (onProgress) onProgress(100);
+                return data.url;
+            }
+        }
+    } catch (err) {
+        console.warn('Server API upload failed, falling back to direct upload:', err);
+    }
+
+    // 2. Fallback: Direct Cloudinary Upload
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'df4he5ovu';
+    const apiKey = process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY || '252214753723296';
+    const apiSecret = process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET || 'TlpeLMZtVRJcjXNDPc6zORlZurU';
 
     const timestamp = Math.round(new Date().getTime() / 1000);
     const params: Record<string, any> = {
