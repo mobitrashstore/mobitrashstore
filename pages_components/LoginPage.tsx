@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { ExclamationTriangleIcon } from '../components/icons/ExclamationTriangleIcon';
 import * as api from '../services/api';
@@ -15,6 +15,7 @@ import { UserIcon } from '../components/icons/UserIcon';
 import { ShieldCheckIcon } from '../components/icons/ShieldCheckIcon';
 import confetti from 'canvas-confetti';
 import DesktopAuthSlider from '../components/DesktopAuthSlider';
+import { formatAuthErrorMessage } from '../utils/authErrors';
 
 export interface LoginPageProps {
   navigate: (path: string) => void;
@@ -145,7 +146,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
       setOtpSent(true);
       setOtpVerified(false);
       setResendTimer(60);
-    } catch (err: any) { setError(err.message || 'Failed to send code.'); }
+    } catch (err: any) { setError(formatAuthErrorMessage(err)); }
     finally { setLoading(false); }
   };
 
@@ -164,7 +165,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
       } else {
         setError('The code you entered is incorrect or expired.');
       }
-    } catch (err: any) { setError('Verification failed. Try again.'); }
+    } catch (err: any) { setError(formatAuthErrorMessage(err)); }
     finally { setLoading(false); }
   };
 
@@ -184,7 +185,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
       const firebaseUser = await loginWithEmail(email, password);
       handleRedirect(firebaseUser);
     } catch (err: any) {
-      setError(err.message || 'Login failed.');
+      setError(formatAuthErrorMessage(err));
       setLoading(false);
     }
   };
@@ -504,12 +505,11 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
               </div>
             </div>
 
-            <div className="flex justify-between items-center px-1 pt-1">
-              {error ?
-                <p className="text-xs text-rose-500 font-medium animate-shake leading-tight truncate shrink pr-2">{error}</p>
-                : <div className="shrink"></div>
-              }
-               <button type="button" onClick={() => setIsForgotPasswordFlow(true)} className="text-[13px] font-medium text-gray-500 hover:text-black transition-colors shrink-0">forgot password?</button>
+            <div className="flex justify-between items-center px-1 pt-1 gap-2">
+              {error ? (
+                <p className="text-xs text-rose-600 font-semibold animate-shake leading-snug">{error}</p>
+              ) : <div className="shrink"></div>}
+               <button type="button" onClick={() => setIsForgotPasswordFlow(true)} className="text-[13px] font-medium text-gray-500 hover:text-black transition-colors shrink-0 whitespace-nowrap ml-auto">forgot password?</button>
             </div>
 
             <div className="pt-2 flex gap-3">
