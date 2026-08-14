@@ -105,6 +105,19 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
   const [heroSlide, setHeroSlide] = useState(0);
 
   useEffect(() => {
+    // Dynamically set mobile status bar to matching wine-red
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const prevTheme = metaTheme?.getAttribute('content') || '#059669';
+    if (metaTheme) metaTheme.setAttribute('content', '#9b1136');
+    document.documentElement.style.backgroundColor = '#9b1136';
+
+    return () => {
+      if (metaTheme) metaTheme.setAttribute('content', prevTheme);
+      document.documentElement.style.backgroundColor = '';
+    };
+  }, []);
+
+  useEffect(() => {
     // Check if biometric is available
     const checkBiometric = async () => {
       const hasCred = await biometricService.hasBiometricCredential();
@@ -202,7 +215,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
         <div className="w-full md:w-1/2 h-full relative flex flex-col items-center justify-center">
         
         {/* Top Wave */}
-        <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none">
+        <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none bg-[#b5123d]">
+          <div style={{ height: 'env(safe-area-inset-top, 0px)' }} className="w-full bg-[#b5123d]" />
           <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
             <defs><linearGradient id="wave-top-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#b5123d" /><stop offset="100%" stopColor="#8a0928" /></linearGradient></defs>
             <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C960,250 480,-50 0,160 Z" />
@@ -353,7 +367,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
         <div className="w-full md:w-1/2 h-full relative flex flex-col items-center justify-center">
         
         {/* Top Wave */}
-        <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none">
+        <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none bg-[#b5123d]">
+          <div style={{ height: 'env(safe-area-inset-top, 0px)' }} className="w-full bg-[#b5123d]" />
           <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
             <defs><linearGradient id="wave-top-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#b5123d" /><stop offset="100%" stopColor="#8a0928" /></linearGradient></defs>
             <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C960,250 480,-50 0,160 Z" />
@@ -417,7 +432,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
       <div className="w-full md:w-1/2 h-full relative flex flex-col items-center justify-center touch-none">
 
       {/* Top Mobile Wave SVG */}
-      <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none">
+      <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none bg-[#b5123d]">
+        <div style={{ height: 'env(safe-area-inset-top, 0px)' }} className="w-full bg-[#b5123d]" />
         <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
           <defs>
             <linearGradient id="wave-top-grad" x1="0%" y1="0%" x2="100%" y2="0%">
