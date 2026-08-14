@@ -212,7 +212,7 @@ const HeroSection: React.FC<{
                     {/* RIGHT: IMAGE SIDE */}
                     <div className="hidden xl:flex flex-1 items-center justify-center">
                         <div className="relative w-full max-w-md group">
-                            <div className="absolute -inset-1 bg-gradient-to-r from-orange-300 to-orange-400 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200" />
+                            <div className="absolute -inset-1 bg-gradient-to-r from-emerald-300 to-teal-400 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200" />
                             <div className="relative rounded-[2rem] overflow-hidden bg-white border-4 border-white shadow-2xl h-[380px]">
                                 {sideBanners.length > 0 ? (
                                     sideBanners.map((banner, index) => (
@@ -785,13 +785,8 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             */}
             <div
                 ref={mobileHeaderRef}
-                className="md:hidden fixed top-0 left-0 right-0 z-30 bg-gradient-to-b from-[#059669] to-[#047857] text-white shadow-md rounded-b-2xl overflow-hidden"
+                className="md:hidden fixed top-0 left-0 right-0 z-30 bg-[#059669] text-white shadow-md rounded-b-2xl overflow-hidden"
             >
-                {/* Decorative Blobs */}
-                <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                    <div className="absolute -top-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
-                </div>
-
                 <div className="w-full px-5 pb-5" style={{ paddingTop: `calc(env(safe-area-inset-top) + 0.75rem)` }}>
                     {/* Top Row: Avatar | Search | Bell */}
                     <div className="flex items-center gap-3">
