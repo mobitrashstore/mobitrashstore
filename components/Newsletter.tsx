@@ -61,7 +61,7 @@ const Newsletter: React.FC = () => {
                         <button
                             type="submit"
                             disabled={status === 'submitting' || status === 'success'}
-                            className={`px-8 py-3.5 rounded-xl font-bold bg-[#ff5722] text-white shadow-lg shadow-orange-500/20 hover:bg-[#e64a19] focus:ring-4 focus:ring-orange-500/30 transition-all ${status === 'success' ? 'bg-orange-700 cursor-default' : ''
+                            className={`px-6 py-3 rounded-xl font-semibold bg-[#059669] text-white shadow-md shadow-emerald-600/20 hover:bg-[#047857] transition-all ${status === 'success' ? 'bg-emerald-700 cursor-default' : ''
                                 }`}
                         >
                             {status === 'submitting' ? 'Joining...' : status === 'success' ? 'Welcome!' : 'Subscribe'}

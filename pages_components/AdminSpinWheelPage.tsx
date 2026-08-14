@@ -1,4 +1,4 @@
-﻿
+
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import * as api from '../services/api';
 import { SpinWheelConfig, SpinSegment, SpinParticipant } from '../types';
@@ -228,7 +228,7 @@ const AdminSpinWheelPage: React.FC<AdminSpinWheelPageProps> = ({ navigate }) => 
     const newSegment: SpinSegment = {
       id: Date.now().toString(),
       label: 'New Reward',
-      color: '#ff5722',
+      color: '#059669',
       probability: 10,
       type: 'points',
       value: 0,

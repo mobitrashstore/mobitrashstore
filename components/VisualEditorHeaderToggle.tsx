@@ -14,7 +14,7 @@ const VisualEditorHeaderToggle: React.FC = () => {
             onClick={toggleEditing}
             className={`p-2 rounded-full border transition-all duration-300 ${isEditing
                 ? 'bg-amber-500 text-white border-amber-500 shadow-md animate-pulse-slow'
-                : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-[#ff5722]'
+                : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50 hover:text-[#059669]'
                 }`}
             title={isEditing ? "Exit Visual Editor" : "Enable Visual Editor"}
             aria-label={isEditing ? "Exit Visual Editor" : "Enable Visual Editor"}

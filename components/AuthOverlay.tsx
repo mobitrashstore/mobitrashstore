@@ -3,7 +3,7 @@ import React from 'react';
 
 const AuthOverlay: React.FC = () => {
   return (
-    <div className="fixed inset-0 z-[2000] flex flex-col items-center justify-center bg-gradient-to-br from-[#ff5722] via-[#0f172a] to-[#0a0f1e] animate-fade-in backdrop-blur-lg">
+    <div className="fixed inset-0 z-[2000] flex flex-col items-center justify-center bg-gradient-to-br from-[#059669] via-[#0f172a] to-[#0a0f1e] animate-fade-in backdrop-blur-lg">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-25">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/20 rounded-full blur-3xl animate-pulse"></div>

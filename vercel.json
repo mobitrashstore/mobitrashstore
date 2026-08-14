@@ -1,7 +1,10 @@
 {
   "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
-    { "source": "/buy/:path*", "destination": "/product/:path*", "permanent": true },
-    { "source": "/products/:path*", "destination": "/product/:path*", "permanent": true }
+    { "source": "/emicalculator", "destination": "/emi-calculator", "permanent": true },
+    { "source": "/products", "destination": "/buy", "permanent": true },
+    { "source": "/products/:slug", "destination": "/product/:slug", "permanent": true },
+    { "source": "/nepali-news", "destination": "/tech-news", "permanent": true }
   ]
 }

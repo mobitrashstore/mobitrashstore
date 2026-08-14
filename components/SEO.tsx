@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 
 interface SEOProps {
     title?: string;
@@ -35,17 +35,17 @@ const SEO: React.FC<SEOProps> = ({
     const fullTitle = title ? `${title} | Mobi Store` : defaultTitle;
     const metaDescription = description || defaultDescription;
     const metaImage = image || defaultImage;
-    const metaUrl = canonicalUrl || siteUrl;
+    const metaUrl = (canonicalUrl || siteUrl).replace(/\/$/, '') || 'https://mobitrashstore.com';
 
     return (
-        <Helmet>
+        <Head>
             {/* Primary Meta Tags */}
             <title>{fullTitle}</title>
             <meta name="title" content={fullTitle} />
             <meta name="description" content={metaDescription} />
             {keywords && <meta name="keywords" content={keywords} />}
             <meta name="author" content={author} />
-            <link rel="canonical" href={metaUrl} />
+            <link rel="canonical" href={metaUrl} key="canonical" />
 
             {/* Open Graph / Facebook */}
             <meta property="og:type" content={type} />
@@ -68,11 +68,12 @@ const SEO: React.FC<SEOProps> = ({
 
             {/* JSON-LD Schema */}
             {schema && (
-                <script type="application/ld+json">
-                    {JSON.stringify(schema)}
-                </script>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+                />
             )}
-        </Helmet>
+        </Head>
     );
 };
 

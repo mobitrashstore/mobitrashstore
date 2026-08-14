@@ -55,7 +55,7 @@ const BottomNavBar: React.FC<BottomNavBarProps> = ({ navigate, currentPath }) =>
               <div className="relative -top-6 w-full flex flex-col items-center">
                 <button
                   onClick={() => handleTabTrigger(idx)}
-                  className="w-16 h-16 bg-[#ff5722] rounded-full flex items-center justify-center shadow-[0_8px_16px_rgba(255,87,34,0.3)] border-4 border-white transition-transform active:scale-95"
+                  className="w-14 h-14 bg-[#059669] rounded-full flex items-center justify-center shadow-[0_4px_14px_rgba(5,150,105,0.35)] border-4 border-white transition-transform active:scale-95"
                 >
                   <div className="relative w-8 h-8">
                      <BoltIcon className="absolute inset-0 w-full h-full text-white/40" />
@@ -72,7 +72,7 @@ const BottomNavBar: React.FC<BottomNavBarProps> = ({ navigate, currentPath }) =>
                      </motion.div>
                   </div>
                 </button>
-                <span className="mt-1 text-[11px] font-bold text-[#ff5722] tracking-wide uppercase">
+                <span className="mt-1 text-[11px] font-semibold text-[#059669] tracking-wide uppercase">
                   {tab.label}
                 </span>
               </div>
@@ -80,7 +80,7 @@ const BottomNavBar: React.FC<BottomNavBarProps> = ({ navigate, currentPath }) =>
               <button
                 onClick={() => handleTabTrigger(idx)}
                 className={`flex flex-col items-center justify-center w-full h-full transition-colors ${
-                  activeIndex === idx ? 'text-[#ff5722]' : 'text-gray-400'
+                  activeIndex === idx ? 'text-[#059669] font-semibold' : 'text-gray-400'
                 }`}
               >
                 <div className="relative">

@@ -238,12 +238,12 @@ const QrScannerModal: React.FC<QrScannerModalProps> = ({ onClose, onScan }) => {
                 {/* Scanning Overlay (Only show when camera is running) */}
                 {status === 'scanning' && (
                     <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-10">
-                        <div className="relative w-64 h-64 border-2 border-[#ff5722]/50 rounded-3xl shadow-[0_0_0_9999px_rgba(0,0,0,0.6)]">
-                            <div className="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-[#ff5722] rounded-tl-lg -mt-[2px] -ml-[2px]"></div>
-                            <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-[#ff5722] rounded-tr-lg -mt-[2px] -mr-[2px]"></div>
-                            <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-[#ff5722] rounded-bl-lg -mb-[2px] -ml-[2px]"></div>
-                            <div className="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-[#ff5722] rounded-br-lg -mb-[2px] -mr-[2px]"></div>
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ff5722] to-transparent opacity-70 animate-scan-down"></div>
+                        <div className="relative w-64 h-64 border-2 border-[#059669]/50 rounded-3xl shadow-[0_0_0_9999px_rgba(0,0,0,0.6)]">
+                            <div className="absolute top-0 left-0 w-6 h-6 border-t-4 border-l-4 border-[#059669] rounded-tl-lg -mt-[2px] -ml-[2px]"></div>
+                            <div className="absolute top-0 right-0 w-6 h-6 border-t-4 border-r-4 border-[#059669] rounded-tr-lg -mt-[2px] -mr-[2px]"></div>
+                            <div className="absolute bottom-0 left-0 w-6 h-6 border-b-4 border-l-4 border-[#059669] rounded-bl-lg -mb-[2px] -ml-[2px]"></div>
+                            <div className="absolute bottom-0 right-0 w-6 h-6 border-b-4 border-r-4 border-[#059669] rounded-br-lg -mb-[2px] -mr-[2px]"></div>
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#059669] to-transparent opacity-70 animate-scan-down"></div>
                         </div>
                         <p className="absolute mt-80 text-white/80 text-sm font-medium bg-black/40 px-4 py-1 rounded-full backdrop-blur-sm">
                             Point at barcode or upload image

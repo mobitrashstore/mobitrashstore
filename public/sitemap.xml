@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mobitrashstore.com</loc>
-    <lastmod>2026-06-03</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mobitrashstore.com/product</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
+    <loc>https://mobitrashstore.com/buy</loc>
+    <lastmod>2026-08-14</lastmod>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://mobitrashstore.com/sell</loc>
@@ -27,11 +27,6 @@
   </url>
   <url>
     <loc>https://mobitrashstore.com/contact</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/checkout</loc>
     <lastmod>2026-06-03</lastmod>
     <priority>0.8</priority>
   </url>
@@ -72,51 +67,6 @@
   </url>
   <url>
     <loc>https://mobitrashstore.com/blog</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/trade-in-confirmation</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/login</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/signup</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/profile</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/wishlist</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/order-history</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/coupons</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/address</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/redeem-points</loc>
     <lastmod>2026-06-03</lastmod>
     <priority>0.8</priority>
   </url>
@@ -174,206 +124,6 @@
     <loc>https://mobitrashstore.com/categories</loc>
     <lastmod>2026-06-03</lastmod>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Speaker</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Android%20phone%20Case</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Pre-Owned%20Laptop</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Mouse</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Smoking%20Accessories</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Watch</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Earbuds</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Wearables%20%26%20Smartwatches</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Keyboards</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Data%20Cable</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Audio%20Jack%20Connector</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Power%20Bank</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Mobile</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Charger</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Tablet%20Accessories</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Earphones%20%26%20Headphones</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Iphone%20Cover</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Camera%20Accessories</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Tablet</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Mobile%20Repair%20Tools</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Android</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?category=Neck%20Band</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Infinix</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=OnePlus</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Realme</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=ASUS</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Honor</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Google</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Benco</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Micromax</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=LG</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Oppo</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Motorola</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Huawei</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Samsung</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Vivo</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Tecno</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Xiaomi</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Apple</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mobitrashstore.com/product?brand=Nothing</loc>
-    <lastmod>2026-06-03</lastmod>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mobitrashstore.com/product/falcon-530-electric-contact-cleaner</loc>

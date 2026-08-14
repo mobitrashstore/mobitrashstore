@@ -25,20 +25,11 @@ const PATHAO_DATA: any[] = [
 ];
 
 
-// Optimized Proxy List for Production (Mobitrashstore.com)
-const IS_LOCALHOST = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-
-// We only use the local PHP proxy on the live domain (cPanel/Production)
-const PROXY_LIST = IS_LOCALHOST 
-    ? [
-        'https://corsproxy.io/?',              // #1 Reliability for localhost
-        'https://api.allorigins.win/raw?url=', // #2 Good for large responses
-      ]
-    : [
-        '/proxy.php?url=',                     // #1 YOUR OWN BACKEND PROXY (No CORS for Production)
-        'https://corsproxy.io/?',              // #2 Reliable fallback
-        'https://api.allorigins.win/raw?url=', // #3 Good for large responses
-      ];
+// Optimized Proxy List for Production & Localhost (Vercel & Modern Environments)
+const PROXY_LIST = [
+    'https://corsproxy.io/?',              // #1 High Reliability
+    'https://api.allorigins.win/raw?url=', // #2 Good for large responses
+];
 
 let cachedToken: string | null = null;
 

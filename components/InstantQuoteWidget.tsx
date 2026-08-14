@@ -15,7 +15,7 @@ const InstantQuoteWidget: React.FC<InstantQuoteWidgetProps> = ({ navigate }) => 
                 <div className="mt-10">
                     <button
                         onClick={() => navigate('/sell')}
-                        className="bg-[#ff5722] text-black font-bold py-4 px-10 rounded-lg hover:bg-[#e64a19] transition-colors text-lg shadow-lg hover:shadow-xl transform hover:scale-105"
+                        className="bg-[#059669] text-white font-semibold py-3.5 px-8 rounded-xl hover:bg-[#047857] transition-all shadow-md active:scale-95"
                     >
                         Start Your Quote
                     </button>

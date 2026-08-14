@@ -1,4 +1,4 @@
-﻿
+
 import React, { useState, useEffect, useRef } from 'react';
 // REMOVED LAZY LOADING FOR ABOVE-THE-FOLD COMPONENTS TO ELIMINATE FLICKER
 import ProductCarousel from '../components/ProductCarousel';
@@ -163,13 +163,13 @@ const HeroSection: React.FC<{
                     <div className="flex-1 text-center md:text-left space-y-5 md:space-y-6 px-4 md:px-0">
 
 
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight text-slate-900">
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-slate-900">
                             <EditableText
                                 value={config.titlePrefix}
                                 onSave={(val) => onUpdate && onUpdate({ ...config, titlePrefix: val })}
                                 tag="span"
                             />{' '}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600 block sm:inline">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 block sm:inline">
                                 <EditableText
                                     value={config.titleHighlight}
                                     onSave={(val) => onUpdate && onUpdate({ ...config, titleHighlight: val })}
@@ -190,11 +190,10 @@ const HeroSection: React.FC<{
                         <div className="flex flex-row items-center justify-center md:justify-start gap-3 pt-2 w-full max-w-md mx-auto md:mx-0">
                             <button
                                 onClick={() => navigate(config.button1Link)}
-                                className="group relative flex-1 h-14 inline-flex items-center justify-center gap-2 px-2 md:px-6 rounded-2xl bg-[#ff5722] text-white font-extrabold text-[12px] sm:text-sm tracking-wide shadow-xl shadow-orange-500/20 hover:bg-[#e64a19] hover:scale-[1.02] active:scale-95 transition-all duration-300 overflow-hidden whitespace-nowrap"
+                                className="group relative flex-1 h-12 inline-flex items-center justify-center gap-2 px-2 md:px-5 rounded-xl bg-[#059669] text-white font-semibold text-[13px] sm:text-sm tracking-wide shadow-md shadow-emerald-600/20 hover:bg-[#047857] active:scale-95 transition-all overflow-hidden whitespace-nowrap"
                                 title="Sell your device"
                             >
-                                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
-                                <BoltIcon className="w-5 h-5 text-amber-400 animate-bounce shrink-0" />
+                                <BoltIcon className="w-5 h-5 text-amber-300 shrink-0" />
                                 <EditableText
                                     value={config.button1Label}
                                     onSave={(val) => onUpdate && onUpdate({ ...config, button1Label: val })}
@@ -204,16 +203,16 @@ const HeroSection: React.FC<{
                             </button>
                             <button
                                 onClick={() => navigate(config.button2Link)}
-                                className="group flex-1 h-14 inline-flex items-center justify-center gap-2 px-2 md:px-6 rounded-2xl bg-white border-2 border-slate-100 text-slate-700 font-extrabold text-[12px] sm:text-sm tracking-wide hover:border-orange-200 hover:bg-orange-50/50 active:scale-95 transition-all duration-300 shadow-sm hover:shadow-md whitespace-nowrap"
+                                className="group flex-1 h-12 inline-flex items-center justify-center gap-2 px-2 md:px-5 rounded-xl bg-white border border-slate-200 text-slate-700 font-semibold text-[13px] sm:text-sm tracking-wide hover:border-emerald-300 hover:bg-emerald-50/40 active:scale-95 transition-all shadow-sm whitespace-nowrap"
                                 title="Buy certified devices"
                             >
-                                <ShoppingCartIcon className="w-5 h-5 text-[#ff5722] animate-bounce shrink-0" />
+                                <ShoppingCartIcon className="w-5 h-5 text-[#059669] shrink-0" />
                                 <EditableText
                                     value={config.button2Label}
                                     onSave={(val) => onUpdate && onUpdate({ ...config, button2Label: val })}
                                     tag="span"
                                 />
-                                <ArrowRightIcon className="w-4 h-4 text-[#ff5722] ml-0.5 group-hover:translate-x-1 transition-all shrink-0" />
+                                <ArrowRightIcon className="w-4 h-4 text-[#059669] ml-0.5 group-hover:translate-x-1 transition-all shrink-0" />
                             </button>
                         </div>
 
@@ -225,9 +224,9 @@ const HeroSection: React.FC<{
                             ].map((item, i) => (
                                 <div
                                     key={i}
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-[11px] font-bold text-slate-600"
+                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-[11px] font-medium text-slate-600"
                                 >
-                                    <item.icon className="w-3.5 h-3.5 text-[#ff5722]" />
+                                    <item.icon className="w-3.5 h-3.5 text-[#059669]" />
                                     <span>{item.label}</span>
                                 </div>
                             ))}
@@ -384,8 +383,8 @@ const StatsAndRewards: React.FC<{
 
         {/* rating pill */}
         <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm">
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-orange-50 text-orange-700 font-semibold border border-orange-100">
-                <span className="w-2 h-2 rounded-full bg-orange-500 mr-2" />
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 font-medium border border-emerald-100">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 mr-2" />
                 <EditableText
                     value={config.liveStoreText}
                     onSave={(val) => onUpdate && onUpdate({ ...config, liveStoreText: val })}
@@ -396,23 +395,23 @@ const StatsAndRewards: React.FC<{
                 href="https://g.page/r/CdivF-h7mkT_EAE/review"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-slate-700 group hover:text-orange-600 transition-colors"
+                className="flex items-center gap-1 text-slate-700 group hover:text-emerald-700 transition-colors"
             >
                 <span className="text-amber-400 text-sm">★★★★★</span>
                 <span className="font-semibold">{config.customerRating.replace('★', '')}/5</span>
-                <span className="text-slate-500 group-hover:text-orange-600 transition-colors">from {config.reviewCount} customer reviews</span>
-                <ArrowRightIcon className="w-4 h-4 text-orange-500 animate-slide-horizontal ml-1" />
+                <span className="text-slate-500 group-hover:text-emerald-700 transition-colors">from {config.reviewCount} customer reviews</span>
+                <ArrowRightIcon className="w-4 h-4 text-emerald-600 ml-1" />
             </a>
         </div>
 
         {/* rewards center strip */}
-        <div className="bg-slate-900 text-white rounded-3xl px-4 py-4 md:px-8 md:py-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-lg">
+        <div className="bg-slate-900 text-white rounded-2xl px-4 py-4 md:px-8 md:py-5 flex flex-col md:flex-row items-center justify-between gap-4 shadow-md">
             <div className="flex items-start gap-3 md:gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-orange-500 flex items-center justify-center shadow-md">
-                    <SparklesIcon className="w-5 h-5 md:w-6 md:h-6 text-slate-900" />
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-emerald-600 flex items-center justify-center shadow-md">
+                    <SparklesIcon className="w-5 h-5 md:w-6 md:h-6 text-white" />
                 </div>
                 <div>
-                    <p className="text-[11px] md:text-xs uppercase tracking-[0.18em] text-orange-300 font-semibold">
+                    <p className="text-[11px] md:text-xs uppercase tracking-[0.18em] text-emerald-400 font-semibold">
                         Rewards Center
                     </p>
                     <h3 className="text-sm md:text-base font-semibold">
@@ -421,7 +420,7 @@ const StatsAndRewards: React.FC<{
                             onSave={(val) => onUpdate && onUpdate({ ...config, rewardsTitle: val })}
                         />
                     </h3>
-                    <p className="text-[11px] md:text-xs text-slate-300 mt-1">
+                    <p className="text-[11px] md:text-xs text-slate-300 mt-0.5">
                         <EditableText
                             value={config.rewardsSubtitle}
                             onSave={(val) => onUpdate && onUpdate({ ...config, rewardsSubtitle: val })}
@@ -432,7 +431,7 @@ const StatsAndRewards: React.FC<{
             </div>
             <button
                 onClick={() => navigate('/spin-win')}
-                className="inline-flex items-center justify-center px-5 md:px-6 py-2.5 rounded-full bg-orange-400 text-slate-900 font-semibold text-sm shadow-[0_14px_30px_rgba(52,211,153,0.4)] hover:brightness-110 active:scale-95"
+                className="inline-flex items-center justify-center px-5 md:px-6 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-md active:scale-95 transition-all"
             >
                 Open Spin &amp; Win
                 <SparklesIcon className="w-4 h-4 ml-1.5" />
@@ -483,16 +482,16 @@ const RepairPromo: React.FC<{
 
         <div className="relative z-10 flex flex-col md:flex-row items-center">
             <div className="flex-1 p-6 md:p-10 text-center md:text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
-                    <WrenchIcon className="w-4 h-4 text-orange-500" /> Expert Service
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-800 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+                    <WrenchIcon className="w-4 h-4 text-emerald-600" /> Expert Service
                 </div>
-                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 leading-tight">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 leading-tight tracking-tight">
                     <EditableText
                         value={config.title}
                         onSave={(val) => onUpdate && onUpdate({ ...config, title: val })}
                         tag="span"
                     /> <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-600">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700">
                         <EditableText
                             value={config.highlight}
                             onSave={(val) => onUpdate && onUpdate({ ...config, highlight: val })}
@@ -509,14 +508,14 @@ const RepairPromo: React.FC<{
                 </p>
 
                 <div className="flex flex-wrap justify-center md:justify-start gap-3 md:gap-4 mb-8">
-                    <div className="flex items-center gap-2 text-slate-700 text-xs md:text-sm font-bold bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
+                    <div className="flex items-center gap-2 text-slate-700 text-xs md:text-sm font-semibold bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
                         <DevicePhoneMobileIcon className="w-5 h-5 text-blue-500" /> Screen
                     </div>
-                    <div className="flex items-center gap-2 text-slate-700 text-xs md:text-sm font-bold bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
-                        <BoltIcon className="w-5 h-5 text-orange-500" /> Battery
+                    <div className="flex items-center gap-2 text-slate-700 text-xs md:text-sm font-semibold bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
+                        <BoltIcon className="w-5 h-5 text-emerald-600" /> Battery
                     </div>
-                    <div className="flex items-center gap-2 text-slate-700 text-xs md:text-sm font-bold bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
-                        <WrenchIcon className="w-5 h-5 text-orange-500" /> Hardware
+                    <div className="flex items-center gap-2 text-slate-700 text-xs md:text-sm font-semibold bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
+                        <WrenchIcon className="w-5 h-5 text-teal-600" /> Hardware
                     </div>
                 </div>
 
@@ -818,19 +817,18 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             */}
             <div
                 ref={mobileHeaderRef}
-                className="md:hidden fixed top-0 left-0 right-0 z-30 bg-gradient-to-b from-[#ff5722] to-[#0f172a] text-white shadow-xl rounded-b-[2.5rem] overflow-hidden"
+                className="md:hidden fixed top-0 left-0 right-0 z-30 bg-gradient-to-b from-[#059669] to-[#047857] text-white shadow-md rounded-b-2xl overflow-hidden"
             >
                 {/* Decorative Blobs */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                    <div className="absolute -top-10 -left-10 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
-                    <div className="absolute top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+                    <div className="absolute -top-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
                 </div>
 
-                <div className="w-full px-5 pb-6" style={{ paddingTop: `calc(env(safe-area-inset-top) + 1rem)` }}>
+                <div className="w-full px-5 pb-5" style={{ paddingTop: `calc(env(safe-area-inset-top) + 0.75rem)` }}>
                     {/* Top Row: Avatar | Search | Bell */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3">
                         <a href="/profile" className="relative shrink-0">
-                            <div className="w-11 h-11 rounded-full p-[2px] bg-white/30 backdrop-blur-sm border border-white/50">
+                            <div className="w-10 h-10 rounded-full p-[2px] bg-white/30 backdrop-blur-sm border border-white/40">
                                 <img
                                     src={user?.photoURL || 'https://cdn-icons-png.flaticon.com/512/6325/6325109.png'}
                                     alt="Profile"
@@ -838,7 +836,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                                     loading="lazy"
                                 />
                             </div>
-                            <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-orange-500 border-2 border-[#ff5722] rounded-full"></div>
+                            <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-[#059669] rounded-full"></div>
                         </a>
 
                         <button
@@ -948,7 +946,7 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                     {/* Daraz + partners strip */}
                     {darazConfig?.enabled && (
                         <section className="my-3 md:my-4 px-4 md:px-0">
-                            <div className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 rounded-2xl md:rounded-3xl p-4 md:5 shadow-xl text-white">
+                            <div className="bg-gradient-to-r from-emerald-800 via-teal-900 to-slate-900 rounded-2xl md:rounded-3xl p-4 md:p-5 shadow-lg text-white">
                                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
                                     <div className="flex items-center gap-3 md:gap-4 w-full md:w-auto">
                                         <div className="bg-white rounded-xl p-2 md:p-3 shadow-md">

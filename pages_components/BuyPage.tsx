@@ -1,4 +1,4 @@
-﻿
+
 
 import React, { useState, useMemo, useEffect } from 'react';
 // FIX: Corrected import syntax for api service
@@ -48,7 +48,7 @@ const Accordion: React.FC<{
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex justify-between items-center w-full text-left group"
             >
-                <span className="font-bold text-gray-800 text-sm uppercase tracking-wide group-hover:text-[#ff5722] transition-colors">{title}</span>
+                <span className="font-semibold text-gray-800 text-sm uppercase tracking-wide group-hover:text-[#059669] transition-colors">{title}</span>
                 {isOpen ? <ChevronUpIcon className="w-4 h-4 text-gray-400" /> : <ChevronDownIcon className="w-4 h-4 text-gray-400" />}
             </button>
             {isOpen && (
@@ -73,9 +73,9 @@ const CheckboxFilter: React.FC<{
                 type="checkbox"
                 checked={checked}
                 onChange={onChange}
-                className="h-4 w-4 rounded border-gray-300 text-[#ff5722] focus:ring-[#ff5722] cursor-pointer"
+                className="h-4 w-4 rounded border-gray-300 text-[#059669] focus:ring-[#059669] cursor-pointer"
             />
-            <span className={`ml-3 text-sm ${checked ? 'text-gray-900 font-bold' : 'text-gray-600'} group-hover:text-[#ff5722] transition-colors`}>{label}</span>
+            <span className={`ml-3 text-sm ${checked ? 'text-gray-900 font-semibold' : 'text-gray-600'} group-hover:text-[#059669] transition-colors`}>{label}</span>
         </div>
         {count !== undefined && <span className="text-xs text-gray-400 font-medium">{count}</span>}
     </label>
@@ -480,17 +480,17 @@ const BuyPage: React.FC<BuyPageProps> = ({ navigate }) => {
                 schema={itemListSchema}
             />
 
-            {/* Search Header Mobile - FIXED to cover overlaps and safe area */}
-            <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-gradient-to-b from-[#ff5722] to-[#0f172a] shadow-xl rounded-b-[2.5rem] overflow-hidden">
-                <div className="pt-[env(safe-area-inset-top)] pb-5 px-4">
-                    <div className="relative mt-2">
+            {/* Search Header Mobile */}
+            <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-gradient-to-b from-[#059669] to-[#047857] shadow-md rounded-b-2xl overflow-hidden">
+                <div className="pt-[calc(env(safe-area-inset-top)+0.5rem)] pb-4 px-4">
+                    <div className="relative mt-1">
                         <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                         <input
                             type="text"
                             placeholder="Search devices, brands, accessories..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full bg-white/95 backdrop-blur-sm border-0 rounded-full py-3.5 pl-11 pr-4 text-sm focus:ring-2 focus:ring-blue-200 shadow-sm text-gray-900 placeholder:text-gray-500"
+                            className="w-full bg-white border-0 rounded-full py-2.5 pl-11 pr-4 text-sm focus:ring-2 focus:ring-emerald-200 shadow-sm text-gray-900 placeholder:text-gray-500"
                         />
                     </div>
                 </div>

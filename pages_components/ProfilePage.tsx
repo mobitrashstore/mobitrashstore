@@ -259,13 +259,12 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
   return (
     <div className="bg-[#f4f5fb] min-h-full font-sans w-full overflow-x-hidden">
       {/* 
-          HEADER – MATCHES STATUS BAR (#0f172a / #ff5722) 
-          Using 'from-[#ff5722] via-[#ff5722]' ensures the top 60% of the header is solid navy
-          to blend seamlessly with the mobile status bar (safe area).
+          HEADER – MATCHES STATUS BAR (#059669) 
+          Using solid emerald green header to blend with the mobile status bar (safe area).
       */}
       <div
-        className="bg-gradient-to-b from-[#ff5722] via-[#ff5722] to-[#0f172a] text-white pb-20 shadow-md"
-        style={{ paddingTop: 'calc(env(safe-area-inset-top) + 1.5rem)' }}
+        className="bg-gradient-to-b from-[#059669] to-[#047857] text-white pb-20 shadow-sm"
+        style={{ paddingTop: 'calc(env(safe-area-inset-top) + 1.25rem)' }}
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/30 shadow-sm">
@@ -282,7 +281,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
       {/* MAIN CONTENT WRAPPER */}
       <div className="w-full px-4 sm:px-6 lg:px-8 -mt-14 relative z-10 max-w-5xl mx-auto pb-0">
         {/* 1. COMPACT PREMIUM USER CARD */}
-        <div className="bg-white rounded-3xl p-4 md:p-5 shadow-[0_10px_35px_rgba(0,0,0,0.08)] border border-orange-50/80 relative overflow-hidden mb-4">
+        <div className="bg-white rounded-2xl p-4 md:p-5 shadow-sm border border-slate-200 relative overflow-hidden mb-4">
 
           <div className="relative flex flex-col md:flex-row items-center md:items-center justify-between gap-4 pt-2">
             <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 text-center md:text-left">
@@ -292,7 +291,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
                 onClick={handlePhotoClick}
                 title="Change Profile Photo"
               >
-                <div className="w-16 h-16 md:w-18 md:h-18 rounded-full p-[2px] bg-gradient-to-br from-[#ff5722] to-[#0f172a] shadow-md">
+                <div className="w-16 h-16 md:w-18 md:h-18 rounded-full p-[2px] bg-[#059669] shadow-sm">
                   <div className="w-full h-full rounded-full bg-white overflow-hidden relative">
                     {user.photoURL ? (
                       <img
@@ -339,7 +338,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
                   {user.email || 'Guest User'}
                 </p>
                 <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-2">
-                  <span className="px-2.5 py-0.5 bg-orange-50 text-orange-600 text-[10px] font-bold rounded-full border border-orange-100 uppercase tracking-wide">
+                  <span className="px-2.5 py-0.5 bg-emerald-50 text-emerald-700 text-[10px] font-semibold rounded-full border border-emerald-100 uppercase tracking-wide">
                     {user.role === 'admin' ? 'Administrator' : 'Member'}
                   </span>
                   <span className="px-2.5 py-0.5 bg-amber-400 text-amber-900 text-[10px] font-bold rounded-full shadow-sm border border-amber-300 uppercase tracking-wide">
@@ -352,7 +351,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ navigate }) => {
             {/* Sign out button */}
             <button
               onClick={handleLogout}
-              className="group flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-[#ff5722] to-[#0f172a] text-white font-bold rounded-full text-xs shadow-md hover:brightness-105 active:scale-95 transition-all"
+              className="group flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-full text-xs shadow-sm active:scale-95 transition-all"
               title="Sign Out"
             >
               <span>Sign Out</span>

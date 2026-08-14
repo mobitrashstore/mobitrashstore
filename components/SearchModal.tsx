@@ -1,4 +1,4 @@
-﻿
+
 import React, { useState, useEffect } from 'react';
 import * as api from '../services/api';
 import { InventoryItem, BlogPost, Category } from '../types';
@@ -272,7 +272,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, navigate }) 
                                         </div>
 
                                         <div className="flex-grow min-w-0">
-                                            <h4 className={`font-bold text-gray-900 truncate group-hover:text-[#ff5722] transition-colors ${item.type === 'tracking' ? 'text-orange-700' : ''}`}>
+                                            <h4 className={`font-bold text-gray-900 truncate group-hover:text-[#059669] transition-colors ${item.type === 'tracking' ? 'text-orange-700' : ''}`}>
                                                 {item.title}
                                             </h4>
                                             <p className="text-xs text-gray-500 truncate">{item.subtitle}</p>
@@ -280,7 +280,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, navigate }) 
 
                                         <div className="text-right flex-shrink-0 flex flex-col items-end">
                                             {item.type === 'product' && item.price && (
-                                                <p className="font-bold text-[#ff5722] text-sm">NPR {item.price.toLocaleString()}</p>
+                                                <p className="font-bold text-[#059669] text-sm">NPR {item.price.toLocaleString()}</p>
                                             )}
 
                                             <span className={`text-[10px] px-2 py-0.5 rounded-full mt-1 ${item.type === 'product' ? 'bg-gray-100 text-gray-600' :

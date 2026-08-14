@@ -1,4 +1,4 @@
-﻿
+
 import React, { useState, useEffect } from 'react';
 import { DeclaredCondition, QuoteInput, QuoteRejection, QuoteResponse } from '../../types';
 import { computeQuote } from '../../services/quoteService';
@@ -88,7 +88,7 @@ const PriceDisplayStep: React.FC<PriceDisplayStepProps> = ({ deviceDetails, feat
                             particleCount: 150,
                             spread: 70,
                             origin: { y: 0.6 },
-                            colors: ['#f59e0b', '#ff5722', '#ffffff']
+                            colors: ['#10b981', '#059669', '#f59e0b', '#ffffff']
                         });
                     }
                 }

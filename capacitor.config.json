@@ -8,13 +8,13 @@
   "plugins": {
     "StatusBar": {
       "style": "LIGHT",
-      "backgroundColor": "#ff5722",
+      "backgroundColor": "#059669",
       "overlaysWebView": true
     },
     "SplashScreen": {
       "launchShowDuration": 2000,
       "launchAutoHide": true,
-      "backgroundColor": "#ff5722",
+      "backgroundColor": "#059669",
       "androidSplashResourceName": "splash",
       "showSpinner": false
     }

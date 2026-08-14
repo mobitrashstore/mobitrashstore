@@ -1,4 +1,4 @@
-﻿@import "tailwindcss/base";
+@import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
@@ -34,12 +34,10 @@
   /* Pure White for cards */
   --color-surface-muted: #f9fafb;
   /* Light gray for sections */
-  --color-primary: var(--primary-color, #ff5722);
-  --color-primary-hover: var(--primary-hover-color, #e64a19);
-  /* Indigo 700 */
-  --color-secondary: var(--primary-color, #c5a059);
-  /* Indigo 500 */
-  --color-secondary-hover: #b08d4b;
+  --color-primary: var(--primary-color, #059669);
+  --color-primary-hover: var(--primary-hover-color, #047857);
+  --color-secondary: var(--secondary-color, #d97706);
+  --color-secondary-hover: #b45309;
   --color-text-base: #1f2937;
   /* Gray 900 */
   --color-text-muted: #6b7280;
@@ -123,7 +121,7 @@ body {
   }
 
   html {
-     background-color: #ff5722 !important; /* Force Orange for Status Bar */
+     background-color: #059669 !important; /* Emerald Green for Status Bar */
   }
 
   html.dark,
@@ -182,7 +180,7 @@ body {
   }
   
   html {
-    background-color: #ff5722 !important; /* Force Orange for Status Bar */
+    background-color: #059669 !important; /* Emerald Green for Status Bar */
   }
 
   html.dark,
@@ -642,8 +640,8 @@ button:active,
 
 /* Custom Primary Color Application */
 :root {
-  --primary-color: #ff5722;
-  --primary-hover-color: #e64a19;
+  --primary-color: #059669;
+  --primary-hover-color: #047857;
 }
 
 .bg-primary {

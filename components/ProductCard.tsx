@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { InventoryItem } from '../types';
 import { HeartIcon } from './icons/HeartIcon';
 import { ShoppingCartIcon } from './icons/ShoppingCartIcon';
@@ -120,14 +120,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
                         decoding="async"
                     />
                     {discount > 0 && (
-                        <span className="absolute top-0 left-0 bg-orange-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-br-lg rounded-tl-lg">
+                        <span className="absolute top-0 left-0 bg-[#059669] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-br-lg rounded-tl-lg">
                             {discount}% OFF
                         </span>
                     )}
 
                     {/* Flash Sale Badge List View */}
                     {timeLeft && (
-                        <div className="absolute bottom-0 left-0 right-0 bg-amber-500/90 backdrop-blur-sm text-white text-[9px] font-bold py-0.5 px-2 flex items-center justify-center gap-1">
+                        <div className="absolute bottom-0 left-0 right-0 bg-[#059669]/95 backdrop-blur-sm text-white text-[9px] font-bold py-0.5 px-2 flex items-center justify-center gap-1">
                             <BoltIcon className="w-2.5 h-2.5 animate-pulse" />
                             <span>{timeLeft.d > 0 ? `${timeLeft.d}d ` : ''}{timeLeft.h}h {timeLeft.m}m</span>
                         </div>
@@ -135,7 +135,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
                 </div>
 
                 <div className="flex-grow min-w-0">
-                    <h4 className="text-sm sm:text-base font-bold text-gray-800 mb-1 leading-snug group-hover:text-amber-600 transition-colors line-clamp-2">{item.title}</h4>
+                    <h4 className="text-sm sm:text-base font-bold text-gray-800 mb-1 leading-snug group-hover:text-[#059669] transition-colors line-clamp-2">{item.title}</h4>
                     <div className="flex items-center gap-2 mb-2 text-xs text-gray-500">
                         <span className="bg-gray-100 px-2 py-0.5 rounded text-gray-600">{item.category}</span>
                         {soldCount > 0 && <span>• {soldCount} Sold</span>}
@@ -162,7 +162,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
                     <button
                         onClick={handleAddToCartAction}
                         disabled={isOutOfStock}
-                        className={`p-2 rounded-full transition-colors border ${isOutOfStock ? 'bg-gray-100 text-gray-300 border-gray-200' : 'bg-amber-50 text-amber-600 border-amber-200 hover:bg-amber-100'}`}
+                        className={`p-2 rounded-full transition-colors border ${isOutOfStock ? 'bg-gray-100 text-gray-300 border-gray-200' : 'bg-emerald-50 text-[#059669] border-emerald-200 hover:bg-emerald-100'}`}
                         title={isOutOfStock ? "Out of Stock" : "Add to Shopping Cart"}
                     >
                         <ShoppingCartIcon className="w-5 h-5" />
@@ -182,7 +182,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
             {/* Discount Badge */}
             {discount > 0 && (
                 <div className="absolute top-3 left-3 z-10">
-                    <span className="inline-flex items-center px-2 py-1 text-[10px] font-black text-white bg-orange-600 rounded-md shadow-sm tracking-wide uppercase">
+                    <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-bold text-white bg-[#059669] rounded-md shadow-sm tracking-wide uppercase">
                         -{discount}%
                     </span>
                 </div>
@@ -202,14 +202,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
                     alt={item.title}
                     width="400"
                     height="400"
-                    className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 mix-blend-multiply"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 mix-blend-multiply"
                     loading="lazy"
                     decoding="async"
                 />
                 {/* Flash Sale Timer Badge Grid View */}
                 {timeLeft && (
                     <div className="absolute bottom-14 right-3 z-10">
-                        <span className="inline-flex items-center gap-1 px-2 py-1 text-[10px] font-black text-white bg-amber-500 rounded-md shadow-sm tracking-wide uppercase border border-amber-400 animate-pulse-slow">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 text-[10px] font-bold text-white bg-[#059669] rounded-md shadow-sm tracking-wide uppercase">
                             <BoltIcon className="w-3 h-3" />
                             {timeLeft.d > 0 ? `${timeLeft.d}d ` : ''}
                             {timeLeft.h}h {timeLeft.m}m {timeLeft.s}s
@@ -218,7 +218,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
                 )}
 
                 {/* View Count Badge */}
-                <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full shadow-lg border border-white/10">
+                <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full shadow-sm border border-white/10">
                     <EyeIcon className="w-3 h-3 text-white" />
                     <span className="text-[10px] font-bold text-white tabular-nums">{views}</span>
                 </div>
@@ -227,11 +227,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
                 <button
                     onClick={handleAddToCartAction}
                     disabled={isOutOfStock}
-                    className={`absolute bottom-3 right-3 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all transform z-20 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 active:scale-90
-                    ${isOutOfStock ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-amber-500 text-white hover:bg-amber-600'}`}
+                    className={`absolute bottom-3 right-3 w-9 h-9 rounded-full flex items-center justify-center shadow-md transition-all transform z-20 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 active:scale-90
+                    ${isOutOfStock ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-[#059669] text-white hover:bg-[#047857]'}`}
                     title={isOutOfStock ? 'Out of Stock' : 'Add to Cart'}
                 >
-                    <ShoppingCartIcon className="w-5 h-5" />
+                    <ShoppingCartIcon className="w-4 h-4" />
                 </button>
             </div>
 
@@ -239,21 +239,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ item, navigate, onAddToCart, 
             <div className="p-3.5 flex flex-col flex-grow bg-white relative">
                 <div className="mb-1">
                     {soldCount > 5 && (
-                        <span className="text-[9px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-100 uppercase tracking-wide">Best Seller</span>
+                        <span className="text-[9px] font-semibold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100 uppercase tracking-wide">Best Seller</span>
                     )}
                 </div>
 
-                <h4 className="text-sm font-bold text-gray-800 line-clamp-2 mb-2 leading-snug group-hover:text-amber-600 transition-colors min-h-[2.5em]">
+                <h4 className="text-sm font-semibold text-gray-800 line-clamp-2 mb-2 leading-snug group-hover:text-[#059669] transition-colors min-h-[2.5em]">
                     {item.title}
                 </h4>
 
-                <div className="mt-auto flex items-end justify-between border-t border-gray-100 pt-3">
+                <div className="mt-auto flex items-end justify-between border-t border-gray-100 pt-2.5">
                     <div className="flex flex-col">
-                        <p className="font-black text-base text-gray-900">NPR {item.price?.toLocaleString() || '0'}</p>
+                        <p className="font-bold text-base text-gray-900">NPR {item.price?.toLocaleString() || '0'}</p>
                         {item.oldPrice && <span className="text-[10px] text-gray-400 line-through font-medium">NPR {item.oldPrice.toLocaleString()}</span>}
                     </div>
                     {isOutOfStock && (
-                        <span className="text-[10px] font-bold text-rose-500 bg-rose-50 px-2 py-1 rounded">Out of Stock</span>
+                        <span className="text-[10px] font-semibold text-rose-500 bg-rose-50 px-2 py-0.5 rounded">Out of Stock</span>
                     )}
                 </div>
             </div>

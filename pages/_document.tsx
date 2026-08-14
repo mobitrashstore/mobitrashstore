@@ -7,7 +7,7 @@ export default function Document() {
         <meta charSet="UTF-8" />
         
         {/* Status Bar Color Configuration */}
-        <meta name="theme-color" content="#ff5722" />
+        <meta name="theme-color" content="#059669" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -25,14 +25,20 @@ export default function Document() {
         {/* iOS Startup Splash Screen (Optimization) */}
         <link rel="apple-touch-startup-image" href="/icon-512.png" />
 
-        {/* FAVICON & ICONS (For APK/PWA Icons) */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
-        <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+        {/* FAVICON & ICONS */}
+        {/* SVG favicon: crisp at ALL sizes, no blur ever */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        {/* Fallback PNG for old browsers */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon-192.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icon-192.png" />
+        <link rel="shortcut icon" href="/favicon.svg" />
+        {/* iOS Home Screen - MUST be high-res PNG (iOS does not support SVG here) */}
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="512x512" href="/apple-touch-icon-hd.png" />
+        <link rel="apple-touch-icon" sizes="1024x1024" href="/apple-touch-icon-hd.png" />
 
         {/* PERFORMANCE: PRELOAD CRITICAL ASSETS */}
-        <link rel="preload" as="image" href="/favicon.png" />
+        <link rel="preload" as="image" href="/favicon.svg" type="image/svg+xml" />
         <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMAdGHFzUXxw.woff2" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMAdGHFl2UXxw.woff2" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMAdGHFj2UXxw.woff2" type="font/woff2" crossOrigin="anonymous" />
@@ -122,7 +128,7 @@ export default function Document() {
         <style dangerouslySetInnerHTML={{
           __html: `
             :root {
-              --brand-primary: #ff5722;
+              --brand-primary: #059669;
             }
 
             html {
@@ -157,7 +163,7 @@ export default function Document() {
 
             @media (max-width: 768px), (display-mode: standalone) {
               html {
-                background-color: #ff5722 !important;
+                background-color: #059669 !important;
               }
               body {
                 background-color: #f8f7f4 !important;
@@ -189,7 +195,7 @@ export default function Document() {
               flex-direction: column;
               align-items: center;
               justify-content: center;
-              background-color: #ff5722;
+              background-color: #059669;
               color: white;
               transition: opacity 0.4s ease-out;
               padding: env(safe-area-inset-top) 2rem env(safe-area-inset-bottom) 2rem;
@@ -222,7 +228,7 @@ export default function Document() {
               font-size: 1.1rem;
               font-weight: 600;
               letter-spacing: 0.1em;
-              color: #ff5722;
+              color: #059669;
               opacity: 0;
               transform: translateY(10px);
               animation: fadeInTagline 0.6s ease-out 0.8s forwards;
@@ -432,7 +438,10 @@ export default function Document() {
                     "publisher": { "@id": "https://mobitrashstore.com/#organization" },
                     "potentialAction": {
                       "@type": "SearchAction",
-                      "target": "https://mobitrashstore.com/buy?category={search_term_string}",
+                      "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://mobitrashstore.com/buy?search={search_term_string}"
+                      },
                       "query-input": "required name=search_term_string"
                     }
                   },

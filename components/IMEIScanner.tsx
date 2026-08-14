@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { extractIMEI, recognizeText } from '../services/mlService';
 import { CameraIcon } from './icons/CameraIcon';
 import { XMarkIcon } from './icons/XMarkIcon';
@@ -75,7 +75,7 @@ const IMEIScanner: React.FC<IMEIScannerProps> = ({ onIMEIDetected, onClose }) =>
 
                 {/* Header */}
                 <div className="text-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-[#ff5722] to-[#0f172a] rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-14 h-14 bg-gradient-to-br from-[#059669] to-[#047857] rounded-xl flex items-center justify-center mx-auto mb-4">
                         <CameraIcon className="w-8 h-8 text-white" />
                     </div>
                     <h2 className="text-2xl font-black text-slate-900">Scan IMEI</h2>

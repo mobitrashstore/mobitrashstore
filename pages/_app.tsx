@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -83,7 +84,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
         try {
           await StatusBar.setStyle({ style: Style.Light });
           await StatusBar.setOverlaysWebView({ overlay: false });
-          await StatusBar.setBackgroundColor({ color: '#ff5722' });
+          await StatusBar.setBackgroundColor({ color: '#059669' });
         } catch (statusError) { console.error('StatusBar Sync Error:', statusError); }
       }
 
@@ -173,7 +174,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
         return;
       }
       if (window.innerWidth <= 768) {
-        document.documentElement.style.backgroundColor = '#ff5722';
+        document.documentElement.style.backgroundColor = '#059669';
         document.body.style.backgroundColor = '#f8f7f4';
       } else {
         document.documentElement.style.backgroundColor = '#f3f4f6';
@@ -226,10 +227,10 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
       const syncStatusBar = async () => {
         try {
           if (isAuthPage) {
-            await StatusBar.setBackgroundColor({ color: '#ff5722' });
+            await StatusBar.setBackgroundColor({ color: '#059669' });
             await StatusBar.setStyle({ style: Style.Light });
           } else {
-            await StatusBar.setBackgroundColor({ color: '#ff5722' });
+            await StatusBar.setBackgroundColor({ color: '#059669' });
             await StatusBar.setStyle({ style: Style.Light });
           }
         } catch (e) { }
@@ -250,8 +251,15 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
     }
   }, [isAdminPage, user]);
 
+  const cleanCanonicalPath = normalizedPath === '/' ? '' : normalizedPath;
+  const canonicalUrl = `https://mobitrashstore.com${cleanCanonicalPath}`;
+
   return (
     <div className={`min-h-screen w-full bg-gray-50 transition-all duration-300 overflow-x-hidden ${isEditing ? 'pl-80' : ''} ${fullWidth ? 'editor-full-width' : ''}`}>
+      <Head>
+        <link rel="canonical" href={canonicalUrl} key="canonical" />
+        <meta name="robots" content={isAdminPage ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} key="robots" />
+      </Head>
       <VisualEditorSidebar />
       <div className={`${paddingTopClass} flex flex-col min-h-screen`}>
         {!isAdminPage && <NoticeBanner navigate={navigate} />}

@@ -1,4 +1,4 @@
-﻿
+
 
 import React, { useState, useEffect, useRef } from 'react';
 import { WrenchIcon } from '../components/icons/WrenchIcon';
@@ -713,7 +713,7 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
             y = e.clientY - rect.top;
         }
 
-        ctx.fillStyle = '#ff5722';
+        ctx.fillStyle = '#059669';
         ctx.beginPath();
         ctx.arc(x, y, 20, 0, Math.PI * 2);
         ctx.fill();
@@ -857,7 +857,7 @@ const RepairPage: React.FC<RepairPageProps> = ({ navigate }) => {
                         {/* Booking Form */}
                         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col md:flex-row">
                             <div className="md:w-1/3 bg-gray-900 p-8 text-white flex flex-col justify-center">
-                                <ClockIcon className="w-12 h-12 text-[#ff5722] mb-4" />
+                                <ClockIcon className="w-12 h-12 text-[#059669] mb-4" />
                                 <h2 className="text-2xl font-bold mb-3">
                                     <EditableText
                                         value={repairConfig.booking.title}

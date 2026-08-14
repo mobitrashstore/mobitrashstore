@@ -1,22 +1,38 @@
-# --- MOBI TRASH SEO OPTIMIZED HTACCESS ---
+# --- MOBI TRASH SEO & CANONICAL OPTIMIZED HTACCESS ---
 RewriteEngine On
 RewriteBase /
 
-# 1. REMOVE .HTML EXTENSION (SEO CLEAN URLS)
-# Redirect /page.html to /page
+# 1. FORCE HTTPS (PREVENTS DUPLICATE HTTP/HTTPS INDEXING)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. FORCE NON-WWW (CANONICAL DOMAIN PREVENTS DUPLICATE WWW/NON-WWW INDEXING)
+RewriteCond %{HTTP_HOST} ^www\.mobitrashstore\.com [NC]
+RewriteRule ^(.*)$ https://mobitrashstore.com/$1 [L,R=301]
+
+# 3. REMOVE TRAILING SLASH FOR ALL PATHS EXCEPT ROOT (PREVENTS DUPLICATE SLASH INDEXING)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} ^(.+)/+$
+RewriteRule ^(.+)/+$ https://mobitrashstore.com/$1 [R=301,L]
+
+# 4. LEGACY ALIAS REDIRECTS (FIXES 404 & REDIRECT ISSUES)
+RewriteRule ^emicalculator/?$ https://mobitrashstore.com/emi-calculator [R=301,L]
+RewriteRule ^products/?$ https://mobitrashstore.com/buy [R=301,L]
+RewriteRule ^nepali-news/?$ https://mobitrashstore.com/tech-news [R=301,L]
+RewriteRule ^buy/([^/]+)/?$ https://mobitrashstore.com/product/$1 [R=301,L]
+
+# 5. REMOVE .HTML EXTENSION (SEO CLEAN URLS)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.html\ HTTP/
 RewriteRule ^(.*)\.html$ /$1 [R=301,L]
 
-# 2. SERVE PRE-RENDERED FOLDERS FIRST (BUILT DURING BUILD TIME)
-# If a direct folder match exists, serve its index.html
+# 5. SERVE PRE-RENDERED FOLDERS FIRST (BUILT DURING BUILD TIME)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
 RewriteRule ^(.*)/?$ /$1/index.html [L]
 
-# 3. SPA FALLBACK (FOR NON-PRERENDERED ROUTES)
-# Standard React Router fallback — ensures app works even if page wasn't prerendered.
+# 6. SPA FALLBACK (FOR NON-PRERENDERED DYNAMIC CLIENT ROUTES)
 RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+RewriteRule . /index.html [L]
