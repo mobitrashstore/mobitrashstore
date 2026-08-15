@@ -35,6 +35,16 @@ export default function Document() {
         <link rel="apple-touch-icon" sizes="512x512" href="/apple-touch-icon-hd.png" />
         <link rel="apple-touch-icon" sizes="1024x1024" href="/apple-touch-icon-hd.png" />
 
+        {/* NETWORK & CDN ACCELERATION FOR LOW-SPEED NETWORKS */}
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://ik.imagekit.io" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://ik.imagekit.io" />
+        <link rel="preconnect" href="https://firestore.googleapis.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://firestore.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
         {/* PERFORMANCE: PRELOAD CRITICAL ASSETS */}
         <link rel="preload" as="image" href="/favicon.svg" type="image/svg+xml" />
         <link rel="preload" as="font" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMwMAdGHFzUXxw.woff2" type="font/woff2" crossOrigin="anonymous" />

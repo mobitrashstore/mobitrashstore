@@ -124,7 +124,7 @@ export const getCachedData = <T>(key: string): T | null => {
     return getFromCache<T>(key);
 };
 
-// Stale-While-Revalidate Fast Cache Wrapper
+// Stale-While-Revalidate Fast Cache Wrapper with Slow-Network Resilience
 const withCache = async <T>(key: string, fetcher: () => Promise<T>, ttl?: number): Promise<T> => {
     const cached = getFromCache<T>(key);
 
@@ -145,11 +145,20 @@ const withCache = async <T>(key: string, fetcher: () => Promise<T>, ttl?: number
         return cached;
     }
 
-    const data = await fetcher();
-    if (data !== null && data !== undefined) {
-        setInCache(key, data, ttl);
+    try {
+        const data = await fetcher();
+        if (data !== null && data !== undefined) {
+            setInCache(key, data, ttl);
+        }
+        return data;
+    } catch (err) {
+        // Fallback to whatever stale data exists on slow network / offline
+        const fallback = getFromCache<T>(key);
+        if (fallback !== null && fallback !== undefined) {
+            return fallback;
+        }
+        throw err;
     }
-    return data;
 };
 
 // --- SYSTEM & LOGGING ---

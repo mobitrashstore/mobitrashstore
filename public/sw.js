@@ -1,5 +1,5 @@
-const STATIC_CACHE_NAME = 'mobi-trash-static-v19';
-const DYNAMIC_CACHE_NAME = 'mobi-trash-dynamic-v19';
+const STATIC_CACHE_NAME = 'mobi-trash-static-v20';
+const DYNAMIC_CACHE_NAME = 'mobi-trash-dynamic-v20';
 
 // CRITICAL: Precise list of all external dependencies used in importmap
 const APP_SHELL_URLS = [

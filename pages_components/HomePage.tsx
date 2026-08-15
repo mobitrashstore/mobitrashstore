@@ -93,19 +93,7 @@ const HOME_CONFIG_DEFAULT = {
     sections: [] as DynamicSectionData[]
 };
 
-// Unified image optimizer — supports ImageKit and Cloudinary URLs.
-const getOptimizedImageUrl = (url: string | undefined, width: number, quality: number): string => {
-    if (!url) return 'https://placehold.co/400x400?text=No+Image';
-    if (url.startsWith('data:')) return url; // Don't optimize base64 images
-    if (url.includes('ik.imagekit.io')) {
-        const separator = url.includes('?') ? '&' : '?';
-        return `${url}${separator}tr=w-${width},q-${quality}`;
-    }
-    if (url.includes('res.cloudinary.com')) {
-        return url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${width},c_limit/`);
-    }
-    return url;
-};
+import { getOptimizedImageUrl } from '../utils/imageOptimizer';
 
 /* ---------------- TOP PREMIUM PIECES ---------------- */
 
