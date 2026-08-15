@@ -124,6 +124,12 @@ body {
      background-color: #059669 !important; /* Emerald Green for Status Bar */
   }
 
+  html.auth-theme,
+  html.auth-theme body,
+  html.auth-theme #root {
+     background-color: #b5123d !important; /* Wine Red for Auth Status Bar */
+  }
+
   html.dark,
   html.dark body {
     background-color: #000000 !important;

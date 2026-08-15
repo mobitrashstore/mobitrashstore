@@ -248,6 +248,11 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) metaTheme.setAttribute('content', targetColor);
     if (typeof document !== 'undefined' && document.documentElement) {
+      if (isAuthPage) {
+        document.documentElement.classList.add('auth-theme');
+      } else {
+        document.documentElement.classList.remove('auth-theme');
+      }
       document.documentElement.style.backgroundColor = targetColor;
     }
 
