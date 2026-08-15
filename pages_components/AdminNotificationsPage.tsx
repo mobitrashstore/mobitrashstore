@@ -33,11 +33,17 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
     // Audience Targeting
     const [targetType, setTargetType] = useState<'public' | 'specific'>('public');
     const [targetEmail, setTargetEmail] = useState('');
-    
+
+    // OneSignal REST API Key configuration
+    const [onesignalApiKey, setOnesignalApiKey] = useState('');
+    const [showKeyInput, setShowKeyInput] = useState(false);
+
     useEffect(() => {
         if (typeof window !== 'undefined' && 'Notification' in window) {
             setBrowserPermission(Notification.permission);
         }
+        const savedKey = localStorage.getItem('onesignal_rest_api_key');
+        if (savedKey) setOnesignalApiKey(savedKey);
     }, []);
 
     const fetchNotifications = async () => {
@@ -126,7 +132,8 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                 link: link.trim(),
                 imageUrl: imageUrl.trim(),
                 targetType,
-                targetEmail: targetType === 'specific' ? targetEmail.trim() : null
+                targetEmail: targetType === 'specific' ? targetEmail.trim() : null,
+                onesignalApiKey: onesignalApiKey.trim() || undefined
             });
             
             // Reset Form
@@ -178,8 +185,53 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                         <BoltIcon className="w-4 h-4 text-amber-500" />
                         Test on My Screen
                     </button>
+                    <button
+                        type="button"
+                        onClick={() => setShowKeyInput(!showKeyInput)}
+                        className="inline-flex items-center gap-1.5 px-3 py-2.5 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold rounded-xl hover:bg-emerald-100 transition-all"
+                    >
+                        ⚙️ OneSignal API Key
+                    </button>
                 </div>
             </div>
+
+            {/* Clean OneSignal API Key Input Drawer */}
+            {showKeyInput && (
+                <div className="bg-emerald-50/80 border border-emerald-200 p-5 rounded-2xl animate-fade-in space-y-2 shadow-sm">
+                    <div className="flex items-center justify-between">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center gap-2">
+                            🔑 OneSignal REST API Key Configuration
+                        </h3>
+                        <button
+                            type="button"
+                            onClick={() => setShowKeyInput(false)}
+                            className="text-xs text-slate-400 hover:text-slate-700 font-bold"
+                        >
+                            ✕ Close
+                        </button>
+                    </div>
+                    <div className="flex gap-2 pt-1">
+                        <input
+                            type="password"
+                            value={onesignalApiKey}
+                            onChange={e => handleSaveKey(e.target.value)}
+                            placeholder="os_v2_app_..."
+                            className="flex-1 text-xs p-3 bg-white border border-emerald-300 rounded-xl text-slate-800 font-mono focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                        />
+                        <button
+                            type="button"
+                            onClick={() => {
+                                handleSaveKey(onesignalApiKey);
+                                alert('OneSignal REST API Key saved successfully!');
+                                setShowKeyInput(false);
+                            }}
+                            className="px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow transition-all"
+                        >
+                            Save Key
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {/* Success Alert */}
             {sendSuccess && (
@@ -331,33 +383,33 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
 
                 {/* Preview & Delivery Status Section */}
                 <div className="lg:col-span-6 space-y-6">
-                    {/* Live Mobile & Desktop Notification Preview */}
-                    <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800">
+                    {/* Live Mobile & Desktop Notification Preview - Clean White Card */}
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-                                <DevicePhoneMobileIcon className="w-4 h-4 text-emerald-400" />
+                            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                                <DevicePhoneMobileIcon className="w-4 h-4 text-emerald-600" />
                                 Live Device Appearance Preview
                             </h3>
-                            <span className="text-[10px] font-bold bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                            <span className="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded-full border border-emerald-200">
                                 Android / iOS / Desktop
                             </span>
                         </div>
 
-                        <div className="bg-slate-800/90 border border-slate-700 rounded-xl p-4 shadow-xl space-y-3">
+                        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
                             <div className="flex items-center gap-3">
-                                <img src="/icon-192.png" alt="App Icon" className="w-8 h-8 rounded-lg shadow-sm border border-slate-700 flex-shrink-0" />
+                                <img src="/icon-192.png" alt="App Icon" className="w-8 h-8 rounded-lg shadow-sm border border-slate-200 flex-shrink-0" />
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-xs font-bold text-slate-300">Mobi Store • now</span>
-                                        <span className="text-[10px] text-slate-400">mobitrashstore.com</span>
+                                        <span className="text-xs font-bold text-slate-800">Mobi Store • now</span>
+                                        <span className="text-[10px] text-slate-400 font-medium">mobitrashstore.com</span>
                                     </div>
-                                    <h4 className="text-sm font-bold text-white truncate mt-0.5">
+                                    <h4 className="text-sm font-bold text-slate-900 truncate mt-0.5">
                                         {title.trim() || '🔥 Notification Title Preview'}
                                     </h4>
                                 </div>
                             </div>
 
-                            <p className="text-xs text-slate-300 leading-relaxed pl-11">
+                            <p className="text-xs text-slate-600 leading-relaxed pl-11">
                                 {message.trim() || 'This is a live preview of how your message will look when delivered to users.'}
                             </p>
 
@@ -366,14 +418,14 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                                     <img 
                                         src={imageUrl} 
                                         alt="Push Banner" 
-                                        className="w-full h-32 object-cover rounded-lg border border-slate-700" 
+                                        className="w-full h-32 object-cover rounded-xl border border-slate-200 shadow-sm" 
                                     />
                                 </div>
                             )}
 
                             {link && (
                                 <div className="pl-11 pt-1">
-                                    <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 font-mono">
+                                    <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-mono bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                                         🔗 Opens: {link}
                                     </span>
                                 </div>
