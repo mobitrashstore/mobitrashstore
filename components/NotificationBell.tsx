@@ -60,8 +60,46 @@ const NotificationBell: React.FC<NotificationBellProps> = ({
         }
     };
 
+    const [pushPermission, setPushPermission] = useState<NotificationPermission>('default');
+
+    useEffect(() => {
+        if (typeof window !== 'undefined' && 'Notification' in window) {
+            setPushPermission(Notification.permission);
+        }
+    }, []);
+
+    const handleEnablePush = async () => {
+        if (typeof window !== 'undefined' && 'Notification' in window) {
+            try {
+                const res = await Notification.requestPermission();
+                setPushPermission(res);
+                if (res === 'granted' && (window as any).OneSignalDeferred) {
+                    (window as any).OneSignalDeferred.push(async (OneSignal: any) => {
+                        await OneSignal.User.PushSubscription.optIn();
+                    });
+                }
+            } catch (e) {
+                console.warn('Push permission request failed:', e);
+            }
+        }
+    };
+
     const notificationListContent = (
         <>
+            {pushPermission !== 'granted' && (
+                <div className="p-3 bg-emerald-50 border-b border-emerald-100 flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 text-xs text-emerald-800">
+                        <span>🔔</span>
+                        <span className="font-semibold">Get instant price drops & deals</span>
+                    </div>
+                    <button
+                        onClick={handleEnablePush}
+                        className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold rounded-lg transition-colors shadow-sm flex-shrink-0"
+                    >
+                        Allow
+                    </button>
+                </div>
+            )}
             {notifications.length > 0 ? (
                 <div className="divide-y divide-gray-100">
                     {notifications.map(notif => (

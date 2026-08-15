@@ -132,3 +132,56 @@ self.addEventListener('fetch', event => {
     })
   );
 });
+
+// --- REAL NATIVE PUSH NOTIFICATION HANDLERS (Android, iOS PWA & Desktop) ---
+self.addEventListener('push', event => {
+  let data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch (e) {
+    data = { title: 'Mobi Store Alert', message: event.data ? event.data.text() : '' };
+  }
+
+  const title = data.title || data.headings?.en || 'Mobi Store Update';
+  const options = {
+    body: data.message || data.contents?.en || data.body || 'Tap to view the latest update on Mobi Store.',
+    icon: data.icon || '/icon-192.png',
+    badge: '/icon-192.png',
+    image: data.image || data.big_picture || data.chrome_web_image || undefined,
+    data: {
+      url: data.url || data.link || '/'
+    },
+    vibrate: [200, 100, 200],
+    tag: data.tag || 'mobistore-broadcast',
+    renotify: true
+  };
+
+  event.waitUntil(
+    self.registration.showNotification(title, options)
+  );
+});
+
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  const targetUrl = (event.notification.data && event.notification.data.url) ? event.notification.data.url : '/';
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(windowClients => {
+      for (const client of windowClients) {
+        if (client.url === targetUrl && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      if (clients.openWindow) {
+        return clients.openWindow(targetUrl);
+      }
+    })
+  );
+});
+
+// Listen for direct test messages from Admin Console
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SHOW_NOTIFICATION') {
+    self.registration.showNotification(event.data.title, event.data.options);
+  }
+});

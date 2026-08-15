@@ -1304,16 +1304,60 @@ export const deleteBanner = async (id: string): Promise<void> => {
     localStorage.removeItem(CACHE_PREFIX + 'banners');
 };
 
-// --- NOTIFICATIONS ---
-export const addGlobalNotification = async (notificationData: Omit<GlobalNotification, 'id' | 'createdAt'>): Promise<GlobalNotification> => {
+// --- NOTIFICATIONS & REAL PUSH BROADCASTS ---
+export const sendPushNotification = async (payload: {
+    title: string;
+    message: string;
+    link?: string;
+    imageUrl?: string;
+    targetType?: 'public' | 'specific';
+    targetEmail?: string | null;
+    onesignalApiKey?: string;
+}) => {
+    // 1. Dispatch Web / Mobile Push via Serverless OneSignal Proxy
+    let pushResponse: any = null;
+    try {
+        const res = await fetch('/api/send-push', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        pushResponse = await res.json();
+    } catch (e) {
+        console.warn("OneSignal server push failed or offline:", e);
+    }
+
+    // 2. Persist to Firestore globalNotifications for in-app badge & history
     const docRef = db.collection('globalNotifications').doc();
     const newNotification: GlobalNotification = {
-        ...notificationData,
         id: docRef.id,
+        title: payload.title,
+        message: payload.message,
+        link: payload.link || '',
+        imageUrl: payload.imageUrl || '',
+        targetEmail: payload.targetType === 'specific' ? (payload.targetEmail || null) : null,
         createdAt: new Date().toISOString(),
     };
     await docRef.set(sanitizePayload(newNotification));
-    return newNotification;
+
+    return pushResponse;
+};
+
+export const addGlobalNotification = async (notificationData: Omit<GlobalNotification, 'id' | 'createdAt'>): Promise<GlobalNotification> => {
+    await sendPushNotification({
+        title: notificationData.title,
+        message: notificationData.message,
+        link: notificationData.link,
+        imageUrl: notificationData.imageUrl,
+        targetType: notificationData.targetEmail ? 'specific' : 'public',
+        targetEmail: notificationData.targetEmail
+    });
+
+    return {
+        id: 'new',
+        ...notificationData,
+        createdAt: new Date().toISOString()
+    };
 };
 
 export const deleteGlobalNotification = async (id: string): Promise<void> => {
@@ -2211,3 +2255,4 @@ export const resetSalesData = async (target: 'All' | 'Online' | 'Townplanning' |
         await deleteCollection('notebookEntries', isLoc);
     }
 };
+
