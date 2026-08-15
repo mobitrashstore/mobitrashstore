@@ -149,6 +149,43 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
     initNativeFeatures();
 
     if (Capacitor.isNativePlatform()) {
+      const handleDeepLink = (rawUrl: string) => {
+        try {
+          if (!rawUrl) return;
+          let path = '';
+          if (rawUrl.startsWith('mobistore://')) {
+            const remainder = rawUrl.replace('mobistore://', '').replace(/^\/+/, '');
+            path = '/' + remainder;
+          } else if (rawUrl.includes('://')) {
+            const parsed = new URL(rawUrl);
+            path = parsed.pathname || ('/' + parsed.host);
+            if (!path.startsWith('/')) path = '/' + path;
+            if (parsed.search) path += parsed.search;
+          } else {
+            path = rawUrl.startsWith('/') ? rawUrl : '/' + rawUrl;
+          }
+          if (path && path !== '/' && router.asPath !== path) {
+            router.push(path);
+          }
+        } catch (e) {
+          console.warn('Error handling deep link:', e);
+        }
+      };
+
+      // Check cold launch URL (e.g. app was closed when shortcut tapped)
+      CapacitorApp.getLaunchUrl().then((launchUrl) => {
+        if (launchUrl?.url) {
+          setTimeout(() => handleDeepLink(launchUrl.url), 300);
+        }
+      }).catch(e => console.warn('getLaunchUrl error:', e));
+
+      // Listen for hot/warm shortcut taps (app was already running in background)
+      const urlListener = CapacitorApp.addListener('appUrlOpen', (data) => {
+        if (data?.url) {
+          handleDeepLink(data.url);
+        }
+      });
+
       const handleBackButton = async (data: { canGoBack: boolean }) => {
         if (data.canGoBack && router.asPath !== '/') {
           window.history.back();
@@ -169,6 +206,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
 
       const backListener = CapacitorApp.addListener('backButton', handleBackButton);
       return () => {
+        urlListener.then(l => l.remove());
         backListener.then(l => l.remove());
         if (exitTimerRef.current) clearTimeout(exitTimerRef.current);
       };

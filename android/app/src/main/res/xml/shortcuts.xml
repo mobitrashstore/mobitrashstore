@@ -9,7 +9,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.mobistore.official"
             android:targetClass="com.mobistore.official.MainActivity"
-            android:data="https://mobitrashstore.com/sell" />
+            android:data="mobistore://sell" />
     </shortcut>
     <shortcut
         android:shortcutId="buy_phone"
@@ -21,7 +21,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.mobistore.official"
             android:targetClass="com.mobistore.official.MainActivity"
-            android:data="https://mobitrashstore.com/buy" />
+            android:data="mobistore://buy" />
     </shortcut>
     <shortcut
         android:shortcutId="repair_phone"
@@ -33,7 +33,7 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.mobistore.official"
             android:targetClass="com.mobistore.official.MainActivity"
-            android:data="https://mobitrashstore.com/repair" />
+            android:data="mobistore://repair" />
     </shortcut>
     <shortcut
         android:shortcutId="spin_win"
@@ -45,6 +45,6 @@
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.mobistore.official"
             android:targetClass="com.mobistore.official.MainActivity"
-            android:data="https://mobitrashstore.com/spin-win" />
+            android:data="mobistore://spin-win" />
     </shortcut>
 </shortcuts>
