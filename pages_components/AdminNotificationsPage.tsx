@@ -195,29 +195,83 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                 </div>
             </div>
 
-            {/* Optional OneSignal Key Config */}
+            {/* OneSignal Key Config Guide & Input */}
             {showKeyInput && (
-                <div className="bg-emerald-50/70 border border-emerald-200 p-5 rounded-2xl animate-fade-in space-y-2">
-                    <h3 className="text-sm font-bold text-emerald-900 flex items-center gap-2">
-                        🔑 OneSignal REST API Key (Optional Override)
-                    </h3>
-                    <p className="text-xs text-emerald-700">
-                        Enter your OneSignal REST API key to send directly to native devices without relying on background worker defaults.
-                    </p>
+                <div className="bg-emerald-50/90 border border-emerald-300 p-6 rounded-2xl animate-fade-in space-y-4 shadow-sm">
+                    <div className="flex items-start justify-between">
+                        <div>
+                            <h3 className="text-base font-black text-emerald-950 flex items-center gap-2">
+                                🔑 How to get your OneSignal REST API Key (1-Minute Setup)
+                            </h3>
+                            <p className="text-xs text-emerald-800 mt-1">
+                                This key authorizes your Admin Dashboard to blast real push notifications directly to users' phones, tablets, and laptops.
+                            </p>
+                        </div>
+                        <button
+                            type="button"
+                            onClick={() => setShowKeyInput(false)}
+                            className="text-xs font-bold text-emerald-700 hover:text-emerald-950 px-2.5 py-1 rounded-lg bg-emerald-100/60"
+                        >
+                            ✕ Close
+                        </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                        <div className="p-3 bg-white rounded-xl border border-emerald-200">
+                            <span className="font-black text-emerald-700 block mb-1">Step 1: Open OneSignal</span>
+                            <p className="text-slate-600">
+                                Log into <a href="https://dashboard.onesignal.com" target="_blank" rel="noreferrer" className="text-emerald-600 font-bold underline">OneSignal.com</a> and click your app.
+                            </p>
+                        </div>
+                        <div className="p-3 bg-white rounded-xl border border-emerald-200">
+                            <span className="font-black text-emerald-700 block mb-1">Step 2: Go to Keys & IDs</span>
+                            <p className="text-slate-600">
+                                In the left sidebar, click <strong>Settings</strong> ➔ <strong>Keys & IDs</strong>.
+                            </p>
+                        </div>
+                        <div className="p-3 bg-white rounded-xl border border-emerald-200">
+                            <span className="font-black text-emerald-700 block mb-1">Step 3: Copy REST API Key</span>
+                            <p className="text-slate-600">
+                                Copy the <strong>REST API Key</strong> string and paste it in the box below.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="p-3 bg-emerald-100/50 rounded-xl border border-emerald-200 text-xs flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                            <span className="font-bold text-emerald-900">Your OneSignal App ID: </span>
+                            <code className="font-mono bg-white px-2 py-0.5 rounded border border-emerald-300 text-emerald-800 font-bold select-all">
+                                57ef8ba0-4ed2-44c6-9bbc-917123034494
+                            </code>
+                        </div>
+                        <a
+                            href="https://dashboard.onesignal.com/apps/57ef8ba0-4ed2-44c6-9bbc-917123034494/settings/keys_and_ids"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1 font-bold text-emerald-800 underline hover:text-emerald-950"
+                        >
+                            Open Keys & IDs Page Directly ➔
+                        </a>
+                    </div>
+
                     <div className="flex gap-2 pt-1">
                         <input
                             type="password"
                             value={onesignalApiKey}
                             onChange={e => handleSaveKey(e.target.value)}
-                            placeholder="os_v2_app_..."
-                            className="flex-1 text-xs p-2.5 bg-white border border-emerald-300 rounded-xl text-slate-800 font-mono"
+                            placeholder="Paste your REST API Key here (e.g. os_v2_app_... or 48-char key)"
+                            className="flex-1 text-xs p-3 bg-white border border-emerald-300 rounded-xl text-slate-800 font-mono focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                         />
                         <button
                             type="button"
-                            onClick={() => setShowKeyInput(false)}
-                            className="px-4 py-2 bg-emerald-600 text-white text-xs font-bold rounded-xl hover:bg-emerald-700"
+                            onClick={() => {
+                                handleSaveKey(onesignalApiKey);
+                                alert('OneSignal REST API Key saved successfully!');
+                                setShowKeyInput(false);
+                            }}
+                            className="px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow transition-all"
                         >
-                            Save
+                            Save Key
                         </button>
                     </div>
                 </div>
