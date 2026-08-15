@@ -118,6 +118,27 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
   }, []);
 
   useEffect(() => {
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) metaTheme.setAttribute('content', '#b5123d');
+    if (typeof document !== 'undefined' && document.documentElement) {
+      document.documentElement.style.backgroundColor = '#b5123d';
+    }
+    const globalBar = document.getElementById('global-mobile-status-bar');
+    if (globalBar) {
+      globalBar.style.backgroundColor = '#b5123d';
+    }
+    return () => {
+      if (metaTheme) metaTheme.setAttribute('content', '#059669');
+      if (typeof document !== 'undefined' && document.documentElement) {
+        document.documentElement.style.backgroundColor = '#059669';
+      }
+      if (globalBar) {
+        globalBar.style.backgroundColor = '#059669';
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     // Check if biometric is available
     const checkBiometric = async () => {
       const hasCred = await biometricService.hasBiometricCredential();

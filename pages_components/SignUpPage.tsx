@@ -10,6 +10,7 @@ import * as api from '../services/api'; // Imported but not used in the provided
 import { ExclamationTriangleIcon } from '../components/icons/ExclamationTriangleIcon'; // Imported but not used in the provided snippet
 import { ChevronLeftIcon } from '../components/icons/ChevronLeftIcon';
 import DesktopAuthSlider from '../components/DesktopAuthSlider';
+import { formatAuthErrorMessage } from '../utils/authErrors';
 
 export interface SignUpPageProps {
   navigate: (path: string) => void;
@@ -32,6 +33,28 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ navigate }) => {
   const [resendTimer, setResendTimer] = useState(0);
 
   const { loginWithGoogle, signUpWithEmail, sendEmailOtp, verifyEmailOtp, user } = useAuth();
+
+  useEffect(() => {
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) metaTheme.setAttribute('content', '#b5123d');
+    if (typeof document !== 'undefined' && document.documentElement) {
+      document.documentElement.style.backgroundColor = '#b5123d';
+    }
+    const globalBar = document.getElementById('global-mobile-status-bar');
+    if (globalBar) {
+      globalBar.style.backgroundColor = '#b5123d';
+    }
+
+    return () => {
+      if (metaTheme) metaTheme.setAttribute('content', '#059669');
+      if (typeof document !== 'undefined' && document.documentElement) {
+        document.documentElement.style.backgroundColor = '#059669';
+      }
+      if (globalBar) {
+        globalBar.style.backgroundColor = '#059669';
+      }
+    };
+  }, []);
 
   useEffect(() => {
     let googleRenderInterval: any;
@@ -74,7 +97,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ navigate }) => {
       setOtpSent(true);
       setResendTimer(60);
     } catch (err: any) {
-      setError(err.message || 'Signup failed.');
+      setError(formatAuthErrorMessage(err));
       setLoading(false);
     }
   };
@@ -85,8 +108,8 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ navigate }) => {
     try {
       const isValid = await verifyEmailOtp(email, otpCode.join(''));
       if (isValid) navigate('/profile');
-      else setError('Invalid code.');
-    } catch (err) { setError('Verification failed.'); }
+      else setError('The code you entered is incorrect or expired.');
+    } catch (err) { setError(formatAuthErrorMessage(err)); }
     finally { setLoading(false); }
   };
 
@@ -101,23 +124,23 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ navigate }) => {
         <div className="w-full md:w-1/2 h-full relative flex flex-col items-center justify-center">
         
         {/* Top Wave */}
-        <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none">
-          <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
+        <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none overflow-hidden h-24">
+          <svg viewBox="0 0 1440 200" className="w-full h-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <defs><linearGradient id="wave-top-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#b5123d" /><stop offset="100%" stopColor="#8a0928" /></linearGradient></defs>
-            <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C960,250 480,-50 0,160 Z" />
+            <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C1000,160 500,40 0,100 Z" />
           </svg>
         </div>
 
         {/* Bottom Mobile Wave SVG */}
-        <div className="absolute bottom-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none">
-          <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
+        <div className="absolute bottom-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none overflow-hidden h-20">
+          <svg viewBox="0 0 1440 200" className="w-full h-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="wave-bottom-grad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#8a0928" />
                 <stop offset="100%" stopColor="#b5123d" />
               </linearGradient>
             </defs>
-            <path fill="url(#wave-bottom-grad)" d="M0,250 L1440,250 L1440,90 C960,300 480,0 0,160 Z" />
+            <path fill="url(#wave-bottom-grad)" d="M0,200 L1440,200 L1440,100 C1000,30 480,180 0,90 Z" />
           </svg>
         </div>
 
@@ -178,28 +201,28 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ navigate }) => {
       <div className="w-full md:w-1/2 h-full relative flex flex-col items-center justify-center">
 
       {/* Top Mobile Wave SVG */}
-      <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none">
-        <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
+      <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none overflow-hidden h-24">
+        <svg viewBox="0 0 1440 200" className="w-full h-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="wave-top-grad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#b5123d" />
               <stop offset="100%" stopColor="#8a0928" />
             </linearGradient>
           </defs>
-          <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C960,250 480,-50 0,160 Z" />
+          <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C1000,160 500,40 0,100 Z" />
         </svg>
       </div>
 
       {/* Bottom Mobile Wave SVG */}
-      <div className="absolute bottom-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none">
-        <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '14vh' }}>
+      <div className="absolute bottom-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none overflow-hidden h-20">
+        <svg viewBox="0 0 1440 200" className="w-full h-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="wave-bottom-grad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#8a0928" />
               <stop offset="100%" stopColor="#b5123d" />
             </linearGradient>
           </defs>
-          <path fill="url(#wave-bottom-grad)" d="M0,250 L1440,250 L1440,120 C960,280 480,40 0,180 Z" />
+          <path fill="url(#wave-bottom-grad)" d="M0,200 L1440,200 L1440,100 C1000,30 480,180 0,90 Z" />
         </svg>
       </div>
 
@@ -219,7 +242,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ navigate }) => {
       </div>
 
       {/* Center Content Area */}
-      <div className="absolute inset-0 flex flex-col justify-start pt-[10vh] items-center w-full z-10 px-6 overflow-y-auto">
+      <div className="absolute inset-0 flex flex-col justify-start pt-[calc(env(safe-area-inset-top,0px)+3rem)] items-center w-full z-10 px-6 overflow-y-auto">
         <div className="max-w-md w-full py-2 min-h-0">
           {/* Logo */}
           <div className="w-full flex justify-start mb-2">
@@ -294,7 +317,7 @@ const SignUpPage: React.FC<SignUpPageProps> = ({ navigate }) => {
               <label htmlFor="signup-agreed" className="text-[11px] font-medium text-gray-600 leading-none">I accept <button type="button" onClick={() => navigate('/terms')} className="text-black font-bold hover:underline">Terms</button> & <button type="button" onClick={() => navigate('/privacy')} className="text-black font-bold hover:underline">Privacy Policy</button></label>
             </div>
 
-            {error && <p className="text-[11px] text-rose-500 font-bold pl-2 animate-shake leading-tight truncate">{error}</p>}
+            {error && <p className="text-xs text-rose-600 font-semibold pl-2 animate-shake leading-snug">{error}</p>}
 
             <div className="pt-2">
               <button onClick={handleSignUp} disabled={loading} className="w-full h-12 bg-black hover:bg-gray-900 text-white rounded-[24px] font-semibold text-sm shadow-lg active:scale-95 transition-all flex items-center justify-center">

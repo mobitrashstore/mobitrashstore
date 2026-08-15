@@ -214,7 +214,8 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
   const isAdminPage = normalizedPath.startsWith('/admin');
   const isSpinWinPage = normalizedPath === '/spin-win';
   const isProductDetailPage = normalizedPath.startsWith('/product/') && normalizedPath.length > 9;
-  const isAuthPage = normalizedPath === '/login' || normalizedPath === '/signup';
+  const rawPath = (router.pathname || router.asPath || '').split('?')[0].toLowerCase();
+  const isAuthPage = rawPath === '/login' || rawPath === '/signup' || rawPath.endsWith('/login') || rawPath.endsWith('/signup');
 
   let paddingTopClass = "";
   if (!isAdminPage) {
@@ -224,7 +225,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
   const showBottomNav = !isAdminPage && !isSpinWinPage && !isProductDetailPage && !isAuthPage;
 
   useEffect(() => {
-    const targetColor = isAuthPage ? '#9b1136' : '#059669';
+    const targetColor = isAuthPage ? '#b5123d' : '#059669';
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) metaTheme.setAttribute('content', targetColor);
     if (typeof document !== 'undefined' && document.documentElement) {
@@ -240,7 +241,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
       };
       syncStatusBar();
     }
-  }, [isAuthPage, router.asPath]);
+  }, [isAuthPage, router.asPath, router.pathname]);
 
   const handleRefresh = async () => {
     await new Promise(resolve => setTimeout(resolve, 800));
@@ -261,16 +262,16 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
     <div className={`min-h-screen w-full bg-gray-50 transition-all duration-300 overflow-x-hidden ${isEditing ? 'pl-80' : ''} ${fullWidth ? 'editor-full-width' : ''}`}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
-        <meta name="theme-color" content={isAuthPage ? '#9b1136' : '#059669'} />
+        <meta name="theme-color" content={isAuthPage ? '#b5123d' : '#059669'} />
         <link rel="canonical" href={canonicalUrl} key="canonical" />
         <meta name="robots" content={isAdminPage ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} key="robots" />
       </Head>
 
-      {/* GLOBAL MOBILE STATUS BAR FILLER: Solid Emerald Green (#059669) across all mobile pages, Wine Red (#9b1136) on login/signup */}
+      {/* GLOBAL MOBILE STATUS BAR FILLER: Solid Wine Red (#b5123d) on /login and /signup, Emerald Green (#059669) everywhere else */}
       <div
         id="global-mobile-status-bar"
-        className={`md:hidden fixed top-0 left-0 right-0 z-[99999] pointer-events-none transition-colors duration-200 ${
-          isAuthPage ? 'bg-[#9b1136]' : 'bg-[#059669]'
+        className={`md:hidden fixed top-0 left-0 right-0 z-[99999] pointer-events-none transition-colors duration-150 ${
+          isAuthPage ? 'bg-[#b5123d]' : 'bg-[#059669]'
         }`}
         style={{ height: 'env(safe-area-inset-top, 0px)' }}
       />
