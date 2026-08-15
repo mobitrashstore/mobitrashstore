@@ -8,9 +8,17 @@ import { UsersIcon } from '../components/icons/UsersIcon';
 import { UserCircleIcon } from '../components/icons/UserCircleIcon';
 import { ImageUploader } from '../components/ImageUploader';
 import { CheckCircleIcon } from '../components/icons/CheckCircleIcon';
-import { SparklesIcon } from '../components/icons/SparklesIcon';
 import { DevicePhoneMobileIcon } from '../components/icons/DevicePhoneMobileIcon';
 import { BoltIcon } from '../components/icons/BoltIcon';
+import { MegaphoneIcon } from '../components/icons/MegaphoneIcon';
+import { Cog6ToothIcon } from '../components/icons/Cog6ToothIcon';
+import { LockClosedIcon } from '../components/icons/LockClosedIcon';
+import { PaperAirplaneIcon } from '../components/icons/PaperAirplaneIcon';
+import { AppleIcon } from '../components/icons/AppleIcon';
+import { ComputerDesktopIcon } from '../components/icons/ComputerDesktopIcon';
+import { BellIcon } from '../components/icons/BellIcon';
+import { DocumentTextIcon } from '../components/icons/DocumentTextIcon';
+import { ArrowTopRightOnSquareIcon } from '../components/icons/ArrowTopRightOnSquareIcon';
 
 interface AdminNotificationsPageProps {
     navigate: (path: string) => void;
@@ -84,7 +92,7 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
         }
 
         if (perm === 'granted') {
-            const testTitle = title.trim() || '🔔 Mobi Store Test Push';
+            const testTitle = title.trim() || 'Mobi Store Test Push';
             const testMsg = message.trim() || 'This is how your push notification appears on Android, iOS, and Desktop!';
             
             if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
@@ -167,8 +175,8 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
                 <div>
                     <h1 className="text-2xl font-black text-slate-800 tracking-tight flex items-center gap-2.5">
-                        <span className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xl shadow-inner">
-                            📢
+                        <span className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center shadow-inner">
+                            <MegaphoneIcon className="w-5 h-5 text-emerald-600" />
                         </span>
                         Push Notifications & Broadcasts
                     </h1>
@@ -190,7 +198,8 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                         onClick={() => setShowKeyInput(!showKeyInput)}
                         className="inline-flex items-center gap-1.5 px-3 py-2.5 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold rounded-xl hover:bg-emerald-100 transition-all"
                     >
-                        ⚙️ OneSignal API Key
+                        <Cog6ToothIcon className="w-4 h-4 text-emerald-600" />
+                        OneSignal API Key
                     </button>
                 </div>
             </div>
@@ -200,7 +209,8 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                 <div className="bg-emerald-50/80 border border-emerald-200 p-5 rounded-2xl animate-fade-in space-y-2 shadow-sm">
                     <div className="flex items-center justify-between">
                         <h3 className="text-xs font-bold uppercase tracking-wider text-emerald-900 flex items-center gap-2">
-                            🔑 OneSignal REST API Key Configuration
+                            <LockClosedIcon className="w-4 h-4 text-emerald-700" />
+                            OneSignal REST API Key Configuration
                         </h3>
                         <button
                             type="button"
@@ -312,7 +322,7 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                                     value={title}
                                     onChange={e => setTitle(e.target.value)}
                                     required
-                                    placeholder="e.g. 🔥 Flash Sale: 20% Off iPhones Today!"
+                                    placeholder="e.g. Flash Sale: 20% Off iPhones Today!"
                                     className="w-full p-3 border border-slate-200 rounded-xl text-sm text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                                 />
                             </div>
@@ -373,7 +383,8 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                                     </>
                                 ) : (
                                     <>
-                                        <span>🚀 Send Real Push Notification</span>
+                                        <PaperAirplaneIcon className="w-4 h-4 text-white" />
+                                        <span>Send Real Push Notification</span>
                                     </>
                                 )}
                             </button>
@@ -404,7 +415,7 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                                         <span className="text-[10px] text-slate-400 font-medium">mobitrashstore.com</span>
                                     </div>
                                     <h4 className="text-sm font-bold text-slate-900 truncate mt-0.5">
-                                        {title.trim() || '🔥 Notification Title Preview'}
+                                        {title.trim() || 'Notification Title Preview'}
                                     </h4>
                                 </div>
                             </div>
@@ -426,7 +437,7 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                             {link && (
                                 <div className="pl-11 pt-1">
                                     <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 font-mono bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                                        🔗 Opens: {link}
+                                        <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5 text-emerald-600" /> Opens: {link}
                                     </span>
                                 </div>
                             )}
@@ -440,26 +451,30 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                         </h3>
                         <div className="grid grid-cols-2 gap-3 text-xs">
                             <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                                <div className="font-bold text-slate-800 flex items-center gap-1.5">
-                                    <span>📱</span> Android Devices
+                                <div className="font-bold text-slate-800 flex items-center gap-2">
+                                    <DevicePhoneMobileIcon className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                                    <span>Android Devices</span>
                                 </div>
                                 <p className="text-[11px] text-slate-500 mt-1">Chrome, Edge & Installed PWA</p>
                             </div>
                             <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                                <div className="font-bold text-slate-800 flex items-center gap-1.5">
-                                    <span>🍏</span> Apple iOS (iPhones)
+                                <div className="font-bold text-slate-800 flex items-center gap-2">
+                                    <AppleIcon className="w-4 h-4 text-slate-800 flex-shrink-0" />
+                                    <span>Apple iOS (iPhones)</span>
                                 </div>
                                 <p className="text-[11px] text-slate-500 mt-1">iOS 16.4+ Safari & Home Screen App</p>
                             </div>
                             <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                                <div className="font-bold text-slate-800 flex items-center gap-1.5">
-                                    <span>💻</span> Desktop Browsers
+                                <div className="font-bold text-slate-800 flex items-center gap-2">
+                                    <ComputerDesktopIcon className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                                    <span>Desktop Browsers</span>
                                 </div>
                                 <p className="text-[11px] text-slate-500 mt-1">Windows, Mac & Linux Browsers</p>
                             </div>
                             <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                                <div className="font-bold text-slate-800 flex items-center gap-1.5">
-                                    <span>🔔</span> In-App Bell Badge
+                                <div className="font-bold text-slate-800 flex items-center gap-2">
+                                    <BellIcon className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                                    <span>In-App Bell Badge</span>
                                 </div>
                                 <p className="text-[11px] text-slate-500 mt-1">Realtime Firestore notification badge</p>
                             </div>
@@ -472,7 +487,8 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                     <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                         <div className="p-5 border-b border-slate-100 bg-slate-50/70 flex justify-between items-center">
                             <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
-                                <span>📋</span> Notification Broadcast History
+                                <DocumentTextIcon className="w-5 h-5 text-emerald-600" />
+                                Notification Broadcast History
                             </h2>
                             <span className="text-xs font-bold bg-slate-200 text-slate-700 px-2.5 py-1 rounded-full">
                                 {notifications.length} Total
@@ -506,7 +522,7 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                                             <p className="text-sm text-slate-600 mt-1 leading-relaxed">{notif.message}</p>
                                             {notif.link && (
                                                 <div className="mt-2 inline-flex items-center gap-1 px-2.5 py-1 bg-slate-100 rounded-lg text-xs text-emerald-700 font-mono border border-slate-200">
-                                                    <span>🔗</span> {notif.link}
+                                                    <ArrowTopRightOnSquareIcon className="w-3.5 h-3.5 text-emerald-600" /> {notif.link}
                                                 </div>
                                             )}
                                             <p className="text-[10px] text-slate-400 mt-2 font-semibold uppercase tracking-wider">
@@ -524,12 +540,10 @@ const AdminNotificationsPage: React.FC<AdminNotificationsPageProps> = ({ navigat
                                 ))}
                             </div>
                         ) : (
-                            <div className="text-center py-16">
-                                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 text-slate-400 mb-4">
-                                    <EnvelopeIcon className="w-8 h-8" />
-                                </div>
-                                <p className="text-slate-600 font-bold">No notifications sent yet.</p>
-                                <p className="text-slate-400 text-xs mt-1">Send your first push broadcast using the form above.</p>
+                            <div className="text-center py-16 text-slate-400">
+                                <MegaphoneIcon className="w-12 h-12 mx-auto mb-2 text-slate-300" />
+                                <p className="text-sm font-semibold">No notifications sent yet.</p>
+                                <p className="text-xs text-slate-400 mt-1">Compose and send your first broadcast above.</p>
                             </div>
                         )}
                     </div>
