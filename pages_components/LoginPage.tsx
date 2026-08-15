@@ -215,24 +215,23 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
         <div className="w-full md:w-1/2 h-full relative flex flex-col items-center justify-center">
         
         {/* Top Wave */}
-        <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none bg-[#b5123d]">
-          <div style={{ height: 'env(safe-area-inset-top, 0px)' }} className="w-full bg-[#b5123d]" />
-          <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
+        <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none overflow-hidden h-24">
+          <svg viewBox="0 0 1440 200" className="w-full h-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <defs><linearGradient id="wave-top-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#b5123d" /><stop offset="100%" stopColor="#8a0928" /></linearGradient></defs>
-            <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C960,250 480,-50 0,160 Z" />
+            <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C1000,160 500,40 0,100 Z" />
           </svg>
         </div>
 
         {/* Bottom Mobile Wave SVG */}
-        <div className="absolute bottom-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none">
-          <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
+        <div className="absolute bottom-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none overflow-hidden h-20">
+          <svg viewBox="0 0 1440 200" className="w-full h-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="wave-bottom-grad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#8a0928" />
                 <stop offset="100%" stopColor="#b5123d" />
               </linearGradient>
             </defs>
-            <path fill="url(#wave-bottom-grad)" d="M0,250 L1440,250 L1440,90 C960,300 480,0 0,160 Z" />
+            <path fill="url(#wave-bottom-grad)" d="M0,200 L1440,200 L1440,100 C1000,30 480,180 0,90 Z" />
           </svg>
         </div>
 
@@ -367,24 +366,23 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
         <div className="w-full md:w-1/2 h-full relative flex flex-col items-center justify-center">
         
         {/* Top Wave */}
-        <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none bg-[#b5123d]">
-          <div style={{ height: 'env(safe-area-inset-top, 0px)' }} className="w-full bg-[#b5123d]" />
-          <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
+        <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none overflow-hidden h-24">
+          <svg viewBox="0 0 1440 200" className="w-full h-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <defs><linearGradient id="wave-top-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#b5123d" /><stop offset="100%" stopColor="#8a0928" /></linearGradient></defs>
-            <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C960,250 480,-50 0,160 Z" />
+            <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C1000,160 500,40 0,100 Z" />
           </svg>
         </div>
 
         {/* Bottom Mobile Wave SVG */}
-        <div className="absolute bottom-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none">
-          <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
+        <div className="absolute bottom-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none overflow-hidden h-20">
+          <svg viewBox="0 0 1440 200" className="w-full h-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="wave-bottom-grad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#8a0928" />
                 <stop offset="100%" stopColor="#b5123d" />
               </linearGradient>
             </defs>
-            <path fill="url(#wave-bottom-grad)" d="M0,250 L1440,250 L1440,90 C960,300 480,0 0,160 Z" />
+            <path fill="url(#wave-bottom-grad)" d="M0,200 L1440,200 L1440,100 C1000,30 480,180 0,90 Z" />
           </svg>
         </div>
 
@@ -431,30 +429,29 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
 
       <div className="w-full md:w-1/2 h-full relative flex flex-col items-center justify-center touch-none">
 
-      {/* Top Mobile Wave SVG */}
-      <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none bg-[#b5123d]">
-        <div style={{ height: 'env(safe-area-inset-top, 0px)' }} className="w-full bg-[#b5123d]" />
-        <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '18vh' }}>
+      {/* Top Mobile Wave SVG - Hugs status bar and notch */}
+      <div className="absolute top-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none overflow-hidden h-24">
+        <svg viewBox="0 0 1440 200" className="w-full h-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="wave-top-grad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#b5123d" />
               <stop offset="100%" stopColor="#8a0928" />
             </linearGradient>
           </defs>
-          <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C960,250 480,-50 0,160 Z" />
+          <path fill="url(#wave-top-grad)" d="M0,0 L1440,0 L1440,80 C1000,160 500,40 0,100 Z" />
         </svg>
       </div>
 
       {/* Bottom Mobile Wave SVG */}
-      <div className="absolute bottom-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none">
-        <svg viewBox="0 0 1440 250" className="w-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style={{ height: '14vh' }}>
+      <div className="absolute bottom-0 left-0 right-0 w-full z-0 pointer-events-none md:hidden leading-none overflow-hidden h-20">
+        <svg viewBox="0 0 1440 200" className="w-full h-full object-cover" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="wave-bottom-grad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#8a0928" />
               <stop offset="100%" stopColor="#b5123d" />
             </linearGradient>
           </defs>
-          <path fill="url(#wave-bottom-grad)" d="M0,250 L1440,250 L1440,120 C960,280 480,40 0,180 Z" />
+          <path fill="url(#wave-bottom-grad)" d="M0,200 L1440,200 L1440,100 C1000,30 480,180 0,90 Z" />
         </svg>
       </div>
 
@@ -474,7 +471,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ navigate, showUnauthorizedMessage
       </div>
 
       {/* Center Content Area */}
-      <div className="absolute inset-0 flex flex-col justify-start pt-[10vh] items-center w-full z-10 px-6 overflow-y-auto">
+      <div className="absolute inset-0 flex flex-col justify-start pt-[calc(env(safe-area-inset-top,0px)+3rem)] items-center w-full z-10 px-6 overflow-y-auto">
         <div className="max-w-md w-full py-2 flex flex-col justify-center min-h-0">
           {/* Logo */}
           <div className="w-full flex justify-start mb-2">
