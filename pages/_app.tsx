@@ -206,6 +206,25 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
 
   useEffect(() => {
     api.trackTraffic(router.asPath);
+
+    // Auto-clean unwanted Google/Social tracking parameters from address bar (srsltid, gclid, fbclid, utm_*)
+    if (typeof window !== 'undefined' && window.location.search) {
+      try {
+        const url = new URL(window.location.href);
+        const trackingParams = ['srsltid', 'gclid', 'fbclid', 'msclkid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        let hasTracking = false;
+        trackingParams.forEach((param) => {
+          if (url.searchParams.has(param)) {
+            url.searchParams.delete(param);
+            hasTracking = true;
+          }
+        });
+        if (hasTracking) {
+          const cleanUrl = url.pathname + (url.searchParams.toString() ? `?${url.searchParams.toString()}` : '') + url.hash;
+          window.history.replaceState(null, '', cleanUrl);
+        }
+      } catch (e) { }
+    }
   }, [router.asPath]);
 
   const path = router.pathname;
