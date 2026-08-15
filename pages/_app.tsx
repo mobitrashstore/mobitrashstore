@@ -270,7 +270,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
       {/* GLOBAL MOBILE STATUS BAR FILLER: Solid Wine Red (#b5123d) on /login and /signup, Emerald Green (#059669) everywhere else */}
       <div
         id="global-mobile-status-bar"
-        className={`md:hidden fixed top-0 left-0 right-0 z-[99999] pointer-events-none transition-colors duration-150 ${
+        className={`md:hidden fixed top-0 left-0 right-0 z-[99999] pointer-events-none transition-colors duration-150 border-0 shadow-none outline-none ${
           isAuthPage ? 'bg-[#b5123d]' : 'bg-[#059669]'
         }`}
         style={{ height: 'env(safe-area-inset-top, 0px)' }}
@@ -282,10 +282,6 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
         {!isAdminPage && <Header navigate={navigate} />}
 
         <main className={`flex-grow flex flex-col bg-white relative overflow-hidden ${showBottomNav ? 'pb-[calc(64px+env(safe-area-inset-bottom))] md:pb-0' : ''}`}>
-          <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-500/5 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[60px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent"></div>
-
           <ErrorBoundary>
             <PullToRefresh onRefresh={handleRefresh} disabled={isAdminPage}>
               <AnimatePresence mode="wait">
