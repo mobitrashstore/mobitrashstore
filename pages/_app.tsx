@@ -29,6 +29,7 @@ import { AdMob } from '@capacitor-community/admob';
 import AdBanner from '../components/AdBanner';
 import { App as CapacitorApp } from '@capacitor/app';
 import { StatusBar, Style } from '@capacitor/status-bar';
+import { PushNotifications } from '@capacitor/push-notifications';
 import { Capacitor } from '@capacitor/core';
 import * as api from '../services/api';
 import emailjs from '@emailjs/browser';
@@ -87,11 +88,32 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
           await StatusBar.setOverlaysWebView({ overlay: false });
           await StatusBar.setBackgroundColor({ color: '#059669' });
         } catch (statusError) { console.error('StatusBar Sync Error:', statusError); }
+
+        try {
+          const permStatus = await PushNotifications.checkPermissions();
+          if (permStatus.receive === 'prompt' || permStatus.receive === 'prompt-with-rationale') {
+            await PushNotifications.requestPermissions();
+          }
+          await PushNotifications.register();
+          PushNotifications.addListener('registration', (token) => {
+            console.log('FCM Push registration token:', token.value);
+          });
+          PushNotifications.addListener('pushNotificationReceived', (notification) => {
+            console.log('Push notification received:', notification);
+          });
+        } catch (pushErr) {
+          console.warn('Native Push Notifications Init error:', pushErr);
+        }
       }
 
       const handleAppPermissions = async () => {
         // 1. Proactively request Notification permission (Native + OneSignal + Web)
         try {
+          if (Capacitor.isNativePlatform()) {
+            try {
+              await PushNotifications.requestPermissions();
+            } catch (nativeErr) {}
+          }
           if (typeof window !== 'undefined' && (window as any).OneSignalDeferred) {
             (window as any).OneSignalDeferred.push(async (OneSignal: any) => {
               try {
@@ -121,7 +143,7 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
         }
       };
 
-      setTimeout(() => { handleAppPermissions(); }, 1500);
+      setTimeout(() => { handleAppPermissions(); }, 1200);
     };
 
     initNativeFeatures();

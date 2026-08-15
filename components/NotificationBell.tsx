@@ -4,6 +4,8 @@ import { createPortal } from 'react-dom';
 import { useGlobalNotification } from '../context/GlobalNotificationContext';
 import { BellIcon } from './icons/BellIcon';
 import { XMarkIcon } from './icons/XMarkIcon';
+import { Capacitor } from '@capacitor/core';
+import { PushNotifications } from '@capacitor/push-notifications';
 
 interface NotificationBellProps {
     navigate: (path: string) => void;
@@ -62,7 +64,16 @@ const NotificationBell: React.FC<NotificationBellProps> = ({
 
     const [pushPermission, setPushPermission] = useState<NotificationPermission>('default');
 
-    const checkPushPermission = () => {
+    const checkPushPermission = async () => {
+        if (Capacitor.isNativePlatform()) {
+            try {
+                const status = await PushNotifications.checkPermissions();
+                if (status.receive === 'granted') {
+                    setPushPermission('granted');
+                    return;
+                }
+            } catch (e) {}
+        }
         if (typeof window !== 'undefined') {
             if ('Notification' in window) {
                 setPushPermission(Notification.permission);
@@ -80,6 +91,17 @@ const NotificationBell: React.FC<NotificationBellProps> = ({
 
     const handleEnablePush = async () => {
         try {
+            if (Capacitor.isNativePlatform()) {
+                try {
+                    const status = await PushNotifications.requestPermissions();
+                    if (status.receive === 'granted') {
+                        await PushNotifications.register();
+                        setPushPermission('granted');
+                    }
+                } catch (nativeErr) {
+                    console.warn("Native push request error:", nativeErr);
+                }
+            }
             if (typeof window !== 'undefined' && 'Notification' in window) {
                 const res = await Notification.requestPermission();
                 setPushPermission(res);
