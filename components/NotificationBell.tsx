@@ -62,25 +62,48 @@ const NotificationBell: React.FC<NotificationBellProps> = ({
 
     const [pushPermission, setPushPermission] = useState<NotificationPermission>('default');
 
-    useEffect(() => {
-        if (typeof window !== 'undefined' && 'Notification' in window) {
-            setPushPermission(Notification.permission);
+    const checkPushPermission = () => {
+        if (typeof window !== 'undefined') {
+            if ('Notification' in window) {
+                setPushPermission(Notification.permission);
+            }
+            if ((window as any).OneSignal?.Notifications?.permission) {
+                const isPerm = (window as any).OneSignal.Notifications.permission;
+                setPushPermission(isPerm ? 'granted' : 'default');
+            }
         }
+    };
+
+    useEffect(() => {
+        checkPushPermission();
     }, []);
 
     const handleEnablePush = async () => {
-        if (typeof window !== 'undefined' && 'Notification' in window) {
-            try {
+        try {
+            if (typeof window !== 'undefined' && 'Notification' in window) {
                 const res = await Notification.requestPermission();
                 setPushPermission(res);
-                if (res === 'granted' && (window as any).OneSignalDeferred) {
-                    (window as any).OneSignalDeferred.push(async (OneSignal: any) => {
-                        await OneSignal.User.PushSubscription.optIn();
-                    });
-                }
-            } catch (e) {
-                console.warn('Push permission request failed:', e);
             }
+            if (typeof window !== 'undefined' && (window as any).OneSignalDeferred) {
+                (window as any).OneSignalDeferred.push(async (OneSignal: any) => {
+                    try {
+                        if (OneSignal.Notifications?.requestPermission) {
+                            await OneSignal.Notifications.requestPermission();
+                        }
+                        if (OneSignal.User?.PushSubscription?.optIn) {
+                            await OneSignal.User.PushSubscription.optIn();
+                        }
+                        if (OneSignal.Slidedown?.promptPush) {
+                            await OneSignal.Slidedown.promptPush();
+                        }
+                    } catch (err) {
+                        console.warn("OneSignal optIn error:", err);
+                    }
+                    checkPushPermission();
+                });
+            }
+        } catch (e) {
+            console.warn('Push permission request failed:', e);
         }
     };
 

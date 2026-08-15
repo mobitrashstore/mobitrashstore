@@ -5,7 +5,7 @@
   "lang": "en-US",
   "dir": "ltr",
   "start_url": "/",
-  "id": "com.mobistore.shop",
+  "id": "com.mobistore.official",
   "scope": "/",
   "display": "standalone",
   "background_color": "#059669",
@@ -38,9 +38,9 @@
   ],
   "shortcuts": [
     {
-      "name": "Sell Your Phone",
+      "name": "Sell Phone",
       "short_name": "Sell",
-      "description": "Get an instant quote for your device in minutes.",
+      "description": "Get an instant valuation and sell your used phone.",
       "url": "/sell",
       "icons": [
         {
@@ -50,10 +50,34 @@
       ]
     },
     {
-      "name": "Shop Now",
+      "name": "Buy Devices",
       "short_name": "Shop",
-      "description": "Browse our latest certified pre-owned devices.",
+      "description": "Explore verified pre-owned phones and accessories.",
       "url": "/buy",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Book Repair",
+      "short_name": "Repair",
+      "description": "Get doorstep or lab mobile screen and battery repair.",
+      "url": "/repair",
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Spin & Win",
+      "short_name": "Rewards",
+      "description": "Spin the wheel to win discounts and cashback prizes.",
+      "url": "/spin-win",
       "icons": [
         {
           "src": "/icon-192.png",

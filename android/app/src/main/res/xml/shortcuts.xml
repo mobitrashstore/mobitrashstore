@@ -1,0 +1,50 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="sell_phone"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_sell_short"
+        android:shortcutLongLabel="@string/shortcut_sell_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.mobistore.official"
+            android:targetClass="com.mobistore.official.MainActivity"
+            android:data="https://mobitrashstore.com/sell" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="buy_phone"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_buy_short"
+        android:shortcutLongLabel="@string/shortcut_buy_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.mobistore.official"
+            android:targetClass="com.mobistore.official.MainActivity"
+            android:data="https://mobitrashstore.com/buy" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="repair_phone"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_repair_short"
+        android:shortcutLongLabel="@string/shortcut_repair_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.mobistore.official"
+            android:targetClass="com.mobistore.official.MainActivity"
+            android:data="https://mobitrashstore.com/repair" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="spin_win"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_spin_short"
+        android:shortcutLongLabel="@string/shortcut_spin_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.mobistore.official"
+            android:targetClass="com.mobistore.official.MainActivity"
+            android:data="https://mobitrashstore.com/spin-win" />
+    </shortcut>
+</shortcuts>

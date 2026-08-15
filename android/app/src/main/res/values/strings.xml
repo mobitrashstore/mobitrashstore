@@ -2,6 +2,14 @@
 <resources>
     <string name="app_name">Mobi Store</string>
     <string name="title_activity_main">Mobi Store</string>
-    <string name="package_name">com.mobistore.app</string>
-    <string name="custom_url_scheme">com.mobistore.app</string>
+    <string name="package_name">com.mobistore.official</string>
+    <string name="custom_url_scheme">com.mobistore.official</string>
+    <string name="shortcut_sell_short">Sell Phone</string>
+    <string name="shortcut_sell_long">Sell Used Phone for Instant Cash</string>
+    <string name="shortcut_buy_short">Buy Phones</string>
+    <string name="shortcut_buy_long">Buy Certified Pre-Owned Phones</string>
+    <string name="shortcut_repair_short">Repair</string>
+    <string name="shortcut_repair_long">Book Doorstep Mobile Repair</string>
+    <string name="shortcut_spin_short">Spin &amp; Win</string>
+    <string name="shortcut_spin_long">Spin Wheel to Win Rewards</string>
 </resources>

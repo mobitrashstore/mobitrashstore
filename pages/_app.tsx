@@ -89,18 +89,39 @@ const MainAppContent = ({ Component, pageProps }: { Component: any; pageProps: a
         } catch (statusError) { console.error('StatusBar Sync Error:', statusError); }
       }
 
-      const handleFirstTimePermissions = async () => {
-        const PERM_KEY = 'mt_initial_permissions_requested';
-        if (localStorage.getItem(PERM_KEY)) return;
+      const handleAppPermissions = async () => {
+        // 1. Proactively request Notification permission (Native + OneSignal + Web)
         try {
-          if ('geolocation' in navigator) {
-            navigator.geolocation.getCurrentPosition(() => { }, () => { }, { timeout: 1000 });
+          if (typeof window !== 'undefined' && (window as any).OneSignalDeferred) {
+            (window as any).OneSignalDeferred.push(async (OneSignal: any) => {
+              try {
+                if (OneSignal.Notifications?.requestPermission) {
+                  await OneSignal.Notifications.requestPermission();
+                }
+                if (OneSignal.User?.PushSubscription?.optIn) {
+                  await OneSignal.User.PushSubscription.optIn();
+                }
+              } catch (e) {}
+            });
           }
-        } catch (e) { console.warn("Location permission trigger error:", e); }
-        localStorage.setItem(PERM_KEY, 'true');
+          if (typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'default') {
+            await Notification.requestPermission();
+          }
+        } catch (e) {
+          console.warn("Auto notification permission request error:", e);
+        }
+
+        // 2. Proactively request Location permission
+        try {
+          if (typeof navigator !== 'undefined' && 'geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(() => { }, () => { }, { timeout: 4000, enableHighAccuracy: false });
+          }
+        } catch (e) {
+          console.warn("Location permission trigger error:", e);
+        }
       };
 
-      setTimeout(() => { handleFirstTimePermissions(); }, 8000);
+      setTimeout(() => { handleAppPermissions(); }, 1500);
     };
 
     initNativeFeatures();
