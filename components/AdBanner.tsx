@@ -18,35 +18,33 @@ const AdBanner: React.FC<AdBannerProps> = ({
     margin = 60
 }) => {
     useEffect(() => {
+        let isMounted = true;
         const initializeBanner = async () => {
             try {
-                // We check if we are on a real device or emulator
-                const isPushEnabled = await AdMob.showBanner({
+                if (!isMounted) return;
+                await AdMob.showBanner({
                     adId: adId,
                     adSize: BannerAdSize.ADAPTIVE_BANNER,
                     position: BannerAdPosition.BOTTOM_CENTER,
-                    margin: margin, // Leave space for bottom nav bar if needed
+                    margin: margin, // Leave space for bottom nav bar (60px)
                     isTesting: isTesting
                 });
             } catch (e) {
-                console.error('Banner Ad failed to show:', e);
+                console.warn('Banner ad info:', e);
             }
         };
 
-        // Small delay to ensure the page has loaded
         const timer = setTimeout(() => {
             initializeBanner();
-        }, 1000);
+        }, 400);
 
         return () => {
+            isMounted = false;
             clearTimeout(timer);
-            // Clean up the ad when leaving the page
-            AdMob.removeBanner().catch(e => console.error('Error removing banner:', e));
         };
-    }, [adId, isTesting]);
+    }, [adId, isTesting, margin]);
 
-    // Returning an empty div as the ad is an overlay managed by the native layer
-    return <div className="ad-container" style={{ height: '0px' }}></div>;
+    return null;
 };
 
 export default AdBanner;

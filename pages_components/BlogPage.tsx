@@ -4,6 +4,8 @@ import { BlogPost } from '../types';
 import SEO from '../components/SEO';
 import MobileSkyHeader from '../components/MobileSkyHeader';
 
+import InArticleAd from '../components/InArticleAd';
+
 export interface BlogPageProps {
   navigate: (path: string) => void;
 }
@@ -128,7 +130,14 @@ const BlogPage: React.FC<BlogPageProps> = ({ navigate }) => {
             ))
           ) : posts.length > 0 ? (
             posts.map((post, idx) => (
-              <BlogCard key={post.id || idx} post={post} navigate={navigate} />
+              <React.Fragment key={post.id || idx}>
+                <BlogCard post={post} navigate={navigate} />
+                {(idx + 1) % 4 === 0 && (
+                  <div className="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-4 my-2">
+                    <InArticleAd />
+                  </div>
+                )}
+              </React.Fragment>
             ))
           ) : (
             <div className="col-span-full py-16 text-center">
